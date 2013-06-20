@@ -10,37 +10,15 @@ The rest is the same as bitcoin.
  - 100 coins per block
  - 480 blocks to retarget difficulty
  
-RPC Port: 9559
-Port: 9558
+Ports:
+
+Net - 9560
+RPC - 9561
  
-website: http://www.sexcoin-wiki.org
 
 Development process
 ===================
 
-Developers work in their own trees, then submit pull requests when
-they think their feature or bug fix is ready.
+Current efforts in the development of this coin are being made by a few members of bitcointalk.org that still have an interest in seeing it survive. These efforts are on a volunteer basis, so things will be a little slow for now. The original release of the coin by member 'chinsu' has been set as the current master. Updates for now will follow the litecoin (LTC) project. A clean base will be made available very soon as this is the first goal of current volunteer development team.
 
-The patch will be accepted if there is broad consensus that it is a
-good thing.  Developers should expect to rework and resubmit patches
-if they don't match the project's coding conventions (see coding.txt)
-or are controversial.
-
-The master branch is regularly built and tested, but is not guaranteed
-to be completely stable. Tags are regularly created to indicate new
-official, stable release versions of Sexcoin.
-
-Feature branches are created when there are major new features being
-worked on by several people.
-
-From time to time a pull request will become outdated. If this occurs, and
-the pull is no longer automatically mergeable; a comment on the pull will
-be used to issue a warning of closure. The pull will be closed 15 days
-after the warning if action is not taken by the author. Pull requests closed
-in this manner will have their corresponding issue labeled 'stagnant'.
-
-Issues with no commits will be given a similar warning, and closed after
-15 days from their last activity. Issues closed in this manner will be 
-labeled 'stale'. 
-
-Check out http://sexcoin-wiki.org for more info about the development.
+Contact sexcoindev@gmail.com for any questions regarding this project.
