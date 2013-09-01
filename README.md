@@ -1,5 +1,7 @@
-Sexcoin - a fork of Litecoin using scrypt as a proof of work scheme.
-
+Sexcoin
+=======
+ 
+A fork of Litecoin using scrypt as a proof of work scheme.
 Targeted at the Adult Entertainment Business.
 
 Features:
