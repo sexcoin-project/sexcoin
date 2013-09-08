@@ -46,7 +46,21 @@ void OptionsModel::Init()
     fMinimizeToTray = settings.value("fMinimizeToTray", false).toBool();
     fMinimizeOnClose = settings.value("fMinimizeOnClose", false).toBool();
     nTransactionFee = settings.value("nTransactionFee").toLongLong();
+    nSoundVolume = settings.value("nSoundVolume",75).toInt();
     language = settings.value("language", "").toString();
+    startup_sound=settings.value("SoundStartup", "startup.wav").toString();
+    incoming_sound=settings.value("SoundIncoming", "incoming.wav").toString();
+    mining_sound=settings.value("SoundMining", "mining.wav").toString();
+    sent_sound=settings.value("SoundSent", "coinssent.wav").toString();
+    sync_sound=settings.value("SoundSync", "sync.mp3").toString();
+    about_sound=settings.value("SoundAbout", "about.wav").toString();
+    bSoundStartup=settings.value("bUseStartup",true).toBool();
+    bSoundIncoming=settings.value("bUseIncoming",true).toBool();
+    bSoundMining=settings.value("bUseMining",true).toBool();
+    bSoundSent=settings.value("bUseSent",true).toBool();
+    bSoundSync=settings.value("bUseSync",true).toBool();
+    bSoundAbout=settings.value("bUseAbout",true).toBool();
+
 
     // These are shared with core Bitcoin; we want
     // command-line options to override the GUI settings:
@@ -75,7 +89,7 @@ bool OptionsModel::Upgrade()
     CWalletDB walletdb("wallet.dat");
 
     QList<QString> intOptions;
-    intOptions << "nDisplayUnit" << "nTransactionFee";
+    intOptions << "nDisplayUnit" << "nTransactionFee" << "nSoundVolume";
     foreach(QString key, intOptions)
     {
         int value = 0;
@@ -87,6 +101,9 @@ bool OptionsModel::Upgrade()
     }
     QList<QString> boolOptions;
     boolOptions << "bDisplayAddresses" << "fMinimizeToTray" << "fMinimizeOnClose" << "fUseProxy" << "fUseUPnP";
+    boolOptions << "bUseSound" << "bSoundIncoming" << "bSoundStartup" << "bSoundMining" << "bSoundIncoming";
+    boolOptions << "bSoundSent" << "bSoundSync" << "bSoundAbout";
+
     foreach(QString key, boolOptions)
     {
         bool value = false;
@@ -116,6 +133,7 @@ bool OptionsModel::Upgrade()
         }
     }
     ApplyProxySettings();
+
     Init();
 
     return true;
@@ -170,6 +188,32 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
             return QVariant(bitdb.GetDetach());
         case Language:
             return settings.value("language", "");
+        case SoundVolume:
+            return QVariant(nSoundVolume);
+        case SoundStartup:
+            return QVariant(startup_sound);
+        case SoundAbout:
+            return QVariant(about_sound);
+        case SoundIncoming:
+            return QVariant(incoming_sound);
+        case SoundSent:
+            return QVariant(sent_sound);
+        case SoundMining:
+            return QVariant(mining_sound);
+        case SoundSync:
+            return QVariant(sync_sound);
+        case UseAbout:
+            return QVariant(bSoundAbout);
+        case UseIncoming:
+            return QVariant(bSoundIncoming);
+        case UseSent:
+            return QVariant(bSoundSent);
+        case UseStartup:
+            return QVariant(bSoundStartup);
+        case UseSync:
+            return QVariant(bSoundSync);
+        case UseMining:
+            return QVariant(bSoundMining);
         default:
             return QVariant();
         }
@@ -249,6 +293,58 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
         case Language:
             settings.setValue("language", value);
             break;
+        case SoundVolume:
+            nSoundVolume = value.toInt();
+            settings.setValue("nSoundVolume",nSoundVolume);
+            break;
+        case UseStartup:
+            bSoundStartup = value.toBool();
+            settings.setValue("bUseStartup", bSoundStartup);
+            break;
+        case UseIncoming:
+            bSoundIncoming = value.toBool();
+            settings.setValue("bUseIncoming",bSoundIncoming);
+            break;
+        case UseSent:
+            bSoundSent = value.toBool();
+            settings.setValue("bUseSent",bSoundSent);
+            break;
+        case UseMining:
+            bSoundMining = value.toBool();
+            settings.setValue("bUseMining",bSoundMining);
+            break;
+        case UseSync:
+            bSoundSync = value.toBool();
+            settings.setValue("bUseSync",bSoundSync);
+            break;
+        case UseAbout:
+            bSoundAbout = value.toBool();
+            settings.setValue("bUseAbout",bSoundAbout);
+            break;
+        case SoundStartup:
+            startup_sound=value.toString();
+            settings.setValue("SoundStartup",startup_sound);
+            break;
+        case SoundIncoming:
+            incoming_sound=value.toString();
+            settings.setValue("SoundIncoming",incoming_sound);
+            break;
+        case SoundSent:
+            sent_sound=value.toString();
+            settings.setValue("SoundSent",sent_sound);
+            break;
+        case SoundMining:
+            mining_sound=value.toString();
+            settings.setValue("SoundMining",mining_sound);
+            break;
+        case SoundSync:
+            sync_sound=value.toString();
+            settings.setValue("SoundSync",sync_sound);
+            break;
+        case SoundAbout:
+            about_sound=value.toString();
+            settings.setValue("SoundAbout",about_sound);
+            break;
         default:
             break;
         }
@@ -282,3 +378,66 @@ bool OptionsModel::getDisplayAddresses()
 {
     return bDisplayAddresses;
 }
+
+bool OptionsModel::getUseStartup()
+{
+    return(bSoundStartup);
+}
+
+bool OptionsModel::getUseIncoming()
+{
+    return(bSoundIncoming);
+}
+bool OptionsModel::getUseSent()
+{
+    return(bSoundSent);
+}
+bool OptionsModel::getUseMining()
+{
+    return(bSoundMining);
+}
+bool OptionsModel::getUseSync()
+{
+    return(bSoundSync);
+}
+bool OptionsModel::getUseAbout()
+{
+    return(bSoundAbout);
+}
+
+QString OptionsModel::getSoundStartup()
+{
+    return(startup_sound);
+}
+
+QString OptionsModel::getSoundIncoming()
+{
+    return(incoming_sound);
+}
+
+QString OptionsModel::getSoundSent()
+{
+    return(sent_sound);
+}
+
+QString OptionsModel::getSoundMining()
+{
+    return(mining_sound);
+}
+
+QString OptionsModel::getSoundSync()
+{
+    return(sync_sound);
+}
+
+QString OptionsModel::getSoundAbout()
+{
+    return(about_sound);
+}
+
+int OptionsModel::getSoundVolume()
+{
+    return(nSoundVolume);
+}
+
+

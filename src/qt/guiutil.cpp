@@ -19,9 +19,15 @@
 #include <QFileDialog>
 #include <QDesktopServices>
 #include <QThread>
+#include <QMessageBox>
+#include <QSettings>
+#include <phonon/AudioOutput>
+#include <phonon/MediaObject>
+#include <Phonon/Path>
 
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
+
 
 #ifdef WIN32
 #ifdef _WIN32_WINNT
@@ -167,6 +173,52 @@ void copyEntryData(QAbstractItemView *view, int column, int role)
         QApplication::clipboard()->setText(selection.at(0).data(role).toString());
     }
 }
+
+void PlaySound(QString soundfile){
+
+
+    QSettings settings;
+    qreal volume = (settings.value("nSoundVolume",65).toReal()/100);
+    QString filepath = QCoreApplication::applicationDirPath() + "/Sounds/" +soundfile;
+    if(!boost::filesystem::exists(filepath.toStdString().c_str())){
+        printf("Couldn't locate soundfile %s\n",soundfile.toStdString().c_str());
+        return;
+    }
+
+    Phonon::MediaObject *mediaObject = new Phonon::MediaObject();
+    mediaObject->setCurrentSource(Phonon::MediaSource(filepath));
+    Phonon::AudioOutput *audioOutput =
+            new Phonon::AudioOutput(Phonon::NotificationCategory);
+    if(!audioOutput->isValid()){
+        printf("Invalid audioOutput object.\nDo you have phonon_backend directory in your application directory?");
+        return;
+    }
+
+    //QString CurrentVolume="Current Volume: " + QString::number(audioOutput->volume());
+    //QMessageBox::information(0,"Volume",CurrentVolume,QMessageBox::Ok);
+    Phonon::Path path = Phonon::createPath(mediaObject, audioOutput);
+    if(path.isValid())
+    {
+        audioOutput->setVolume(volume);
+        //QMessageBox::information(0,"Volume",CurrentVolume,QMessageBox::Ok);
+        mediaObject->seek(0);
+        mediaObject->play();
+    }else{
+        printf("Media path is invalid. Couldn't connect input to output.\n");
+    }
+
+}
+
+void PlaySound(QString soundfile,int count){
+    if(count > 40)  { count=40; }
+    if(count < 1)   { count=1;  }
+
+    int i;
+    for(i=0;i<count;i++){
+        PlaySound(soundfile);
+    }
+}
+
 
 QString getSaveFileName(QWidget *parent, const QString &caption,
                                  const QString &dir,
@@ -458,6 +510,7 @@ void HelpMessageBox::showOrPrint()
         printToConsole();
 #endif
 }
+
 
 } // namespace GUIUtil
 

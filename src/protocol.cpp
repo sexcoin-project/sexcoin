@@ -2,12 +2,15 @@
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2011-2012 Litecoin Developers
 // Copyright (c) 2013 Royalcoin Developers
+// Copyright (c) 2013 Sexcoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "protocol.h"
 #include "util.h"
 #include "netbase.h"
+#include "main.h"
+
 
 #ifndef WIN32
 # include <arpa/inet.h>
@@ -20,18 +23,50 @@ static const char* ppszTypeName[] =
     "block",
 };
 
-CMessageHeader::CMessageHeader()
+CMessageHeader::CMessageHeader(int nBlockHeight)
 {
-    memcpy(pchMessageStart, ::pchMessageStart, sizeof(pchMessageStart));
+
+    if(nBlockHeight < (HARD_FORK_HEIGHT-1)){
+        memcpy(pchMessageStart, ::pchMessageStart, sizeof(pchMessageStart));
+        //printf("[DEFAULT:memcpy] %d, %d, %x : %x\n",nBestHeight,nBlockHeight,pchMessageStart[0], ::pchMessageStart[0]);
+    }else{
+        memcpy(pchMessageStart, ::pchMessageStart2, sizeof(pchMessageStart));
+        //printf("[DEFAULT2:memcpy] %d, %d*, %x : %x\n",nBestHeight, nBlockHeight, pchMessageStart[0], ::pchMessageStart2[0]);
+    }
     memset(pchCommand, 0, sizeof(pchCommand));
     pchCommand[1] = 1;
     nMessageSize = -1;
     nChecksum = 0;
 }
 
-CMessageHeader::CMessageHeader(const char* pszCommand, unsigned int nMessageSizeIn)
+
+CMessageHeader::CMessageHeader(const char* pszCommand, unsigned int nMessageSizeIn, int nBlockHeight)
 {
-    memcpy(pchMessageStart, ::pchMessageStart, sizeof(pchMessageStart));
+    if(nBlockHeight < HARD_FORK_HEIGHT){
+        memcpy(pchMessageStart, ::pchMessageStart, sizeof(pchMessageStart));
+        //printf("[ORIG:memcpy]%d, %x : %x\n",nBlockHeight,pchMessageStart[0], ::pchMessageStart[0]);
+    }else{
+        memcpy(pchMessageStart, ::pchMessageStart2, sizeof(pchMessageStart));
+        //printf("[ORIG2:memcpy]%d*, %x : %x\n",nBlockHeight,pchMessageStart[0], ::pchMessageStart2[0]);
+    }
+    strncpy(pchCommand, pszCommand, COMMAND_SIZE);
+    nMessageSize = nMessageSizeIn;
+    nChecksum = 0;
+}
+
+CMessageHeader::CMessageHeader(const char* pszCommand, unsigned int nMessageSizeIn, bool outbound, int nBlockHeight)
+{
+    int forkheight = HARD_FORK_HEIGHT;
+    //if(outbound)
+    //  forkheight++;
+
+    if(nBlockHeight < forkheight ){
+        memcpy(pchMessageStart, ::pchMessageStart, sizeof(pchMessageStart));
+        //printf("[OUTBOUND:memcpy] %d, %d, %d, %x : %x\n",nBestHeight, forkheight, nBlockHeight, pchMessageStart[0], ::pchMessageStart[0]);
+    }else{
+        memcpy(pchMessageStart, ::pchMessageStart2, sizeof(pchMessageStart));
+        //printf("[OUTBOUND2:memcpy] %d*, %d, %d*, %x : %x\n",nBestHeight, forkheight, nBlockHeight, pchMessageStart[0], ::pchMessageStart2[0]);
+    }
     strncpy(pchCommand, pszCommand, COMMAND_SIZE);
     nMessageSize = nMessageSizeIn;
     nChecksum = 0;
@@ -45,11 +80,32 @@ std::string CMessageHeader::GetCommand() const
         return std::string(pchCommand, pchCommand + COMMAND_SIZE);
 }
 
-bool CMessageHeader::IsValid() const
+//bool CMessageHeader::IsValid() const
+//{
+//    CBlockLocator* bl = new CBlockLocator();
+//    return(IsValid(bl->GetHeight()));
+//}
+
+bool CMessageHeader::IsValid(int nHeight) const
 {
+    bool fDebug = true;
     // Check start string
-    if (memcmp(pchMessageStart, ::pchMessageStart, sizeof(pchMessageStart)) != 0)
-        return false;
+    //OutputDebugStringF("inIsValid: nHeight=%d, %x \n",nHeight,pchMessageStart[0]);
+    if(nHeight <= HARD_FORK_HEIGHT){
+        if (memcmp(pchMessageStart, ::pchMessageStart, sizeof(pchMessageStart)) != 0)
+        {
+            OutputDebugStringF("[ISVALID:memcmp:false] %d, %x : %x\n",nHeight,pchMessageStart[0], ::pchMessageStart[0]);
+            return false;
+        }
+    }else{
+        if (memcmp(pchMessageStart, ::pchMessageStart2, sizeof(pchMessageStart2)) != 0)
+        {
+            OutputDebugStringF("[ISVALID2:memcmp:false] %d*, %x : %x\n",nHeight,pchMessageStart[0], ::pchMessageStart2[0]);
+            return false;
+        }
+    }
+
+    //OutputDebugStringF("inIsValid: MessageStart Validated.\n");
 
     // Check the command string for errors
     for (const char* p1 = pchCommand; p1 < pchCommand + COMMAND_SIZE; p1++)
@@ -71,10 +127,8 @@ bool CMessageHeader::IsValid() const
         printf("CMessageHeader::IsValid() : (%s, %u bytes) nMessageSize > MAX_SIZE\n", GetCommand().c_str(), nMessageSize);
         return false;
     }
-
     return true;
 }
-
 
 
 CAddress::CAddress() : CService()

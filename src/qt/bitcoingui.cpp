@@ -28,6 +28,10 @@
 #include "notificator.h"
 #include "guiutil.h"
 #include "rpcconsole.h"
+#include "qrcodedialog.h"
+
+#include <boost/filesystem.hpp>
+#include <boost/filesystem/fstream.hpp>
 
 #ifdef Q_WS_MAC
 #include "macdockiconhandler.h"
@@ -56,6 +60,9 @@
 #include <QTimer>
 #include <QDragEnterEvent>
 #include <QUrl>
+#include <phonon/AudioOutput>
+#include <phonon/MediaObject>
+#include <phonon/Path>
 
 #include <iostream>
 
@@ -72,9 +79,10 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
 {
     resize(850, 550);
     setWindowTitle(tr("Sexcoin") + " - " + tr("Wallet"));
+    isSynced = false;
 #ifndef Q_WS_MAC
-    qApp->setWindowIcon(QIcon(":icons/bitcoin"));
-    setWindowIcon(QIcon(":icons/bitcoin"));
+    qApp->setWindowIcon(QIcon(":images/sexcoin"));
+    setWindowIcon(QIcon(":images/sexcoin"));
 #else
     setUnifiedTitleAndToolBarOnMac(true);
     QApplication::setAttribute(Qt::AA_DontShowIconsInMenus);
@@ -259,6 +267,7 @@ void BitcoinGUI::createActions()
     connect(signMessageAction, SIGNAL(triggered()), this, SLOT(gotoSignMessageTab()));
     connect(verifyMessageAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(verifyMessageAction, SIGNAL(triggered()), this, SLOT(gotoVerifyMessageTab()));
+
 #ifdef FIRST_CLASS_MESSAGING
     connect(firstClassMessagingAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     // Always start with the sign message tab for FIRST_CLASS_MESSAGING
@@ -269,7 +278,7 @@ void BitcoinGUI::createActions()
     quitAction->setToolTip(tr("Quit application"));
     quitAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));
     quitAction->setMenuRole(QAction::QuitRole);
-    aboutAction = new QAction(QIcon(":/icons/bitcoin"), tr("&About Sexcoin"), this);
+    aboutAction = new QAction(QIcon(":/images/sexcoin"), tr("&About Sexcoin"), this);
     aboutAction->setToolTip(tr("Show information about Sexcoin"));
     aboutAction->setMenuRole(QAction::AboutRole);
     aboutQtAction = new QAction(tr("About &Qt"), this);
@@ -278,7 +287,7 @@ void BitcoinGUI::createActions()
     optionsAction = new QAction(QIcon(":/icons/options"), tr("&Options..."), this);
     optionsAction->setToolTip(tr("Modify configuration options for Sexcoin"));
     optionsAction->setMenuRole(QAction::PreferencesRole);
-    toggleHideAction = new QAction(QIcon(":/icons/bitcoin"), tr("Show/Hide &Sexcoin"), this);
+    toggleHideAction = new QAction(QIcon(":/icons/sexcoin"), tr("Show/Hide &Sexcoin"), this);
     toggleHideAction->setToolTip(tr("Show or hide the Sexcoin window"));
     exportAction = new QAction(QIcon(":/icons/export"), tr("&Export..."), this);
     exportAction->setToolTip(tr("Export the data in the current tab to a file"));
@@ -384,8 +393,10 @@ void BitcoinGUI::setClientModel(ClientModel *clientModel)
         setNumConnections(clientModel->getNumConnections());
         connect(clientModel, SIGNAL(numConnectionsChanged(int)), this, SLOT(setNumConnections(int)));
 
+
         setNumBlocks(clientModel->getNumBlocks(), clientModel->getNumBlocksOfPeers());
         connect(clientModel, SIGNAL(numBlocksChanged(int,int)), this, SLOT(setNumBlocks(int,int)));
+
 
         setMining(false, 0);
         connect(clientModel, SIGNAL(miningChanged(bool,int)), this, SLOT(setMining(bool,int)));
@@ -490,6 +501,9 @@ void BitcoinGUI::optionsClicked()
 
 void BitcoinGUI::aboutClicked()
 {
+    printf("Playing %s\n",clientModel->getOptionsModel()->getSoundAbout().toStdString().c_str());
+    if(clientModel->getOptionsModel()->getUseAbout())
+        GUIUtil::PlaySound(clientModel->getOptionsModel()->getSoundAbout());
     AboutDialog dlg;
     dlg.setModel(clientModel);
     dlg.exec();
@@ -512,6 +526,9 @@ void BitcoinGUI::setNumConnections(int count)
 
 void BitcoinGUI::setNumBlocks(int count, int nTotalBlocks)
 {
+    // don't change anything if nTotalBlocks is unreasonable for the moment
+    if(nTotalBlocks > 400000)
+        return;
     // don't show / hide progressBar and it's label if we have no connection(s) to the network
     if (!clientModel || clientModel->getNumConnections() == 0)
     {
@@ -554,6 +571,8 @@ void BitcoinGUI::setNumBlocks(int count, int nTotalBlocks)
             progressBarLabel->setText(clientModel->getStatusBarWarnings());
             progressBarLabel->setVisible(true);
         }
+        if(progressBar->isVisible())
+            GUIUtil::PlaySound(clientModel->getOptionsModel()->getSoundSync());
         progressBar->setVisible(false);
         tooltip = tr("Downloaded %1 blocks of transaction history.").arg(count);
     }
@@ -711,6 +730,21 @@ void BitcoinGUI::incomingTransaction(const QModelIndex & parent, int start, int 
                             TransactionTableModel::ToAddress, parent)
                         .data(Qt::DecorationRole));
 
+        // TODO: Insert DING here
+        if (amount > 0)
+        {
+            if(clientModel->getOptionsModel()->getUseIncoming()){
+//                int loop=(int)(amount/1000000000)+1;
+//                QString message="Incoming: " + QString::number(loop) + "\n";
+//                QMessageBox::information(0,"Incoming",message,QMessageBox::Ok);
+                GUIUtil::PlaySound(clientModel->getOptionsModel()->getSoundIncoming());
+            }
+        }else{
+            if(clientModel->getOptionsModel()->getUseSent())
+                GUIUtil::PlaySound(clientModel->getOptionsModel()->getSoundSent());
+        }
+
+
         notificator->notify(Notificator::Information,
                             (amount)<0 ? tr("Sent transaction") :
                                          tr("Incoming transaction"),
@@ -736,6 +770,8 @@ void BitcoinGUI::gotoOverviewPage()
 
 void BitcoinGUI::gotoMiningPage()
 {
+    if(clientModel->getOptionsModel()->getUseMining())
+        GUIUtil::PlaySound(clientModel->getOptionsModel()->getSoundMining());
     miningAction->setChecked(true);
     centralWidget->setCurrentWidget(miningPage);
 

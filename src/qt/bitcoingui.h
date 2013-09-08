@@ -13,6 +13,7 @@ class MiningPage;
 class AddressBookPage;
 class SendCoinsDialog;
 class SignVerifyMessageDialog;
+class QRCodeDialog;
 class Notificator;
 class RPCConsole;
 
@@ -53,6 +54,8 @@ protected:
     void closeEvent(QCloseEvent *event);
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
+    bool isSynced;
+
 
 private:
     ClientModel *clientModel;
@@ -67,6 +70,7 @@ private:
     AddressBookPage *receiveCoinsPage;
     SendCoinsDialog *sendCoinsPage;
     SignVerifyMessageDialog *signVerifyMessageDialog;
+    QRCodeDialog* qrcodeDialog;
 
     QLabel *labelEncryptionIcon;
     QLabel *labelMiningIcon;
@@ -95,6 +99,7 @@ private:
     QAction *changePassphraseAction;
     QAction *aboutQtAction;
     QAction *openRPCConsoleAction;
+    QAction *qrcodeAction;
 
     QSystemTrayIcon *trayIcon;
     Notificator *notificator;
@@ -157,6 +162,8 @@ private slots:
     /** Show Sign/Verify Message dialog and switch to verify message tab */
     void gotoVerifyMessageTab(QString addr = "");
 
+    /** Show QRCode dialog */
+    //void qrcodeClicked();
     /** Show configuration dialog */
     void optionsClicked();
     /** Show about dialog */

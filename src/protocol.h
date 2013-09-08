@@ -2,6 +2,7 @@
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2011-2012 Litecoin Developers
 // Copyright (c) 2013 Royalcoin Developers
+// Copyright (c) 2013 Sexcoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -17,14 +18,18 @@
 #include <string>
 #include "uint256.h"
 
+
 extern bool fTestNet;
 static inline unsigned short GetDefaultPort(const bool testnet = fTestNet)
 {
     return testnet ? 19560 : 9560;
+    //return testnet ? 19555 : 9555;
 }
 
 
 extern unsigned char pchMessageStart[4];
+extern unsigned char pchMessageStart2[4];
+//extern int HARD_FORK_HEIGHT;
 
 /** Message header.
  * (4) message start.
@@ -36,10 +41,14 @@ class CMessageHeader
 {
     public:
         CMessageHeader();
-        CMessageHeader(const char* pszCommand, unsigned int nMessageSizeIn);
+        CMessageHeader(int nHeight);
+        CMessageHeader(const char* pszCommand, unsigned int nMessageSizeIn, int nBlockHeight);
+        CMessageHeader(const char* pszCommand, unsigned int nMessageSizeIn, bool outbound, int nBlockHeight);
 
         std::string GetCommand() const;
-        bool IsValid() const;
+//        bool IsValid() const;
+        bool IsValid(int nHeight) const;
+
 
         IMPLEMENT_SERIALIZE
             (
@@ -60,6 +69,8 @@ class CMessageHeader
             MESSAGE_SIZE_OFFSET=MESSAGE_START_SIZE+COMMAND_SIZE,
             CHECKSUM_OFFSET=MESSAGE_SIZE_OFFSET+MESSAGE_SIZE_SIZE
         };
+
+
         char pchMessageStart[MESSAGE_START_SIZE];
         char pchCommand[COMMAND_SIZE];
         unsigned int nMessageSize;
