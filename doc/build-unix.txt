@@ -1,5 +1,7 @@
 Copyright (c) 2009-2012 Bitcoin Developers
 Copyright (c) 2011-2012 Litecoin Developers
+Copyright (c) 2013 Sexcoin Developers
+
 Distributed under the MIT/X11 software license, see the accompanying
 file COPYING or http://www.opensource.org/licenses/mit-license.php.
 This product includes software developed by the OpenSSL Project for use in
@@ -154,3 +156,16 @@ exploit even if a vulnerability is found, you can take the following measures:
     RW- R-- RW-
 
     The STK RW- means that the stack is readable and writeable but not executable.
+
+
+
+Red Hat Enterprise Linux / CentOS Linux / Fedora Linux
+------------------------------------------------------
+
+	rhel, centos and fedora all use openssl libraries that are missing the ECC components of openssl.
+	To compile this source, download the openssl source, build it and run the default installer. This
+	will install the new libraries in /usr/local/xxxxx by default. Make sure you run ldconfig, then use
+	makefile.rhel to build sexcoin
+
+	Sources for openssl : http://www.openssl.org/source/openssl-1.0.1e.tar.gz
+
