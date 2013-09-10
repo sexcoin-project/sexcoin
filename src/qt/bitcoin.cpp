@@ -118,11 +118,11 @@ static void handleRunawayException(std::exception *e)
 static void initSettings(){
 
     QSettings settings;
-    settings.setValue("SoundAbout","about.wav");
+    settings.setValue("SoundAbout","about.mp3");
     settings.setValue("SoundStartup","startup.ogg");
     settings.setValue("SoundIncoming","incoming.ogg");
     settings.setValue("SoundSent","coinssent.wav");
-    settings.setValue("SoundMining","mining.wav");
+    settings.setValue("SoundMining","mining.ogg");
     settings.setValue("SoundSync","sync.mp3");
 
     settings.setValue("bUseStartup",true);

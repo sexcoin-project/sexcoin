@@ -23,7 +23,7 @@
 #include <QSettings>
 #include <phonon/AudioOutput>
 #include <phonon/MediaObject>
-#include <Phonon/Path>
+#include <phonon/Path>
 
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
@@ -181,8 +181,16 @@ void PlaySound(QString soundfile){
     qreal volume = (settings.value("nSoundVolume",65).toReal()/100);
     QString filepath = QCoreApplication::applicationDirPath() + "/Sounds/" +soundfile;
     if(!boost::filesystem::exists(filepath.toStdString().c_str())){
-        printf("Couldn't locate soundfile %s\n",soundfile.toStdString().c_str());
-        return;
+        filepath = QString(GetDataDir().c_str()) + "/Sounds/" + soundfile;
+        if(!boost::filesystem::exists(filepath.toStdString().c_str())){
+            filepath = QString("~/.sexcoin/sounds/") + soundfile;
+            if(!boost::filesystem::exists(filepath.toStdString().c_str())){
+                printf("Couldn't locate soundfile %s\n",soundfile.toStdString().c_str());
+                return;
+            }
+
+        }
+
     }
 
     Phonon::MediaObject *mediaObject = new Phonon::MediaObject();

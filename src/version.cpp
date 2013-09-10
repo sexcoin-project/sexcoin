@@ -14,7 +14,7 @@
 const std::string CLIENT_NAME("Sexcoin");
 
 // Client version number
-#define CLIENT_VERSION_SUFFIX   "-beta"
+#define CLIENT_VERSION_SUFFIX   "-RC1-beta"
 
 
 // The following part of the code determines the CLIENT_BUILD variable.

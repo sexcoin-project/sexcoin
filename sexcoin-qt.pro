@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET =
-VERSION = 0.6.3.3
+VERSION = 0.6.4.1-RC1
 INCLUDEPATH += src src/json src/qt ../../workspace/coinbuild/deps-master/miniupnpc/include
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE USE_IPV6
 CONFIG += no_include_pwd
@@ -59,7 +59,7 @@ contains(RELEASE, 1) {
     }
 }
 
-USE_QRCODE=1
+#USE_QRCODE=1
 # use: qmake "USE_QRCODE=1"
 # libqrencode (http://fukuchi.org/works/qrencode/index.en.html) must be installed for support
 contains(USE_QRCODE, 1) {
