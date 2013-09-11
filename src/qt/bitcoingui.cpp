@@ -501,7 +501,7 @@ void BitcoinGUI::optionsClicked()
 
 void BitcoinGUI::aboutClicked()
 {
-    printf("Playing %s\n",clientModel->getOptionsModel()->getSoundAbout().toStdString().c_str());
+    //printf("Playing %s\n",clientModel->getOptionsModel()->getSoundAbout().toStdString().c_str());
     if(clientModel->getOptionsModel()->getUseAbout())
         GUIUtil::PlaySound(clientModel->getOptionsModel()->getSoundAbout());
     AboutDialog dlg;
@@ -527,8 +527,8 @@ void BitcoinGUI::setNumConnections(int count)
 void BitcoinGUI::setNumBlocks(int count, int nTotalBlocks)
 {
     // don't change anything if nTotalBlocks is unreasonable for the moment
-    if(nTotalBlocks > 400000)
-        return;
+    //if(nTotalBlocks > 400000)
+    //   return;
     // don't show / hide progressBar and it's label if we have no connection(s) to the network
     if (!clientModel || clientModel->getNumConnections() == 0)
     {
