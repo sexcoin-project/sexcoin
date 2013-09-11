@@ -30,7 +30,20 @@ public:
         DisplayAddresses,  // bool
         DetachDatabases,   // bool
         Language,          // QString
-        OptionIDRowCount,
+        UseStartup,         // bool
+        UseIncoming,        // bool
+        UseSent,            // bool
+        UseMining,          // bool
+        UseSync,            // bool
+        UseAbout,           // bool
+        SoundVolume,        // int
+        SoundStartup,       // QString
+        SoundIncoming,      // QString
+        SoundSent,          // QString
+        SoundMining,        // QString
+        SoundSync,          // QString
+        SoundAbout,         // QString
+        OptionIDRowCount
     };
 
     void Init();
@@ -48,14 +61,41 @@ public:
     bool getMinimizeOnClose();
     int getDisplayUnit();
     bool getDisplayAddresses();
+
+    bool getUseStartup();
+    bool getUseIncoming();
+    bool getUseSent();
+    bool getUseMining();
+    bool getUseSync();
+    bool getUseAbout();
+    QString getSoundMining();
+    QString getSoundSent();
+    QString getSoundIncoming();
+    QString getSoundSync();
+    QString getSoundStartup();
+    QString getSoundAbout();
+    int getSoundVolume();
     QString getLanguage() { return language; }
 
 private:
     int nDisplayUnit;
+    int nSoundVolume;
     bool bDisplayAddresses;
     bool fMinimizeToTray;
     bool fMinimizeOnClose;
+    bool bSoundStartup;
+    bool bSoundIncoming;
+    bool bSoundMining;
+    bool bSoundSent;
+    bool bSoundSync;
+    bool bSoundAbout;
     QString language;
+    QString startup_sound;
+    QString incoming_sound;
+    QString mining_sound;
+    QString sent_sound;
+    QString sync_sound;
+    QString about_sound;
 
 signals:
     void displayUnitChanged(int unit);

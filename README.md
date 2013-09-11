@@ -1,14 +1,21 @@
-Sexcoin - a fork of Litecoin using scrypt as a proof of work scheme.
+Sexcoin
+=======
+ 
+A fork of Litecoin using scrypt as a proof of work scheme.
+Targeted at the Adult Entertainment Business.
 
 Features:
 
  - 1 minute block targets
  - subsidy halves every 600k blocks
  - 140 million total coins
-
-The rest is the same as bitcoin.
+ - Sound support 
+ - QRCode support
  - 100 coins per block
- - 480 blocks to retarget difficulty
+ - 500 or 5000 coin superblocks
+ - 30 blocks to retarget difficulty
+ - 90 confirms for mining
+ - 6 confirms for sending/receiving
  
 Ports:
 

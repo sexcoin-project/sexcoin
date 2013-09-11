@@ -1,9 +1,10 @@
 TEMPLATE = app
 TARGET =
-VERSION = 0.6.3
-INCLUDEPATH += src src/json src/qt
+VERSION = 0.6.4.1-RC1
+INCLUDEPATH += src src/json src/qt ../../workspace/coinbuild/deps-master/miniupnpc/include
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE USE_IPV6
 CONFIG += no_include_pwd
+QT += phonon
 
 # for boost 1.37, add -mt to the boost libraries
 # use: qmake BOOST_LIB_SUFFIX=-mt
@@ -16,19 +17,30 @@ CONFIG += no_include_pwd
 #    BDB_LIB_PATH, OPENSSL_INCLUDE_PATH and OPENSSL_LIB_PATH respectively
 
 # Uncomment the below lines to build on windows and update the paths to reflect your build environment
+BDB_LIB_SUFFIX=-4.8
 
-#windows:LIBS += -lshlwapi
-#LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB_PATH,,-L,) $$join(QRENCODE_LIB_PATH,,-L,)
-#LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
-#windows:LIBS += -lws2_32 -lole32 -loleaut32 -luuid -lgdi32
-#LIBS += -lboost_system-mgw46-mt-sd-1_53 -lboost_filesystem-mgw46-mt-sd-1_53 -lboost_program_options-mgw46-mt-sd-1_53 -lboost_thread-mgw46-mt-sd-1_53
-#BOOST_LIB_SUFFIX=-mgw46-mt-sd-1_53
-#BOOST_INCLUDE_PATH=C:/deps/boost
-#BOOST_LIB_PATH=C:/deps/boost/stage/lib
-#BDB_INCLUDE_PATH=c:/deps/db/build_unix
-#BDB_LIB_PATH=c:/deps/db/build_unix
-#OPENSSL_INCLUDE_PATH=c:/deps/ssl/include
-#OPENSSL_LIB_PATH=c:/deps/ssl
+windows:LIBS += -lshlwapi
+LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB_PATH,,-L,) $$join(QRENCODE_LIB_PATH,,-L,)
+LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
+windows:LIBS += -lws2_32 -lole32 -loleaut32 -luuid -lgdi32
+LIBS += -lboost_system-mgw46-mt-sd-1_53 -lboost_filesystem-mgw46-mt-sd-1_53 -lboost_program_options-mgw46-mt-sd-1_53 -lboost_thread-mgw46-mt-sd-1_53
+
+#
+# Custom dependencies paths
+# Edit to your environment
+#
+BOOST_LIB_SUFFIX=-mgw46-mt-sd-1_53
+BOOST_INCLUDE_PATH=H:/workspace/coinbuild/deps-master/boost
+BOOST_LIB_PATH=H:/workspace/coinbuild/deps-master/boost/stage/lib
+BDB_INCLUDE_PATH=H:/workspace/coinbuild/deps-master/db/build_windows
+BDB_LIB_PATH=H:/workspace/coinbuild/deps-master/db/build_unix/.libs
+BDB_LIB_SUFFIX=-4.8
+OPENSSL_INCLUDE_PATH=H:/workspace/coinbuild/deps-master/ssl/include
+OPENSSL_LIB_PATH=H:/workspace/coinbuild/deps-master/ssl
+MINIUPNPC_INCLUDE_PATH=H:/workspace/coinbuild/deps-master/miniupnpc
+MINIUPNPC_LIB_PATH=H:/workspace/coinbuild/deps-master/miniupnpc
+QRCODE_INCLUDE_PATH=H:/workspace/coinbuild/deps-master/qrcode-win32-3.1.1/include
+QRCODE_LIB_PATH=H:/workspace/coinbuild/deps-master/qrcode-win32-3.1.1/dll
 
 OBJECTS_DIR = build
 MOC_DIR = build
@@ -47,12 +59,15 @@ contains(RELEASE, 1) {
     }
 }
 
+#USE_QRCODE=1
 # use: qmake "USE_QRCODE=1"
 # libqrencode (http://fukuchi.org/works/qrencode/index.en.html) must be installed for support
 contains(USE_QRCODE, 1) {
     message(Building with QRCode support)
     DEFINES += USE_QRCODE
-    LIBS += -lqrencode
+	INCLUDEPATH +=$$QRCODE_INCLUDE_PATH
+	LIBS += $$join(QRCODE_LIB_PATH,,-L) -lqrcodelib
+
 }
 
 # use: qmake "USE_UPNP=1" ( enabled by default; default)
@@ -182,7 +197,8 @@ HEADERS += src/qt/bitcoingui.h \
     src/scrypt.h \
     src/qt/miningpage.h \
     src/version.h \
-    src/qt/rpcconsole.h
+	src/qt/rpcconsole.h \
+    src/qrencode.h
 
 SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/transactiontablemodel.cpp \
@@ -274,6 +290,7 @@ SOURCES += src/qt/test/test_main.cpp \
 HEADERS += src/qt/test/uritests.h
 DEPENDPATH += src/qt/test
 QT += testlib
+
 TARGET = bitcoin-qt_test
 DEFINES += BITCOIN_QT_TEST
 }
@@ -334,7 +351,7 @@ isEmpty(BOOST_INCLUDE_PATH) {
 
 windows:LIBS += -lshlwapi
 windows:DEFINES += WIN32
-windows:RC_FILE = src/qt/res/bitcoin-qt.rc
+windows:RC_FILE = src/qt/res/sexcoin-qt.rc
 
 windows:!contains(MINGW_THREAD_BUGFIX, 0) {
     # At least qmake's win32-g++-cross profile is missing the -lmingwthrd

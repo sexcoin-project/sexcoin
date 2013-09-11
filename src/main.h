@@ -1,6 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2011-2013 Royalcoin Developers
+// Copyright (c) 2013 Sexcoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #ifndef BITCOIN_MAIN_H
@@ -30,6 +31,8 @@ static const unsigned int MAX_BLOCK_SIZE = 1000000;
 static const unsigned int MAX_BLOCK_SIZE_GEN = MAX_BLOCK_SIZE/2;
 static const unsigned int MAX_BLOCK_SIGOPS = MAX_BLOCK_SIZE/50;
 static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/100;
+static const int HARD_FORK_HEIGHT = 320000;
+static const int FIX_RETARGET_HEIGHT = 155000;
 static const int64 MIN_TX_FEE = 10000000;
 static const int64 MIN_RELAY_TX_FEE = MIN_TX_FEE;
 static const int64 MAX_MONEY = 250000000 * COIN; // Sexcoin: maximum of 250000000 coins
@@ -70,6 +73,7 @@ extern int64 nTimeBestReceived;
 extern CCriticalSection cs_setpwalletRegistered;
 extern std::set<CWallet*> setpwalletRegistered;
 extern unsigned char pchMessageStart[4];
+extern unsigned char pchMessageStart2[4];
 
 // Settings
 extern int64 nTransactionFee;
@@ -957,7 +961,11 @@ public:
 
         // Write index header
         unsigned int nSize = fileout.GetSerializeSize(*this);
-        fileout << FLATDATA(pchMessageStart) << nSize;
+        if(nBestHeight < HARD_FORK_HEIGHT){
+            fileout << FLATDATA(pchMessageStart) << nSize;
+        }else{
+            fileout << FLATDATA(pchMessageStart2) << nSize;
+        }
 
         // Write block
         long fileOutPos = ftell(fileout);

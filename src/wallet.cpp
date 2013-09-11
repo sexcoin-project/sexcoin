@@ -485,6 +485,11 @@ bool CWallet::IsChange(const CTxOut& txout) const
     return false;
 }
 
+// ////////////////////////////////////////////////////////////////////
+//
+// CWalletTx
+//
+
 int64 CWalletTx::GetTxTime() const
 {
     return nTimeReceived;

@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2011-2013 Sexcoin Developers.
+// Copyright (c) 2012-2013 Sexcoin Developers.
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,7 +13,8 @@
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 #include <boost/random/mersenne_twister.hpp>
-#include <boost/random/uniform_int_distribution.hpp>
+//#include <boost/random/uniform_int_distribution.hpp>
+#include <boost/random/uniform_int.hpp>
 
 using namespace std;
 using namespace boost;
@@ -822,8 +823,10 @@ bool CBlock::ReadFromDisk(const CBlockIndex* pindex, bool fReadTransactions)
 
 int static generateMTRandom(int s, int range)
 {
-	random::mt19937 gen(s);
-    random::uniform_int_distribution<> dist(1, range);
+	//random::mt19937 gen(s);
+	boost::mt19937 gen(s);
+    //random::uniform_int_distribution<> dist(1, range);
+    uniform_int<> dist(1,range);
     return dist(gen);
 }
 
@@ -865,9 +868,9 @@ int64 static GetBlockValue(int nHeight, int64 nFees)
     return nSubsidy + nFees;
 }
 
-static const int64 nTargetTimespan =  8 * 60 * 60; // sexcoin: 8 hour
-static const int64 nTargetSpacing = 1 * 60; // sexcoin: 15 second
-static const int64 nInterval = nTargetTimespan / nTargetSpacing;
+static int64 nTargetTimespan =  8 * 60 * 60; // sexcoin: 8 hour
+static int64 nTargetSpacing = 1 * 60; // sexcoin: 15 second
+static int64 nInterval = nTargetTimespan / nTargetSpacing;
 
 //
 // minimum amount of work that could possibly be required nTime after
@@ -879,6 +882,14 @@ unsigned int ComputeMinWork(unsigned int nBase, int64 nTime)
     // after nTargetSpacing*2 time between blocks:
     if (fTestNet && nTime > nTargetSpacing*2)
         return bnProofOfWorkLimit.GetCompact();
+
+    // On the fly retarget.
+    if( nBestHeight > FIX_RETARGET_HEIGHT)
+    {
+        nTargetTimespan =  1 * 30 * 60; // sexcoin: 30 minutes
+        nTargetSpacing = 1 * 30; // sexcoin: 30 second
+        nInterval = nTargetTimespan / nTargetSpacing;
+    }
 
     CBigNum bnResult;
     bnResult.SetCompact(nBase);
@@ -897,6 +908,15 @@ unsigned int ComputeMinWork(unsigned int nBase, int64 nTime)
 unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlock *pblock)
 {
     unsigned int nProofOfWorkLimit = bnProofOfWorkLimit.GetCompact();
+
+    // On the fly retarget.
+    if( nBestHeight > FIX_RETARGET_HEIGHT)
+    {
+        nTargetTimespan =  1 * 30 * 60; // sexcoin: 30 minutes
+        nTargetSpacing = 1 * 30; // sexcoin: 30 second
+        nInterval = nTargetTimespan / nTargetSpacing;
+    }
+
 
     // Genesis block
     if (pindexLast == NULL)
@@ -1851,6 +1871,7 @@ bool CBlock::AcceptBlock()
 bool ProcessBlock(CNode* pfrom, CBlock* pblock)
 {
     // Check for duplicate
+    if(fDebug){printf("In ProcessBlock()\n");}
     uint256 hash = pblock->GetHash();
     if (mapBlockIndex.count(hash))
         return error("ProcessBlock() : already have block %d %s", mapBlockIndex[hash]->nHeight, hash.ToString().substr(0,20).c_str());
@@ -2000,6 +2021,11 @@ bool LoadBlockIndex(bool fAllowNew)
         pchMessageStart[1] = 0xc1;
         pchMessageStart[2] = 0xb7;
         pchMessageStart[3] = 0xdc;
+
+        pchMessageStart2[0]= 0xfa;
+        pchMessageStart2[1]= 0xce;
+        pchMessageStart2[2]= 0x66;
+        pchMessageStart2[3]= 0x66;
         hashGenesisBlock = uint256("0xf42b9553085a1af63d659d3907a42c3a0052bbfa2693d3acf990af85755f2279");
     }
 
@@ -2394,8 +2420,14 @@ bool static AlreadyHave(CTxDB& txdb, const CInv& inv)
 // The message start string is designed to be unlikely to occur in normal data.
 // The characters are rarely used upper ascii, not valid as UTF-8, and produce
 // a large 4-byte int at any alignment.
-unsigned char pchMessageStart[4] = { 0xfb, 0xc0, 0xb6, 0xdb }; // sexcoin: increase each by adding 2 to bitcoin's value.
 
+unsigned char pchMessageStart[4] = { 0xfb, 0xc0, 0xb6, 0xdb }; // sexcoin: increase each by adding 2 to bitcoin's value.
+unsigned char pchMessageStart2[4]= { 0xfb, 0xc0, 0xb6, 0xdb }; // sexcoin:
+//unsigned char pchMessageStart2[4]= { 0xfa, 0xce, 0x69, 0x69 }; // sexcoin: blockchain fix =JSC
+
+// For mad crazy live test
+//unsigned char pchMessageStart[4] = { 0xfd, 0xc4, 0xb6, 0xdb }; // sexcoin: increase each by adding 2 to bitcoin's value.
+//unsigned char pchMessageStart2[4]= { 0xfa, 0xce, 0x69, 0x69 }; // sexcoin: blockchain fix =JSC
 
 bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
 {
@@ -2426,16 +2458,19 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
         CAddress addrMe;
         CAddress addrFrom;
         uint64 nNonce = 1;
+        if(fDebug){ printf("version: %d\n",pfrom->nVersion); }
         vRecv >> pfrom->nVersion >> pfrom->nServices >> nTime >> addrMe;
-        if (pfrom->nVersion < MIN_PROTO_VERSION)
+        if (pfrom->nVersion < MIN_PROTO_VERSION || pfrom->nVersion > MAX_PROTO_VERSION)
         {
             // Since February 20, 2012, the protocol is initiated at version 209,
             // and earlier versions are no longer supported
-            printf("partner %s using obsolete version %i; disconnecting\n", pfrom->addr.ToString().c_str(), pfrom->nVersion);
+            // Sexcoin will reject higher versions so as not to invade other coins
+            printf("partner %s using out-of-range version %i; disconnecting\n", pfrom->addr.ToString().c_str(), pfrom->nVersion);
             pfrom->fDisconnect = true;
             return false;
         }
 
+        if(fDebug){ printf("version.: %d\n",pfrom->nVersion); }
         if (pfrom->nVersion == 10300)
             pfrom->nVersion = 300;
         if (!vRecv.empty())
@@ -2459,6 +2494,21 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
             return true;
         }
 
+        //
+        // TODO: insert client string test here
+        //
+
+        if(fDebug){ printf("Checking Subver: %s...",pfrom->strSubVer.c_str() );}
+        if( pfrom->strSubVer.find("0.6.3/") != string::npos){
+            printf("client %s to old (%s), disconnecting\n", pfrom->addr.ToString().c_str(), pfrom->strSubVer.c_str() );
+            pfrom->fDisconnect = true;
+            return true;
+        }else{
+            printf("client version passed: %s\n",pfrom->strSubVer.c_str());
+        }
+
+
+
         // Be shy and don't send version until we hear
         if (pfrom->fInbound)
             pfrom->PushVersion();
@@ -2470,6 +2520,25 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
         // Change version
         pfrom->PushMessage("verack");
         pfrom->vSend.SetVersion(min(pfrom->nVersion, PROTOCOL_VERSION));
+        if(fDebug){ printf("version..: %d, %d\n",pfrom->nVersion,pfrom->vSend.GetVersion()); }
+
+
+        printf("Sanity checking: %s %s\n",pfrom->addr.ToStringIP().c_str(),pfrom->addr.ToStringPort().c_str());
+        if( pfrom->nStartingHeight > 400000 ){
+            pfrom->fDisconnect = true;
+            printf("block height unreasonable (%d) from %s, disconnecting.\n",pfrom->nStartingHeight,pfrom->addr.ToString().c_str());
+            return true;
+        }
+
+
+        if(fDebug){ printf("port: %s-\n",pfrom->addr.ToStringPort().c_str()); }
+        if( strcmp(pfrom->addr.ToStringPort().c_str(),"9333") == 0){
+            pfrom->fDisconnect = true;
+            printf("port 9333 connections are invalid on this network. disconnecting %s\n",pfrom->addr.ToString().c_str());
+            return true;
+        }
+
+
 
         if (!pfrom->fInbound)
         {
@@ -2859,7 +2928,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
         vRecv >> block;
 
         printf("received block %s\n", block.GetHash().ToString().substr(0,20).c_str());
-        // block.print();
+        //block.print();
 
         CInv inv(MSG_BLOCK, block.GetHash());
         pfrom->AddInventoryKnown(inv);
@@ -2977,17 +3046,34 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
         if (strCommand == "version" || strCommand == "addr" || strCommand == "inv" || strCommand == "getdata" || strCommand == "ping")
             AddressCurrentlyConnected(pfrom->addr);
 
-
+    if(fDebug){printf("Exiting ProcessMessage[]\n");}
     return true;
 }
 
+// Incoming Messages? or all messages? -- JSC
+// This is a major place to get the correct message header.
+// Need to figure out how to get the 'block height' this is
+// representing --Lavajumper
+//
 bool ProcessMessages(CNode* pfrom)
 {
     CDataStream& vRecv = pfrom->vRecv;
     if (vRecv.empty())
         return true;
-    //if (fDebug)
-    //    printf("ProcessMessages(%u bytes)\n", vRecv.size());
+
+    if (fDebug){
+        printf("=============================================================\n");
+        printf("ProcessMessages(%u bytes)\n", vRecv.size());
+        printf("From Node Address: %s\n",pfrom->addr.ToString().c_str());
+        printf("From Node Direction: %s\n",(pfrom->fInbound)?"Inbound":"Outbound");
+        printf("Node Starting height: %d\n",pfrom->nStartingHeight);
+        printf("Node MessageStart: %x\n",pfrom->nMessageStart);
+        printf("From Node HeaderStart: %x\n",pfrom->nHeaderStart);
+        printf("Node Version: %d\n",pfrom->nVersion);
+        //printf("Node Port: %s\n",pfrom->addr.ToStringPort().c_str());
+        printf("My nBestHeight: %d\n",nBestHeight);
+
+    }
 
     //
     // Message format
@@ -2998,15 +3084,51 @@ bool ProcessMessages(CNode* pfrom)
     //  (x) data
     //
 
+    int magic=0;
     loop
     {
+        magic = 0;
+        if(fDebug){ printf("---- loop top -----------------\n");}
         // Don't bother if send buffer is too full to respond anyway
         if (pfrom->vSend.size() >= SendBufferSize())
             break;
 
+        CDataStream::iterator pstart;
+        CDataStream::iterator tstart;
+        CDataStream::iterator xstart;
+
+        tstart = search(vRecv.begin(), vRecv.end(), BEGIN(pchMessageStart), END(pchMessageStart));
+        xstart = search(vRecv.begin(), vRecv.end(), BEGIN(pchMessageStart2), END(pchMessageStart2));
+
+        int t=vRecv.end()-tstart;
+        int x=vRecv.end()-xstart;
         // Scan for message start
-        CDataStream::iterator pstart = search(vRecv.begin(), vRecv.end(), BEGIN(pchMessageStart), END(pchMessageStart));
-        int nHeaderSize = vRecv.GetSerializeSize(CMessageHeader());
+        if(fDebug){
+            printf("::pre:: Height: %d\n",nBestHeight);
+            printf("t =  %d\n",t);
+            printf("x = %d\n",x);
+         }
+
+
+        if(x > 0){
+            pstart = search(vRecv.begin(), vRecv.end(), BEGIN(pchMessageStart2), END(pchMessageStart2));
+            magic = 1;
+        }else if( t > 0){
+            pstart = search(vRecv.begin(), vRecv.end(), BEGIN(pchMessageStart), END(pchMessageStart));
+            magic = 0;
+        }else{
+            pstart = search(vRecv.begin(), vRecv.end(), BEGIN(pchMessageStart2), END(pchMessageStart2));
+        }
+
+        magic = magic + HARD_FORK_HEIGHT;
+
+        int nHeaderSize = vRecv.GetSerializeSize(CMessageHeader(magic));
+        if(fDebug){ printf("Got SerializeSize: %d\n",nHeaderSize);}
+        if(fDebug){
+            int vr = vRecv.end() - pstart;
+            printf("vr= %d, nHeaderSize= %d\n",vr,nHeaderSize);
+
+        }
         if (vRecv.end() - pstart < nHeaderSize)
         {
             if ((int)vRecv.size() > nHeaderSize)
@@ -3014,21 +3136,27 @@ bool ProcessMessages(CNode* pfrom)
                 printf("\n\nPROCESSMESSAGE MESSAGESTART NOT FOUND\n\n");
                 vRecv.erase(vRecv.begin(), vRecv.end() - nHeaderSize);
             }
+            if(fDebug){printf("vRecv.end() - pstart < nHeadersize(%d)...breaking.\n",nHeaderSize);}
             break;
         }
+        if(fDebug){ printf("Found messagesstart\n");}
         if (pstart - vRecv.begin() > 0)
             printf("\n\nPROCESSMESSAGE SKIPPED %d BYTES\n\n", pstart - vRecv.begin());
         vRecv.erase(vRecv.begin(), pstart);
-
+        if(fDebug){ printf("saving off header...\n");}
         // Read header
         vector<char> vHeaderSave(vRecv.begin(), vRecv.begin() + nHeaderSize);
-        CMessageHeader hdr;
+        if(fDebug){ printf("Creating new header...\n");}
+        CMessageHeader hdr(magic);
         vRecv >> hdr;
-        if (!hdr.IsValid())
+        if(fDebug){ printf("Checking for valid header.(%x)\n",hdr.pchMessageStart[0]);}
+        if (!hdr.IsValid(magic))
         {
             printf("\n\nPROCESSMESSAGE: ERRORS IN HEADER %s\n\n\n", hdr.GetCommand().c_str());
             continue;
         }
+        if(fDebug){ printf("Block: %d, Validated\n", nBestHeight); }
+
         string strCommand = hdr.GetCommand();
 
         // Message size
@@ -3099,6 +3227,20 @@ bool ProcessMessages(CNode* pfrom)
     }
 
     vRecv.Compact();
+    if (fDebug){
+        printf("=== EOR =====================================================\n");
+        printf("ProcessMessages(%u bytes)\n", vRecv.size());
+        printf("From Node Address: %s\n",pfrom->addr.ToString().c_str());
+        printf("From Node Direction: %s\n",(pfrom->fInbound)?"Inbound":"Outbound");
+        printf("Node Starting height: %d\n",pfrom->nStartingHeight);
+        printf("Node MessageStart: %x\n",pfrom->nMessageStart);
+        printf("From Node HeaderStart: %x\n",pfrom->nHeaderStart);
+        printf("Node Version: %d\n",pfrom->nVersion);
+        //printf("Node Port: %s\n",pfrom->addr.ToStringPort().c_str());
+        printf("My nBestHeight: %d\n",nBestHeight);
+        printf("\n***** Exiting Process Message *****\n");
+
+    }
     return true;
 }
 
@@ -3620,7 +3762,7 @@ bool CheckWork(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
         return false;
 
     //// debug print
-    printf("BitcoinMiner:\n");
+    printf("CoinMiner:\n");
     printf("proof-of-work found  \n  hash: %s  \ntarget: %s\n", hash.GetHex().c_str(), hashTarget.GetHex().c_str());
     pblock->print();
     printf("generated %s\n", FormatMoney(pblock->vtx[0].vout[0].nValue).c_str());
@@ -3629,7 +3771,7 @@ bool CheckWork(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
     {
         LOCK(cs_main);
         if (pblock->hashPrevBlock != hashBestChain)
-            return error("BitcoinMiner : generated block is stale");
+            return error("CoinMiner : generated block is stale");
 
         // Remove key from key pool
         reservekey.KeepKey();
@@ -3642,7 +3784,7 @@ bool CheckWork(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
 
         // Process this block the same as if we had received it from another node
         if (!ProcessBlock(NULL, pblock))
-            return error("BitcoinMiner : ProcessBlock, block not accepted");
+            return error("CoinMiner : ProcessBlock, block not accepted");
     }
 
     return true;
@@ -3656,11 +3798,11 @@ static int nLimitProcessors = -1;
 
 void static BitcoinMiner(CWallet *pwallet)
 {
-    printf("BitcoinMiner started\n");
+    printf("SXCMiner started\n");
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
 
     // Make this thread recognisable as the mining thread
-    RenameThread("bitcoin-miner");
+    RenameThread("sxcoin-miner");
 
     // Each thread has its own key and counter
     CReserveKey reservekey(pwallet);
@@ -3691,7 +3833,7 @@ void static BitcoinMiner(CWallet *pwallet)
             return;
         IncrementExtraNonce(pblock.get(), pindexPrev, nExtraNonce);
 
-        printf("Running BitcoinMiner with %d transactions in block\n", pblock->vtx.size());
+        printf("Running SXCMiner with %d transactions in block\n", pblock->vtx.size());
 
 
         //
@@ -3809,15 +3951,15 @@ void static ThreadBitcoinMiner(void* parg)
     }
     catch (std::exception& e) {
         vnThreadsRunning[THREAD_MINER]--;
-        PrintException(&e, "ThreadBitcoinMiner()");
+        PrintException(&e, "ThreadCoinMiner()");
     } catch (...) {
         vnThreadsRunning[THREAD_MINER]--;
-        PrintException(NULL, "ThreadBitcoinMiner()");
+        PrintException(NULL, "ThreadCoinMiner()");
     }
     nHPSTimerStart = 0;
     if (vnThreadsRunning[THREAD_MINER] == 0)
         dHashesPerSec = 0;
-    printf("ThreadBitcoinMiner exiting, %d threads remaining\n", vnThreadsRunning[THREAD_MINER]);
+    printf("ThreadCoinMiner exiting, %d threads remaining\n", vnThreadsRunning[THREAD_MINER]);
 }
 
 
@@ -3838,11 +3980,11 @@ void GenerateBitcoins(bool fGenerate, CWallet* pwallet)
         if (fLimitProcessors && nProcessors > nLimitProcessors)
             nProcessors = nLimitProcessors;
         int nAddThreads = nProcessors - vnThreadsRunning[THREAD_MINER];
-        printf("Starting %d BitcoinMiner threads\n", nAddThreads);
+        printf("Starting %d CoinMiner threads\n", nAddThreads);
         for (int i = 0; i < nAddThreads; i++)
         {
             if (!CreateThread(ThreadBitcoinMiner, pwallet))
-                printf("Error: CreateThread(ThreadBitcoinMiner) failed\n");
+                printf("Error: CreateThread(ThreadCoinMiner) failed\n");
             Sleep(10);
         }
     }

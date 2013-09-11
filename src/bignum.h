@@ -6,7 +6,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #ifndef BITCOIN_BIGNUM_H
 #define BITCOIN_BIGNUM_H
-
+#define SSLINC "H:/Workspace/coinbuild/deps-master/ssl/include"
 #include <stdexcept>
 #include <vector>
 #include <openssl/bn.h>

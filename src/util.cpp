@@ -188,7 +188,9 @@ uint256 GetRandHash()
     return hash;
 }
 
-
+int GetCurrentHeight(){
+    return(0);
+}
 
 
 

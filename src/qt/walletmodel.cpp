@@ -1,5 +1,6 @@
 #include "walletmodel.h"
 #include "guiconstants.h"
+#include "guiutil.h"
 #include "optionsmodel.h"
 #include "addresstablemodel.h"
 #include "transactiontablemodel.h"

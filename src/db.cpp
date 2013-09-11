@@ -2,6 +2,7 @@
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2011-2012 Litecoin Developers
 // Copyright (c) 2013 Royalcoin Developers
+// Copyright (c) 2013 Sexcoin Development Team
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -730,8 +731,25 @@ CAddrDB::CAddrDB()
     pathAddr = GetDataDir() / "peers.dat";
 }
 
+// This writes addresses to peers.dat file
+//  Not sure what the message header is doing here
+//  It looks like the pchMessageStart is only used for conveience
+//  Need to find out --Lavajumper
+//  Idea: Use a new 'network magic number' and a separate
+//  'message magic number'
+//  Or.. we could switch by date?
+//  Or.. we could keep the same 'magic number' on the block chain
+//  and use a different 'network magic number' changing via UTC date
+//
 bool CAddrDB::Write(const CAddrMan& addr)
 {
+
+    unsigned char peer_file_magic_number[4];
+    peer_file_magic_number[0]=0xfa;
+    peer_file_magic_number[1]=0xce;
+    peer_file_magic_number[2]=0x69;
+    peer_file_magic_number[3]=0x69;
+
     // Generate random temporary filename
     unsigned short randv = 0;
     RAND_bytes((unsigned char *)&randv, sizeof(randv));
@@ -739,7 +757,8 @@ bool CAddrDB::Write(const CAddrMan& addr)
 
     // serialize addresses, checksum data up to that point, then append csum
     CDataStream ssPeers(SER_DISK, CLIENT_VERSION);
-    ssPeers << FLATDATA(pchMessageStart);
+    ssPeers << FLATDATA(peer_file_magic_number);
+
     ssPeers << addr;
     uint256 hash = Hash(ssPeers.begin(), ssPeers.end());
     ssPeers << hash;
@@ -768,6 +787,13 @@ bool CAddrDB::Write(const CAddrMan& addr)
     return true;
 }
 
+//
+// Ok, this coupled with the above appears to be how a peer
+// is accepted on the network. It looks like it the 'magic
+// number' is prefixing the peer address, and the tuple
+// makes them valid on the network. Oh Shit.
+//  --Lavajumper
+//
 bool CAddrDB::Read(CAddrMan& addr)
 {
     // open input file, and associate with CAutoFile
@@ -811,8 +837,14 @@ bool CAddrDB::Read(CAddrMan& addr)
     }
 
     // finally, verify the network matches ours
-    if (memcmp(pchMsgTmp, pchMessageStart, sizeof(pchMsgTmp)))
-        return error("CAddrman::Read() : invalid network magic number");
+    unsigned char peer_file_magic_number[4];
+    peer_file_magic_number[0]=0xfa;
+    peer_file_magic_number[1]=0xce;
+    peer_file_magic_number[2]=0x69;
+    peer_file_magic_number[3]=0x69;
+
+    if (memcmp(pchMsgTmp, peer_file_magic_number, sizeof(pchMsgTmp)))
+            return error("CAddrman::Read() : invalid network magic number");
 
     return true;
 }

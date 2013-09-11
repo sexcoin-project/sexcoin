@@ -7,3 +7,17 @@ implementation of sexcoin.
 See doc/build-*.txt for instructions on building sexcoind,
 the intended-for-services, no-graphical-interface, reference
 implementation of sexcoin.
+
+
+Installing Sexcoin:
+
+Set up a directory for the binaries ( Linux: I usually do ~/apps/sexcoin )
+
+QT Versions support sound events:
+
+Sound support will support any type of sound file that you have a codec available for.
+Copy the 'Sounds' directory into the main program directory.
+To enable custom sounds, copy the sound file into the Sounds directory and restart your client.
+Use the 'options|sounds' dialog to adjust sounds to your liking.
+
+

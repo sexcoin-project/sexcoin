@@ -645,7 +645,9 @@ Value sendtoaddress(const Array& params, bool fHelp)
     if (fHelp || params.size() < 2 || params.size() > 4)
         throw runtime_error(
             "sendtoaddress <sexcoinaddress> <amount> [comment] [comment-to]\n"
-            "<amount> is a real and is rounded to the nearest 0.00000001"
+            "<amount> is a real and is rounded to the nearest 0.00000001\n"
+            "[comment] and [comment-to] are not sent in a transaction but stored\n"
+            "as extra transaction fields in your wallet."
             + HelpRequiringPassphrase());
 
     CBitcoinAddress address(params[0].get_str());
