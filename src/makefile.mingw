@@ -1,21 +1,24 @@
 # Copyright (c) 2009-2010 Satoshi Nakamoto
+# Copyright (c) 2013 Sexcoin Development Team
 # Distributed under the MIT/X11 software license, see the accompanying
 # file license.txt or http://www.opensource.org/licenses/mit-license.php.
 
 USE_UPNP:=-
 BOOST_SUFFIX?=-mgw46-mt-sd-1_53
 
+MDEPS_PATH=/h/Workspace/coinbuild/deps-master
+
 INCLUDEPATHS= \
 -I"$(CURDIR)" \
- -I"C:/deps/boost_1_53_0" \
- -I"C:/deps/db-4.8.30.NC/build_unix" \
- -I"C:/deps/openssl-1.0.1b/include"
+ -I"$(MDEPS_PATH)/boost/" \
+ -I"$(MDEPS_PATH)/db/build_unix" \
+ -I"$(MDEPS_PATH)/ssl/include"
 
 LIBPATHS= \
 -L"$(CURDIR)/leveldb" \
- -L"C:/deps/boost_1_53_0/stage/lib" \
- -L"C:/deps/db-4.8.30.NC/build_unix" \
- -L"C:/deps/openssl-1.0.1b"
+ -L"$(MDEPS_PATH)/boost/stage/lib" \
+ -L"$(MDEPS_PATH)/db/build_unix" \
+ -L"$(MDEPS_PATH)/ssl"
  
 LIBS= \
  -l boost_system$(BOOST_SUFFIX) \
@@ -93,7 +96,14 @@ test_sexcoin.exe: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
 	g++ $(CFLAGS) -o $@ $(LIBPATHS) $^ -lboost_unit_test_framework $(LIBS)
 
 clean:
-	-del /Q sexcoind test_sexcoin
-	-del /Q obj\*
-	-del /Q obj-test\*
-	-del /Q build.h
+#	-del /Q sexcoind test_sexcoin
+#	-del /Q obj\*
+#	-del /Q obj-test\*
+#	-del /Q build.h
+	-rm sexcoind test_sexcoin
+	-rm  obj\/*
+	-rm  obj-test\/*
+	-rm  build.h
+
+
+

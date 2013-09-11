@@ -19,6 +19,7 @@
 #include <QTranslator>
 #include <QSplashScreen>
 #include <QLibraryInfo>
+#include <QSettings>
 
 #include <boost/interprocess/ipc/message_queue.hpp>
 #include <boost/algorithm/string/predicate.hpp>
@@ -37,6 +38,7 @@ Q_IMPORT_PLUGIN(qtaccessiblewidgets)
 // Need a global reference for the notifications to find the GUI
 static BitcoinGUI *guiref;
 static QSplashScreen *splashref;
+
 
 static void ThreadSafeMessageBox(const std::string& message, const std::string& caption, int style)
 {
@@ -86,7 +88,7 @@ static void InitMessage(const std::string &message)
 {
     if(splashref)
     {
-        splashref->showMessage(QString::fromStdString(message), Qt::AlignBottom|Qt::AlignHCenter, QColor(255,255,200));
+        splashref->showMessage(QString::fromStdString(message), Qt::AlignBottom|Qt::AlignHCenter, QColor(91,91,91));
         QApplication::instance()->processEvents();
     }
 }
@@ -111,6 +113,27 @@ static void handleRunawayException(std::exception *e)
     PrintExceptionContinue(e, "Runaway exception");
     QMessageBox::critical(0, "Runaway exception", BitcoinGUI::tr("A fatal error occured. Sexcoin can no longer continue safely and will quit.") + QString("\n\n") + QString::fromStdString(strMiscWarning));
     exit(1);
+}
+
+static void initSettings(){
+
+    QSettings settings;
+    settings.setValue("SoundAbout","about.mp3");
+    settings.setValue("SoundStartup","startup.ogg");
+    settings.setValue("SoundIncoming","incoming.ogg");
+    settings.setValue("SoundSent","coinssent.wav");
+    settings.setValue("SoundMining","mining.ogg");
+    settings.setValue("SoundSync","sync.mp3");
+
+    settings.setValue("bUseStartup",true);
+    settings.setValue("bUseIncoming",false);
+    settings.setValue("bUseSent",false);
+    settings.setValue("bUseMining",true);
+    settings.setValue("bUseSync",false);
+    settings.setValue("bUseAbout",true);
+
+    settings.setValue("SoundVolume",75);
+
 }
 
 #ifndef BITCOIN_QT_TEST
@@ -170,7 +193,7 @@ int main(int argc, char *argv[])
     // Application identification (must be set before OptionsModel is initialized,
     // as it is used to locate QSettings)
     app.setOrganizationName("sexcoin");
-    app.setOrganizationDomain("sexcoin-wiki.org");
+    app.setOrganizationDomain("sexcoin.info");
     if(GetBoolArg("-testnet")) // Separate UI settings for testnet
         app.setApplicationName("Sexcoin-Qt-testnet");
     else
@@ -226,6 +249,11 @@ int main(int argc, char *argv[])
     QSplashScreen splash(QPixmap(":/images/splash"), 0);
     if (GetBoolArg("-splash", true) && !GetBoolArg("-min"))
     {
+        QSettings settings;
+        if( settings.value("SoundStartup","none") ==  "none")
+            initSettings();
+        if(settings.value("bUseStartup",true).toBool())
+            GUIUtil::PlaySound(settings.value("SoundStartup","startup.wav").toString());
         splash.show();
         splash.setAutoFillBackground(true);
         splashref = &splash;
@@ -299,7 +327,7 @@ int main(int argc, char *argv[])
                 window.setWalletModel(0);
                 guiref = 0;
             }
-            // Shutdown the core and it's threads, but don't exit Bitcoin-Qt here
+            // Shutdown the core and it's threads, but don't exit Sexcoin-Qt here
             Shutdown(NULL);
         }
         else

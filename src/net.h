@@ -2,6 +2,7 @@
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2011-2012 Litecoin Developers
 // Copyright (c) 2013 supercoin Developers
+// Copyright (c) 2013 Sexcoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #ifndef BITCOIN_NET_H
@@ -170,8 +171,8 @@ public:
     CAddress addr;
     std::string addrName;
     CService addrLocal;
-    int nVersion;
-    std::string strSubVer;
+    int nVersion;               //Network Protocol Version?
+    std::string strSubVer;      //Client Version?
     bool fOneShot;
     bool fClient;
     bool fInbound;
@@ -336,14 +337,17 @@ public:
 
     void BeginMessage(const char* pszCommand)
     {
+
+
         ENTER_CRITICAL_SECTION(cs_vSend);
         if (nHeaderStart != -1)
             AbortMessage();
         nHeaderStart = vSend.size();
-        vSend << CMessageHeader(pszCommand, 0);
+        CMessageHeader hdr=CMessageHeader(pszCommand, 0, true, nBestHeight);
+        if(fDebug){ printf("net.h-BeginMessage: HDR = %x\n",hdr.pchMessageStart[0]); }
+        vSend << CMessageHeader(pszCommand, 0, true, nBestHeight);
         nMessageStart = vSend.size();
-        if (fDebug)
-            printf("sending: %s ", pszCommand);
+        if (fDebug){ printf("CNode::BeginMessage:(%d)(%x) %s",nBestHeight,hdr.pchMessageStart[0], pszCommand); }
     }
 
     void AbortMessage()
@@ -361,6 +365,7 @@ public:
 
     void EndMessage()
     {
+        if(fDebug){printf("ending message  ");}
         if (mapArgs.count("-dropmessagestest") && GetRand(atoi(mapArgs["-dropmessagestest"])) == 0)
         {
             printf("dropmessages DROPPING SEND MESSAGE\n");
