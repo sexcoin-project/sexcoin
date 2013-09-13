@@ -2523,21 +2523,23 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
         if(fDebug){ printf("version..: %d, %d\n",pfrom->nVersion,pfrom->vSend.GetVersion()); }
 
 
+        /*
         printf("Sanity checking: %s %s\n",pfrom->addr.ToStringIP().c_str(),pfrom->addr.ToStringPort().c_str());
         if( pfrom->nStartingHeight > 400000 ){
             pfrom->fDisconnect = true;
             printf("block height unreasonable (%d) from %s, disconnecting.\n",pfrom->nStartingHeight,pfrom->addr.ToString().c_str());
             return true;
         }
+        */
 
-
+        /*
         if(fDebug){ printf("port: %s-\n",pfrom->addr.ToStringPort().c_str()); }
         if( strcmp(pfrom->addr.ToStringPort().c_str(),"9333") == 0){
             pfrom->fDisconnect = true;
             printf("port 9333 connections are invalid on this network. disconnecting %s\n",pfrom->addr.ToString().c_str());
             return true;
         }
-
+        */
 
 
         if (!pfrom->fInbound)
