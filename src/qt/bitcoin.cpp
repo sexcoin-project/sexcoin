@@ -118,6 +118,7 @@ static void handleRunawayException(std::exception *e)
 static void initSettings(){
 
     QSettings settings;
+    settings.setValue("nMaxHeightAccepted",nMaxHeightAccepted);
     settings.setValue("SoundAbout","about.mp3");
     settings.setValue("SoundStartup","startup.ogg");
     settings.setValue("SoundIncoming","incoming.ogg");
@@ -246,10 +247,17 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+    QSettings settings;
+
+    if(settings.value("nMaxHeightAccepted",0).toInt() == 0 ){
+        settings.setValue("nMaxHeightAccepted",nMaxHeightAccepted);
+    }else{
+        nMaxHeightAccepted = settings.value("nMaxHeightAccepted").toInt();
+    }
+
     QSplashScreen splash(QPixmap(":/images/splash"), 0);
     if (GetBoolArg("-splash", true) && !GetBoolArg("-min"))
     {
-        QSettings settings;
         if( settings.value("SoundStartup","none") ==  "none")
             initSettings();
         if(settings.value("bUseStartup",true).toBool())
@@ -258,6 +266,8 @@ int main(int argc, char *argv[])
         splash.setAutoFillBackground(true);
         splashref = &splash;
     }
+
+
 
     app.processEvents();
 

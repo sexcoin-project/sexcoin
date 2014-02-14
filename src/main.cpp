@@ -36,7 +36,7 @@ uint256 hashGenesisBlock("0xf42b9553085a1af63d659d3907a42c3a0052bbfa2693d3acf990
 static CBigNum bnProofOfWorkLimit(~uint256(0) >> 5); // sexcoin: starting difficulty is 1 / 2^12
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
-int nMaxHeightAccepted = 125000;
+int nMaxHeightAccepted = 600000;
 CBigNum bnBestChainWork = 0;
 CBigNum bnBestInvalidWork = 0;
 uint256 hashBestChain = 0;
