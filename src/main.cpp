@@ -881,7 +881,7 @@ static const int64 nTargetSpacing_2 = 1 * 60 ;
 
 static const int64 nInterval = nTargetTimespan / nTargetSpacing; // 480 blocks
 static const int64 nInterval_1 = nTargetTimespan_1 / nTargetSpacing_1; //
-static const int64 nIntercal_2 = nTargetTimespan_2 / nTargetTimespan_2; //
+static const int64 nInterval_2 = nTargetTimespan_2 / nTargetTimespan_2; //
 
 
 //
@@ -913,7 +913,6 @@ unsigned int ComputeMinWork(unsigned int nBase, int64 nTime)
         nCurrentInterval = nCurrentTimespan / nCurrentSpacing;
     }
 
-    // We should never be here!!!!
     if( nBestHeight > FIX_SECOND_RETARGET_HEIGHT)
     {
         nCurrentTimespan =  nTargetTimespan_2; // sexcoin: 30 minutes
@@ -1016,7 +1015,8 @@ unsigned int static GetNextWorkRequired_V1(const CBlockIndex* pindexLast, const 
         nCurrentSpacing = nTargetSpacing_1; // sexcoin: 30 second
         nCurrentInterval = nCurrentTimespan / nCurrentSpacing;
     }
-
+    
+	// We should never be here!!!!
     if( nBestHeight > FIX_SECOND_RETARGET_HEIGHT)
     {
         nCurrentTimespan =  nTargetTimespan_2; // sexcoin: 30 minutes
@@ -1109,6 +1109,7 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 {
     int DiffMode = 0;
     if (fTestNet) {
+        if (pindexLast->nHeight+1 >= FIX_RETARGET_HEIGHT){ DiffMode=1; }
         if (pindexLast->nHeight+1 >= FIX_SECOND_RETARGET_HEIGHT) { DiffMode = 2; }
     }
     else {
@@ -2554,13 +2555,8 @@ bool static AlreadyHave(CTxDB& txdb, const CInv& inv)
 // The characters are rarely used upper ascii, not valid as UTF-8, and produce
 // a large 4-byte int at any alignment.
 
-unsigned char pchMessageStart[4] = { 0xfc, 0xcc, 0xcc, 0xfd }; // sexcoin: increase each by adding 2 to bitcoin's value.
-//unsigned char pchMessageStart2[4]= { 0xfb, 0xc0, 0xb6, 0xdb }; // sexcoin:
+unsigned char pchMessageStart[4]= { 0xfb, 0xc0, 0xb6, 0xdb }; // sexcoin:
 unsigned char pchMessageStart2[4]= { 0xfa, 0xce, 0x69, 0x69 }; // sexcoin: blockchain fix =JSC
-
-// For mad crazy live test
-//unsigned char pchMessageStart[4] = { 0xfd, 0xc4, 0xb6, 0xdb }; // sexcoin: increase each by adding 2 to bitcoin's value.
-//unsigned char pchMessageStart2[4]= { 0xfa, 0xce, 0x69, 0x69 }; // sexcoin: blockchain fix =JSC
 
 bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
 {
