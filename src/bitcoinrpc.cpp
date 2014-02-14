@@ -28,6 +28,7 @@
 #include <boost/asio/ssl.hpp>
 #include <boost/filesystem/fstream.hpp>
 #include <boost/shared_ptr.hpp>
+#include <boost/format.hpp>
 #include <list>
 
 #define printf OutputDebugStringF
@@ -54,6 +55,7 @@ extern Value createrawtransaction(const Array& params, bool fHelp);
 extern Value decoderawtransaction(const Array& params, bool fHelp);
 extern Value signrawtransaction(const Array& params, bool fHelp);
 extern Value sendrawtransaction(const Array& params, bool fHelp);
+extern Value setmaxheightaccepted(const Array& params, bool fHelp);
 
 const Object emptyobj;
 
@@ -542,7 +544,7 @@ Value setaccount(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
-            "setaccount <sexcoinaddress> <account>\n"
+            "setaccount <Sexcoinaddress> <account>\n"
             "Sets the account associated with the given address.");
 
     CBitcoinAddress address(params[0].get_str());
@@ -644,7 +646,7 @@ Value sendtoaddress(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() < 2 || params.size() > 4)
         throw runtime_error(
-            "sendtoaddress <sexcoinaddress> <amount> [comment] [comment-to]\n"
+            "sendtoaddress <Sexcoinaddress> <amount> [comment] [comment-to]\n"
             "<amount> is a real and is rounded to the nearest 0.00000001\n"
             "[comment] and [comment-to] are not sent in a transaction but stored\n"
             "as extra transaction fields in your wallet."
@@ -678,7 +680,7 @@ Value signmessage(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 2)
         throw runtime_error(
-            "signmessage <sexcoinaddress> <message>\n"
+            "signmessage <Sexcoinaddress> <message>\n"
             "Sign a message with the private key of an address");
 
     EnsureWalletIsUnlocked();
@@ -713,7 +715,7 @@ Value verifymessage(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 3)
         throw runtime_error(
-            "verifymessage <sexcoinaddress> <signature> <message>\n"
+            "verifymessage <Sexcoinaddress> <signature> <message>\n"
             "Verify a signed message");
 
     string strAddress  = params[0].get_str();
@@ -750,8 +752,8 @@ Value getreceivedbyaddress(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
-            "getreceivedbyaddress <sexcoinaddress> [minconf=1]\n"
-            "Returns the total amount received by <sexcoinaddress> in transactions with at least [minconf] confirmations.");
+            "getreceivedbyaddress <Sexcoinaddress> [minconf=1]\n"
+            "Returns the total amount received by <Sexcoinaddress> in transactions with at least [minconf] confirmations.");
 
     // Sexcoin address
     CBitcoinAddress address = CBitcoinAddress(params[0].get_str());
@@ -971,7 +973,7 @@ Value sendfrom(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() < 3 || params.size() > 6)
         throw runtime_error(
-            "sendfrom <fromaccount> <tosexcoinaddress> <amount> [minconf=1] [comment] [comment-to]\n"
+            "sendfrom <fromaccount> <toSexcoinaddress> <amount> [minconf=1] [comment] [comment-to]\n"
             "<amount> is a real and is rounded to the nearest 0.00000001"
             + HelpRequiringPassphrase());
 
@@ -1835,8 +1837,8 @@ Value validateaddress(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
         throw runtime_error(
-            "validateaddress <sexcoinaddress>\n"
-            "Return information about <sexcoinaddress>.");
+            "validateaddress <Sexcoinaddress>\n"
+            "Return information about <Sexcoinaddress>.");
 
     CBitcoinAddress address(params[0].get_str());
     bool isValid = address.IsValid();
@@ -2309,7 +2311,40 @@ Value getblock(const Array& params, bool fHelp)
     return blockToJSON(block, pblockindex);
 }
 
+Value setmaxheightaccepted(const Array &params, bool fHelp)
+{
+    if(fHelp || params.size() > 1)
+        throw runtime_error(
+                "setmaxheightaccepted <height>\n"
+                "Sets a block height threshold above which all connections will be rejected.");
+    if(params.size() == 1){
+        try{
+            std::string strHeight = params[0].get_str();
+            nMaxHeightAccepted = atoi(strHeight);
+            return (Value)strHeight;
+        }catch(std::exception& e){
+            std::string error = "0-";
+            error.append(e.what());
+            error.append("\n");
+            throw runtime_error(error);
+            return error;
+        }
 
+    }
+
+    try{
+        char*height=new char[12];
+        sprintf(height,"%d",nMaxHeightAccepted);
+        return (Value)height;
+    }catch(std::exception &e){
+        std::string error = "1-";
+        error.append(e.what());
+        error.append("\n");
+        throw runtime_error(error);
+        return error;
+    }
+
+}
 
 
 
@@ -2379,6 +2414,7 @@ static const CRPCCommand vRPCCommands[] =
     { "decoderawtransaction",   &decoderawtransaction,   false },
     { "signrawtransaction",     &signrawtransaction,     false },
     { "sendrawtransaction",     &sendrawtransaction,     false },
+    { "setmaxheightaccepted",   &setmaxheightaccepted,   false },
 };
 
 CRPCTable::CRPCTable()
@@ -2412,7 +2448,7 @@ string HTTPPost(const string& strMsg, const map<string,string>& mapRequestHeader
 {
     ostringstream s;
     s << "POST / HTTP/1.1\r\n"
-      << "User-Agent: sexcoin-json-rpc/" << FormatFullVersion() << "\r\n"
+      << "User-Agent: Sexcoin-json-rpc/" << FormatFullVersion() << "\r\n"
       << "Host: 127.0.0.1\r\n"
       << "Content-Type: application/json\r\n"
       << "Content-Length: " << strMsg.size() << "\r\n"
@@ -2443,7 +2479,7 @@ static string HTTPReply(int nStatus, const string& strMsg, bool keepalive)
     if (nStatus == 401)
         return strprintf("HTTP/1.0 401 Authorization Required\r\n"
             "Date: %s\r\n"
-            "Server: sexcoin-json-rpc/%s\r\n"
+            "Server: Sexcoin-json-rpc/%s\r\n"
             "WWW-Authenticate: Basic realm=\"jsonrpc\"\r\n"
             "Content-Type: text/html\r\n"
             "Content-Length: 296\r\n"
@@ -2470,7 +2506,7 @@ static string HTTPReply(int nStatus, const string& strMsg, bool keepalive)
             "Connection: %s\r\n"
             "Content-Length: %d\r\n"
             "Content-Type: application/json\r\n"
-            "Server: sexcoin-json-rpc/%s\r\n"
+            "Server: Sexcoin-json-rpc/%s\r\n"
             "\r\n"
             "%s",
         nStatus,
@@ -2846,7 +2882,7 @@ void ThreadRPCServer2(void* parg)
     {
         unsigned char rand_pwd[32];
         RAND_bytes(rand_pwd, 32);
-        string strWhatAmI = "To use sexcoind";
+        string strWhatAmI = "To use Sexcoind";
         if (mapArgs.count("-server"))
             strWhatAmI = strprintf(_("To use the %s option"), "\"-server\"");
         else if (mapArgs.count("-daemon"))
@@ -2854,7 +2890,7 @@ void ThreadRPCServer2(void* parg)
         uiInterface.ThreadSafeMessageBox(strprintf(
             _("%s, you must set a rpcpassword in the configuration file:\n %s\n"
               "It is recommended you use the following random password:\n"
-              "rpcuser=sexcoinrpc\n"
+              "rpcuser=Sexcoinrpc\n"
               "rpcpassword=%s\n"
               "(you do not need to remember this password)\n"
               "If the file does not exist, create it with owner-readable-only file permissions.\n"),
@@ -2892,7 +2928,7 @@ void ThreadRPCServer2(void* parg)
     // Try a dual IPv6/IPv4 socket, falling back to separate IPv4 and IPv6 sockets
     const bool loopback = !mapArgs.count("-rpcallowip");
     asio::ip::address bindAddress = loopback ? asio::ip::address_v6::loopback() : asio::ip::address_v6::any();
-    ip::tcp::endpoint endpoint(bindAddress, GetArg("-rpcport", 9561));
+    ip::tcp::endpoint endpoint(bindAddress, GetArg("-rpcport", 10011));
     boost::system::error_code v6_only_error;
     boost::shared_ptr<ip::tcp::acceptor> acceptor(new ip::tcp::acceptor(io_service));
 
@@ -3183,7 +3219,7 @@ Object CallRPC(const string& strMethod, const Array& params)
     asio::ssl::stream<asio::ip::tcp::socket> sslStream(io_service, context);
     SSLIOStreamDevice<asio::ip::tcp> d(sslStream, fUseSSL);
     iostreams::stream< SSLIOStreamDevice<asio::ip::tcp> > stream(d);
-    if (!d.connect(GetArg("-rpcconnect", "127.0.0.1"), GetArg("-rpcport", "9561")))
+    if (!d.connect(GetArg("-rpcconnect", "127.0.0.1"), GetArg("-rpcport", "10011")))
         throw runtime_error("couldn't connect to server");
 
     // HTTP basic authentication
@@ -3285,6 +3321,7 @@ Array RPCConvertValues(const std::string &strMethod, const std::vector<std::stri
     if (strMethod == "createrawtransaction"   && n > 1) ConvertTo<Object>(params[1]);
     if (strMethod == "signrawtransaction"     && n > 1) ConvertTo<Array>(params[1]);
     if (strMethod == "signrawtransaction"     && n > 2) ConvertTo<Array>(params[2]);
+    //if (strMethod == "setmaxheightaccepted"   && n > 0) ConvertTo<boost::int64_t>(params[1]);
 
     return params;
 }

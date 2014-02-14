@@ -26,7 +26,7 @@ static const char* ppszTypeName[] =
 CMessageHeader::CMessageHeader(int nBlockHeight)
 {
 
-    if(nBlockHeight < (HARD_FORK_HEIGHT-1)){
+    if(nBlockHeight < (MAGIC_NUM_SWITCH_HEIGHT-1)){
         memcpy(pchMessageStart, ::pchMessageStart, sizeof(pchMessageStart));
         //printf("[DEFAULT:memcpy] %d, %d, %x : %x\n",nBestHeight,nBlockHeight,pchMessageStart[0], ::pchMessageStart[0]);
     }else{
@@ -42,7 +42,7 @@ CMessageHeader::CMessageHeader(int nBlockHeight)
 
 CMessageHeader::CMessageHeader(const char* pszCommand, unsigned int nMessageSizeIn, int nBlockHeight)
 {
-    if(nBlockHeight < HARD_FORK_HEIGHT){
+    if(nBlockHeight < MAGIC_NUM_SWITCH_HEIGHT){
         memcpy(pchMessageStart, ::pchMessageStart, sizeof(pchMessageStart));
         //printf("[ORIG:memcpy]%d, %x : %x\n",nBlockHeight,pchMessageStart[0], ::pchMessageStart[0]);
     }else{
@@ -56,7 +56,7 @@ CMessageHeader::CMessageHeader(const char* pszCommand, unsigned int nMessageSize
 
 CMessageHeader::CMessageHeader(const char* pszCommand, unsigned int nMessageSizeIn, bool outbound, int nBlockHeight)
 {
-    int forkheight = HARD_FORK_HEIGHT;
+    int forkheight = MAGIC_NUM_SWITCH_HEIGHT;
     //if(outbound)
     //  forkheight++;
 
@@ -91,7 +91,7 @@ bool CMessageHeader::IsValid(int nHeight) const
     bool fDebug = true;
     // Check start string
     //OutputDebugStringF("inIsValid: nHeight=%d, %x \n",nHeight,pchMessageStart[0]);
-    if(nHeight <= HARD_FORK_HEIGHT){
+    if(nHeight <= MAGIC_NUM_SWITCH_HEIGHT){
         if (memcmp(pchMessageStart, ::pchMessageStart, sizeof(pchMessageStart)) != 0)
         {
             OutputDebugStringF("[ISVALID:memcmp:false] %d, %x : %x\n",nHeight,pchMessageStart[0], ::pchMessageStart[0]);
@@ -105,7 +105,7 @@ bool CMessageHeader::IsValid(int nHeight) const
         }
     }
 
-    //OutputDebugStringF("inIsValid: MessageStart Validated.\n");
+    OutputDebugStringF("inIsValid: MessageStart Validated.\n");
 
     // Check the command string for errors
     for (const char* p1 = pchCommand; p1 < pchCommand + COMMAND_SIZE; p1++)
