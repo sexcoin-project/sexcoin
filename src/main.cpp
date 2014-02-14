@@ -1050,7 +1050,6 @@ unsigned int static GetNextWorkRequired_V1(const CBlockIndex* pindexLast, const 
             }
         }
 
-        //*** POISION PILL INJECTION POINT ****//
         return pindexLast->nBits;
     }
 
