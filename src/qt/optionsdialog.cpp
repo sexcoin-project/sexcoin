@@ -6,6 +6,7 @@
 #include "bitcoinunits.h"
 #include "monitoreddatamapper.h"
 #include "netbase.h"
+#include "main.h"
 #include "optionsmodel.h"
 #include "qvalidatedlineedit.h"
 #include "qvaluecombobox.h"
@@ -25,6 +26,7 @@
 #include <QSettings>
 #include <QTabWidget>
 #include <QWidget>
+#include <QString>
 
 
 OptionsDialog::OptionsDialog(QWidget *parent) :
@@ -39,6 +41,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
     printf("*******************  Initializing Options Dialog ****************************\n");
     ui->setupUi(this);
     populateSoundCombos();
+
     /* Network elements init */
 #ifndef USE_UPNP
     ui->mapPortUpnp->setEnabled(false);
@@ -52,6 +55,8 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
     ui->proxyIp->setEnabled(false);
     ui->proxyPort->setEnabled(false);
     ui->proxyPort->setValidator(new QIntValidator(0, 65535, this));
+
+    ui->editMaxAcceptedHeight->setText( QString(nMaxHeightAccepted));
 
     connect(ui->connectSocks, SIGNAL(toggled(bool)), ui->socksVersion, SLOT(setEnabled(bool)));
     connect(ui->connectSocks, SIGNAL(toggled(bool)), ui->proxyIp, SLOT(setEnabled(bool)));
@@ -182,6 +187,7 @@ void OptionsDialog::setMapper()
     mapper->addMapping(ui->socksVersion, OptionsModel::ProxySocksVersion);
     mapper->addMapping(ui->proxyIp, OptionsModel::ProxyIP);
     mapper->addMapping(ui->proxyPort, OptionsModel::ProxyPort);
+    mapper->addMapping(ui->editMaxAcceptedHeight, OptionsModel::MaxHeightAccepted);
 
     /* Window */
 #ifndef Q_WS_MAC
@@ -297,7 +303,11 @@ bool OptionsDialog::eventFilter(QObject *object, QEvent *event)
         }
     }
 
-    //if(object == ui->aboutSoundFile && event->type() == QEvent::)
+
+//    if(object == ui->editMaxAcceptedHeight && event->type() == QEvent::FocusOut)
+//    {
+//        this->enableSaveButtons();
+//    }
     return QDialog::eventFilter(object, event);
 }
 
@@ -377,3 +387,4 @@ void OptionsDialog::on_volumeSlider_sliderMoved(int position)
     QSettings settings;
     settings.setValue("nSoundVolume",position);
 }
+

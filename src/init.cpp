@@ -246,6 +246,8 @@ std::string HelpMessage()
         "  -bantime=<n>           " + _("Number of seconds to keep misbehaving peers from reconnecting (default: 86400)") + "\n" +
         "  -maxreceivebuffer=<n>  " + _("Maximum per-connection receive buffer, <n>*1000 bytes (default: 5000)") + "\n" +
         "  -maxsendbuffer=<n>     " + _("Maximum per-connection send buffer, <n>*1000 bytes (default: 1000)") + "\n" +
+        "  -setmaxheightaccepted=<n>" +_("Any peer connecting that reports over this number of blocks will be disconnected") + "\n" +
+
 #ifdef USE_UPNP
 #if USE_UPNP
         "  -upnp                  " + _("Use UPnP to map the listening port (default: 1 when listening)") + "\n" +
@@ -272,7 +274,7 @@ std::string HelpMessage()
 #endif
         "  -rpcuser=<user>        " + _("Username for JSON-RPC connections") + "\n" +
         "  -rpcpassword=<pw>      " + _("Password for JSON-RPC connections") + "\n" +
-        "  -rpcport=<port>        " + _("Listen for JSON-RPC connections on <port> (default: 9561)") + "\n" +
+        "  -rpcport=<port>        " + _("Listen for JSON-RPC connections on <port> (default: 10011)") + "\n" +
         "  -rpcallowip=<ip>       " + _("Allow JSON-RPC connections from specified IP address") + "\n" +
         "  -rpcconnect=<ip>       " + _("Send commands to node running on <ip> (default: 127.0.0.1)") + "\n" +
         "  -blocknotify=<cmd>     " + _("Execute command when the best block changes (%s in cmd is replaced by block hash)") + "\n" +
@@ -425,6 +427,13 @@ bool AppInit2()
             return InitError(strprintf(_("Invalid amount for -mininput=<amount>: '%s'"), mapArgs["-mininput"].c_str()));
     }
 
+    if(mapArgs.count("-setmaxheightaccepted"))
+    {
+        int nNewHeightAccepted = GetArg("-setmaxheightaccepted",9999999);
+        if(nNewHeightAccepted > 0)
+            nMaxHeightAccepted = nNewHeightAccepted;
+    }
+
     // ********************************************************* Step 4: application initialization: dir lock, daemonize, pidfile, debug log
 
     // Make sure only a single sexcoin process is using the data directory.
@@ -464,6 +473,11 @@ bool AppInit2()
     printf("Startup time: %s\n", DateTimeStrFormat("%x %H:%M:%S", GetTime()).c_str());
     printf("Default data directory %s\n", GetDefaultDataDir().string().c_str());
     printf("Used data directory %s\n", GetDataDir().string().c_str());
+    printf("magic-switch height: %d\n",MAGIC_NUM_SWITCH_HEIGHT);
+    printf("Switch_retarget_1: %d\n",FIX_RETARGET_HEIGHT);
+    printf("Switch_retarget_2: %d\n",FIX_SECOND_RETARGET_HEIGHT);
+    printf("Reject Threshold: %d\n",nMaxHeightAccepted);
+    //printf("Magic Number: ")
     std::ostringstream strErrors;
 
     if (fDaemon)
@@ -743,6 +757,7 @@ bool AppInit2()
     printf("setKeyPool.size() = %d\n",      pwalletMain->setKeyPool.size());
     printf("mapWallet.size() = %d\n",       pwalletMain->mapWallet.size());
     printf("mapAddressBook.size() = %d\n",  pwalletMain->mapAddressBook.size());
+    printf("nMaxHeightAccepted = %d\n",      nMaxHeightAccepted);
 
     if (!CreateThread(StartNode, NULL))
         InitError(_("Error: could not start node"));

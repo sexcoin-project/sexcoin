@@ -36,6 +36,12 @@ bool static ApplyProxySettings()
     return true;
 }
 
+bool static ApplyMaxHeight(){
+    QSettings settings;
+    nMaxHeightAccepted = settings.value("nMaxHeightAccepted").toInt();
+    return true;
+}
+
 void OptionsModel::Init()
 {
     QSettings settings;
@@ -74,6 +80,8 @@ void OptionsModel::Init()
         SoftSetBoolArg("-detachdb", settings.value("detachDB").toBool());
     if (!language.isEmpty())
         SoftSetArg("-lang", language.toStdString());
+    if (settings.contains("nMaxHeightAccept"))
+        SoftSetArg("-maxheightaccepted", settings.value("nMaxHeightAccepted").toString().toStdString());
 }
 
 bool OptionsModel::Upgrade()
@@ -214,6 +222,8 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
             return QVariant(bSoundSync);
         case UseMining:
             return QVariant(bSoundMining);
+        case MaxHeightAccepted:
+            return QVariant(nMaxHeightAccepted);
         default:
             return QVariant();
         }
@@ -289,6 +299,10 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
             bitdb.SetDetach(fDetachDB);
             settings.setValue("detachDB", fDetachDB);
             }
+            break;
+        case MaxHeightAccepted:
+            settings.setValue("nMaxHeightAccepted",value.toInt());
+            ApplyMaxHeight();
             break;
         case Language:
             settings.setValue("language", value);

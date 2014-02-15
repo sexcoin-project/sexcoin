@@ -195,6 +195,16 @@ QDateTime ClientModel::getLastBlockDate() const
     return QDateTime::fromTime_t(pindexBest->GetBlockTime());
 }
 
+int ClientModel::getMaxHeightAccepted() const
+{
+    return nMaxHeightAccepted;
+}
+
+void ClientModel::setMaxHeightAccepted(int blockheight) const
+{
+    nMaxHeightAccepted = blockheight;
+}
+
 void ClientModel::updateTimer()
 {
     // Some quantities (such as number of blocks) change so fast that we don't want to be notified for each change.

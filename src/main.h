@@ -27,12 +27,43 @@ class CInv;
 class CRequestTracker;
 class CNode;
 
+/***
+ *
+ *bitcoinrpc.cpp
+ * rpcport definition
+ *
+ *protocol.h
+ *  return testnet ? 11010 : 10010 ( line 26, default network ports)
+ *
+ *
+ *
+ *
+ *For testing these Values
+ *  HARD_FORK_HEIGHT
+ *  FIX_RETARGET_HEIGHT
+ *  FIX_SECOND_RETARGET_HEIGHT
+ *  COINBASE_MATURITY - how many blocks for mined blocks to reach maturity
+ *
+ *main.h:
+ *  CheckSignature() contains the alert system public key (line 1622)
+ *
+ *main.cpp:
+ *  static int64 nTargetTimespan =  8 * 60 * 60; // sexcoin: 8 hour ( minutes for retarget )
+ *  static int64 nTargetSpacing = 1 * 60; // sexcoin: 60 seconds ( block solve time )
+ *  static int64 nInterval = nTargetTimespan / nTargetSpacing; nInterval should be # of blocks at which to perform retarget.
+ *  adjust pchMessageStart and pchMessageStart2 - network magic number
+ *
+ *
+ *
+ */
+
 static const unsigned int MAX_BLOCK_SIZE = 1000000;
 static const unsigned int MAX_BLOCK_SIZE_GEN = MAX_BLOCK_SIZE/2;
 static const unsigned int MAX_BLOCK_SIGOPS = MAX_BLOCK_SIZE/50;
 static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/100;
-static const int HARD_FORK_HEIGHT = 320000;
-static const int FIX_RETARGET_HEIGHT = 155000;
+static const int MAGIC_NUM_SWITCH_HEIGHT = 680000;
+static const int FIX_RETARGET_HEIGHT = 155000; // Don't fuck with this.
+static const int FIX_SECOND_RETARGET_HEIGHT = 572000;
 static const int64 MIN_TX_FEE = 10000000;
 static const int64 MIN_RELAY_TX_FEE = MIN_TX_FEE;
 static const int64 MAX_MONEY = 250000000 * COIN; // Sexcoin: maximum of 250000000 coins
@@ -74,6 +105,7 @@ extern CCriticalSection cs_setpwalletRegistered;
 extern std::set<CWallet*> setpwalletRegistered;
 extern unsigned char pchMessageStart[4];
 extern unsigned char pchMessageStart2[4];
+extern int nMaxHeightAccepted;
 
 // Settings
 extern int64 nTransactionFee;
@@ -961,7 +993,7 @@ public:
 
         // Write index header
         unsigned int nSize = fileout.GetSerializeSize(*this);
-        if(nBestHeight < HARD_FORK_HEIGHT){
+        if(nBestHeight < MAGIC_NUM_SWITCH_HEIGHT){
             fileout << FLATDATA(pchMessageStart) << nSize;
         }else{
             fileout << FLATDATA(pchMessageStart2) << nSize;

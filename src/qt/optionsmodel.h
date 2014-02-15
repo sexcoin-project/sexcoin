@@ -25,6 +25,7 @@ public:
         ProxyIP,           // QString
         ProxyPort,         // int
         ProxySocksVersion, // int
+        MaxHeightAccepted, // int
         Fee,               // qint64
         DisplayUnit,       // BitcoinUnits::Unit
         DisplayAddresses,  // bool

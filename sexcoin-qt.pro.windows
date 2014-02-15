@@ -30,17 +30,17 @@ LIBS += -lboost_system-mgw46-mt-sd-1_53 -lboost_filesystem-mgw46-mt-sd-1_53 -lbo
 # Edit to your environment
 #
 BOOST_LIB_SUFFIX=-mgw46-mt-sd-1_53
-BOOST_INCLUDE_PATH=H:/workspace/coinbuild/deps-master/boost
-BOOST_LIB_PATH=H:/workspace/coinbuild/deps-master/boost/stage/lib
-BDB_INCLUDE_PATH=H:/workspace/coinbuild/deps-master/db/build_windows
-BDB_LIB_PATH=H:/workspace/coinbuild/deps-master/db/build_unix/.libs
+BOOST_INCLUDE_PATH=D:/workspace/coinbuild/deps-master/boost
+BOOST_LIB_PATH=D:/workspace/coinbuild/deps-master/boost/stage/lib
+BDB_INCLUDE_PATH=D:/workspace/coinbuild/deps-master/db/build_windows
+BDB_LIB_PATH=D:/workspace/coinbuild/deps-master/db/build_unix/.libs
 BDB_LIB_SUFFIX=-4.8
-OPENSSL_INCLUDE_PATH=H:/workspace/coinbuild/deps-master/ssl/include
-OPENSSL_LIB_PATH=H:/workspace/coinbuild/deps-master/ssl
-MINIUPNPC_INCLUDE_PATH=H:/workspace/coinbuild/deps-master/miniupnpc
-MINIUPNPC_LIB_PATH=H:/workspace/coinbuild/deps-master/miniupnpc
-QRCODE_INCLUDE_PATH=H:/workspace/coinbuild/deps-master/qrcode-win32-3.1.1/include
-QRCODE_LIB_PATH=H:/workspace/coinbuild/deps-master/qrcode-win32-3.1.1/dll
+OPENSSL_INCLUDE_PATH=D:/workspace/coinbuild/deps-master/ssl/include
+OPENSSL_LIB_PATH=D:/workspace/coinbuild/deps-master/ssl
+MINIUPNPC_INCLUDE_PATH=D:/workspace/coinbuild/deps-master/miniupnpc/include
+MINIUPNPC_LIB_PATH=D:/workspace/coinbuild/deps-master/miniupnpc
+QRCODE_INCLUDE_PATH=D:/workspace/coinbuild/deps-master/qrcode-win32-3.1.1/include
+QRCODE_LIB_PATH=D:/workspace/coinbuild/deps-master/qrcode-win32-3.1.1/dll
 
 OBJECTS_DIR = build
 MOC_DIR = build

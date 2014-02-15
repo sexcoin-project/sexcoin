@@ -51,6 +51,8 @@ public:
 
     int getHashrate() const;
     double GetDifficulty() const;
+    int getMaxHeightAccepted() const;
+    void setMaxHeightAccepted(int blockheight) const;
 
     QDateTime getLastBlockDate() const;
 
