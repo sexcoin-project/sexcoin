@@ -429,7 +429,7 @@ bool AppInit2()
 
     if(mapArgs.count("-setmaxheightaccepted"))
     {
-        int nNewHeightAccepted = GetArg("-setmaxheightaccepted",480000);
+        int nNewHeightAccepted = GetArg("-setmaxheightaccepted",9999999);
         if(nNewHeightAccepted > 0)
             nMaxHeightAccepted = nNewHeightAccepted;
     }
