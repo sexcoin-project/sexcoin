@@ -6,7 +6,7 @@ Targeted at the Adult Entertainment Business.
 
 Features:
 
- - 1 minute block targets
+ - 1 minute block time
  - subsidy halves every 600k blocks
  - 140 million total coins
  - Sound support 
