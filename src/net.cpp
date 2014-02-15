@@ -1085,7 +1085,7 @@ void ThreadMapPort2(void* parg)
                 r = UPNP_DeletePortMapping(urls.controlURL, data.first.servicetype, port, "TCP", 0);
                 printf("UPNP_DeletePortMapping() returned : %d\n", r);
                 freeUPNPDevlist(devlist); devlist = 0;
-                FreeUPNPUrls(&urls);
+//                FreeUPNPUrls(&urls);
                 return;
             }
             if (i % 600 == 0) // Refresh every 20 minutes
