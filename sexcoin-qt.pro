@@ -2,7 +2,7 @@ TEMPLATE = app
 TARGET =
 VERSION = 0.6.4.4
 INCLUDEPATH += src src/json src/qt
-DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE USE_IPV6
+DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE USE_IPV6 __NO_SYSTEM_INCLUDES
 CONFIG += no_include_pwd
 QT += phonon
 
@@ -73,6 +73,7 @@ contains(USE_QRCODE, 1) {
 
 }
 
+USE_UPNP=1
 # use: qmake "USE_UPNP=1" ( enabled by default; default)
 #  or: qmake "USE_UPNP=0" (disabled by default)
 #  or: qmake "USE_UPNP=-" (not supported)
