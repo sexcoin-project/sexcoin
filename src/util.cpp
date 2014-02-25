@@ -981,9 +981,7 @@ boost::filesystem::path GetDefaultDataDir()
     // Unix: ~/.sexcoin
 #ifdef WIN32
     // Windows
-    boost::filesystem::path current_path( boost::filesystem::current_path() );
-    return current_path / "chaindata";
-    //return GetSpecialFolderPath(CSIDL_APPDATA) / "Sexcoin";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Sexcoin";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -1040,10 +1038,8 @@ const boost::filesystem::path &GetDataDir(bool fNetSpecific)
 
 boost::filesystem::path GetConfigFile()
 {
-    boost::filesystem::path current_path( boost::filesystem::current_path() );
     boost::filesystem::path pathConfigFile(GetArg("-conf", "sexcoin.conf"));
-    if(!pathConfigFile.is_complete()) pathConfigFile = current_path / pathConfigFile;
-    //if (!pathConfigFile.is_complete()) pathConfigFile = GetDataDir(false) / pathConfigFile;
+    if (!pathConfigFile.is_complete()) pathConfigFile = GetDataDir(false) / pathConfigFile;
     return pathConfigFile;
 }
 

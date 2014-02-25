@@ -28,4 +28,4 @@ Development process
 
 Current efforts in the development of this coin are being made by a few members of bitcointalk.org that still have an interest in seeing it survive. These efforts are on a volunteer basis, so things will be a little slow for now. The original release of the coin by member 'chinsu' has been set as the current master. Updates for now will follow the litecoin (LTC) project. A clean base will be made available very soon as this is the first goal of current volunteer development team.
 
-Contact sexcoindev@gmail.com for any questions regarding this project.
+Contact devs@sex-coin.info for any questions regarding this project.
