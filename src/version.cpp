@@ -14,7 +14,7 @@
 const std::string CLIENT_NAME("Sexcoin");
 
 // Client version number
-#define CLIENT_VERSION_SUFFIX   "-magic"
+#define CLIENT_VERSION_SUFFIX   "stable"
 
 
 // The following part of the code determines the CLIENT_BUILD variable.
@@ -37,11 +37,11 @@ const std::string CLIENT_NAME("Sexcoin");
 #endif
 
 // git will put "#define GIT_ARCHIVE 1" on the next line inside archives. 
-#define GIT_ARCHIVE 1
-#ifdef GIT_ARCHIVE
-#    define GIT_COMMIT_ID "fcf8683"
-#    define GIT_COMMIT_DATE "$Format:%cD"
-#endif
+// #define GIT_ARCHIVE 1
+// #ifdef GIT_ARCHIVE
+// #    define GIT_COMMIT_ID "fcf8683"
+// #    define GIT_COMMIT_DATE "$Format:%cD"
+// #endif
 
 #define STRINGIFY(s) #s
 

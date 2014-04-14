@@ -6,19 +6,19 @@
 USE_UPNP:=-
 BOOST_SUFFIX?=-mgw46-mt-sd-1_53
 
-MDEPS_PATH=/h/Workspace/coinbuild/deps-master
+MDEPS_PATH=L:/src/deps
 
 INCLUDEPATHS= \
 -I"$(CURDIR)" \
- -I"$(MDEPS_PATH)/boost/" \
- -I"$(MDEPS_PATH)/db/build_unix" \
- -I"$(MDEPS_PATH)/ssl/include"
+ -I"$(MDEPS_PATH)/boost_1_53_0/" \
+ -I"$(MDEPS_PATH)/db-4.8.30.NC/build_unix" \
+ -I"$(MDEPS_PATH)/openssl-1.0.1g/include"
 
 LIBPATHS= \
 -L"$(CURDIR)/leveldb" \
- -L"$(MDEPS_PATH)/boost/stage/lib" \
- -L"$(MDEPS_PATH)/db/build_unix" \
- -L"$(MDEPS_PATH)/ssl"
+ -L"$(MDEPS_PATH)/boost_1_53_0/stage/lib" \
+ -L"$(MDEPS_PATH)/db-4.8.30.NC/build_unix" \
+ -L"$(MDEPS_PATH)/openssl-1.0.1g"
  
 LIBS= \
  -l boost_system$(BOOST_SUFFIX) \
@@ -32,7 +32,8 @@ LIBS= \
  
 DEFS=-DWIN32 -D_WINDOWS -DBOOST_THREAD_USE_LIB -DBOOST_SPIRIT_THREADSAFE -DUSE_IPV6
 DEBUGFLAGS=-g
-CFLAGS=-mthreads -O2 -w -Wall -Wextra -Wformat -Wformat-security -Wno-unused-parameter $(DEBUGFLAGS) $(DEFS) $(INCLUDEPATHS)
+CFLAGS=-fpermissive -mthreads -O2 -w -Wall -Wextra -Wformat -Wformat-security -Wno-unused-parameter $(DEBUGFLAGS) $(DEFS) $(INCLUDEPATHS)
+CXXFLAGS+=-fpermissive
 
 TESTDEFS = -DTEST_DATA_DIR=$(abspath test/data)
 
@@ -84,6 +85,14 @@ obj/scrypt.o: scrypt.c
 obj/%.o: %.cpp $(HEADERS)
 	g++ -c $(CFLAGS) -o $@ $<
 
+# you need sh in your path and git available
+# see ../sexcoin.pro.windows for more detail
+# on genbuild.sh requirements
+build.h: FORCE
+	sh ../share/genbuild.sh build.h
+version.cpp: build.h
+DEFS += -DHAVE_BUILD_INFO
+
 sexcoind.exe: $(OBJS:obj/%=obj/%)
 	g++ $(CFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS)
 
@@ -104,6 +113,8 @@ clean:
 	-rm  obj\/*
 	-rm  obj-test\/*
 	-rm  build.h
+
+FORCE:
 
 
 
