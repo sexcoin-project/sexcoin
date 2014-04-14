@@ -116,9 +116,15 @@ contains(BITCOIN_NEED_QT_PLUGINS, 1) {
 }
 
 # regenerate src/build.h
-!windows|contains(USE_BUILD_INFO, 1) {
+#
+# Works on windows with Git(http://git-scm.com/) installed from:
+#    https://msysgit.googlecode.com/files/Git-1.9.0-preview20140217.exe
+# Installing that should put git, sh, and other *nix like utils in your path
+# then this section will work for windows
+contains(USE_BUILD_INFO, 1) {
     genbuild.depends = FORCE
-    genbuild.commands = cd $$PWD; /bin/sh share/genbuild.sh $$OUT_PWD/build/build.h
+    !windows:genbuild.commands = cd $$PWD; /bin/sh share/genbuild.sh $$OUT_PWD/build/build.h
+    windows:genbuild.commands = cd $$PWD; sh share/genbuild.sh $$OUT_PWD/build/build.h
     genbuild.target = $$OUT_PWD/build/build.h
     PRE_TARGETDEPS += $$OUT_PWD/build/build.h
     QMAKE_EXTRA_TARGETS += genbuild
