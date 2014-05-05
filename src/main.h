@@ -64,6 +64,7 @@ static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/100;
 static const int MAGIC_NUM_SWITCH_HEIGHT = 680000;
 static const int FIX_RETARGET_HEIGHT = 155000; // Don't fuck with this.
 static const int FIX_SECOND_RETARGET_HEIGHT = 572000;
+static const int FIX_KGW_TIMEWARP_HEIGHT = 643808; // Projected to be Fri May 4 2014 12PM GMT
 static const int64 MIN_TX_FEE = 10000000;
 static const int64 MIN_RELAY_TX_FEE = MIN_TX_FEE;
 static const int64 MAX_MONEY = 250000000 * COIN; // Sexcoin: maximum of 250000000 coins
