@@ -194,7 +194,7 @@ int main(int argc, char *argv[])
     // Application identification (must be set before OptionsModel is initialized,
     // as it is used to locate QSettings)
     app.setOrganizationName("sexcoin");
-    app.setOrganizationDomain("sexcoin.info");
+    app.setOrganizationDomain("sex-coin.info");
     if(GetBoolArg("-testnet")) // Separate UI settings for testnet
         app.setApplicationName("Sexcoin-Qt-testnet");
     else
