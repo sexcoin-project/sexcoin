@@ -1,10 +1,13 @@
 TEMPLATE = app
 TARGET =
-VERSION = 0.6.4.4
-INCLUDEPATH += src src/json src/qt ../../workspace/coinbuild/deps-master/miniupnpc/include
+VERSION = 0.6.4.6
+INCLUDEPATH += src src/json src/qt
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE USE_IPV6
 CONFIG += no_include_pwd
 QT += phonon
+
+QMAKE_CFLAGS += -fpermissive
+QMAKE_CXXFLAGS += -fpermissive
 
 # for boost 1.37, add -mt to the boost libraries
 # use: qmake BOOST_LIB_SUFFIX=-mt
@@ -15,32 +18,30 @@ QT += phonon
 # Dependency library locations can be customized with:
 #    BOOST_INCLUDE_PATH, BOOST_LIB_PATH, BDB_INCLUDE_PATH,
 #    BDB_LIB_PATH, OPENSSL_INCLUDE_PATH and OPENSSL_LIB_PATH respectively
-
-# Uncomment the below lines to build on windows and update the paths to reflect your build environment
-BDB_LIB_SUFFIX=-4.8
-
-windows:LIBS += -lshlwapi
-LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB_PATH,,-L,) $$join(QRENCODE_LIB_PATH,,-L,)
-LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
-windows:LIBS += -lws2_32 -lole32 -loleaut32 -luuid -lgdi32
-LIBS += -lboost_system-mgw46-mt-sd-1_53 -lboost_filesystem-mgw46-mt-sd-1_53 -lboost_program_options-mgw46-mt-sd-1_53 -lboost_thread-mgw46-mt-sd-1_53
-
 #
 # Custom dependencies paths
 # Edit to your environment
 #
+SRCDIR=L:/
+DEPSDIR=$${SRCDIR}/src/deps
 BOOST_LIB_SUFFIX=-mgw46-mt-sd-1_53
-BOOST_INCLUDE_PATH=D:/workspace/coinbuild/deps-master/boost
-BOOST_LIB_PATH=D:/workspace/coinbuild/deps-master/boost/stage/lib
-BDB_INCLUDE_PATH=D:/workspace/coinbuild/deps-master/db/build_windows
-BDB_LIB_PATH=D:/workspace/coinbuild/deps-master/db/build_unix/.libs
+BOOST_INCLUDE_PATH=$${DEPSDIR}/boost_1_53_0
+BOOST_LIB_PATH=$${DEPSDIR}/boost_1_53_0/stage/lib
+BDB_INCLUDE_PATH=$${DEPSDIR}/db-4.8.30.NC/build_windows
+BDB_LIB_PATH=$${DEPSDIR}/db-4.8.30.NC/build_unix/.libs
 BDB_LIB_SUFFIX=-4.8
-OPENSSL_INCLUDE_PATH=D:/workspace/coinbuild/deps-master/ssl/include
-OPENSSL_LIB_PATH=D:/workspace/coinbuild/deps-master/ssl
-MINIUPNPC_INCLUDE_PATH=D:/workspace/coinbuild/deps-master/miniupnpc/include
-MINIUPNPC_LIB_PATH=D:/workspace/coinbuild/deps-master/miniupnpc
-QRCODE_INCLUDE_PATH=D:/workspace/coinbuild/deps-master/qrcode-win32-3.1.1/include
-QRCODE_LIB_PATH=D:/workspace/coinbuild/deps-master/qrcode-win32-3.1.1/dll
+OPENSSL_INCLUDE_PATH=$${DEPSDIR}/openssl-1.0.1g/include
+OPENSSL_LIB_PATH=$${DEPSDIR}/openssl-1.0.1g
+MINIUPNPC_INCLUDE_PATH=$${DEPSDIR}
+MINIUPNPC_LIB_PATH=$${DEPSDIR}/miniupnpc
+QRCODE_INCLUDE_PATH=$${DEPSDIR}/qrencode-3.4.3/include
+QRCODE_LIB_PATH=$${DEPSDIR}/qrencode-3.4.3/.libs
+
+windows:LIBS += -lshlwapi
+LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB_PATH,,-L,) $$join(QRCODE_LIB_PATH,,-L,)
+LIBS += -lssl -lcrypto -ldb_cxx$${BDB_LIB_SUFFIX}
+windows:LIBS += -lws2_32 -lole32 -loleaut32 -luuid -lgdi32
+LIBS += -lboost_system$${BOOST_LIB_SUFFIX} -lboost_filesystem$${BOOST_LIB_SUFFIX} -lboost_program_options$${BOOST_LIB_SUFFIX} -lboost_thread$${BOOST_LIB_SUFFIX}
 
 OBJECTS_DIR = build
 MOC_DIR = build
@@ -66,7 +67,7 @@ contains(USE_QRCODE, 1) {
     message(Building with QRCode support)
     DEFINES += USE_QRCODE
 	INCLUDEPATH +=$$QRCODE_INCLUDE_PATH
-	LIBS += $$join(QRCODE_LIB_PATH,,-L) -lqrcodelib
+	LIBS += $$join(QRCODE_LIB_PATH,,-L) -lqrencode
 
 }
 
@@ -115,9 +116,15 @@ contains(BITCOIN_NEED_QT_PLUGINS, 1) {
 }
 
 # regenerate src/build.h
-!windows|contains(USE_BUILD_INFO, 1) {
+#
+# Works on windows with Git(http://git-scm.com/) installed from:
+#    https://msysgit.googlecode.com/files/Git-1.9.0-preview20140217.exe
+# Installing that should put git, sh, and other *nix like utils in your path
+# then this section will work for windows
+contains(USE_BUILD_INFO, 1) {
     genbuild.depends = FORCE
-    genbuild.commands = cd $$PWD; /bin/sh share/genbuild.sh $$OUT_PWD/build/build.h
+    !windows:genbuild.commands = cd $$PWD; /bin/sh share/genbuild.sh $$OUT_PWD/build/build.h
+    windows:genbuild.commands = cd $$PWD; sh share/genbuild.sh $$OUT_PWD/build/build.h
     genbuild.target = $$OUT_PWD/build/build.h
     PRE_TARGETDEPS += $$OUT_PWD/build/build.h
     QMAKE_EXTRA_TARGETS += genbuild
@@ -322,7 +329,7 @@ OTHER_FILES += \
 # platform specific defaults, if not overridden on command line
 isEmpty(BOOST_LIB_SUFFIX) {
     macx:BOOST_LIB_SUFFIX = -mt
-    windows:BOOST_LIB_SUFFIX = -mgw44-mt-s-1_53
+    windows:BOOST_LIB_SUFFIX = -mgw46-mt-s-1_53
 }
 
 isEmpty(BOOST_THREAD_LIB_SUFFIX) {
@@ -377,8 +384,8 @@ macx:ICON = src/qt/res/icons/bitcoin.icns
 macx:TARGET = "sexcoin-Qt"
 
 # Set libraries and includes at end, to use platform-defined defaults if not overridden
-INCLUDEPATH += $$BOOST_INCLUDE_PATH $$BDB_INCLUDE_PATH $$OPENSSL_INCLUDE_PATH $$QRENCODE_INCLUDE_PATH
-LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB_PATH,,-L,) $$join(QRENCODE_LIB_PATH,,-L,)
+INCLUDEPATH += $$BOOST_INCLUDE_PATH $$BDB_INCLUDE_PATH $$OPENSSL_INCLUDE_PATH $$QRCODE_INCLUDE_PATH
+LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB_PATH,,-L,) $$join(QRCODE_LIB_PATH,,-L,)
 LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
 # -lgdi32 has to happen after -lcrypto (see  #681)
 windows:LIBS += -lws2_32 -lmswsock -lole32 -loleaut32 -luuid -lgdi32

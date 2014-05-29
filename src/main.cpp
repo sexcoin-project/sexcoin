@@ -1,6 +1,8 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2012-2013 Sexcoin Developers.
+// Copyright (c)      2013 Megacoin Developers.  (KGW Algo)
+// Copyright (c)      2014 Auroracoin Developers. (KGW Time Warp Fix)
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -952,6 +954,7 @@ unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const CBloc
 
     if (BlockLastSolved == NULL || BlockLastSolved->nHeight == 0 || (uint64)BlockLastSolved->nHeight < PastBlocksMin) { return bnProofOfWorkLimit.GetCompact(); }
 
+    int64 LatestBlockTime = BlockLastSolved->GetBlockTime();
     for (unsigned int i = 1; BlockReading && BlockReading->nHeight > 0; i++) {
         if (PastBlocksMax > 0 && i > PastBlocksMax) { break; }
         PastBlocksMass++;
@@ -960,10 +963,18 @@ unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const CBloc
         else		{ PastDifficultyAverage = ((CBigNum().SetCompact(BlockReading->nBits) - PastDifficultyAveragePrev) / i) + PastDifficultyAveragePrev; }
         PastDifficultyAveragePrev = PastDifficultyAverage;
 
-        PastRateActualSeconds			= BlockLastSolved->GetBlockTime() - BlockReading->GetBlockTime();
+        if (LatestBlockTime < BlockReading->GetBlockTime()) {
+            if (BlockReading->nHeight > FIX_KGW_TIMEWARP_HEIGHT)
+                LatestBlockTime = BlockReading->GetBlockTime();
+            }
+        PastRateActualSeconds                   = LatestBlockTime - BlockReading->GetBlockTime();
         PastRateTargetSeconds			= TargetBlocksSpacingSeconds * PastBlocksMass;
         PastRateAdjustmentRatio			= double(1);
-        if (PastRateActualSeconds < 0) { PastRateActualSeconds = 0; }
+        if (BlockReading->nHeight > FIX_KGW_TIMEWARP_HEIGHT) {
+            if (PastRateActualSeconds < 1) { PastRateActualSeconds = 1; }
+        } else {
+            if (PastRateActualSeconds < 0) { PastRateActualSeconds = 0; }
+        }
         if (PastRateActualSeconds != 0 && PastRateTargetSeconds != 0) {
         PastRateAdjustmentRatio			= double(PastRateTargetSeconds) / double(PastRateActualSeconds);
         }

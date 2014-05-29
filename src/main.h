@@ -64,6 +64,7 @@ static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/100;
 static const int MAGIC_NUM_SWITCH_HEIGHT = 680000;
 static const int FIX_RETARGET_HEIGHT = 155000; // Don't fuck with this.
 static const int FIX_SECOND_RETARGET_HEIGHT = 572000;
+static const int FIX_KGW_TIMEWARP_HEIGHT = 643808; // Projected to be Fri May 4 2014 12PM GMT
 static const int64 MIN_TX_FEE = 10000000;
 static const int64 MIN_RELAY_TX_FEE = MIN_TX_FEE;
 static const int64 MAX_MONEY = 250000000 * COIN; // Sexcoin: maximum of 250000000 coins
@@ -1624,7 +1625,7 @@ public:
     bool CheckSignature()
     {
         CKey key;
-        if (!key.SetPubKey(ParseHex("04a5814813115273a109cff99907ba4a05d951873dae7acb6c973d0c9e7c88911a3dbc9aa600deac241b91707e7b4ffb30ad91c8e56e695a1ddf318592988afe0a")))
+        if (!key.SetPubKey(ParseHex("04979872c9155e2d8344832d446a023dd1b80ca2126740fe1031fd3d259349e1095f90d4e05852bc2e27b13b8a30363e87c754c28dda22857b8197c42d949a7c77")))
             return error("CAlert::CheckSignature() : SetPubKey failed");
         if (!key.Verify(Hash(vchMsg.begin(), vchMsg.end()), vchSig))
             return error("CAlert::CheckSignature() : verify signature failed");
