@@ -1142,8 +1142,8 @@ void MapPort()
 // The first name is used as information source for addrman.
 // The second name should resolve to a list of seed addresses.
 static const char *strDNSSeed[][2] = {
-    //{"Sexcoin.org", "dnsseed.Sexcoin.org"},
-    //{"altcointech.net", "dnsseed.rc.altcointech.net"},
+    {"Sexcoin.us", "dnsseed.Sexcoin.us"},
+    {"sxcseed.com", "dnsseed.sxcseed.com"},
 };
 
 void ThreadDNSAddressSeed(void* parg)
