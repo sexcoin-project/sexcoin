@@ -1,55 +1,41 @@
-#include "clientmodel.h"
-#include "guiconstants.h"
-#include "optionsmodel.h"
-#include "addresstablemodel.h"
-#include "transactiontablemodel.h"
+// Copyright (c) 2011-2013 The Bitcoin developers
+// Distributed under the MIT/X11 software license, see the accompanying
+// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+#include "clientmodel.h"
+
+#include "guiconstants.h"
+#include "peertablemodel.h"
+
+#include "alert.h"
+#include "chainparams.h"
+#include "checkpoints.h"
+#include "clientversion.h"
 #include "main.h"
-#include "init.h" // for pwalletMain
+#include "net.h"
 #include "ui_interface.h"
+#include "util.h"
+
+#include <stdint.h>
 
 #include <QDateTime>
+#include <QDebug>
 #include <QTimer>
 
-static const int64 nClientStartupTime = GetTime();
+static const int64_t nClientStartupTime = GetTime();
 
 ClientModel::ClientModel(OptionsModel *optionsModel, QObject *parent) :
-    QObject(parent), optionsModel(optionsModel),
-    cachedNumBlocks(0), cachedNumBlocksOfPeers(0), cachedHashrate(0), pollTimer(0)
+    QObject(parent),
+    optionsModel(optionsModel),
+    peerTableModel(0),
+    cachedNumBlocks(0),
+    cachedReindexing(0), cachedImporting(0),
+    numBlocksAtStartup(-1), pollTimer(0)
 {
-    numBlocksAtStartup = -1;
-
+    peerTableModel = new PeerTableModel(this);
     pollTimer = new QTimer(this);
-    // Read our specific settings from the wallet db
-    /*
-    CWalletDB walletdb(optionsModel->getWallet()->strWalletFile);
-    walletdb.ReadSetting("miningDebug", miningDebug);
-    walletdb.ReadSetting("miningScanTime", miningScanTime);
-    std::string str;
-    walletdb.ReadSetting("miningServer", str);
-    miningServer = QString::fromStdString(str);
-    walletdb.ReadSetting("miningPort", str);
-    miningPort = QString::fromStdString(str);
-    walletdb.ReadSetting("miningUsername", str);
-    miningUsername = QString::fromStdString(str);
-    walletdb.ReadSetting("miningPassword", str);
-    miningPassword = QString::fromStdString(str);
-    */
-//    if (fGenerateBitcoins)
-//    {
-        miningType = SoloMining;
-        miningStarted = true;
-//    }
-//    else
-//    {
-//        miningType = PoolMining;
-//        walletdb.ReadSetting("miningStarted", miningStarted);
-//    }
-//    miningThreads = nLimitProcessors;
-
-    pollTimer->setInterval(MODEL_UPDATE_DELAY);
-    pollTimer->start();
     connect(pollTimer, SIGNAL(timeout()), this, SLOT(updateTimer()));
+    pollTimer->start(MODEL_UPDATE_DELAY);
 
     subscribeToCoreSignals();
 }
@@ -59,14 +45,24 @@ ClientModel::~ClientModel()
     unsubscribeFromCoreSignals();
 }
 
-int ClientModel::getNumConnections() const
+int ClientModel::getNumConnections(unsigned int flags) const
 {
-    return vNodes.size();
+    LOCK(cs_vNodes);
+    if (flags == CONNECTIONS_ALL) // Shortcut if we want total
+        return vNodes.size();
+
+    int nNum = 0;
+    BOOST_FOREACH(CNode* pnode, vNodes)
+    if (flags & (pnode->fInbound ? CONNECTIONS_IN : CONNECTIONS_OUT))
+        nNum++;
+
+    return nNum;
 }
 
 int ClientModel::getNumBlocks() const
 {
-    return nBestHeight;
+    LOCK(cs_main);
+    return chainActive.Height();
 }
 
 int ClientModel::getNumBlocksAtStartup()
@@ -75,157 +71,55 @@ int ClientModel::getNumBlocksAtStartup()
     return numBlocksAtStartup;
 }
 
-ClientModel::MiningType ClientModel::getMiningType() const
+quint64 ClientModel::getTotalBytesRecv() const
 {
-    return miningType;
+    return CNode::GetTotalBytesRecv();
 }
 
-int ClientModel::getMiningThreads() const
+quint64 ClientModel::getTotalBytesSent() const
 {
-    return miningThreads;
-}
-
-bool ClientModel::getMiningStarted() const
-{
-    return miningStarted;
-}
-
-bool ClientModel::getMiningDebug() const
-{
-    return miningDebug;
-}
-
-void ClientModel::setMiningDebug(bool debug)
-{
-    miningDebug = debug;
-//    WriteSetting("miningDebug", miningDebug);
-}
-
-int ClientModel::getMiningScanTime() const
-{
-    return miningScanTime;
-}
-
-void ClientModel::setMiningScanTime(int scantime)
-{
-    miningScanTime = scantime;
-//    WriteSetting("miningScanTime", miningScanTime);
-}
-
-QString ClientModel::getMiningServer() const
-{
-    return miningServer;
-}
-
-void ClientModel::setMiningServer(QString server)
-{
-    miningServer = server;
-//    WriteSetting("miningServer", miningServer.toStdString());
-}
-
-QString ClientModel::getMiningPort() const
-{
-    return miningPort;
-}
-
-void ClientModel::setMiningPort(QString port)
-{
-    miningPort = port;
-//    WriteSetting("miningPort", miningPort.toStdString());
-}
-
-QString ClientModel::getMiningUsername() const
-{
-    return miningUsername;
-}
-
-void ClientModel::setMiningUsername(QString username)
-{
-    miningUsername = username;
-//    WriteSetting("miningUsername", miningUsername.toStdString());
-}
-
-QString ClientModel::getMiningPassword() const
-{
-    return miningPassword;
-}
-
-void ClientModel::setMiningPassword(QString password)
-{
-    miningPassword = password;
-//    WriteSetting("miningPassword", miningPassword.toStdString());
-}
-
-int ClientModel::getHashrate() const
-{
-    if (GetTimeMillis() - nHPSTimerStart > 8000)
-        return (boost::int64_t)0;
-    return (boost::int64_t)dHashesPerSec;
-}
-
-// Royalcoin: copied from bitcoinrpc.cpp.
-double ClientModel::GetDifficulty() const
-{
-    // Floating point number that is a multiple of the minimum difficulty,
-    // minimum difficulty = 1.0.
-
-    if (pindexBest == NULL)
-        return 1.0;
-    int nShift = (pindexBest->nBits >> 24) & 0xff;
-
-    double dDiff =
-        (double)0x0000ffff / (double)(pindexBest->nBits & 0x00ffffff);
-
-    while (nShift < 29)
-    {
-        dDiff *= 256.0;
-        nShift++;
-    }
-    while (nShift > 29)
-    {
-        dDiff /= 256.0;
-        nShift--;
-    }
-
-    return dDiff;
+    return CNode::GetTotalBytesSent();
 }
 
 QDateTime ClientModel::getLastBlockDate() const
 {
-    return QDateTime::fromTime_t(pindexBest->GetBlockTime());
+    LOCK(cs_main);
+    if (chainActive.Tip())
+        return QDateTime::fromTime_t(chainActive.Tip()->GetBlockTime());
+    else
+        return QDateTime::fromTime_t(Params().GenesisBlock().GetBlockTime()); // Genesis block's time of current network
 }
 
-int ClientModel::getMaxHeightAccepted() const
+double ClientModel::getVerificationProgress() const
 {
-    return nMaxHeightAccepted;
-}
-
-void ClientModel::setMaxHeightAccepted(int blockheight) const
-{
-    nMaxHeightAccepted = blockheight;
+    LOCK(cs_main);
+    return Checkpoints::GuessVerificationProgress(chainActive.Tip());
 }
 
 void ClientModel::updateTimer()
 {
+    // Get required lock upfront. This avoids the GUI from getting stuck on
+    // periodical polls if the core is holding the locks for a longer time -
+    // for example, during a wallet rescan.
+    TRY_LOCK(cs_main, lockMain);
+    if(!lockMain)
+        return;
     // Some quantities (such as number of blocks) change so fast that we don't want to be notified for each change.
     // Periodically check and update with a timer.
     int newNumBlocks = getNumBlocks();
-    int newNumBlocksOfPeers = getNumBlocksOfPeers();
 
-    if(cachedNumBlocks != newNumBlocks || cachedNumBlocksOfPeers != newNumBlocksOfPeers)
-        emit numBlocksChanged(newNumBlocks, newNumBlocksOfPeers);
-
-    cachedNumBlocks = newNumBlocks;
-    cachedNumBlocksOfPeers = newNumBlocksOfPeers;
-
-    // Only need to update if solo mining. When pool mining, stats are pushed.
-    if (miningType == SoloMining)
+    // check for changed number of blocks we have, number of blocks peers claim to have, reindexing state and importing state
+    if (cachedNumBlocks != newNumBlocks ||
+        cachedReindexing != fReindex || cachedImporting != fImporting)
     {
-        int newHashrate = getHashrate();
-        if (cachedHashrate != newHashrate)
-            emit miningChanged(miningStarted, newHashrate);
-        cachedHashrate = newHashrate;
+        cachedNumBlocks = newNumBlocks;
+        cachedReindexing = fReindex;
+        cachedImporting = fImporting;
+
+        emit numBlocksChanged(newNumBlocks);
     }
+
+    emit bytesChanged(getTotalBytesRecv(), getTotalBytesSent());
 }
 
 void ClientModel::updateNumConnections(int numConnections)
@@ -243,18 +137,11 @@ void ClientModel::updateAlert(const QString &hash, int status)
         CAlert alert = CAlert::getAlertByHash(hash_256);
         if(!alert.IsNull())
         {
-            emit error(tr("Network Alert"), QString::fromStdString(alert.strStatusBar), false);
+            emit message(tr("Network Alert"), QString::fromStdString(alert.strStatusBar), CClientUIInterface::ICON_ERROR);
         }
     }
 
-    // Emit a numBlocksChanged when the status message changes,
-    // so that the view recomputes and updates the status bar.
-    emit numBlocksChanged(getNumBlocks(), getNumBlocksOfPeers());
-}
-
-bool ClientModel::isTestNet() const
-{
-    return fTestNet;
+    emit alertsChanged(getStatusBarWarnings());
 }
 
 bool ClientModel::inInitialBlockDownload() const
@@ -262,23 +149,16 @@ bool ClientModel::inInitialBlockDownload() const
     return IsInitialBlockDownload();
 }
 
-int ClientModel::getNumBlocksOfPeers() const
+enum BlockSource ClientModel::getBlockSource() const
 {
-    return GetNumBlocksOfPeers();
-}
+    if (fReindex)
+        return BLOCK_SOURCE_REINDEX;
+    else if (fImporting)
+        return BLOCK_SOURCE_DISK;
+    else if (getNumConnections() > 0)
+        return BLOCK_SOURCE_NETWORK;
 
-void ClientModel::setMining(MiningType type, bool mining, int threads, int hashrate)
-{
-    if (type == SoloMining && mining != miningStarted)
-    {
-        GenerateBitcoins(mining ? 1 : 0, pwalletMain);
-    }
-    miningType = type;
-    miningStarted = mining;
-//    WriteSetting("miningStarted", mining);
-//    WriteSetting("fLimitProcessors", 1);
-//    WriteSetting("nLimitProcessors", threads);
-    emit miningChanged(mining, hashrate);
+    return BLOCK_SOURCE_NONE;
 }
 
 QString ClientModel::getStatusBarWarnings() const
@@ -291,6 +171,11 @@ OptionsModel *ClientModel::getOptionsModel()
     return optionsModel;
 }
 
+PeerTableModel *ClientModel::getPeerTableModel()
+{
+    return peerTableModel;
+}
+
 QString ClientModel::formatFullVersion() const
 {
     return QString::fromStdString(FormatFullVersion());
@@ -299,6 +184,11 @@ QString ClientModel::formatFullVersion() const
 QString ClientModel::formatBuildDate() const
 {
     return QString::fromStdString(CLIENT_DATE);
+}
+
+bool ClientModel::isReleaseVersion() const
+{
+    return CLIENT_VERSION_IS_RELEASE;
 }
 
 QString ClientModel::clientName() const
@@ -312,22 +202,24 @@ QString ClientModel::formatClientStartupTime() const
 }
 
 // Handlers for core signals
-static void NotifyBlocksChanged(ClientModel *clientmodel)
+static void ShowProgress(ClientModel *clientmodel, const std::string &title, int nProgress)
 {
-    // This notification is too frequent. Don't trigger a signal.
-    // Don't remove it, though, as it might be useful later.
+    // emits signal "showProgress"
+    QMetaObject::invokeMethod(clientmodel, "showProgress", Qt::QueuedConnection,
+                              Q_ARG(QString, QString::fromStdString(title)),
+                              Q_ARG(int, nProgress));
 }
 
 static void NotifyNumConnectionsChanged(ClientModel *clientmodel, int newNumConnections)
 {
-    // Too noisy: OutputDebugStringF("NotifyNumConnectionsChanged %i\n", newNumConnections);
+    // Too noisy: qDebug() << "NotifyNumConnectionsChanged : " + QString::number(newNumConnections);
     QMetaObject::invokeMethod(clientmodel, "updateNumConnections", Qt::QueuedConnection,
                               Q_ARG(int, newNumConnections));
 }
 
 static void NotifyAlertChanged(ClientModel *clientmodel, const uint256 &hash, ChangeType status)
 {
-    OutputDebugStringF("NotifyAlertChanged %s status=%i\n", hash.GetHex().c_str(), status);
+    qDebug() << "NotifyAlertChanged : " + QString::fromStdString(hash.GetHex()) + " status=" + QString::number(status);
     QMetaObject::invokeMethod(clientmodel, "updateAlert", Qt::QueuedConnection,
                               Q_ARG(QString, QString::fromStdString(hash.GetHex())),
                               Q_ARG(int, status));
@@ -336,7 +228,7 @@ static void NotifyAlertChanged(ClientModel *clientmodel, const uint256 &hash, Ch
 void ClientModel::subscribeToCoreSignals()
 {
     // Connect signals to client
-    uiInterface.NotifyBlocksChanged.connect(boost::bind(NotifyBlocksChanged, this));
+    uiInterface.ShowProgress.connect(boost::bind(ShowProgress, this, _1, _2));
     uiInterface.NotifyNumConnectionsChanged.connect(boost::bind(NotifyNumConnectionsChanged, this, _1));
     uiInterface.NotifyAlertChanged.connect(boost::bind(NotifyAlertChanged, this, _1, _2));
 }
@@ -344,7 +236,7 @@ void ClientModel::subscribeToCoreSignals()
 void ClientModel::unsubscribeFromCoreSignals()
 {
     // Disconnect signals from client
-    uiInterface.NotifyBlocksChanged.disconnect(boost::bind(NotifyBlocksChanged, this));
+    uiInterface.ShowProgress.disconnect(boost::bind(ShowProgress, this, _1, _2));
     uiInterface.NotifyNumConnectionsChanged.disconnect(boost::bind(NotifyNumConnectionsChanged, this, _1));
     uiInterface.NotifyAlertChanged.disconnect(boost::bind(NotifyAlertChanged, this, _1, _2));
 }

@@ -1,0 +1,5 @@
+MAX_MONEY:      amount.h
+magic numbers:  chainparams.cpp
+halving:        chainparams.cpp
+port:           chainparams.cpp
+
