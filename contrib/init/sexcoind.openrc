@@ -1,0 +1,86 @@
+#!/sbin/runscript
+
+# backward compatibility for existing gentoo layout 
+#
+if [ -d "/var/lib/sexcoin/.sexcoin" ]; then
+	SEXCOIND_DEFAULT_DATADIR="/var/lib/sexcoin/.sexcoin"
+else
+	SEXCOIND_DEFAULT_DATADIR="/var/lib/sexcoind"
+fi
+
+SEXCOIND_CONFIGFILE=${SEXCOIND_CONFIGFILE:-/etc/sexcoin/sexcoin.conf}
+SEXCOIND_PIDDIR=${SEXCOIND_PIDDIR:-/var/run/sexcoind}
+SEXCOIND_PIDFILE=${SEXCOIND_PIDFILE:-${SEXCOIND_PIDDIR}/sexcoind.pid}
+SEXCOIND_DATADIR=${SEXCOIND_DATADIR:-${SEXCOIND_DEFAULT_DATADIR}}
+SEXCOIND_USER=${SEXCOIND_USER:-sexcoin}
+SEXCOIND_GROUP=${SEXCOIND_GROUP:-sexcoin}
+SEXCOIND_BIN=${SEXCOIND_BIN:-/usr/bin/sexcoind}
+
+name="Sexcoin Core Daemon"
+description="Sexcoin crypto-currency p2p network daemon"
+
+command="/usr/bin/sexcoind"
+command_args="-pid=\"${SEXCOIND_PIDFILE}\" \
+		-conf=\"${SEXCOIND_CONFIGFILE}\" \
+		-datadir=\"${SEXCOIND_DATADIR}\" \
+		-daemon \
+		${SEXCOIND_OPTS}"
+
+required_files="${SEXCOIND_CONFIGFILE}"
+start_stop_daemon_args="-u ${SEXCOIND_USER} \
+			-N ${SEXCOIND_NICE:-0} -w 2000"
+pidfile="${SEXCOIND_PIDFILE}"
+retry=60
+
+depend() {
+	need localmount net
+}
+
+# verify
+# 1) that the datadir exists and is writable (or create it)
+# 2) that a directory for the pid exists and is writable
+# 3) ownership and permissions on the config file
+start_pre() {
+	checkpath \
+	-d \
+	--mode 0750 \
+	--owner "${SEXCOIND_USER}:${SEXCOIND_GROUP}" \
+	"${SEXCOIND_DATADIR}"
+
+	checkpath \
+	-d \
+	--mode 0755 \
+	--owner "${SEXCOIND_USER}:${SEXCOIND_GROUP}" \
+	"${SEXCOIND_PIDDIR}"
+
+	checkpath -f \
+	-o ${SEXCOIND_USER}:${SEXCOIND_GROUP} \
+	-m 0660 \
+	${SEXCOIND_CONFIGFILE}
+
+	checkconfig || return 1
+}
+
+checkconfig()
+{
+	if ! grep -qs '^rpcpassword=' "${SEXCOIND_CONFIGFILE}" ; then
+		eerror ""
+		eerror "ERROR: You must set a secure rpcpassword to run sexcoind."
+		eerror "The setting must appear in ${SEXCOIND_CONFIGFILE}"
+		eerror ""
+		eerror "This password is security critical to securing wallets "
+		eerror "and must not be the same as the rpcuser setting."
+		eerror "You can generate a suitable random password using the following"
+		eerror "command from the shell:"
+		eerror ""
+		eerror "bash -c 'tr -dc a-zA-Z0-9 < /dev/urandom | head -c32 && echo'"
+		eerror ""
+		eerror "It is also recommended that you also set alertnotify so you are "
+		eerror "notified of problems:"
+		eerror ""
+		eerror "ie: alertnotify=echo %%s | mail -s \"Sexcoin Alert\"" \
+			"admin@foo.com"
+		eerror ""
+		return 1
+	fi
+}

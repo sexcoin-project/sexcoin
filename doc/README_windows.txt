@@ -1,17 +1,9 @@
-Litecoin 0.6 BETA
-
-Copyright (c) 2009-2012 Bitcoin Developers
-Copyright (c) 2011-2012 Litecoin Developers
-Distributed under the MIT/X11 software license, see the accompanying
-file COPYING or http://www.opensource.org/licenses/mit-license.php.
-This product includes software developed by the OpenSSL Project for use in
-the OpenSSL Toolkit (http://www.openssl.org/).  This product includes
-cryptographic software written by Eric Young (eay@cryptsoft.com).
-
+Bitcoin Core 0.10.4
+=====================
 
 Intro
 -----
-Litecoin is a free open source peer-to-peer electronic cash system that is
+Bitcoin is a free open source peer-to-peer electronic cash system that is
 completely decentralized, without the need for a central server or trusted
 parties.  Users hold the crypto keys to their own money and transact directly
 with each other, with the help of a P2P network to check for double-spending.
@@ -19,17 +11,12 @@ with each other, with the help of a P2P network to check for double-spending.
 
 Setup
 -----
-Unpack the files into a directory and run litecoin-qt.exe.
+Unpack the files into a directory and run bitcoin-qt.exe.
 
-If you have Microsoft Security Essentials, you need to add litecoin-qt.exe to its
-"Excluded processes" list.  Microsoft Security Essentials->Settings tab,
-select Excluded processes, press Add, select litecoin-qt.exe, OK, Save changes.
-
-The software automatically finds other nodes to connect to.  You can
-enable Universal Plug and Play using a menu entry or set your firewall
-to forward port 9333 (TCP) to your computer so you can receive
-incoming connections.  Litecoin works without incoming connections,
-but allowing incoming connections helps the Litecoin network.
+Bitcoin Core is the original Bitcoin client and it builds the backbone of the network.
+However, it downloads and stores the entire history of Bitcoin transactions;
+depending on the speed of your computer and network connection, the synchronization
+process can take anywhere from a few hours to a day or more.
 
 See the bitcoin wiki at:
   https://en.bitcoin.it/wiki/Main_Page

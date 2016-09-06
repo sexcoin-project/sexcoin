@@ -1,0 +1,22 @@
+[Unit]
+Description=Sexcoin's distributed currency daemon
+After=network.target
+
+[Service]
+User=sexcoin
+Group=sexcoin
+
+Type=forking
+PIDFile=/var/lib/sexcoind/sexcoind.pid
+ExecStart=/usr/bin/sexcoind -daemon -pid=/var/lib/sexcoind/sexcoind.pid \
+-conf=/etc/bitcoin/sexcoin.conf -datadir=/var/lib/sexcoind -disablewallet
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

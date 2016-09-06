@@ -1,0 +1,27 @@
+# /etc/conf.d/sexcoind: config file for /etc/init.d/sexcoind
+
+# Config file location
+#SEXCOIND_CONFIGFILE="/etc/sexcoin/sexcoin.conf"
+
+# What directory to write pidfile to?  (created and owned by $SEXCOIND_USER)
+#SEXCOIND_PIDDIR="/var/run/sexcoind"
+
+# What filename to give the pidfile
+#SEXCOIND_PIDFILE="${SEXCOIND_PIDDIR}/sexcoind.pid"
+
+# Where to write sexcoind data (be mindful that the blockchain is large)
+#SEXCOIND_DATADIR="/var/lib/sexcoind"
+
+# User and group to own sexcoind process
+#SEXCOIND_USER="sexcoin"
+#SEXCOIND_GROUP="sexcoin"
+
+# Path to sexcoind executable
+#SEXCOIND_BIN="/usr/bin/sexcoind"
+
+# Nice value to run sexcoind under
+#SEXCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+SEXCOIND_OPTS="-disablewallet"
+

@@ -1,136 +1,82 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="et" version="2.0">
-<defaultcodec>UTF-8</defaultcodec>
-<context>
-    <name>AboutDialog</name>
-    <message>
-        <location filename="../forms/aboutdialog.ui" line="14"/>
-        <source>About Bitcoin</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/aboutdialog.ui" line="53"/>
-        <source>&lt;b&gt;Bitcoin&lt;/b&gt; version</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/aboutdialog.ui" line="97"/>
-        <source>Copyright © 2009-2012 Bitcoin Developers
-
-This is experimental software.
-
-Distributed under the MIT/X11 software license, see the accompanying file license.txt or http://www.opensource.org/licenses/mit-license.php.
-
-This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/) and cryptographic software written by Eric Young (eay@cryptsoft.com) and UPnP software written by Thomas Bernard.</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
+<TS language="et" version="2.1">
 <context>
     <name>AddressBookPage</name>
     <message>
-        <location filename="../forms/addressbookpage.ui" line="14"/>
-        <source>Address Book</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/addressbookpage.ui" line="20"/>
-        <source>These are your Bitcoin addresses for receiving payments.  You may want to give a different one to each sender so you can keep track of who is paying you.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/addressbookpage.ui" line="36"/>
-        <source>Double-click to edit address or label</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/addressbookpage.ui" line="63"/>
         <source>Create a new address</source>
         <translation>Loo uus aadress</translation>
     </message>
     <message>
-        <location filename="../forms/addressbookpage.ui" line="77"/>
+        <source>&amp;New</source>
+        <translation>&amp;Uus</translation>
+    </message>
+    <message>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation type="unfinished"/>
+        <translation>Kopeeri märgistatud aadress vahemällu</translation>
     </message>
     <message>
-        <location filename="../forms/addressbookpage.ui" line="66"/>
-        <source>&amp;New Address</source>
-        <translation type="unfinished"/>
+        <source>&amp;Copy</source>
+        <translation>&amp;Kopeeri</translation>
     </message>
     <message>
-        <location filename="../forms/addressbookpage.ui" line="80"/>
+        <source>C&amp;lose</source>
+        <translation>S&amp;ulge</translation>
+    </message>
+    <message>
         <source>&amp;Copy Address</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Aadressi kopeerimine</translation>
     </message>
     <message>
-        <location filename="../forms/addressbookpage.ui" line="91"/>
-        <source>Show &amp;QR Code</source>
-        <translation type="unfinished"/>
+        <source>Delete the currently selected address from the list</source>
+        <translation>Kustuta märgistatud aadress loetelust</translation>
     </message>
     <message>
-        <location filename="../forms/addressbookpage.ui" line="102"/>
-        <source>Sign a message to prove you own this address</source>
-        <translation type="unfinished"/>
+        <source>Export the data in the current tab to a file</source>
+        <translation>Ekspordi kuvatava vahelehe sisu faili</translation>
     </message>
     <message>
-        <location filename="../forms/addressbookpage.ui" line="105"/>
-        <source>&amp;Sign Message</source>
-        <translation type="unfinished"/>
+        <source>&amp;Export</source>
+        <translation>&amp;Ekspordi</translation>
     </message>
     <message>
-        <location filename="../forms/addressbookpage.ui" line="116"/>
-        <source>Delete the currently selected address from the list. Only sending addresses can be deleted.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/addressbookpage.ui" line="119"/>
         <source>&amp;Delete</source>
         <translation>&amp;Kustuta</translation>
     </message>
     <message>
-        <location filename="../addressbookpage.cpp" line="63"/>
+        <source>C&amp;hoose</source>
+        <translation>V&amp;ali</translation>
+    </message>
+    <message>
+        <source>These are your Sexcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Need on sinu Sexcoini aadressid maksete saatmiseks. Müntide saatmisel kontrolli alati summat ning saaja aadressi.</translation>
+    </message>
+    <message>
         <source>Copy &amp;Label</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Märgise kopeerimine</translation>
     </message>
     <message>
-        <location filename="../addressbookpage.cpp" line="65"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Muuda</translation>
     </message>
     <message>
-        <location filename="../addressbookpage.cpp" line="292"/>
-        <source>Export Address Book Data</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../addressbookpage.cpp" line="293"/>
         <source>Comma separated file (*.csv)</source>
-        <translation type="unfinished"/>
+        <translation>Komaeraldatud fail (*.csv)</translation>
     </message>
     <message>
-        <location filename="../addressbookpage.cpp" line="306"/>
-        <source>Error exporting</source>
-        <translation>Viga eksportimisel</translation>
+        <source>Exporting Failed</source>
+        <translation>Eksportimine Ebaõnnestus</translation>
     </message>
-    <message>
-        <location filename="../addressbookpage.cpp" line="306"/>
-        <source>Could not write to file %1.</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
+    </context>
 <context>
     <name>AddressTableModel</name>
     <message>
-        <location filename="../addresstablemodel.cpp" line="142"/>
         <source>Label</source>
         <translation>Silt</translation>
     </message>
     <message>
-        <location filename="../addresstablemodel.cpp" line="142"/>
         <source>Address</source>
         <translation>Aadress</translation>
     </message>
     <message>
-        <location filename="../addresstablemodel.cpp" line="178"/>
         <source>(no label)</source>
         <translation>(silti pole)</translation>
     </message>
@@ -138,2362 +84,1898 @@ This product includes software developed by the OpenSSL Project for use in the O
 <context>
     <name>AskPassphraseDialog</name>
     <message>
-        <location filename="../forms/askpassphrasedialog.ui" line="26"/>
         <source>Passphrase Dialog</source>
-        <translation type="unfinished"/>
+        <translation>Salafraasi dialoog</translation>
     </message>
     <message>
-        <location filename="../forms/askpassphrasedialog.ui" line="47"/>
         <source>Enter passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Sisesta salafraas</translation>
     </message>
     <message>
-        <location filename="../forms/askpassphrasedialog.ui" line="61"/>
         <source>New passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Uus salafraas</translation>
     </message>
     <message>
-        <location filename="../forms/askpassphrasedialog.ui" line="75"/>
         <source>Repeat new passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Korda salafraasi</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog.cpp" line="33"/>
-        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;10 or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../askpassphrasedialog.cpp" line="34"/>
         <source>Encrypt wallet</source>
-        <translation type="unfinished"/>
+        <translation>Krüpteeri rahakott</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog.cpp" line="37"/>
         <source>This operation needs your wallet passphrase to unlock the wallet.</source>
-        <translation type="unfinished"/>
+        <translation>See toiming nõuab sinu rahakoti salafraasi.</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog.cpp" line="42"/>
         <source>Unlock wallet</source>
-        <translation type="unfinished"/>
+        <translation>Tee rahakott lukust lahti.</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog.cpp" line="45"/>
         <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
-        <translation type="unfinished"/>
+        <translation>See toiming nõuab sinu rahakoti salafraasi.</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog.cpp" line="50"/>
         <source>Decrypt wallet</source>
-        <translation type="unfinished"/>
+        <translation>Dekrüpteeri rahakott.</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog.cpp" line="53"/>
         <source>Change passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Muuda salafraasi</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog.cpp" line="54"/>
         <source>Enter the old and new passphrase to the wallet.</source>
-        <translation type="unfinished"/>
+        <translation>Sisesta rahakoti vana ning uus salafraas.</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog.cpp" line="100"/>
         <source>Confirm wallet encryption</source>
-        <translation type="unfinished"/>
+        <translation>Kinnita rahakoti krüpteering</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog.cpp" line="101"/>
-        <source>WARNING: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!
-Are you sure you wish to encrypt your wallet?</source>
-        <translation type="unfinished"/>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR SEXCOINS&lt;/b&gt;!</source>
+        <translation>Hoiatus: Kui sa kaotad oma, rahakoti krüpteerimisel kasutatud, salafraasi, siis &lt;b&gt;KAOTAD KA KÕIK OMA SEXCOINID&lt;/b&gt;!</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog.cpp" line="110"/>
-        <location filename="../askpassphrasedialog.cpp" line="159"/>
+        <source>Are you sure you wish to encrypt your wallet?</source>
+        <translation>Kas soovid oma rahakoti krüpteerida?</translation>
+    </message>
+    <message>
+        <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
+        <translation>TÄHTIS: Kõik varasemad rahakoti varundfailid tuleks üle kirjutada äsja loodud krüpteeritud rahakoti failiga. Turvakaalutlustel tühistatakse krüpteerimata rahakoti failid alates uue, krüpteeritud rahakoti, kasutusele võtust.</translation>
+    </message>
+    <message>
+        <source>Warning: The Caps Lock key is on!</source>
+        <translation>Hoiatus: Caps Lock on sisse lülitatud!</translation>
+    </message>
+    <message>
         <source>Wallet encrypted</source>
-        <translation type="unfinished"/>
+        <translation>Rahakott krüpteeritud</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog.cpp" line="111"/>
-        <source>Bitcoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation type="unfinished"/>
+        <source>Sexcoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your sexcoins from being stolen by malware infecting your computer.</source>
+        <translation>Sexcoin sulgub krüpteeringu lõpetamiseks. Pea meeles, et rahakoti krüpteerimine ei välista sexcoinide vargust, kui sinu arvuti on nakatunud pahavaraga.</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog.cpp" line="207"/>
-        <location filename="../askpassphrasedialog.cpp" line="231"/>
-        <source>Warning: The Caps Lock key is on.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../askpassphrasedialog.cpp" line="116"/>
-        <location filename="../askpassphrasedialog.cpp" line="123"/>
-        <location filename="../askpassphrasedialog.cpp" line="165"/>
-        <location filename="../askpassphrasedialog.cpp" line="171"/>
         <source>Wallet encryption failed</source>
-        <translation type="unfinished"/>
+        <translation>Tõrge rahakoti krüpteerimisel</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog.cpp" line="117"/>
         <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
-        <translation type="unfinished"/>
+        <translation>Rahakoti krüpteering ebaõnnestus tõrke tõttu. Sinu rahakotti ei krüpteeritud.</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog.cpp" line="124"/>
-        <location filename="../askpassphrasedialog.cpp" line="172"/>
         <source>The supplied passphrases do not match.</source>
-        <translation type="unfinished"/>
+        <translation>Salafraasid ei kattu.</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog.cpp" line="135"/>
         <source>Wallet unlock failed</source>
-        <translation type="unfinished"/>
+        <translation>Rahakoti avamine ebaõnnestus</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog.cpp" line="136"/>
-        <location filename="../askpassphrasedialog.cpp" line="147"/>
-        <location filename="../askpassphrasedialog.cpp" line="166"/>
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
-        <translation type="unfinished"/>
+        <translation>Rahakoti salafraas ei ole õige.</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog.cpp" line="146"/>
         <source>Wallet decryption failed</source>
-        <translation type="unfinished"/>
+        <translation>Rahakoti dekrüpteerimine ei õnnestunud</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog.cpp" line="160"/>
-        <source>Wallet passphrase was succesfully changed.</source>
-        <translation type="unfinished"/>
+        <source>Wallet passphrase was successfully changed.</source>
+        <translation>Rahakoti salafraasi muutmine õnnestus.</translation>
     </message>
 </context>
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <location filename="../bitcoingui.cpp" line="73"/>
-        <source>Bitcoin Wallet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoingui.cpp" line="215"/>
         <source>Sign &amp;message...</source>
-        <translation type="unfinished"/>
+        <translation>Signeeri &amp;sõnum</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="248"/>
-        <source>Show/Hide &amp;Bitcoin</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoingui.cpp" line="515"/>
         <source>Synchronizing with network...</source>
-        <translation type="unfinished"/>
+        <translation>Võrgusünkimine...</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="185"/>
         <source>&amp;Overview</source>
         <translation>&amp;Ülevaade</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="186"/>
         <source>Show general overview of wallet</source>
-        <translation type="unfinished"/>
+        <translation>Kuva rahakoti üld-ülevaade</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="191"/>
         <source>&amp;Transactions</source>
         <translation>&amp;Tehingud</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="192"/>
         <source>Browse transaction history</source>
         <translation>Sirvi tehingute ajalugu</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="197"/>
-        <source>&amp;Address Book</source>
-        <translation>&amp;Aadressiraamat</translation>
-    </message>
-    <message>
-        <location filename="../bitcoingui.cpp" line="198"/>
-        <source>Edit the list of stored addresses and labels</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoingui.cpp" line="203"/>
-        <source>&amp;Receive coins</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoingui.cpp" line="204"/>
-        <source>Show the list of addresses for receiving payments</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoingui.cpp" line="209"/>
-        <source>&amp;Send coins</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoingui.cpp" line="216"/>
-        <source>Prove you control an address</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoingui.cpp" line="235"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"/>
+        <translation>V&amp;älju</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="236"/>
         <source>Quit application</source>
-        <translation type="unfinished"/>
+        <translation>Väljumine</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="239"/>
-        <source>&amp;About %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoingui.cpp" line="240"/>
-        <source>Show information about Bitcoin</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoingui.cpp" line="242"/>
         <source>About &amp;Qt</source>
-        <translation type="unfinished"/>
+        <translation>Teave &amp;Qt kohta</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="243"/>
         <source>Show information about Qt</source>
-        <translation type="unfinished"/>
+        <translation>Kuva Qt kohta käiv info</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="245"/>
         <source>&amp;Options...</source>
         <translation>&amp;Valikud...</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="252"/>
         <source>&amp;Encrypt Wallet...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Krüpteeri Rahakott</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="255"/>
         <source>&amp;Backup Wallet...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Varunda Rahakott</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="257"/>
         <source>&amp;Change Passphrase...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message numerus="yes">
-        <location filename="../bitcoingui.cpp" line="517"/>
-        <source>~%n block(s) remaining</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation>&amp;Salafraasi muutmine</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="528"/>
-        <source>Downloaded %1 of %2 blocks of transaction history (%3% done).</source>
-        <translation type="unfinished"/>
+        <source>Open &amp;URI...</source>
+        <translation>Ava &amp;URI...</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="250"/>
-        <source>&amp;Export...</source>
-        <translation>&amp;Ekspordi...</translation>
+        <source>Importing blocks from disk...</source>
+        <translation>Impordi blokid kettalt...</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="210"/>
-        <source>Send coins to a Bitcoin address</source>
-        <translation type="unfinished"/>
+        <source>Reindexing blocks on disk...</source>
+        <translation>Kettal olevate blokkide re-indekseerimine...</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="246"/>
-        <source>Modify configuration options for Bitcoin</source>
-        <translation type="unfinished"/>
+        <source>Send coins to a Sexcoin address</source>
+        <translation>Saada münte Sexcoini aadressile</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="249"/>
-        <source>Show or hide the Bitcoin window</source>
-        <translation type="unfinished"/>
+        <source>Modify configuration options for Sexcoin</source>
+        <translation>Muuda Sexcoini seadeid</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="251"/>
-        <source>Export the data in the current tab to a file</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoingui.cpp" line="253"/>
-        <source>Encrypt or decrypt wallet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoingui.cpp" line="256"/>
         <source>Backup wallet to another location</source>
-        <translation type="unfinished"/>
+        <translation>Varunda rahakott teise asukohta</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="258"/>
         <source>Change the passphrase used for wallet encryption</source>
-        <translation type="unfinished"/>
+        <translation>Rahakoti krüpteerimise salafraasi muutmine</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="259"/>
         <source>&amp;Debug window</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Debugimise aken</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="260"/>
         <source>Open debugging and diagnostic console</source>
-        <translation type="unfinished"/>
+        <translation>Ava debugimise ja diagnostika konsool</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="261"/>
         <source>&amp;Verify message...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Kontrolli sõnumit...</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="262"/>
-        <source>Verify a message signature</source>
-        <translation type="unfinished"/>
+        <source>Sexcoin</source>
+        <translation>Sexcoin</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="286"/>
+        <source>Wallet</source>
+        <translation>Rahakott</translation>
+    </message>
+    <message>
+        <source>&amp;Send</source>
+        <translation>&amp;Saada</translation>
+    </message>
+    <message>
+        <source>&amp;Receive</source>
+        <translation>&amp;Saama</translation>
+    </message>
+    <message>
+        <source>&amp;Show / Hide</source>
+        <translation>&amp;Näita / Peida</translation>
+    </message>
+    <message>
+        <source>Show or hide the main Window</source>
+        <translation>Näita või peida peaaken</translation>
+    </message>
+    <message>
+        <source>Encrypt the private keys that belong to your wallet</source>
+        <translation>Krüpteeri oma rahakoti privaatvõtmed</translation>
+    </message>
+    <message>
+        <source>Sign messages with your Sexcoin addresses to prove you own them</source>
+        <translation>Omandi tõestamiseks allkirjasta sõnumid oma Sexcoini aadressiga</translation>
+    </message>
+    <message>
+        <source>Verify messages to ensure they were signed with specified Sexcoin addresses</source>
+        <translation>Kinnita sõnumid kindlustamaks et need allkirjastati määratud Sexcoini aadressiga</translation>
+    </message>
+    <message>
         <source>&amp;File</source>
         <translation>&amp;Fail</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="296"/>
         <source>&amp;Settings</source>
         <translation>&amp;Seaded</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="302"/>
         <source>&amp;Help</source>
-        <translation>&amp;Abiinfo</translation>
+        <translation>&amp;Abi</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="311"/>
         <source>Tabs toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Vahelehe tööriistariba</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="322"/>
-        <source>Actions toolbar</source>
-        <translation type="unfinished"/>
+        <source>Sexcoin Core</source>
+        <translation>Sexcoini tuumik</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n active connection(s) to Sexcoin network</source>
+        <translation><numerusform>%n aktiivne ühendus Sexcoini võrku</numerusform><numerusform>%n aktiivset ühendust Sexcoini võrku</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n hour(s)</source>
+        <translation><numerusform>%n tund</numerusform><numerusform>%n tundi</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n day(s)</source>
+        <translation><numerusform>%n päev</numerusform><numerusform>%n päeva</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n week(s)</source>
+        <translation><numerusform>%n nädal</numerusform><numerusform>%n nädalat</numerusform></translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="334"/>
-        <location filename="../bitcoingui.cpp" line="343"/>
-        <source>[testnet]</source>
-        <translation type="unfinished"/>
+        <source>%1 and %2</source>
+        <translation>%1 ja %2</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="343"/>
-        <location filename="../bitcoingui.cpp" line="399"/>
-        <source>Bitcoin client</source>
-        <translation type="unfinished"/>
-    </message>
-    <message numerus="yes">
-        <location filename="../bitcoingui.cpp" line="492"/>
-        <source>%n active connection(s) to Bitcoin network</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <source>%1 behind</source>
+        <translation>%1 maas</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="540"/>
-        <source>Downloaded %1 blocks of transaction history.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message numerus="yes">
-        <location filename="../bitcoingui.cpp" line="555"/>
-        <source>%n second(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../bitcoingui.cpp" line="559"/>
-        <source>%n minute(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../bitcoingui.cpp" line="563"/>
-        <source>%n hour(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../bitcoingui.cpp" line="567"/>
-        <source>%n day(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <source>Last received block was generated %1 ago.</source>
+        <translation>Viimane saabunud blokk loodi %1 tagasi.</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="573"/>
+        <source>Transactions after this will not yet be visible.</source>
+        <translation>Peale seda ei ole tehingud veel nähtavad.</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>Tõrge</translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation>Hoiatus</translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation>Informatsioon</translation>
+    </message>
+    <message>
         <source>Up to date</source>
-        <translation type="unfinished"/>
+        <translation>Ajakohane</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="580"/>
         <source>Catching up...</source>
-        <translation type="unfinished"/>
+        <translation>Jõuan...</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="590"/>
-        <source>Last received block was generated %1.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoingui.cpp" line="649"/>
-        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoingui.cpp" line="654"/>
-        <source>Confirm transaction fee</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoingui.cpp" line="681"/>
         <source>Sent transaction</source>
-        <translation type="unfinished"/>
+        <translation>Saadetud tehing</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="682"/>
         <source>Incoming transaction</source>
-        <translation type="unfinished"/>
+        <translation>Sisenev tehing</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="683"/>
         <source>Date: %1
 Amount: %2
 Type: %3
 Address: %4
 </source>
-        <translation type="unfinished"/>
+        <translation>Kuupäev: %1⏎
+Summa: %2⏎
+Tüüp: %3⏎
+Aadress: %4⏎</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="804"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Rahakott on &lt;b&gt;krüpteeritud&lt;/b&gt; ning hetkel &lt;b&gt;avatud&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="812"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoingui.cpp" line="835"/>
-        <source>Backup Wallet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoingui.cpp" line="835"/>
-        <source>Wallet Data (*.dat)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoingui.cpp" line="838"/>
-        <source>Backup Failed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoingui.cpp" line="838"/>
-        <source>There was an error trying to save the wallet data to the new location.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoin.cpp" line="112"/>
-        <source>A fatal error occured. Bitcoin can no longer continue safely and will quit.</source>
-        <translation type="unfinished"/>
+        <translation>Rahakott on &lt;b&gt;krüpteeritud&lt;/b&gt; ning hetkel &lt;b&gt;suletud&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
     <name>ClientModel</name>
     <message>
-        <location filename="../clientmodel.cpp" line="84"/>
         <source>Network Alert</source>
-        <translation type="unfinished"/>
+        <translation>Võrgu Häire</translation>
     </message>
 </context>
 <context>
-    <name>DisplayOptionsPage</name>
+    <name>CoinControlDialog</name>
     <message>
-        <location filename="../optionsdialog.cpp" line="246"/>
-        <source>Display</source>
-        <translation type="unfinished"/>
+        <source>Quantity:</source>
+        <translation>Kogus:</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="257"/>
-        <source>default</source>
-        <translation type="unfinished"/>
+        <source>Amount:</source>
+        <translation>Summa:</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="263"/>
-        <source>The user interface language can be set here. This setting will only take effect after restarting Bitcoin.</source>
-        <translation type="unfinished"/>
+        <source>Fee:</source>
+        <translation>Tasu:</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="252"/>
-        <source>User Interface &amp;Language:</source>
-        <translation type="unfinished"/>
+        <source>Amount</source>
+        <translation>Kogus</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="273"/>
-        <source>&amp;Unit to show amounts in:</source>
-        <translation type="unfinished"/>
+        <source>Date</source>
+        <translation>Kuupäev</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="277"/>
-        <source>Choose the default subdivision unit to show in the interface, and when sending coins</source>
-        <translation type="unfinished"/>
+        <source>Confirmed</source>
+        <translation>Kinnitatud</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="284"/>
-        <source>&amp;Display addresses in transaction list</source>
-        <translation type="unfinished"/>
+        <source>Copy address</source>
+        <translation>Aadressi kopeerimine</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="285"/>
-        <source>Whether to show Bitcoin addresses in the transaction list</source>
-        <translation type="unfinished"/>
+        <source>Copy label</source>
+        <translation>Märgise kopeerimine</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="303"/>
-        <source>Warning</source>
-        <translation type="unfinished"/>
+        <source>Copy amount</source>
+        <translation>Kopeeri summa</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="303"/>
-        <source>This setting will take effect after restarting Bitcoin.</source>
-        <translation type="unfinished"/>
+        <source>Copy transaction ID</source>
+        <translation>Kopeeri tehingu ID</translation>
     </message>
-</context>
+    <message>
+        <source>Copy fee</source>
+        <translation>Kopeeri tasu</translation>
+    </message>
+    <message>
+        <source>highest</source>
+        <translation>kõrgeim</translation>
+    </message>
+    <message>
+        <source>higher</source>
+        <translation>kõrgem</translation>
+    </message>
+    <message>
+        <source>high</source>
+        <translation>kõrge</translation>
+    </message>
+    <message>
+        <source>medium</source>
+        <translation>keskmine</translation>
+    </message>
+    <message>
+        <source>low</source>
+        <translation>madal</translation>
+    </message>
+    <message>
+        <source>lower</source>
+        <translation>madalam</translation>
+    </message>
+    <message>
+        <source>lowest</source>
+        <translation>madalaim</translation>
+    </message>
+    <message>
+        <source>(%1 locked)</source>
+        <translation>(%1 lukustatud)</translation>
+    </message>
+    <message>
+        <source>yes</source>
+        <translation>jah</translation>
+    </message>
+    <message>
+        <source>no</source>
+        <translation>ei</translation>
+    </message>
+    <message>
+        <source>(no label)</source>
+        <translation>(silti pole)</translation>
+    </message>
+    </context>
 <context>
     <name>EditAddressDialog</name>
     <message>
-        <location filename="../forms/editaddressdialog.ui" line="14"/>
         <source>Edit Address</source>
         <translation>Muuda aadressi</translation>
     </message>
     <message>
-        <location filename="../forms/editaddressdialog.ui" line="25"/>
         <source>&amp;Label</source>
-        <translation>Si&amp;lt</translation>
+        <translation>&amp;Märgis</translation>
     </message>
     <message>
-        <location filename="../forms/editaddressdialog.ui" line="35"/>
-        <source>The label associated with this address book entry</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/editaddressdialog.ui" line="42"/>
         <source>&amp;Address</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Aadress</translation>
     </message>
     <message>
-        <location filename="../forms/editaddressdialog.ui" line="52"/>
-        <source>The address associated with this address book entry. This can only be modified for sending addresses.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../editaddressdialog.cpp" line="20"/>
         <source>New receiving address</source>
-        <translation type="unfinished"/>
+        <translation>Uus sissetulev aadress</translation>
     </message>
     <message>
-        <location filename="../editaddressdialog.cpp" line="24"/>
         <source>New sending address</source>
-        <translation type="unfinished"/>
+        <translation>Uus väljaminev aadress</translation>
     </message>
     <message>
-        <location filename="../editaddressdialog.cpp" line="27"/>
         <source>Edit receiving address</source>
-        <translation type="unfinished"/>
+        <translation>Sissetulevate aadresside muutmine</translation>
     </message>
     <message>
-        <location filename="../editaddressdialog.cpp" line="31"/>
         <source>Edit sending address</source>
-        <translation type="unfinished"/>
+        <translation>Väljaminevate aadresside muutmine</translation>
     </message>
     <message>
-        <location filename="../editaddressdialog.cpp" line="91"/>
-        <source>The entered address &quot;%1&quot; is already in the address book.</source>
-        <translation type="unfinished"/>
+        <source>The entered address "%1" is already in the address book.</source>
+        <translation>Selline aadress on juba olemas: "%1"</translation>
     </message>
     <message>
-        <location filename="../editaddressdialog.cpp" line="96"/>
-        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
-        <translation type="unfinished"/>
+        <source>The entered address "%1" is not a valid Sexcoin address.</source>
+        <translation>Sisestatud aadress "%1" ei ole Sexcoinis kehtiv.</translation>
     </message>
     <message>
-        <location filename="../editaddressdialog.cpp" line="101"/>
         <source>Could not unlock wallet.</source>
-        <translation type="unfinished"/>
+        <translation>Rahakotti ei avatud</translation>
     </message>
     <message>
-        <location filename="../editaddressdialog.cpp" line="106"/>
         <source>New key generation failed.</source>
-        <translation type="unfinished"/>
+        <translation>Tõrge uue võtme loomisel.</translation>
     </message>
 </context>
 <context>
-    <name>HelpMessageBox</name>
+    <name>FreespaceChecker</name>
     <message>
-        <location filename="../bitcoin.cpp" line="133"/>
-        <location filename="../bitcoin.cpp" line="143"/>
-        <source>Bitcoin-Qt</source>
-        <translation type="unfinished"/>
+        <source>name</source>
+        <translation>nimi</translation>
+    </message>
+    </context>
+<context>
+    <name>HelpMessageDialog</name>
+    <message>
+        <source>Sexcoin Core</source>
+        <translation>Sexcoini tuumik</translation>
     </message>
     <message>
-        <location filename="../bitcoin.cpp" line="133"/>
         <source>version</source>
-        <translation type="unfinished"/>
+        <translation>versioon</translation>
     </message>
     <message>
-        <location filename="../bitcoin.cpp" line="135"/>
+        <source>About Sexcoin Core</source>
+        <translation>Kirjeldus Sexcoini Tuumast</translation>
+    </message>
+    <message>
+        <source>Command-line options</source>
+        <translation>Käsurea valikud</translation>
+    </message>
+    <message>
         <source>Usage:</source>
-        <translation type="unfinished"/>
+        <translation>Kasutus:</translation>
     </message>
     <message>
-        <location filename="../bitcoin.cpp" line="136"/>
-        <source>options</source>
-        <translation type="unfinished"/>
+        <source>command-line options</source>
+        <translation>käsurea valikud</translation>
     </message>
     <message>
-        <location filename="../bitcoin.cpp" line="138"/>
         <source>UI options</source>
-        <translation type="unfinished"/>
+        <translation>UI valikud</translation>
     </message>
     <message>
-        <location filename="../bitcoin.cpp" line="139"/>
-        <source>Set language, for example &quot;de_DE&quot; (default: system locale)</source>
-        <translation type="unfinished"/>
+        <source>Set language, for example "de_DE" (default: system locale)</source>
+        <translation>Keele valik, nt "ee_ET" (vaikeväärtus: system locale)</translation>
     </message>
     <message>
-        <location filename="../bitcoin.cpp" line="140"/>
         <source>Start minimized</source>
-        <translation type="unfinished"/>
+        <translation>Käivitu tegumiribale</translation>
     </message>
     <message>
-        <location filename="../bitcoin.cpp" line="141"/>
         <source>Show splash screen on startup (default: 1)</source>
-        <translation type="unfinished"/>
+        <translation>Käivitamisel teabeakna kuvamine (vaikeväärtus: 1)</translation>
     </message>
-</context>
+    </context>
 <context>
-    <name>MainOptionsPage</name>
+    <name>Intro</name>
     <message>
-        <location filename="../optionsdialog.cpp" line="227"/>
-        <source>Detach block and address databases at shutdown. This means they can be moved to another data directory, but it slows down shutdown. The wallet is always detached.</source>
-        <translation type="unfinished"/>
+        <source>Welcome</source>
+        <translation>Teretulemast</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="212"/>
-        <source>Pay transaction &amp;fee</source>
-        <translation type="unfinished"/>
+        <source>Sexcoin Core</source>
+        <translation>Sexcoini tuumik</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="204"/>
-        <source>Main</source>
-        <translation type="unfinished"/>
+        <source>Error</source>
+        <translation>Tõrge</translation>
     </message>
-    <message>
-        <location filename="../optionsdialog.cpp" line="206"/>
-        <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.01 recommended.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../optionsdialog.cpp" line="222"/>
-        <source>&amp;Start Bitcoin on system login</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../optionsdialog.cpp" line="223"/>
-        <source>Automatically start Bitcoin after logging in to the system</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../optionsdialog.cpp" line="226"/>
-        <source>&amp;Detach databases at shutdown</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
+    </context>
 <context>
-    <name>MessagePage</name>
+    <name>OpenURIDialog</name>
     <message>
-        <location filename="../forms/messagepage.ui" line="14"/>
-        <source>Sign Message</source>
-        <translation type="unfinished"/>
+        <source>Open URI</source>
+        <translation>Ava URI</translation>
     </message>
     <message>
-        <location filename="../forms/messagepage.ui" line="20"/>
-        <source>You can sign messages with your addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation type="unfinished"/>
+        <source>URI:</source>
+        <translation>URI:</translation>
     </message>
-    <message>
-        <location filename="../forms/messagepage.ui" line="38"/>
-        <source>The address to sign the message with  (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/messagepage.ui" line="48"/>
-        <source>Choose adress from address book</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/messagepage.ui" line="58"/>
-        <source>Alt+A</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/messagepage.ui" line="71"/>
-        <source>Paste address from clipboard</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/messagepage.ui" line="81"/>
-        <source>Alt+P</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/messagepage.ui" line="93"/>
-        <source>Enter the message you want to sign here</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/messagepage.ui" line="128"/>
-        <source>Copy the current signature to the system clipboard</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/messagepage.ui" line="131"/>
-        <source>&amp;Copy Signature</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/messagepage.ui" line="142"/>
-        <source>Reset all sign message fields</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/messagepage.ui" line="145"/>
-        <source>Clear &amp;All</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../messagepage.cpp" line="31"/>
-        <source>Click &quot;Sign Message&quot; to get signature</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/messagepage.ui" line="114"/>
-        <source>Sign a message to prove you own this address</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/messagepage.ui" line="117"/>
-        <source>&amp;Sign Message</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../messagepage.cpp" line="30"/>
-        <source>Enter a Bitcoin address (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../messagepage.cpp" line="83"/>
-        <location filename="../messagepage.cpp" line="90"/>
-        <location filename="../messagepage.cpp" line="105"/>
-        <location filename="../messagepage.cpp" line="117"/>
-        <source>Error signing</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../messagepage.cpp" line="83"/>
-        <source>%1 is not a valid address.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../messagepage.cpp" line="90"/>
-        <source>%1 does not refer to a key.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../messagepage.cpp" line="105"/>
-        <source>Private key for %1 is not available.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../messagepage.cpp" line="117"/>
-        <source>Sign failed</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>NetworkOptionsPage</name>
-    <message>
-        <location filename="../optionsdialog.cpp" line="345"/>
-        <source>Network</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../optionsdialog.cpp" line="347"/>
-        <source>Map port using &amp;UPnP</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../optionsdialog.cpp" line="348"/>
-        <source>Automatically open the Bitcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../optionsdialog.cpp" line="351"/>
-        <source>&amp;Connect through SOCKS4 proxy:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../optionsdialog.cpp" line="352"/>
-        <source>Connect to the Bitcon network through a SOCKS4 proxy (e.g. when connecting through Tor)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../optionsdialog.cpp" line="357"/>
-        <source>Proxy &amp;IP:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../optionsdialog.cpp" line="366"/>
-        <source>&amp;Port:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../optionsdialog.cpp" line="363"/>
-        <source>IP address of the proxy (e.g. 127.0.0.1)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../optionsdialog.cpp" line="372"/>
-        <source>Port of the proxy (e.g. 1234)</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
+    </context>
 <context>
     <name>OptionsDialog</name>
     <message>
-        <location filename="../optionsdialog.cpp" line="135"/>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Valikud</translation>
+    </message>
+    <message>
+        <source>Automatically start Sexcoin after logging in to the system.</source>
+        <translation>Käivita Sexcoin süsteemi logimisel.</translation>
+    </message>
+    <message>
+        <source>&amp;Start Sexcoin on system login</source>
+        <translation>&amp;Start Sexcoin sisselogimisel</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation>MB</translation>
+    </message>
+    <message>
+        <source>Reset all client options to default.</source>
+        <translation>Taasta kõik klientprogrammi seadete vaikeväärtused.</translation>
+    </message>
+    <message>
+        <source>&amp;Reset Options</source>
+        <translation>&amp;Lähtesta valikud</translation>
+    </message>
+    <message>
+        <source>&amp;Network</source>
+        <translation>&amp;Võrk</translation>
+    </message>
+    <message>
+        <source>W&amp;allet</source>
+        <translation>R&amp;ahakott</translation>
+    </message>
+    <message>
+        <source>Expert</source>
+        <translation>Ekspert</translation>
+    </message>
+    <message>
+        <source>Automatically open the Sexcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Sexcoini kliendi pordi automaatne avamine ruuteris. Toimib, kui sinu ruuter aktsepteerib UPnP ühendust.</translation>
+    </message>
+    <message>
+        <source>Map port using &amp;UPnP</source>
+        <translation>Suuna port &amp;UPnP kaudu</translation>
+    </message>
+    <message>
+        <source>Proxy &amp;IP:</source>
+        <translation>Proxi &amp;IP:</translation>
+    </message>
+    <message>
+        <source>&amp;Port:</source>
+        <translation>&amp;Port:</translation>
+    </message>
+    <message>
+        <source>Port of the proxy (e.g. 9050)</source>
+        <translation>Proxi port (nt 9050)</translation>
+    </message>
+    <message>
+        <source>&amp;Window</source>
+        <translation>&amp;Aken</translation>
+    </message>
+    <message>
+        <source>Show only a tray icon after minimizing the window.</source>
+        <translation>Minimeeri systray alale.</translation>
+    </message>
+    <message>
+        <source>&amp;Minimize to the tray instead of the taskbar</source>
+        <translation>&amp;Minimeeri systray alale</translation>
+    </message>
+    <message>
+        <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Quit in the menu.</source>
+        <translation>Sulgemise asemel minimeeri aken. Selle valiku tegemisel suletakse programm Menüüst "Välju" käsuga.</translation>
+    </message>
+    <message>
+        <source>M&amp;inimize on close</source>
+        <translation>M&amp;inimeeri sulgemisel</translation>
+    </message>
+    <message>
+        <source>&amp;Display</source>
+        <translation>&amp;Kuva</translation>
+    </message>
+    <message>
+        <source>User Interface &amp;language:</source>
+        <translation>Kasutajaliidese &amp;keel:</translation>
+    </message>
+    <message>
+        <source>The user interface language can be set here. This setting will take effect after restarting Sexcoin.</source>
+        <translation>Kasutajaliidese keele valimise koht. Valik rakendub Sexcoini käivitamisel.</translation>
+    </message>
+    <message>
+        <source>&amp;Unit to show amounts in:</source>
+        <translation>Summade kuvamise &amp;Unit:</translation>
+    </message>
+    <message>
+        <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
+        <translation>Vali liideses ning müntide saatmisel kuvatav vaikimisi alajaotus.</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation>&amp;OK</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation>&amp;Katkesta</translation>
+    </message>
+    <message>
+        <source>default</source>
+        <translation>vaikeväärtus</translation>
+    </message>
+    <message>
+        <source>Confirm options reset</source>
+        <translation>Kinnita valikute algseadistamine</translation>
+    </message>
+    <message>
+        <source>The supplied proxy address is invalid.</source>
+        <translation>Sisestatud kehtetu proxy aadress.</translation>
     </message>
 </context>
 <context>
     <name>OverviewPage</name>
     <message>
-        <location filename="../forms/overviewpage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Vorm</translation>
     </message>
     <message>
-        <location filename="../forms/overviewpage.ui" line="47"/>
-        <location filename="../forms/overviewpage.ui" line="204"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</source>
-        <translation type="unfinished"/>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Sexcoin network after a connection is established, but this process has not completed yet.</source>
+        <translation>Kuvatav info ei pruugi olla ajakohane. Ühenduse loomisel süngitakse sinu rahakott automaatselt Sexcoin võrgustikuga, kuid see toiming on hetkel lõpetamata.</translation>
     </message>
     <message>
-        <location filename="../forms/overviewpage.ui" line="89"/>
-        <source>Balance:</source>
-        <translation type="unfinished"/>
+        <source>Immature:</source>
+        <translation>Ebaküps:</translation>
     </message>
     <message>
-        <location filename="../forms/overviewpage.ui" line="147"/>
-        <source>Number of transactions:</source>
-        <translation type="unfinished"/>
+        <source>Mined balance that has not yet matured</source>
+        <translation>Mitte aegunud mine'itud jääk</translation>
     </message>
     <message>
-        <location filename="../forms/overviewpage.ui" line="118"/>
-        <source>Unconfirmed:</source>
-        <translation type="unfinished"/>
+        <source>Recent transactions</source>
+        <translation>Hiljutised tehingud</translation>
     </message>
     <message>
-        <location filename="../forms/overviewpage.ui" line="40"/>
-        <source>Wallet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/overviewpage.ui" line="197"/>
-        <source>&lt;b&gt;Recent transactions&lt;/b&gt;</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/overviewpage.ui" line="105"/>
-        <source>Your current balance</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/overviewpage.ui" line="134"/>
-        <source>Total of transactions that have yet to be confirmed, and do not yet count toward the current balance</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/overviewpage.ui" line="154"/>
-        <source>Total number of transactions in wallet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../overviewpage.cpp" line="110"/>
-        <location filename="../overviewpage.cpp" line="111"/>
         <source>out of sync</source>
-        <translation type="unfinished"/>
+        <translation>sünkimata</translation>
     </message>
 </context>
 <context>
-    <name>QRCodeDialog</name>
+    <name>PaymentServer</name>
     <message>
-        <location filename="../forms/qrcodedialog.ui" line="14"/>
-        <source>QR Code Dialog</source>
-        <translation type="unfinished"/>
+        <source>URI handling</source>
+        <translation>URI käsitsemine</translation>
     </message>
     <message>
-        <location filename="../forms/qrcodedialog.ui" line="32"/>
-        <source>QR Code</source>
-        <translation type="unfinished"/>
+        <source>Cannot start sexcoin: click-to-pay handler</source>
+        <translation>Sexcoin ei käivitu: vajuta-maksa toiming</translation>
+    </message>
+    </context>
+<context>
+    <name>PeerTableModel</name>
+    </context>
+<context>
+    <name>QObject</name>
+    <message>
+        <source>Amount</source>
+        <translation>Kogus</translation>
     </message>
     <message>
-        <location filename="../forms/qrcodedialog.ui" line="55"/>
-        <source>Request Payment</source>
-        <translation type="unfinished"/>
+        <source>N/A</source>
+        <translation>N/A</translation>
     </message>
+    </context>
+<context>
+    <name>QRImageWidget</name>
     <message>
-        <location filename="../forms/qrcodedialog.ui" line="70"/>
-        <source>Amount:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/qrcodedialog.ui" line="105"/>
-        <source>BTC</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/qrcodedialog.ui" line="121"/>
-        <source>Label:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/qrcodedialog.ui" line="144"/>
-        <source>Message:</source>
-        <translation>Sõnum:</translation>
-    </message>
-    <message>
-        <location filename="../forms/qrcodedialog.ui" line="186"/>
-        <source>&amp;Save As...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../qrcodedialog.cpp" line="45"/>
-        <source>Error encoding URI into QR Code.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../qrcodedialog.cpp" line="63"/>
-        <source>Resulting URI too long, try to reduce the text for label / message.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../qrcodedialog.cpp" line="120"/>
         <source>Save QR Code</source>
-        <translation type="unfinished"/>
+        <translation>Salvesta QR kood</translation>
     </message>
-    <message>
-        <location filename="../qrcodedialog.cpp" line="120"/>
-        <source>PNG Images (*.png)</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
+    </context>
 <context>
     <name>RPCConsole</name>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="14"/>
-        <source>Bitcoin debug window</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/rpcconsole.ui" line="46"/>
         <source>Client name</source>
-        <translation type="unfinished"/>
+        <translation>Kliendi nimi</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="56"/>
-        <location filename="../forms/rpcconsole.ui" line="79"/>
-        <location filename="../forms/rpcconsole.ui" line="102"/>
-        <location filename="../forms/rpcconsole.ui" line="125"/>
-        <location filename="../forms/rpcconsole.ui" line="161"/>
-        <location filename="../forms/rpcconsole.ui" line="214"/>
-        <location filename="../forms/rpcconsole.ui" line="237"/>
-        <location filename="../forms/rpcconsole.ui" line="260"/>
-        <location filename="../rpcconsole.cpp" line="245"/>
         <source>N/A</source>
-        <translation type="unfinished"/>
+        <translation>N/A</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="69"/>
         <source>Client version</source>
-        <translation type="unfinished"/>
+        <translation>Kliendi versioon</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="24"/>
         <source>&amp;Information</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Informatsioon</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="39"/>
-        <source>Client</source>
-        <translation type="unfinished"/>
+        <source>General</source>
+        <translation>Üldine</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="115"/>
+        <source>Using OpenSSL version</source>
+        <translation>Kasutan OpenSSL versiooni</translation>
+    </message>
+    <message>
         <source>Startup time</source>
-        <translation type="unfinished"/>
+        <translation>Käivitamise hetk</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="144"/>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Võrgustik</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="151"/>
+        <source>Name</source>
+        <translation>Nimi</translation>
+    </message>
+    <message>
         <source>Number of connections</source>
-        <translation type="unfinished"/>
+        <translation>Ühenduste arv</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="174"/>
-        <source>On testnet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/rpcconsole.ui" line="197"/>
         <source>Block chain</source>
-        <translation type="unfinished"/>
+        <translation>Ploki jada</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="204"/>
         <source>Current number of blocks</source>
-        <translation type="unfinished"/>
+        <translation>Plokkide hetkearv</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="227"/>
-        <source>Estimated total blocks</source>
-        <translation type="unfinished"/>
+        <source>Received</source>
+        <translation>Vastuvõetud</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="250"/>
+        <source>Sent</source>
+        <translation>Saadetud</translation>
+    </message>
+    <message>
+        <source>Direction</source>
+        <translation>Suund</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation>Versioon</translation>
+    </message>
+    <message>
+        <source>Services</source>
+        <translation>Teenused</translation>
+    </message>
+    <message>
         <source>Last block time</source>
-        <translation type="unfinished"/>
+        <translation>Viimane ploki aeg</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="292"/>
-        <source>Debug logfile</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/rpcconsole.ui" line="299"/>
-        <source>Open the Bitcoin debug logfile from the current data directory. This can take a few seconds for large logfiles.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/rpcconsole.ui" line="302"/>
         <source>&amp;Open</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ava</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="323"/>
         <source>&amp;Console</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Konsool</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="92"/>
         <source>Build date</source>
-        <translation type="unfinished"/>
+        <translation>Valmistusaeg</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="372"/>
+        <source>Debug log file</source>
+        <translation>Debugimise logifail</translation>
+    </message>
+    <message>
+        <source>Open the Sexcoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Ava Sexcoini logifail praegusest andmekaustast. Toiminguks võib kuluda kuni mõni sekund.</translation>
+    </message>
+    <message>
         <source>Clear console</source>
-        <translation type="unfinished"/>
+        <translation>Puhasta konsool</translation>
     </message>
     <message>
-        <location filename="../rpcconsole.cpp" line="212"/>
-        <source>Welcome to the Bitcoin RPC console.</source>
-        <translation type="unfinished"/>
+        <source>Welcome to the Sexcoin RPC console.</source>
+        <translation>Teretulemast Sexcoini RPC konsooli.</translation>
     </message>
     <message>
-        <location filename="../rpcconsole.cpp" line="213"/>
         <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
-        <translation type="unfinished"/>
+        <translation>Ajaloo sirvimiseks kasuta üles ja alla nooli, ekraani puhastamiseks &lt;b&gt;Ctrl-L&lt;/b&gt;.</translation>
     </message>
     <message>
-        <location filename="../rpcconsole.cpp" line="214"/>
         <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
-        <translation type="unfinished"/>
+        <translation>Ülevaateks võimalikest käsklustest trüki &lt;b&gt;help&lt;/b&gt;.</translation>
+    </message>
+    <message>
+        <source>%1 B</source>
+        <translation>%1 B</translation>
+    </message>
+    <message>
+        <source>%1 KB</source>
+        <translation>%1 B</translation>
+    </message>
+    <message>
+        <source>%1 MB</source>
+        <translation>%1 MB</translation>
+    </message>
+    <message>
+        <source>%1 GB</source>
+        <translation>%1 GB</translation>
+    </message>
+    </context>
+<context>
+    <name>ReceiveCoinsDialog</name>
+    <message>
+        <source>&amp;Amount:</source>
+        <translation>&amp;Summa:</translation>
+    </message>
+    <message>
+        <source>&amp;Label:</source>
+        <translation>&amp;Märgis</translation>
+    </message>
+    <message>
+        <source>&amp;Message:</source>
+        <translation>&amp;Sõnum:</translation>
+    </message>
+    <message>
+        <source>Show</source>
+        <translation>Näita</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Eemalda</translation>
+    </message>
+    <message>
+        <source>Copy label</source>
+        <translation>Märgise kopeerimine</translation>
+    </message>
+    <message>
+        <source>Copy message</source>
+        <translation>Kopeeri sõnum</translation>
+    </message>
+    <message>
+        <source>Copy amount</source>
+        <translation>Kopeeri summa</translation>
+    </message>
+</context>
+<context>
+    <name>ReceiveRequestDialog</name>
+    <message>
+        <source>Address</source>
+        <translation>Aadress</translation>
+    </message>
+    <message>
+        <source>Amount</source>
+        <translation>Kogus</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation>Silt</translation>
+    </message>
+    <message>
+        <source>Message</source>
+        <translation>Sõnum</translation>
+    </message>
+    <message>
+        <source>Resulting URI too long, try to reduce the text for label / message.</source>
+        <translation>Tulemuseks on liiga pikk URL, püüa lühendada märgise/teate teksti.</translation>
+    </message>
+    <message>
+        <source>Error encoding URI into QR Code.</source>
+        <translation>Tõrge URI'st QR koodi loomisel</translation>
+    </message>
+</context>
+<context>
+    <name>RecentRequestsTableModel</name>
+    <message>
+        <source>Date</source>
+        <translation>Kuupäev</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation>Silt</translation>
+    </message>
+    <message>
+        <source>Message</source>
+        <translation>Sõnum</translation>
+    </message>
+    <message>
+        <source>Amount</source>
+        <translation>Kogus</translation>
+    </message>
+    <message>
+        <source>(no label)</source>
+        <translation>(silti pole)</translation>
+    </message>
+    <message>
+        <source>(no message)</source>
+        <translation>(sõnum puudub)</translation>
+    </message>
+    <message>
+        <source>(no amount)</source>
+        <translation>(summa puudub)</translation>
     </message>
 </context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="14"/>
-        <location filename="../sendcoinsdialog.cpp" line="122"/>
-        <location filename="../sendcoinsdialog.cpp" line="127"/>
-        <location filename="../sendcoinsdialog.cpp" line="132"/>
-        <location filename="../sendcoinsdialog.cpp" line="137"/>
-        <location filename="../sendcoinsdialog.cpp" line="143"/>
-        <location filename="../sendcoinsdialog.cpp" line="148"/>
-        <location filename="../sendcoinsdialog.cpp" line="153"/>
         <source>Send Coins</source>
-        <translation type="unfinished"/>
+        <translation>Müntide saatmine</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="64"/>
+        <source>Quantity:</source>
+        <translation>Kogus:</translation>
+    </message>
+    <message>
+        <source>Amount:</source>
+        <translation>Summa:</translation>
+    </message>
+    <message>
+        <source>Fee:</source>
+        <translation>Tasu:</translation>
+    </message>
+    <message>
+        <source>Choose...</source>
+        <translation>Vali...</translation>
+    </message>
+    <message>
+        <source>Recommended:</source>
+        <translation>Soovitatud:</translation>
+    </message>
+    <message>
+        <source>normal</source>
+        <translation>normaalne</translation>
+    </message>
+    <message>
+        <source>fast</source>
+        <translation>kiire</translation>
+    </message>
+    <message>
         <source>Send to multiple recipients at once</source>
-        <translation type="unfinished"/>
+        <translation>Saatmine mitmele korraga</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="67"/>
-        <source>&amp;Add Recipient</source>
-        <translation type="unfinished"/>
+        <source>Add &amp;Recipient</source>
+        <translation>Lisa &amp;Saaja</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="84"/>
-        <source>Remove all transaction fields</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="87"/>
         <source>Clear &amp;All</source>
-        <translation type="unfinished"/>
+        <translation>Puhasta &amp;Kõik</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="106"/>
         <source>Balance:</source>
-        <translation type="unfinished"/>
+        <translation>Jääk:</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="113"/>
-        <source>123.456 BTC</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="144"/>
         <source>Confirm the send action</source>
-        <translation type="unfinished"/>
+        <translation>Saatmise kinnitamine</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="147"/>
-        <source>&amp;Send</source>
-        <translation type="unfinished"/>
+        <source>S&amp;end</source>
+        <translation>S&amp;aada</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="94"/>
-        <source>&lt;b&gt;%1&lt;/b&gt; to %2 (%3)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../sendcoinsdialog.cpp" line="99"/>
         <source>Confirm send coins</source>
-        <translation type="unfinished"/>
+        <translation>Müntide saatmise kinnitamine</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="100"/>
-        <source>Are you sure you want to send %1?</source>
-        <translation type="unfinished"/>
+        <source>Copy amount</source>
+        <translation>Kopeeri summa</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="100"/>
-        <source> and </source>
-        <translation type="unfinished"/>
+        <source>Copy fee</source>
+        <translation>Kopeeri tasu</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="123"/>
-        <source>The recepient address is not valid, please recheck.</source>
-        <translation type="unfinished"/>
+        <source>or</source>
+        <translation>või</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="128"/>
+        <source>The recipient address is not valid, please recheck.</source>
+        <translation>Saaja aadress ei ole kehtiv, palun kontrolli.</translation>
+    </message>
+    <message>
         <source>The amount to pay must be larger than 0.</source>
-        <translation type="unfinished"/>
+        <translation>Makstav summa peab olema suurem kui 0.</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="133"/>
         <source>The amount exceeds your balance.</source>
-        <translation type="unfinished"/>
+        <translation>Summa ületab jäägi.</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="138"/>
         <source>The total exceeds your balance when the %1 transaction fee is included.</source>
-        <translation type="unfinished"/>
+        <translation>Summa koos tehingu tasuga %1 ületab sinu jääki.</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="144"/>
         <source>Duplicate address found, can only send to each address once per send operation.</source>
-        <translation type="unfinished"/>
+        <translation>Ühe saatmisega topelt-adressaati olla ei tohi.</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="149"/>
-        <source>Error: Transaction creation failed.</source>
-        <translation type="unfinished"/>
+        <source>(no label)</source>
+        <translation>(silti pole)</translation>
     </message>
-    <message>
-        <location filename="../sendcoinsdialog.cpp" line="154"/>
-        <source>Error: The transaction was rejected. This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
+    </context>
 <context>
     <name>SendCoinsEntry</name>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/sendcoinsentry.ui" line="29"/>
         <source>A&amp;mount:</source>
-        <translation type="unfinished"/>
+        <translation>S&amp;umma:</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="42"/>
         <source>Pay &amp;To:</source>
-        <translation type="unfinished"/>
+        <translation>Maksa &amp;:</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="66"/>
-        <location filename="../sendcoinsentry.cpp" line="25"/>
         <source>Enter a label for this address to add it to your address book</source>
-        <translation type="unfinished"/>
+        <translation>Aadressiraamatusse sisestamiseks märgista aadress</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="75"/>
         <source>&amp;Label:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Märgis</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="93"/>
-        <source>The address to send the payment to  (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/sendcoinsentry.ui" line="103"/>
-        <source>Choose address from address book</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/sendcoinsentry.ui" line="113"/>
         <source>Alt+A</source>
-        <translation type="unfinished"/>
+        <translation>Alt+A</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="120"/>
         <source>Paste address from clipboard</source>
-        <translation type="unfinished"/>
+        <translation>Kleebi aadress vahemälust</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="130"/>
         <source>Alt+P</source>
-        <translation type="unfinished"/>
+        <translation>Alt+P</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="137"/>
-        <source>Remove this recipient</source>
-        <translation type="unfinished"/>
+        <source>Message:</source>
+        <translation>Sõnum:</translation>
+    </message>
+    </context>
+<context>
+    <name>ShutdownWindow</name>
+    </context>
+<context>
+    <name>SignVerifyMessageDialog</name>
+    <message>
+        <source>Signatures - Sign / Verify a Message</source>
+        <translation>Signatuurid - Allkirjasta / Kinnita Sõnum</translation>
     </message>
     <message>
-        <location filename="../sendcoinsentry.cpp" line="26"/>
-        <source>Enter a Bitcoin address (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
-        <translation type="unfinished"/>
+        <source>&amp;Sign Message</source>
+        <translation>&amp;Allkirjastamise teade</translation>
+    </message>
+    <message>
+        <source>You can sign messages with your addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <translation>Omandiõigsuse tõestamiseks saad sõnumeid allkirjastada oma aadressiga. Ettevaatust petturitega, kes üritavad saada sinu allkirja endale saada. Allkirjasta ainult korralikult täidetud avaldusi, millega nõustud.</translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation>Alt+A</translation>
+    </message>
+    <message>
+        <source>Paste address from clipboard</source>
+        <translation>Kleebi aadress vahemälust</translation>
+    </message>
+    <message>
+        <source>Alt+P</source>
+        <translation>Alt+P</translation>
+    </message>
+    <message>
+        <source>Enter the message you want to sign here</source>
+        <translation>Sisesta siia allkirjastamise sõnum</translation>
+    </message>
+    <message>
+        <source>Signature</source>
+        <translation>Signatuur</translation>
+    </message>
+    <message>
+        <source>Copy the current signature to the system clipboard</source>
+        <translation>Kopeeri praegune signatuur vahemällu</translation>
+    </message>
+    <message>
+        <source>Sign the message to prove you own this Sexcoin address</source>
+        <translation>Allkirjasta sõnum Sexcoini aadressi sulle kuulumise tõestamiseks</translation>
+    </message>
+    <message>
+        <source>Sign &amp;Message</source>
+        <translation>Allkirjasta &amp;Sõnum</translation>
+    </message>
+    <message>
+        <source>Reset all sign message fields</source>
+        <translation>Tühjenda kõik sõnumi allkirjastamise väljad</translation>
+    </message>
+    <message>
+        <source>Clear &amp;All</source>
+        <translation>Puhasta &amp;Kõik</translation>
+    </message>
+    <message>
+        <source>&amp;Verify Message</source>
+        <translation>&amp;Kinnita Sõnum</translation>
+    </message>
+    <message>
+        <source>Enter the signing address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack.</source>
+        <translation>Kinnitamiseks sisesta allkirjastamise aadress, sõnum (kindlasti kopeeri täpselt ka reavahetused, tühikud, tabulaatorid jms) ning allolev signatuur.</translation>
+    </message>
+    <message>
+        <source>Verify the message to ensure it was signed with the specified Sexcoin address</source>
+        <translation>Kinnita sõnum tõestamaks selle allkirjastatust määratud Sexcoini aadressiga.</translation>
+    </message>
+    <message>
+        <source>Verify &amp;Message</source>
+        <translation>Kinnita &amp;Sõnum</translation>
+    </message>
+    <message>
+        <source>Reset all verify message fields</source>
+        <translation>Tühjenda kõik sõnumi kinnitamise väljad</translation>
+    </message>
+    <message>
+        <source>Click "Sign Message" to generate signature</source>
+        <translation>Signatuuri genereerimiseks vajuta "Allkirjasta Sõnum"</translation>
+    </message>
+    <message>
+        <source>The entered address is invalid.</source>
+        <translation>Sisestatud aadress ei kehti.</translation>
+    </message>
+    <message>
+        <source>Please check the address and try again.</source>
+        <translation>Palun kontrolli aadressi ning proovi uuesti.</translation>
+    </message>
+    <message>
+        <source>The entered address does not refer to a key.</source>
+        <translation>Sisestatud aadress ei viita võtmele.</translation>
+    </message>
+    <message>
+        <source>Wallet unlock was cancelled.</source>
+        <translation>Rahakoti avamine katkestati.</translation>
+    </message>
+    <message>
+        <source>Private key for the entered address is not available.</source>
+        <translation>Sisestatud aadressi privaatvõti ei ole saadaval.</translation>
+    </message>
+    <message>
+        <source>Message signing failed.</source>
+        <translation>Sõnumi signeerimine ebaõnnestus.</translation>
+    </message>
+    <message>
+        <source>Message signed.</source>
+        <translation>Sõnum signeeritud.</translation>
+    </message>
+    <message>
+        <source>The signature could not be decoded.</source>
+        <translation>Signatuuri ei õnnestunud dekodeerida.</translation>
+    </message>
+    <message>
+        <source>Please check the signature and try again.</source>
+        <translation>Palun kontrolli signatuuri ning proovi uuesti.</translation>
+    </message>
+    <message>
+        <source>The signature did not match the message digest.</source>
+        <translation>Signatuur ei kattunud sõnumi kokkuvõttega.</translation>
+    </message>
+    <message>
+        <source>Message verification failed.</source>
+        <translation>Sõnumi kontroll ebaõnnestus.</translation>
+    </message>
+    <message>
+        <source>Message verified.</source>
+        <translation>Sõnum kontrollitud.</translation>
+    </message>
+</context>
+<context>
+    <name>SplashScreen</name>
+    <message>
+        <source>Sexcoin Core</source>
+        <translation>Sexcoini tuumik</translation>
+    </message>
+    <message>
+        <source>The Bitcoin Core developers</source>
+        <translation>Bitcoini Tuuma arendajad</translation>
+    </message>
+    <message>
+        <source>[testnet]</source>
+        <translation>[testnet]</translation>
+    </message>
+</context>
+<context>
+    <name>TrafficGraphWidget</name>
+    <message>
+        <source>KB/s</source>
+        <translation>KB/s</translation>
     </message>
 </context>
 <context>
     <name>TransactionDesc</name>
     <message>
-        <location filename="../transactiondesc.cpp" line="21"/>
-        <source>Open for %1 blocks</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../transactiondesc.cpp" line="23"/>
         <source>Open until %1</source>
-        <translation type="unfinished"/>
+        <translation>Avatud kuni %1</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="29"/>
-        <source>%1/offline?</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../transactiondesc.cpp" line="31"/>
         <source>%1/unconfirmed</source>
-        <translation type="unfinished"/>
+        <translation>%1/kinnitamata</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="33"/>
         <source>%1 confirmations</source>
-        <translation type="unfinished"/>
+        <translation>%1 kinnitust</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="51"/>
-        <source>&lt;b&gt;Status:&lt;/b&gt; </source>
-        <translation type="unfinished"/>
+        <source>Status</source>
+        <translation>Staatus</translation>
+    </message>
+    <message numerus="yes">
+        <source>, broadcast through %n node(s)</source>
+        <translation><numerusform>, levita läbi %n node'i</numerusform><numerusform>, levita läbi %n node'i</numerusform></translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="56"/>
+        <source>Date</source>
+        <translation>Kuupäev</translation>
+    </message>
+    <message>
+        <source>Source</source>
+        <translation>Allikas</translation>
+    </message>
+    <message>
+        <source>Generated</source>
+        <translation>Genereeritud</translation>
+    </message>
+    <message>
+        <source>From</source>
+        <translation>Saatja</translation>
+    </message>
+    <message>
+        <source>To</source>
+        <translation>Saaja</translation>
+    </message>
+    <message>
+        <source>own address</source>
+        <translation>oma aadress</translation>
+    </message>
+    <message>
+        <source>label</source>
+        <translation>märgis</translation>
+    </message>
+    <message>
+        <source>Credit</source>
+        <translation>Krediit</translation>
+    </message>
+    <message numerus="yes">
+        <source>matures in %n more block(s)</source>
+        <translation><numerusform>aegub %n bloki pärast</numerusform><numerusform>aegub %n bloki pärast</numerusform></translation>
+    </message>
+    <message>
+        <source>not accepted</source>
+        <translation>mitte aktsepteeritud</translation>
+    </message>
+    <message>
+        <source>Debit</source>
+        <translation>Deebet</translation>
+    </message>
+    <message>
+        <source>Transaction fee</source>
+        <translation>Tehingu tasu</translation>
+    </message>
+    <message>
+        <source>Net amount</source>
+        <translation>Neto summa</translation>
+    </message>
+    <message>
+        <source>Message</source>
+        <translation>Sõnum</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Kommentaar</translation>
+    </message>
+    <message>
+        <source>Transaction ID</source>
+        <translation>Tehingu ID</translation>
+    </message>
+    <message>
+        <source>Debug information</source>
+        <translation>Debug'imise info</translation>
+    </message>
+    <message>
+        <source>Transaction</source>
+        <translation>Tehing</translation>
+    </message>
+    <message>
+        <source>Inputs</source>
+        <translation>Sisendid</translation>
+    </message>
+    <message>
+        <source>Amount</source>
+        <translation>Kogus</translation>
+    </message>
+    <message>
+        <source>true</source>
+        <translation>õige</translation>
+    </message>
+    <message>
+        <source>false</source>
+        <translation>vale</translation>
+    </message>
+    <message>
         <source>, has not been successfully broadcast yet</source>
-        <translation type="unfinished"/>
+        <translation>, veel esitlemata</translation>
+    </message>
+    <message numerus="yes">
+        <source>Open for %n more block(s)</source>
+        <translation><numerusform>Avaneb %n bloki pärast</numerusform><numerusform>Avaneb %n bloki pärast</numerusform></translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="58"/>
-        <source>, broadcast through %1 node</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../transactiondesc.cpp" line="60"/>
-        <source>, broadcast through %1 nodes</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../transactiondesc.cpp" line="64"/>
-        <source>&lt;b&gt;Date:&lt;/b&gt; </source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../transactiondesc.cpp" line="71"/>
-        <source>&lt;b&gt;Source:&lt;/b&gt; Generated&lt;br&gt;</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../transactiondesc.cpp" line="77"/>
-        <location filename="../transactiondesc.cpp" line="94"/>
-        <source>&lt;b&gt;From:&lt;/b&gt; </source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../transactiondesc.cpp" line="94"/>
         <source>unknown</source>
         <translation>tundmatu</translation>
-    </message>
-    <message>
-        <location filename="../transactiondesc.cpp" line="95"/>
-        <location filename="../transactiondesc.cpp" line="118"/>
-        <location filename="../transactiondesc.cpp" line="178"/>
-        <source>&lt;b&gt;To:&lt;/b&gt; </source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../transactiondesc.cpp" line="98"/>
-        <source> (yours, label: </source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../transactiondesc.cpp" line="100"/>
-        <source> (yours)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../transactiondesc.cpp" line="136"/>
-        <location filename="../transactiondesc.cpp" line="150"/>
-        <location filename="../transactiondesc.cpp" line="195"/>
-        <location filename="../transactiondesc.cpp" line="212"/>
-        <source>&lt;b&gt;Credit:&lt;/b&gt; </source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../transactiondesc.cpp" line="138"/>
-        <source>(%1 matures in %2 more blocks)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../transactiondesc.cpp" line="142"/>
-        <source>(not accepted)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../transactiondesc.cpp" line="186"/>
-        <location filename="../transactiondesc.cpp" line="194"/>
-        <location filename="../transactiondesc.cpp" line="209"/>
-        <source>&lt;b&gt;Debit:&lt;/b&gt; </source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../transactiondesc.cpp" line="200"/>
-        <source>&lt;b&gt;Transaction fee:&lt;/b&gt; </source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../transactiondesc.cpp" line="216"/>
-        <source>&lt;b&gt;Net amount:&lt;/b&gt; </source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../transactiondesc.cpp" line="222"/>
-        <source>Message:</source>
-        <translation>Sõnum:</translation>
-    </message>
-    <message>
-        <location filename="../transactiondesc.cpp" line="224"/>
-        <source>Comment:</source>
-        <translation>Kommentaar:</translation>
-    </message>
-    <message>
-        <location filename="../transactiondesc.cpp" line="226"/>
-        <source>Transaction ID:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../transactiondesc.cpp" line="229"/>
-        <source>Generated coins must wait 120 blocks before they can be spent.  When you generated this block, it was broadcast to the network to be added to the block chain.  If it fails to get into the chain, it will change to &quot;not accepted&quot; and not be spendable.  This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>TransactionDescDialog</name>
     <message>
-        <location filename="../forms/transactiondescdialog.ui" line="14"/>
         <source>Transaction details</source>
-        <translation type="unfinished"/>
+        <translation>Tehingu üksikasjad</translation>
     </message>
     <message>
-        <location filename="../forms/transactiondescdialog.ui" line="20"/>
         <source>This pane shows a detailed description of the transaction</source>
-        <translation type="unfinished"/>
+        <translation>Paan kuvab tehingu detailid</translation>
     </message>
 </context>
 <context>
     <name>TransactionTableModel</name>
     <message>
-        <location filename="../transactiontablemodel.cpp" line="226"/>
         <source>Date</source>
         <translation>Kuupäev</translation>
     </message>
     <message>
-        <location filename="../transactiontablemodel.cpp" line="226"/>
         <source>Type</source>
         <translation>Tüüp</translation>
     </message>
     <message>
-        <location filename="../transactiontablemodel.cpp" line="226"/>
         <source>Address</source>
         <translation>Aadress</translation>
     </message>
-    <message>
-        <location filename="../transactiontablemodel.cpp" line="226"/>
-        <source>Amount</source>
-        <translation>Kogus</translation>
-    </message>
     <message numerus="yes">
-        <location filename="../transactiontablemodel.cpp" line="281"/>
-        <source>Open for %n block(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <source>Open for %n more block(s)</source>
+        <translation><numerusform>Avaneb %n bloki pärast</numerusform><numerusform>Avaneb %n bloki pärast</numerusform></translation>
     </message>
     <message>
-        <location filename="../transactiontablemodel.cpp" line="284"/>
         <source>Open until %1</source>
-        <translation type="unfinished"/>
+        <translation>Avatud kuni %1</translation>
     </message>
     <message>
-        <location filename="../transactiontablemodel.cpp" line="287"/>
-        <source>Offline (%1 confirmations)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../transactiontablemodel.cpp" line="290"/>
-        <source>Unconfirmed (%1 of %2 confirmations)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../transactiontablemodel.cpp" line="293"/>
         <source>Confirmed (%1 confirmations)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message numerus="yes">
-        <location filename="../transactiontablemodel.cpp" line="301"/>
-        <source>Mined balance will be available in %n more blocks</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation>Kinnitatud (%1 kinnitust)</translation>
     </message>
     <message>
-        <location filename="../transactiontablemodel.cpp" line="307"/>
         <source>This block was not received by any other nodes and will probably not be accepted!</source>
-        <translation type="unfinished"/>
+        <translation>Antud klotsi pole saanud ükski osapool ning tõenäoliselt seda ei aktsepteerita!</translation>
     </message>
     <message>
-        <location filename="../transactiontablemodel.cpp" line="310"/>
         <source>Generated but not accepted</source>
-        <translation type="unfinished"/>
+        <translation>Loodud, kuid aktsepteerimata</translation>
     </message>
     <message>
-        <location filename="../transactiontablemodel.cpp" line="353"/>
         <source>Received with</source>
-        <translation type="unfinished"/>
+        <translation>Saadud koos</translation>
     </message>
     <message>
-        <location filename="../transactiontablemodel.cpp" line="355"/>
         <source>Received from</source>
-        <translation type="unfinished"/>
+        <translation>Kellelt saadud</translation>
     </message>
     <message>
-        <location filename="../transactiontablemodel.cpp" line="358"/>
         <source>Sent to</source>
-        <translation type="unfinished"/>
+        <translation>Saadetud</translation>
     </message>
     <message>
-        <location filename="../transactiontablemodel.cpp" line="360"/>
         <source>Payment to yourself</source>
-        <translation type="unfinished"/>
+        <translation>Makse iseendale</translation>
     </message>
     <message>
-        <location filename="../transactiontablemodel.cpp" line="362"/>
         <source>Mined</source>
-        <translation type="unfinished"/>
+        <translation>Mine'itud</translation>
     </message>
     <message>
-        <location filename="../transactiontablemodel.cpp" line="400"/>
         <source>(n/a)</source>
-        <translation type="unfinished"/>
+        <translation>(n/a)</translation>
     </message>
     <message>
-        <location filename="../transactiontablemodel.cpp" line="599"/>
         <source>Transaction status. Hover over this field to show number of confirmations.</source>
-        <translation type="unfinished"/>
+        <translation>Tehingu staatus. Kinnituste arvu kuvamiseks liigu hiire noolega selle peale.</translation>
     </message>
     <message>
-        <location filename="../transactiontablemodel.cpp" line="601"/>
         <source>Date and time that the transaction was received.</source>
-        <translation type="unfinished"/>
+        <translation>Tehingu saamise kuupäev ning kellaaeg.</translation>
     </message>
     <message>
-        <location filename="../transactiontablemodel.cpp" line="603"/>
         <source>Type of transaction.</source>
-        <translation type="unfinished"/>
+        <translation>Tehingu tüüp.</translation>
     </message>
     <message>
-        <location filename="../transactiontablemodel.cpp" line="605"/>
         <source>Destination address of transaction.</source>
-        <translation type="unfinished"/>
+        <translation>Tehingu saaja aadress.</translation>
     </message>
     <message>
-        <location filename="../transactiontablemodel.cpp" line="607"/>
         <source>Amount removed from or added to balance.</source>
-        <translation type="unfinished"/>
+        <translation>Jäägile lisatud või eemaldatud summa.</translation>
     </message>
 </context>
 <context>
     <name>TransactionView</name>
     <message>
-        <location filename="../transactionview.cpp" line="55"/>
-        <location filename="../transactionview.cpp" line="71"/>
         <source>All</source>
-        <translation type="unfinished"/>
+        <translation>Kõik</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="56"/>
         <source>Today</source>
-        <translation type="unfinished"/>
+        <translation>Täna</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="57"/>
         <source>This week</source>
-        <translation type="unfinished"/>
+        <translation>Jooksev nädal</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="58"/>
         <source>This month</source>
-        <translation type="unfinished"/>
+        <translation>Jooksev kuu</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="59"/>
         <source>Last month</source>
-        <translation type="unfinished"/>
+        <translation>Eelmine kuu</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="60"/>
         <source>This year</source>
-        <translation type="unfinished"/>
+        <translation>Jooksev aasta</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="61"/>
         <source>Range...</source>
-        <translation type="unfinished"/>
+        <translation>Ulatus...</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="72"/>
         <source>Received with</source>
-        <translation type="unfinished"/>
+        <translation>Saadud koos</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="74"/>
         <source>Sent to</source>
-        <translation type="unfinished"/>
+        <translation>Saadetud</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="76"/>
         <source>To yourself</source>
-        <translation type="unfinished"/>
+        <translation>Iseendale</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="77"/>
         <source>Mined</source>
-        <translation type="unfinished"/>
+        <translation>Mine'itud</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="78"/>
         <source>Other</source>
-        <translation type="unfinished"/>
+        <translation>Muu</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="85"/>
         <source>Enter address or label to search</source>
-        <translation type="unfinished"/>
+        <translation>Otsimiseks sisesta märgis või aadress</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="92"/>
         <source>Min amount</source>
-        <translation type="unfinished"/>
+        <translation>Vähim summa</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="126"/>
         <source>Copy address</source>
-        <translation type="unfinished"/>
+        <translation>Aadressi kopeerimine</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="127"/>
         <source>Copy label</source>
-        <translation type="unfinished"/>
+        <translation>Märgise kopeerimine</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="128"/>
         <source>Copy amount</source>
-        <translation type="unfinished"/>
+        <translation>Kopeeri summa</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="129"/>
+        <source>Copy transaction ID</source>
+        <translation>Kopeeri tehingu ID</translation>
+    </message>
+    <message>
         <source>Edit label</source>
-        <translation type="unfinished"/>
+        <translation>Märgise muutmine</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="130"/>
         <source>Show transaction details</source>
-        <translation type="unfinished"/>
+        <translation>Kuva tehingu detailid</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="270"/>
-        <source>Export Transaction Data</source>
-        <translation type="unfinished"/>
+        <source>Exporting Failed</source>
+        <translation>Eksportimine Ebaõnnestus</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="271"/>
         <source>Comma separated file (*.csv)</source>
-        <translation type="unfinished"/>
+        <translation>Komaeraldatud fail (*.csv)</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="279"/>
         <source>Confirmed</source>
-        <translation type="unfinished"/>
+        <translation>Kinnitatud</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="280"/>
         <source>Date</source>
         <translation>Kuupäev</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="281"/>
         <source>Type</source>
         <translation>Tüüp</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="282"/>
         <source>Label</source>
         <translation>Silt</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="283"/>
         <source>Address</source>
         <translation>Aadress</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="284"/>
-        <source>Amount</source>
-        <translation>Kogus</translation>
-    </message>
-    <message>
-        <location filename="../transactionview.cpp" line="285"/>
         <source>ID</source>
-        <translation type="unfinished"/>
+        <translation>ID</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="289"/>
-        <source>Error exporting</source>
-        <translation>Viga eksportimisel</translation>
-    </message>
-    <message>
-        <location filename="../transactionview.cpp" line="289"/>
-        <source>Could not write to file %1.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../transactionview.cpp" line="384"/>
         <source>Range:</source>
-        <translation type="unfinished"/>
+        <translation>Ulatus:</translation>
     </message>
     <message>
-        <location filename="../transactionview.cpp" line="392"/>
         <source>to</source>
-        <translation type="unfinished"/>
+        <translation>saaja</translation>
     </message>
 </context>
 <context>
-    <name>VerifyMessageDialog</name>
-    <message>
-        <location filename="../forms/verifymessagedialog.ui" line="14"/>
-        <source>Verify Signed Message</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/verifymessagedialog.ui" line="20"/>
-        <source>Enter the message and signature below (be careful to correctly copy newlines, spaces, tabs and other invisible characters) to obtain the Bitcoin address used to sign the message.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/verifymessagedialog.ui" line="62"/>
-        <source>Verify a message and obtain the Bitcoin address used to sign the message</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/verifymessagedialog.ui" line="65"/>
-        <source>&amp;Verify Message</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/verifymessagedialog.ui" line="79"/>
-        <source>Copy the currently selected address to the system clipboard</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/verifymessagedialog.ui" line="82"/>
-        <source>&amp;Copy Address</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/verifymessagedialog.ui" line="93"/>
-        <source>Reset all verify message fields</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../forms/verifymessagedialog.ui" line="96"/>
-        <source>Clear &amp;All</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../verifymessagedialog.cpp" line="28"/>
-        <source>Enter Bitcoin signature</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../verifymessagedialog.cpp" line="29"/>
-        <source>Click &quot;Verify Message&quot; to obtain address</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../verifymessagedialog.cpp" line="55"/>
-        <location filename="../verifymessagedialog.cpp" line="62"/>
-        <source>Invalid Signature</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../verifymessagedialog.cpp" line="55"/>
-        <source>The signature could not be decoded. Please check the signature and try again.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../verifymessagedialog.cpp" line="62"/>
-        <source>The signature did not match the message digest. Please check the signature and try again.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../verifymessagedialog.cpp" line="72"/>
-        <source>Address not found in address book.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../verifymessagedialog.cpp" line="72"/>
-        <source>Address found in address book: %1</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
+    <name>UnitDisplayStatusBarControl</name>
+    </context>
+<context>
+    <name>WalletFrame</name>
+    </context>
 <context>
     <name>WalletModel</name>
     <message>
-        <location filename="../walletmodel.cpp" line="158"/>
-        <source>Sending...</source>
-        <translation type="unfinished"/>
+        <source>Send Coins</source>
+        <translation>Müntide saatmine</translation>
     </message>
 </context>
 <context>
-    <name>WindowOptionsPage</name>
+    <name>WalletView</name>
     <message>
-        <location filename="../optionsdialog.cpp" line="313"/>
-        <source>Window</source>
-        <translation type="unfinished"/>
+        <source>&amp;Export</source>
+        <translation>&amp;Ekspordi</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="316"/>
-        <source>&amp;Minimize to the tray instead of the taskbar</source>
-        <translation type="unfinished"/>
+        <source>Export the data in the current tab to a file</source>
+        <translation>Ekspordi kuvatava vahelehe sisu faili</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="317"/>
-        <source>Show only a tray icon after minimizing the window</source>
-        <translation type="unfinished"/>
+        <source>Backup Wallet</source>
+        <translation>Varundatud Rahakott</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="320"/>
-        <source>M&amp;inimize on close</source>
-        <translation type="unfinished"/>
+        <source>Wallet Data (*.dat)</source>
+        <translation>Rahakoti andmed (*.dat)</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="321"/>
-        <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Quit in the menu.</source>
-        <translation type="unfinished"/>
+        <source>Backup Failed</source>
+        <translation>Varundamine nurjus</translation>
+    </message>
+    <message>
+        <source>Backup Successful</source>
+        <translation>Varundamine õnnestus</translation>
     </message>
 </context>
 <context>
     <name>bitcoin-core</name>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="43"/>
-        <source>Bitcoin version</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="44"/>
-        <source>Usage:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="45"/>
-        <source>Send command to -server or bitcoind</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="46"/>
-        <source>List commands</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="47"/>
-        <source>Get help for a command</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="49"/>
         <source>Options:</source>
-        <translation type="unfinished"/>
+        <translation>Valikud:</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="50"/>
-        <source>Specify configuration file (default: bitcoin.conf)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="51"/>
-        <source>Specify pid file (default: bitcoind.pid)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="52"/>
-        <source>Generate coins</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="53"/>
-        <source>Don&apos;t generate coins</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="54"/>
         <source>Specify data directory</source>
-        <translation type="unfinished"/>
+        <translation>Täpsusta andmekataloog</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="55"/>
-        <source>Set database cache size in megabytes (default: 25)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="56"/>
-        <source>Set database disk log size in megabytes (default: 100)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="57"/>
-        <source>Specify connection timeout (in milliseconds)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="63"/>
-        <source>Listen for connections on &lt;port&gt; (default: 8333 or testnet: 18333)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="64"/>
-        <source>Maintain at most &lt;n&gt; connections to peers (default: 125)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="66"/>
-        <source>Connect only to the specified node</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="67"/>
         <source>Connect to a node to retrieve peer addresses, and disconnect</source>
-        <translation type="unfinished"/>
+        <translation>Peeri aadressi saamiseks ühendu korraks node'iga</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="68"/>
         <source>Specify your own public address</source>
-        <translation type="unfinished"/>
+        <translation>Täpsusta enda avalik aadress</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="69"/>
-        <source>Only connect to nodes in network &lt;net&gt; (IPv4 or IPv6)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="70"/>
-        <source>Try to discover public IP address (default: 1)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="73"/>
-        <source>Bind to given address. Use [host]:port notation for IPv6</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="75"/>
-        <source>Threshold for disconnecting misbehaving peers (default: 100)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="76"/>
-        <source>Number of seconds to keep misbehaving peers from reconnecting (default: 86400)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="79"/>
-        <source>Maximum per-connection receive buffer, &lt;n&gt;*1000 bytes (default: 10000)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="80"/>
-        <source>Maximum per-connection send buffer, &lt;n&gt;*1000 bytes (default: 10000)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="83"/>
-        <source>Detach block and address databases. Increases shutdown time (default: 0)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="86"/>
         <source>Accept command line and JSON-RPC commands</source>
-        <translation type="unfinished"/>
+        <translation>Luba käsurea ning JSON-RPC käsklusi</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="87"/>
         <source>Run in the background as a daemon and accept commands</source>
-        <translation type="unfinished"/>
+        <translation>Tööta taustal ning aktsepteeri käsklusi</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="88"/>
         <source>Use the test network</source>
-        <translation type="unfinished"/>
+        <translation>Testvõrgu kasutamine</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="89"/>
-        <source>Output extra debugging information</source>
-        <translation type="unfinished"/>
+        <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>
+        <translation>Luba välisühendusi (vaikeväärtus: 1 kui puudub -proxy või -connect)</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="90"/>
-        <source>Prepend debug output with timestamp</source>
-        <translation type="unfinished"/>
+        <source>Bind to given address and always listen on it. Use [host]:port notation for IPv6</source>
+        <translation>Määratud aadressiga sidumine ning sellelt kuulamine. IPv6 jaoks kasuta vormingut [host]:port</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="91"/>
+        <source>Execute command when a wallet transaction changes (%s in cmd is replaced by TxID)</source>
+        <translation>Käivita käsklus, kui rahakoti tehing muutub (%s cmd's muudetakse TxID'ks)</translation>
+    </message>
+    <message>
+        <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
+        <translation>See on test-versioon - kasutamine omal riisikol - ära kasuta mining'uks ega kaupmeeste programmides</translation>
+    </message>
+    <message>
+        <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
+        <translation>Hoiatus: -paytxfee on seatud väga kõrgeks! See on sinu poolt makstav tehingu lisatasu.</translation>
+    </message>
+    <message>
+        <source>Warning: error reading wallet.dat! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
+        <translation>Hoiatus: ilmnes tõrge wallet.dat faili lugemisel! Võtmed on terved, kuid tehingu andmed või aadressiraamatu kirjed võivad olla kadunud või vigased.</translation>
+    </message>
+    <message>
+        <source>Warning: wallet.dat corrupt, data salvaged! Original wallet.dat saved as wallet.{timestamp}.bak in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
+        <translation>Hoiatus: toimus wallet.dat faili andmete päästmine! Originaal wallet.dat nimetati kaustas %s ümber wallet.{ajatempel}.bak'iks, jäägi või tehingute ebakõlade puhul tuleks teha backup'ist taastamine.</translation>
+    </message>
+    <message>
+        <source>Attempt to recover private keys from a corrupt wallet.dat</source>
+        <translation>Püüa vigasest wallet.dat failist taastada turvavõtmed</translation>
+    </message>
+    <message>
+        <source>Block creation options:</source>
+        <translation>Blokeeri loomise valikud:</translation>
+    </message>
+    <message>
+        <source>Connect only to the specified node(s)</source>
+        <translation>Ühendu ainult määratud node'i(de)ga</translation>
+    </message>
+    <message>
+        <source>Corrupted block database detected</source>
+        <translation>Tuvastati vigane bloki andmebaas</translation>
+    </message>
+    <message>
+        <source>Discover own IP address (default: 1 when listening and no -externalip)</source>
+        <translation>Leia oma IP aadress (vaikeväärtus: 1, kui kuulatakse ning puudub -externalip)</translation>
+    </message>
+    <message>
+        <source>Do you want to rebuild the block database now?</source>
+        <translation>Kas soovid bloki andmebaasi taastada?</translation>
+    </message>
+    <message>
+        <source>Error initializing block database</source>
+        <translation>Tõrge bloki andmebaasi käivitamisel</translation>
+    </message>
+    <message>
+        <source>Error initializing wallet database environment %s!</source>
+        <translation>Tõrge rahakoti keskkonna %s käivitamisel!</translation>
+    </message>
+    <message>
+        <source>Error loading block database</source>
+        <translation>Tõrge bloki baasi lugemisel</translation>
+    </message>
+    <message>
+        <source>Error opening block database</source>
+        <translation>Tõrge bloki andmebaasi avamisel</translation>
+    </message>
+    <message>
+        <source>Error: Disk space is low!</source>
+        <translation>Tõrge: liiga vähe kettaruumi!</translation>
+    </message>
+    <message>
+        <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
+        <translation>Pordi kuulamine nurjus. Soovikorral kasuta -listen=0.</translation>
+    </message>
+    <message>
+        <source>Rebuild block chain index from current blk000??.dat files</source>
+        <translation>Taasta bloki jada indeks blk000??.dat failist</translation>
+    </message>
+    <message>
+        <source>Verifying blocks...</source>
+        <translation>Kontrollin blokke...</translation>
+    </message>
+    <message>
+        <source>Verifying wallet...</source>
+        <translation>Kontrollin rahakotti...</translation>
+    </message>
+    <message>
+        <source>Wallet options:</source>
+        <translation>Rahakoti valikud:</translation>
+    </message>
+    <message>
+        <source>Imports blocks from external blk000??.dat file</source>
+        <translation>Impordi blokid välisest blk000??.dat failist</translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation>Informatsioon</translation>
+    </message>
+    <message>
+        <source>RPC server options:</source>
+        <translation>RPC serveri valikud:</translation>
+    </message>
+    <message>
         <source>Send trace/debug info to console instead of debug.log file</source>
-        <translation type="unfinished"/>
+        <translation>Saada jälitus/debug, debug.log faili asemel, konsooli</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="92"/>
-        <source>Send trace/debug info to debugger</source>
-        <translation type="unfinished"/>
+        <source>Shrink debug.log file on client startup (default: 1 when no -debug)</source>
+        <translation>Kahanda programmi käivitamisel debug.log faili (vaikeväärtus: 1, kui ei ole -debug)</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="93"/>
+        <source>Signing transaction failed</source>
+        <translation>Tehingu allkirjastamine ebaõnnestus</translation>
+    </message>
+    <message>
+        <source>Transaction amount too small</source>
+        <translation>Tehingu summa liiga väikene</translation>
+    </message>
+    <message>
+        <source>Transaction too large</source>
+        <translation>Tehing liiga suur</translation>
+    </message>
+    <message>
+        <source>Use UPnP to map the listening port (default: 1 when listening)</source>
+        <translation>Kasuta kuulatava pordi määramiseks UPnP ühendust (vaikeväärtus: 1, kui kuulatakse)</translation>
+    </message>
+    <message>
         <source>Username for JSON-RPC connections</source>
-        <translation type="unfinished"/>
+        <translation>JSON-RPC ühenduste kasutajatunnus</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="94"/>
+        <source>Warning</source>
+        <translation>Hoiatus</translation>
+    </message>
+    <message>
+        <source>Warning: This version is obsolete, upgrade required!</source>
+        <translation>Hoiatus: versioon on aegunud, uuendus on nõutav!</translation>
+    </message>
+    <message>
+        <source>on startup</source>
+        <translation>käivitamisel</translation>
+    </message>
+    <message>
+        <source>wallet.dat corrupt, salvage failed</source>
+        <translation>wallet.dat fail on katki, päästmine ebaõnnestus</translation>
+    </message>
+    <message>
         <source>Password for JSON-RPC connections</source>
-        <translation type="unfinished"/>
+        <translation>JSON-RPC ühenduste salasõna</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="95"/>
-        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 8332)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="96"/>
-        <source>Allow JSON-RPC connections from specified IP address</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="97"/>
-        <source>Send commands to node running on &lt;ip&gt; (default: 127.0.0.1)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="98"/>
         <source>Execute command when the best block changes (%s in cmd is replaced by block hash)</source>
-        <translation type="unfinished"/>
+        <translation>Käivita käsklus, kui parim plokk muutub (käskluse %s asendatakse ploki hash'iga)</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="101"/>
         <source>Upgrade wallet to latest format</source>
-        <translation type="unfinished"/>
+        <translation>Uuenda rahakott uusimasse vormingusse</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="102"/>
-        <source>Set key pool size to &lt;n&gt; (default: 100)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="103"/>
         <source>Rescan the block chain for missing wallet transactions</source>
-        <translation type="unfinished"/>
+        <translation>Otsi ploki jadast rahakoti kadunud tehinguid</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="104"/>
-        <source>How many blocks to check at startup (default: 2500, 0 = all)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="105"/>
-        <source>How thorough the block verification is (0-6, default: 1)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="106"/>
-        <source>Imports blocks from external blk000?.dat file</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="108"/>
-        <source>
-SSL options: (see the Bitcoin Wiki for SSL setup instructions)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="111"/>
         <source>Use OpenSSL (https) for JSON-RPC connections</source>
-        <translation type="unfinished"/>
+        <translation>Kasuta JSON-RPC ühenduste jaoks OpenSSL'i (https)</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="112"/>
-        <source>Server certificate file (default: server.cert)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="113"/>
-        <source>Server private key (default: server.pem)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="114"/>
-        <source>Acceptable ciphers (default: TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="145"/>
-        <source>Warning: Disk space is low</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="107"/>
         <source>This help message</source>
-        <translation type="unfinished"/>
+        <translation>Käesolev abitekst</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="121"/>
-        <source>Cannot obtain a lock on data directory %s.  Bitcoin is probably already running.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="48"/>
-        <source>Bitcoin</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="30"/>
-        <source>Unable to bind to %s on this computer (bind returned error %d, %s)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="58"/>
-        <source>Connect through socks proxy</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="59"/>
-        <source>Select the version of socks proxy to use (4 or 5, 5 is default)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="60"/>
-        <source>Do not use proxy for connections to network &lt;net&gt; (IPv4 or IPv6)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="61"/>
         <source>Allow DNS lookups for -addnode, -seednode and -connect</source>
-        <translation type="unfinished"/>
+        <translation>-addnode, -seednode ja -connect tohivad kasutada DNS lookup'i</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="62"/>
-        <source>Pass DNS requests to (SOCKS5) proxy</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="142"/>
         <source>Loading addresses...</source>
-        <translation type="unfinished"/>
+        <translation>Aadresside laadimine...</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="132"/>
-        <source>Error loading blkindex.dat</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="134"/>
         <source>Error loading wallet.dat: Wallet corrupted</source>
-        <translation type="unfinished"/>
+        <translation>Viga wallet.dat käivitamisel. Vigane rahakkott</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="135"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of Bitcoin</source>
-        <translation type="unfinished"/>
+        <source>(default: %s)</source>
+        <translation>(vaikimisi: %s)</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="136"/>
-        <source>Wallet needed to be rewritten: restart Bitcoin to complete</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="137"/>
         <source>Error loading wallet.dat</source>
-        <translation type="unfinished"/>
+        <translation>Viga wallet.dat käivitamisel</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="124"/>
-        <source>Invalid -proxy address: &apos;%s&apos;</source>
-        <translation type="unfinished"/>
+        <source>Invalid -proxy address: '%s'</source>
+        <translation>Vigane -proxi aadress: '%s'</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="125"/>
-        <source>Unknown network specified in -noproxy: &apos;%s&apos;</source>
-        <translation type="unfinished"/>
+        <source>Unknown network specified in -onlynet: '%s'</source>
+        <translation>Kirjeldatud tundmatu võrgustik -onlynet'is: '%s'</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="127"/>
-        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
-        <translation type="unfinished"/>
+        <source>Cannot resolve -bind address: '%s'</source>
+        <translation>Tundmatu -bind aadress: '%s'</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="126"/>
-        <source>Unknown -socks proxy version requested: %i</source>
-        <translation type="unfinished"/>
+        <source>Cannot resolve -externalip address: '%s'</source>
+        <translation>Tundmatu -externalip aadress: '%s'</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="128"/>
-        <source>Cannot resolve -bind address: &apos;%s&apos;</source>
-        <translation type="unfinished"/>
+        <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s'</source>
+        <translation>-paytxfee=&lt;amount&gt; jaoks vigane kogus: '%s'</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="129"/>
-        <source>Not listening on any port</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="130"/>
-        <source>Cannot resolve -externalip address: &apos;%s&apos;</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="117"/>
-        <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos;</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="143"/>
-        <source>Error: could not start node</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="31"/>
-        <source>Error: Wallet locked, unable to create transaction  </source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="32"/>
-        <source>Error: This transaction requires a transaction fee of at least %s because of its amount, complexity, or use of recently received funds  </source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="35"/>
-        <source>Error: Transaction creation failed  </source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="36"/>
-        <source>Sending...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="37"/>
-        <source>Error: The transaction was rejected.  This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="41"/>
-        <source>Invalid amount</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="42"/>
         <source>Insufficient funds</source>
-        <translation type="unfinished"/>
+        <translation>Liiga suur summa</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="131"/>
         <source>Loading block index...</source>
-        <translation type="unfinished"/>
+        <translation>Klotside indeksi laadimine...</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="65"/>
         <source>Add a node to connect to and attempt to keep the connection open</source>
-        <translation type="unfinished"/>
+        <translation>Lisa node ning hoia ühendus avatud</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="28"/>
-        <source>Unable to bind to %s on this computer. Bitcoin is probably already running.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="71"/>
-        <source>Find peers using internet relay chat (default: 0)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="72"/>
-        <source>Accept connections from outside (default: 1)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="74"/>
-        <source>Find peers using DNS lookup (default: 1)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="81"/>
-        <source>Use Universal Plug and Play to map the listening port (default: 1)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="82"/>
-        <source>Use Universal Plug and Play to map the listening port (default: 0)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="85"/>
-        <source>Fee per KB to add to transactions you send</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="118"/>
-        <source>Warning: -paytxfee is set very high. This is the transaction fee you will pay if you send a transaction.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="133"/>
         <source>Loading wallet...</source>
-        <translation type="unfinished"/>
+        <translation>Rahakoti laadimine...</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="138"/>
         <source>Cannot downgrade wallet</source>
-        <translation type="unfinished"/>
+        <translation>Rahakoti vanandamine ebaõnnestus</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="139"/>
-        <source>Cannot initialize keypool</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="140"/>
         <source>Cannot write default address</source>
-        <translation type="unfinished"/>
+        <translation>Tõrge vaikimisi aadressi kirjutamisel</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="141"/>
         <source>Rescanning...</source>
-        <translation type="unfinished"/>
+        <translation>Üleskaneerimine...</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="144"/>
         <source>Done loading</source>
-        <translation type="unfinished"/>
+        <translation>Laetud</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="8"/>
-        <source>To use the %s option</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="9"/>
-        <source>%s, you must set a rpcpassword in the configuration file:
- %s
-It is recommended you use the following random password:
-rpcuser=bitcoinrpc
-rpcpassword=%s
-(you do not need to remember this password)
-If the file does not exist, create it with owner-readable-only file permissions.
-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="18"/>
         <source>Error</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="19"/>
-        <source>An error occured while setting up the RPC port %i for listening: %s</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="20"/>
-        <source>You must set rpcpassword=&lt;password&gt; in the configuration file:
-%s
-If the file does not exist, create it with owner-readable-only file permissions.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../bitcoinstrings.cpp" line="25"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct.  If your clock is wrong Bitcoin will not work properly.</source>
-        <translation type="unfinished"/>
+        <translation>Tõrge</translation>
     </message>
 </context>
 </TS>
