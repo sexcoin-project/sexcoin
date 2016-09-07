@@ -5,6 +5,8 @@
 
 #include "chainparams.h"
 
+#include <stdio.h>
+#include "crypto/scrypt.h"
 #include "random.h"
 #include "util.h"
 #include "utilstrencodings.h"
@@ -71,16 +73,16 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
         (249936,uint256("6722b04059d14fce5f74eb4a9ea02784ae690c4985ba32801e2cf1f8b65582f3"))
         (279841,uint256("eb3bdef3524a2b0fd89f5480ac2a0a82108539b8e3156b598675e7109803cafa"))
         (319767,uint256("8fbcfa3dac1721fd899f4cf67a7381a86fdcfb5fb504e1729d6a9fe3b389a790"))
-            (359900,uint256("fc4faa77d8e6c01941170e131125d5ebb5c9453fbaf3e6c2b0974b66c00f3bcd"))
-            (499996,uint256("d28773f08f4747ff6e7e4d113753b5a79b60d905e59ae4046fa4b5ee9965badc"))
-            (599825,uint256("0ddf7a53506b99acd201c13fba89b13837eb1707e97c27416f7513052cfd14af"))
-            (699886,uint256("1663390cdccecaeea59f35affa91d04f57f9b790b8f1493b7f62d4de2279449a"))
-            (809963,uint256("e7c094afaeaf37d20ce7d912b8353c41ac51c5219b1984acda32bfc889898203"))
+        (359900,uint256("fc4faa77d8e6c01941170e131125d5ebb5c9453fbaf3e6c2b0974b66c00f3bcd"))
+        (499996,uint256("d28773f08f4747ff6e7e4d113753b5a79b60d905e59ae4046fa4b5ee9965badc"))
+        (599825,uint256("0ddf7a53506b99acd201c13fba89b13837eb1707e97c27416f7513052cfd14af"))
+        (699886,uint256("1663390cdccecaeea59f35affa91d04f57f9b790b8f1493b7f62d4de2279449a"))
+        (809963,uint256("e7c094afaeaf37d20ce7d912b8353c41ac51c5219b1984acda32bfc889898203"))
         ;
 /**TODO: calculate these for sexcoin **/
 static const Checkpoints::CCheckpointData data = {
         &mapCheckpoints,
-        1389047471, // * UNIX timestamp of last checkpoint block
+        1409600123, // * UNIX timestamp of last checkpoint block
         30549816,   // * total number of transactions between genesis and last checkpoint
                     //   (the tx=... number in the SetBestChain debug.log lines)
         60000.0     // * estimated number of transactions per day after checkpoint
@@ -88,13 +90,13 @@ static const Checkpoints::CCheckpointData data = {
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
         boost::assign::map_list_of
-        ( 546, uint256("0xa0fea99a6897f531600c8ae53367b126824fd6a847b2b2b73817a95b8e27e602"))
+        ( 0, uint256("0x73dc70a1698579360b62e724ecfeacfd938f45283162f3cf18f1b9eb3fc9fcd7"))
         ;
 static const Checkpoints::CCheckpointData dataTestnet = {
         &mapCheckpointsTestnet,
-        1365458829,
-        547,
-        576
+        1473215502,
+        0,
+        60000.0
     };
 
 static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
@@ -220,23 +222,38 @@ public:
         strNetworkID = "test";
         pchMessageStart[0] = 0xfa;
         pchMessageStart[1] = 0xce;
-        pchMessageStart[2] = 0xb7;
-        pchMessageStart[3] = 0xdc;
+        pchMessageStart[2] = 0x96;
+        pchMessageStart[3] = 0x69;
         vAlertPubKey = ParseHex("0449623fc74489a947c4b15d579115591add020e53b3490bf47297dfa3762250625f8ecc2fb4fc59f69bdce8f7080f3167808276ed2c79d297054367566038aa82");
         nDefaultPort = 19560;
         nEnforceBlockUpgradeMajority = 51;
         nRejectBlockOutdatedMajority = 75;
         nToCheckBlockUpgradeMajority = 100;
         nMinerThreads = 0;
-        nTargetTimespan = 3.5 * 24 * 60 * 60; // 3.5 days
-        nTargetSpacing = 2.5 * 60; // 2.5 minutes
+        nTargetTimespan = 8 * 60 * 60; // 3.5 days
+        nTargetSpacing = 1 * 60; // 2.5 minutes
         nMaxTipAge = 0x7fffffff;
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1317798646;
-        genesis.nNonce = 385270584;
+        genesis.nTime = 1473215502; //1369146359=old testnet nTime;
+        genesis.nNonce = 517454;
         hashGenesisBlock = genesis.GetHash();
-        //assert(hashGenesisBlock == uint256("0xf5ae71e26c74beacc88382716aced69cddf3dffff24f384e1808905e0188f68f"));
+        
+        /**
+        // Sexcoin is generating a new testnet genesis. This code will only be used once
+        // check that genesis block is valid
+        bool fNegative;
+        bool fOverflow;
+        uint256 bnTarget;
+        bnTarget.SetCompact(genesis.nBits, &fNegative, &fOverflow);
+        
+        if (hashGenesisBlock > bnTarget)
+            genesis = FindNewGenesisBlock(genesis);
+        
+        // end of one use code
+        **/
+        
+        assert(hashGenesisBlock == uint256("0x73dc70a1698579360b62e724ecfeacfd938f45283162f3cf18f1b9eb3fc9fcd7"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -244,7 +261,7 @@ public:
         //vSeeds.push_back(CDNSSeedData("xurious.com", "testnet-seed.ltc.xurious.com"));
         //vSeeds.push_back(CDNSSeedData("wemine-testnet.com", "dnsseed.wemine-testnet.com"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = list_of(111);
+        base58Prefixes[PUBKEY_ADDRESS] = list_of(124);
         base58Prefixes[SCRIPT_ADDRESS] = list_of(196);
         base58Prefixes[SECRET_KEY]     = list_of(239);
         base58Prefixes[EXT_PUBLIC_KEY] = list_of(0x04)(0x35)(0x87)(0xCF);
@@ -280,15 +297,15 @@ public:
         strNetworkID = "regtest";
         pchMessageStart[0] = 0xfa;
         pchMessageStart[1] = 0xce;
-        pchMessageStart[2] = 0xb5;
-        pchMessageStart[3] = 0xda;
+        pchMessageStart[2] = 0x99;
+        pchMessageStart[3] = 0x99;
         nSubsidyHalvingInterval = 150;
         nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 1;
-        nTargetTimespan = 3.5 * 24 * 60 * 60; // 3.5 days
-        nTargetSpacing = 2.5 * 60; // 2.5 minutes
+        nTargetTimespan = 8 * 60 * 60; // 3.5 days
+        nTargetSpacing = 60; // 2.5 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         nMaxTipAge = 24 * 60 * 60;
         genesis.nTime = 1296688602;
@@ -402,4 +419,40 @@ bool SelectParamsFromCommandLine()
 
     SelectParams(network);
     return true;
+}
+
+CBlock CChainParams::FindNewGenesisBlock(CBlock block){
+    // if this gets called, it means the genesis block has failed the nBits POW test
+    // we need to mine a new one that works. Just like mining, we loop through changing
+    // nonces until we get a hash low enough to satisfy the nBits
+   
+    bool fNegative;
+    bool fOverflow;
+    uint256 hashTarget; 
+    uint256 thash;
+    char scratchpad[SCRYPT_SCRATCHPAD_SIZE];
+    
+    hashTarget.SetCompact(block.nBits, &fNegative, &fOverflow);
+    printf("Finding new Genesis Block...\n");
+    while(true)
+    {
+        scrypt_1024_1_1_256_sp(BEGIN(block.nVersion), BEGIN(thash), scratchpad);
+        if (thash <= hashTarget)
+            break;
+        if ((block.nNonce & 0xFFF) == 0)
+        {
+            printf("nonce %08X: hash = %s (target = %s)\n", block.nNonce, thash.ToString().c_str(), hashTarget.ToString().c_str());
+        }
+        ++block.nNonce;
+        if (block.nNonce == 0)
+        {
+            printf("NONCE WRAPPED, incrementing time\n");
+            ++block.nTime;
+        }
+    }
+    printf("block.nTime = %u \n", block.nTime);
+    printf("block.nNonce = %u \n", block.nNonce);
+    printf("block.GetHash = %s\n", block.GetHash().ToString().c_str());
+    
+    return(block);
 }

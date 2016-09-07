@@ -2,4 +2,45 @@ MAX_MONEY:      amount.h
 magic numbers:  chainparams.cpp
 halving:        chainparams.cpp
 port:           chainparams.cpp
+nRPCPort:       chainparamsbase.cpp
+CLIENT_VERSION_IS_RELEASE   configure.ac, clientversion.h, src/config/bitcoin-config.h
 
+
+MainNet
+========
+magic number        : FA CE 69 69
+pszTimestamp        : "Disaster from the sky in Oklahoma"
+hashGenisisBlock    : 0xf42b9553085a1af63d659d3907a42c3a0052bbfa2693d3acf990af85755f2279
+hashMerkleRoot      : 0x661de12dc8dd26989adb169733b5a99150d52b8b6e8332976277856e246101f4
+
+PUBKEY_ADDRESS = 62
+SCRIPT_ADDRESS = 5
+SECRET_KEY     = 190
+EXT_PUBLIC_KEY = 0x04 0x88 0xB2 0x1E
+EXT_SECRET_KEY = 0x04 0x88 0xAD 0xE4
+
+port    : 9560
+rpcport : 9561
+
+
+FORK1_HEIGHT 155000 
+FORK2_HEIGHT 572000
+FORK3_HEIGHT 643808
+
+
+
+
+TestNet3
+=========
+magic number        : FA CE 96 96
+pszTimestamp        : "Disaster from the sky in Oklahoma"
+hashGenesisBlock    : 0x73dc70a1698579360b62e724ecfeacfd938f45283162f3cf18f1b9eb3fc9fcd7
+
+PUBKEY_ADDRESS = 124
+SCRIPT_ADDRESS = 196
+SECRET_KEY     = 239
+EXT_PUBLIC_KEY = (0x04)(0x35)(0x87)(0xCF)
+EXT_SECRET_KEY = (0x04)(0x35)(0x83)(0x94)
+
+port    : 9560
+rpcport : 9561

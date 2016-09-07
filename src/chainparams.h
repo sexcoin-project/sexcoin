@@ -83,6 +83,10 @@ public:
 
     // Litecoin: Height to enforce v2 block
     int EnforceV2AfterHeight() const { return nEnforceV2AfterHeight; }
+    
+    // it looks like genesis block generation has been written out
+    CBlock FindNewGenesisBlock(CBlock oldgenesis);
+    
 protected:
     CChainParams() {}
 
