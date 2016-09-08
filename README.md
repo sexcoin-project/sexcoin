@@ -1,7 +1,7 @@
 Sexcoin Core integration/staging tree
 =====================================
 
-https://sexcoin.info
+http://sexcoin.info
 
 CAUTION: this is the current development tree. 
 
