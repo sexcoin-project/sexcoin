@@ -2598,45 +2598,47 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
     if (pcheckpoint && nHeight < pcheckpoint->nHeight)
         return state.DoS(100, error("%s : forked chain older than last checkpoint (height %d)", __func__, nHeight));
 
+    /******************************
+        Sexcoin: need to decide how to best handle this for sexcoin
+        Then need to design testing procedure
+     ******************************/
+     
     // Litecoin: Reject block.nVersion=1 blocks (mainnet >= 710000, testnet >= 400000, regtest uses supermajority)
     bool enforceV2 = false;
-    if (block.nVersion < 2)
+    if (block.nVersion < 4)
     {
         if (Params().EnforceV2AfterHeight() != -1)
         {
-            // Mainnet 710k, Testnet 400k
+            // Mainnet 2100k, Testnet 400k
             if (nHeight >= Params().EnforceV2AfterHeight())
                 enforceV2 = true;
         }
         else
         {
             // Regtest and Unittest: use Bitcoin's supermajority rule
+            // What does this mean for sexcoin?
             if (CBlockIndex::IsSuperMajority(2, pindexPrev, Params().RejectBlockOutdatedMajority()))
                 enforceV2 = true;
         }
     }
     
     // Sexcoin: forget this v2 enforcement for the moment...right now they are all V1 and we're jumping straight to V4
-    enforceV2=false;
-    /*
+    // enforceV2=false;
+    
     if (enforceV2)
     {
         return state.Invalid(error("%s : rejected nVersion=1 block", __func__),
                              REJECT_OBSOLETE, "bad-version");
     }
-
-    // Reject block.nVersion=2 blocks when 95% (75% on testnet) of the network has upgraded:
-    if (block.nVersion < 3 && CBlockIndex::IsSuperMajority(3, pindexPrev, Params().RejectBlockOutdatedMajority()))
+    
+    // Reject block.nVersion=1 blocks when 95% (75% on testnet) of the network has upgraded:
+    // Sexcoin supermajority should jump straight to 4
+    if (block.nVersion < 4 && CBlockIndex::IsSuperMajority(4, pindexPrev, Params().RejectBlockOutdatedMajority()))
     {
-        return state.Invalid(error("%s : rejected nVersion=2 block", __func__),
+        return state.Invalid(error("%s : rejected nVersion=1 block", __func__),
                              REJECT_OBSOLETE, "bad-version");
     }
 
-    // Reject block.nVersion=3 blocks when 95% (75% on testnet) of the network has upgraded:
-    if (block.nVersion < 4 && CBlockIndex::IsSuperMajority(4, pindexPrev, Params().RejectBlockOutdatedMajority()))
-        return state.Invalid(error("%s : rejected nVersion=3 block", __func__),
-                             REJECT_OBSOLETE, "bad-version");
-    */
     return true;
 }
 

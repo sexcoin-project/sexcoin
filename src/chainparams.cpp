@@ -137,10 +137,11 @@ public:
         bnProofOfWorkLimit = ~uint256(0) >> 5;
         nSubsidyHalvingInterval = 600000;
         
-		/** TODO: check these for sexcoin **/
-		nEnforceBlockUpgradeMajority = 750;
+        /** TODO: will these work for sexcoin **/
+        nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
+
         nMinerThreads = 0;
         nTargetTimespan = 8 * 60 * 60; // 8 hour
         nTargetSpacing = 1 * 60; // 1 minute
@@ -176,12 +177,9 @@ public:
         assert(genesis.hashMerkleRoot == uint256("0x661de12dc8dd26989adb169733b5a99150d52b8b6e8332976277856e246101f4"));
 
         vSeeds.push_back(CDNSSeedData("sexcoin.info", "dnsseed.sexcoin.info"));
+        vSeeds.push_back(CDNSSeedData("lavajumper.com", "dnsseed.lavajumper.com"));
         /*
 		vSeeds.push_back(CDNSSeedData("litecoinpool.org", "dnsseed.litecoinpool.org"));
-        vSeeds.push_back(CDNSSeedData("xurious.com", "dnsseed.ltc.xurious.com"));
-        vSeeds.push_back(CDNSSeedData("koin-project.com", "dnsseed.koin-project.com"));
-        vSeeds.push_back(CDNSSeedData("weminemnc.com", "dnsseed.weminemnc.com"));
-        vSeeds.push_back(CDNSSeedData("loshan.co.uk", "seed-a.litecoin.loshan.co.uk"));
 		*/
 
         base58Prefixes[PUBKEY_ADDRESS] = list_of(62);
@@ -202,7 +200,11 @@ public:
         fTestnetToBeDeprecatedFieldRPC = false;
 
         // Litecoin: Mainnet v2 enforced as of block 710k
-        nEnforceV2AfterHeight = 710000;
+        // Sexcoin: Mainnet is switching straight to V4, were going to use this to enforce
+        // initial guess is that we should accept V1 blocks for a short time, but then reject outright
+        // unfortunately, KGW has caused block solve times to be shorter than expected
+        // arbitrary guess: 2,100,000;
+        nEnforceV2AfterHeight = 2100000;
     }
 
     const Checkpoints::CCheckpointData& Checkpoints() const 
@@ -299,7 +301,7 @@ public:
         pchMessageStart[1] = 0xce;
         pchMessageStart[2] = 0x99;
         pchMessageStart[3] = 0x99;
-        nSubsidyHalvingInterval = 150;
+        nSubsidyHalvingInterval = 900;
         nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
@@ -436,7 +438,21 @@ CBlock CChainParams::FindNewGenesisBlock(CBlock block){
     printf("Finding new Genesis Block...\n");
     while(true)
     {
+#if defined(USE_SSE2)
+        // Detection would work, but in cases where we KNOW it always has SSE2,
+        // it is faster to use directly than to use a function pointer or conditional.
+#if defined(_M_X64) || defined(__x86_64__) || defined(_M_AMD64) || (defined(MAC_OSX) && defined(__i386__))
+        // Always SSE2: x86_64 or Intel MacOS X
+        scrypt_1024_1_1_256_sp_sse2(BEGIN(block.nVersion), BEGIN(thash), scratchpad);
+#else
+        // Detect SSE2: 32bit x86 Linux or Windows
         scrypt_1024_1_1_256_sp(BEGIN(block.nVersion), BEGIN(thash), scratchpad);
+#endif
+#else
+       // Generic scrypt
+        scrypt_1024_1_1_256_sp_generic(BEGIN(block.nVersion), BEGIN(thash), scratchpad);
+#endif
+
         if (thash <= hashTarget)
             break;
         if ((block.nNonce & 0xFFF) == 0)

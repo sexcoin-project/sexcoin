@@ -234,7 +234,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     unsigned int nProofOfWorkLimit = Params().ProofOfWorkLimit().GetCompact();
     int64_t height = chainActive.Height();
     
-    LogPrintf("POW: pindexHeight = %d  activeHeight = %d\n", pindexLast->nHeight, height);
+    //LogPrintf("POW: pindexHeight = %d  activeHeight = %d\n", pindexLast->nHeight, height);
     //Are we using KGW now?
     if ( pindexLast->nHeight+1 >= ForkingParams().KGWHeight() ) { return KimotoGravityWell(pindexLast); }
 
