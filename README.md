@@ -1,7 +1,10 @@
 Sexcoin Core integration/staging tree
 =====================================
 
-https://sexcoin.info
+http://sexcoin.info
+
+http://sexcoinforum.com
+
 
 CAUTION: this is the current development tree. 
 
@@ -12,6 +15,7 @@ DO NOT USE THIS FOR PRODUCTION!!
 - Incoming (simple) transactions are successful
 - Outgoing (simple) transactions are successful
 - Coin control appears to be working
+- Testnet has been successfully set up and mined against
 
 DO NOT USE THIS FOR PRODUCTION!!
 --------------------------------
