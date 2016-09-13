@@ -4,6 +4,7 @@ halving:        chainparams.cpp
 port:           chainparams.cpp
 nRPCPort:       chainparamsbase.cpp
 CLIENT_VERSION_IS_RELEASE   configure.ac, clientversion.h, src/config/bitcoin-config.h
+protocol version    version.h
 
 
 MainNet
@@ -27,6 +28,11 @@ FORK1_HEIGHT 155000
 FORK2_HEIGHT 572000
 FORK3_HEIGHT 643808
 
+Protocol_version    : 60703
+    * TL;DR Sexcoin 60703 == Litecoin/Bitcoin 70003
+    * this protocol version is version 70003 per Litecoin code, however previous Sexcoin versions reject any
+    * protocol > 69999 as one defence against our magic-number problem. When these Sexcoin clients are obsoleted,
+    * we can return to using well-known protocol versions.
 
 
 
