@@ -18,8 +18,8 @@ BOOST_AUTO_TEST_SUITE(Checkpoints_tests)
 
 BOOST_AUTO_TEST_CASE(sanity)
 {
-    uint256 p1500 = uint256("0x841a2965955dd288cfa707a755d05a54e45f8bd476835ec9af4402a2b59a2967");
-    uint256 p120000 = uint256("0xbd9d26924f05f6daa7f0155f32828ec89e8e29cee9e7121b026a7a3552ac6131");
+    uint256 p1500 = uint256("0xfb68964cac308bb6e0835b27c88c4748e17b2678f5a11eb273b5cfec531a14a4");
+    uint256 p120000 = uint256("0x4e7bd9f7684c3ef8bca92a91003936b3c81f0ae93d49f941a231d7f351267da7");
     BOOST_CHECK(Checkpoints::CheckBlock(1500, p1500));
     BOOST_CHECK(Checkpoints::CheckBlock(120000, p120000));
 

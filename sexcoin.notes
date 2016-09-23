@@ -38,7 +38,7 @@ Protocol_version    : 60703
 
 TestNet3
 =========
-magic number        : FA CE 96 96
+magic number        : FA CE 96 69
 pszTimestamp        : "Disaster from the sky in Oklahoma"
 hashGenesisBlock    : 0x73dc70a1698579360b62e724ecfeacfd938f45283162f3cf18f1b9eb3fc9fcd7
 
@@ -48,5 +48,6 @@ SECRET_KEY     = 239
 EXT_PUBLIC_KEY = (0x04)(0x35)(0x87)(0xCF)
 EXT_SECRET_KEY = (0x04)(0x35)(0x83)(0x94)
 
-port    : 9560
-rpcport : 9561
+port    : 19560
+rpcport : 19561
+
