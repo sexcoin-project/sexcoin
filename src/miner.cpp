@@ -108,6 +108,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn)
     txNew.vin[0].prevout.SetNull();
     txNew.vout.resize(1);
     txNew.vout[0].scriptPubKey = scriptPubKeyIn;
+    txNew.nVersion=0x00000001;
 
     // Add dummy coinbase tx as first transaction
     pblock->vtx.push_back(CTransaction());

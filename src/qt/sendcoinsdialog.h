@@ -42,6 +42,8 @@ public:
     void setAddress(const QString &address);
     void pasteEntry(const SendCoinsRecipient &rv);
     bool handlePaymentRequest(const SendCoinsRecipient &recipient);
+    
+    int32_t nTransactionFlags;
 
 public slots:
     void clear();
@@ -67,6 +69,10 @@ private:
     void updateFeeMinimizedLabel();
 
 private slots:
+    void on_radioButton_overNone(bool on);
+    void on_radioButton_overConsent(bool on);
+    void on_radioButton_over18(bool on);
+    void on_radioButton_over21(bool on);
     void on_sendButton_clicked();
     void on_buttonChooseFee_clicked();
     void on_buttonMinimizeFee_clicked();

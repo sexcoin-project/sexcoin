@@ -310,7 +310,14 @@ Value getaddressesbyaccount(const Array& params, bool fHelp)
     return ret;
 }
 
+/*
 void SendMoney(const CTxDestination &address, CAmount nValue, CWalletTx& wtxNew)
+{
+    SendMoney(address, nValue, wtxNew, CTransaction::CURRENT_VERSION );
+}
+*/
+
+void SendMoney(const CTxDestination &address, CAmount nValue, CWalletTx& wtxNew, int32_t nFlags)
 {
     // Check amount
     if (nValue <= 0)
@@ -333,7 +340,9 @@ void SendMoney(const CTxDestination &address, CAmount nValue, CWalletTx& wtxNew)
     // Create and send the transaction
     CReserveKey reservekey(pwalletMain);
     CAmount nFeeRequired;
-    if (!pwalletMain->CreateTransaction(scriptPubKey, nValue, wtxNew, reservekey, nFeeRequired, strError))
+    //int32_t nVersion = CTransaction::CalculateVersoinWithFlag(nFlags);
+    int32_t nVersion=nFlags;
+    if (!pwalletMain->CreateTransaction(scriptPubKey, nValue, wtxNew, nVersion, reservekey, nFeeRequired, strError))
     {
         if (nValue + nFeeRequired > pwalletMain->GetBalance())
             strError = strprintf("Error: This transaction requires a transaction fee of at least %s because of its amount, complexity, or use of recently received funds!", FormatMoney(nFeeRequired));
@@ -346,25 +355,27 @@ void SendMoney(const CTxDestination &address, CAmount nValue, CWalletTx& wtxNew)
 
 Value sendtoaddress(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() < 2 || params.size() > 4)
+    if (fHelp || params.size() < 2 || params.size() > 5)
         throw runtime_error(
-            "sendtoaddress \"sexcoinaddress\" amount ( \"comment\" \"comment-to\" )\n"
+            "sendtoaddress \"sexcoinaddress\" amount [ none|consent|over18|over21 ] ( \"comment\" \"comment-to\" )\n"
             "\nSend an amount to a given address. The amount is a real and is rounded to the nearest 0.00000001\n"
             + HelpRequiringPassphrase() +
             "\nArguments:\n"
             "1. \"sexcoinaddress\"  (string, required) The sexcoin address to send to.\n"
             "2. \"amount\"      (numeric, required) The amount in ltc to send. eg 0.1\n"
-            "3. \"comment\"     (string, optional) A comment used to store what the transaction is for. \n"
+            "3. \"none | consent | over18 | over21 \"     (string, optional) Set the age verification flag for the transaction\n"
+            "4. \"comment\"     (string, optional) A comment used to store what the transaction is for. \n"
             "                             This is not part of the transaction, just kept in your wallet.\n"
-            "4. \"comment-to\"  (string, optional) A comment to store the name of the person or organization \n"
+            "5. \"comment-to\"  (string, optional) A comment to store the name of the person or organization \n"
             "                             to which you're sending the transaction. This is not part of the \n"
             "                             transaction, just kept in your wallet.\n"
             "\nResult:\n"
             "\"transactionid\"  (string) The transaction id.\n"
             "\nExamples:\n"
-            + HelpExampleCli("sendtoaddress", "\"Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2\" 0.1")
-            + HelpExampleCli("sendtoaddress", "\"Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2\" 0.1 \"donation\" \"seans outpost\"")
-            + HelpExampleRpc("sendtoaddress", "\"Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2\", 0.1, \"donation\", \"seans outpost\"")
+            + HelpExampleCli("sendtoaddress", "\"Ser4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2\" 0.1")
+            + HelpExampleCli("sendtoaddress", "\"Ser4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2\" 0.1 \"over21\"")
+            + HelpExampleCli("sendtoaddress", "\"Ser4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2\" 0.1 \"none\" \"donation\" \"seans outpost\"")
+            + HelpExampleRpc("sendtoaddress", "\"Ser4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2\", 0.1, \"over18\" \"donation\", \"seans outpost\"")
         );
 
     CBitcoinAddress address(params[0].get_str());
@@ -374,17 +385,37 @@ Value sendtoaddress(const Array& params, bool fHelp)
     // Amount
     CAmount nAmount = AmountFromValue(params[1]);
 
+    int32_t nFlags=0;
+    if(!params[2].get_str().empty() && params[2].type() != null_type)
+    {
+        if("none" == params[2].get_str())
+            nFlags = TX_F_NONE;
+        else if("consent" == params[2].get_str())
+            nFlags = TX_F_IS_OVER_CONSENT << 16;
+        else if("over18" == params[2].get_str())
+            nFlags = TX_F_IS_OVER_18 << 16;
+        else if("over21" == params[2].get_str())
+            nFlags = TX_F_IS_OVER_21 << 16;
+        else
+            nFlags =TX_F_INVALID_CODE;
+    }
+    
+    if(nFlags == TX_F_INVALID_CODE)
+        throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid transaction flag (valid values are: none, consent, over18, over21 )");
+    
+    int32_t nVersion = nFlags + CTransaction::CURRENT_VERSION; 
+    
     // Wallet comments
     CWalletTx wtx;
-    if (params.size() > 2 && params[2].type() != null_type && !params[2].get_str().empty())
-        wtx.mapValue["comment"] = params[2].get_str();
     if (params.size() > 3 && params[3].type() != null_type && !params[3].get_str().empty())
-        wtx.mapValue["to"]      = params[3].get_str();
+        wtx.mapValue["comment"] = params[3].get_str();
+    if (params.size() > 4 && params[4].type() != null_type && !params[4].get_str().empty())
+        wtx.mapValue["to"]      = params[4].get_str();
 
     EnsureWalletIsUnlocked();
 
-    SendMoney(address.Get(), nAmount, wtx);
-
+    SendMoney(address.Get(), nAmount, wtx, nVersion);
+    
     return wtx.GetHash().GetHex();
 }
 
@@ -499,13 +530,13 @@ Value getreceivedbyaddress(const Array& params, bool fHelp)
             "amount   (numeric) The total amount in ltc received at this address.\n"
             "\nExamples:\n"
             "\nThe amount from transactions with at least 1 confirmation\n"
-            + HelpExampleCli("getreceivedbyaddress", "\"Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2\"") +
+            + HelpExampleCli("getreceivedbyaddress", "\"Ser4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2\"") +
             "\nThe amount including unconfirmed transactions, zero confirmations\n"
-            + HelpExampleCli("getreceivedbyaddress", "\"Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2\" 0") +
+            + HelpExampleCli("getreceivedbyaddress", "\"Ser4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2\" 0") +
             "\nThe amount with at least 6 confirmation, very safe\n"
-            + HelpExampleCli("getreceivedbyaddress", "\"Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2\" 6") +
+            + HelpExampleCli("getreceivedbyaddress", "\"Ser4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2\" 6") +
             "\nAs a json rpc call\n"
-            + HelpExampleRpc("getreceivedbyaddress", "\"Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2\", 6")
+            + HelpExampleRpc("getreceivedbyaddress", "\"Ser4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2\", 6")
        );
 
     // Bitcoin address
@@ -785,20 +816,23 @@ Value sendfrom(const Array& params, bool fHelp)
             "2. \"tosexcoinaddress\"  (string, required) The sexcoin address to send funds to.\n"
             "3. amount                (numeric, required) The amount in ltc. (transaction fee is added on top).\n"
             "4. minconf               (numeric, optional, default=1) Only use funds with at least this many confirmations.\n"
-            "5. \"comment\"           (string, optional) A comment used to store what the transaction is for. \n"
+            "5. \"transflag\"         (string, optional, none|consent|over18|over21) Set the age verified flag in the transaction\n"
+            "6. \"comment\"           (string, optional) A comment used to store what the transaction is for. \n"
             "                                     This is not part of the transaction, just kept in your wallet.\n"
-            "6. \"comment-to\"        (string, optional) An optional comment to store the name of the person or organization \n"
+            "7. \"comment-to\"        (string, optional) An optional comment to store the name of the person or organization \n"
             "                                     to which you're sending the transaction. This is not part of the transaction, \n"
             "                                     it is just kept in your wallet.\n"
             "\nResult:\n"
             "\"transactionid\"        (string) The transaction id.\n"
             "\nExamples:\n"
-            "\nSend 0.01 ltc from the default account to the address, must have at least 1 confirmation\n"
-            + HelpExampleCli("sendfrom", "\"\" \"Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2\" 0.01") +
+            "\nSend 0.01 sxc from the default account to the address, must have at least 1 confirmation\n"
+            + HelpExampleCli("sendfrom", "\"\" \"S7NgcaY5qtjsBpNqdJsYbeTjacwuCUhC2Z\" 0.01") +
+            "\nSend 0.01 sxc from the default account to the address and self-verify that you are over 18, must a have at least one confirmation\n" 
+            + HelpExampleCli("sendfrom", "\"\" \"S7NgcaY5qtjsBpNqdJsYbeTjacwuCUhC2Z\" 0.01 1 \"over18\" ") +
             "\nSend 0.01 from the tabby account to the given address, funds must have at least 6 confirmations\n"
-            + HelpExampleCli("sendfrom", "\"tabby\" \"Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2\" 0.01 6 \"donation\" \"seans outpost\"") +
+            + HelpExampleCli("sendfrom", "\"tabby\" \"S7NgcaY5qtjsBpNqdJsYbeTjacwuCUhC2Z\" 0.01 6 \"over21\" \"donation\" \"Android support\"") +
             "\nAs a json rpc call\n"
-            + HelpExampleRpc("sendfrom", "\"tabby\", \"Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2\", 0.01, 6, \"donation\", \"seans outpost\"")
+            + HelpExampleRpc("sendfrom", "\"tabby\", \"S7NgcaY5qtjsBpNqdJsYbeTjacwuCUhC2Z\", 0.01, 6, \"none\", \"donation\", \"Android support\"")
         );
 
     string strAccount = AccountFromValue(params[0]);
@@ -811,11 +845,30 @@ Value sendfrom(const Array& params, bool fHelp)
         nMinDepth = params[3].get_int();
 
     CWalletTx wtx;
+    int32_t nFlags=0;
+    if(!params[4].get_str().empty() && params[4].type() != null_type)
+    {
+        if("none" == params[4].get_str())
+            nFlags = TX_F_NONE;
+        else if("consent" == params[4].get_str())
+            nFlags = TX_F_IS_OVER_CONSENT << 16;
+        else if("over18" == params[4].get_str())
+            nFlags = TX_F_IS_OVER_18 << 16;
+        else if("over21" == params[4].get_str())
+            nFlags = TX_F_IS_OVER_21 << 16;
+        else
+            nFlags = TX_F_INVALID_CODE;
+    }
+    
+    if(nFlags == TX_F_INVALID_CODE)
+        throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid transaction flag (valid values are: none, consent, over18, over21 )");
+    
+    int32_t nVersion = nFlags + CTransaction::CURRENT_VERSION; 
     wtx.strFromAccount = strAccount;
-    if (params.size() > 4 && params[4].type() != null_type && !params[4].get_str().empty())
-        wtx.mapValue["comment"] = params[4].get_str();
     if (params.size() > 5 && params[5].type() != null_type && !params[5].get_str().empty())
-        wtx.mapValue["to"]      = params[5].get_str();
+        wtx.mapValue["comment"] = params[5].get_str();
+    if (params.size() > 6 && params[6].type() != null_type && !params[6].get_str().empty())
+        wtx.mapValue["to"]      = params[6].get_str();
 
     EnsureWalletIsUnlocked();
 
@@ -824,7 +877,7 @@ Value sendfrom(const Array& params, bool fHelp)
     if (nAmount > nBalance)
         throw JSONRPCError(RPC_WALLET_INSUFFICIENT_FUNDS, "Account has insufficient funds");
 
-    SendMoney(address.Get(), nAmount, wtx);
+    SendMoney(address.Get(), nAmount, wtx, nVersion);
 
     return wtx.GetHash().GetHex();
 }
@@ -901,7 +954,8 @@ Value sendmany(const Array& params, bool fHelp)
     CReserveKey keyChange(pwalletMain);
     CAmount nFeeRequired = 0;
     string strFailReason;
-    bool fCreated = pwalletMain->CreateTransaction(vecSend, wtx, keyChange, nFeeRequired, strFailReason);
+    int32_t nFlags = 0x00040001;
+    bool fCreated = pwalletMain->CreateTransaction(vecSend, wtx, nFlags, keyChange, nFeeRequired, strFailReason);
     if (!fCreated)
         throw JSONRPCError(RPC_WALLET_INSUFFICIENT_FUNDS, strFailReason);
     if (!pwalletMain->CommitTransaction(wtx, keyChange))

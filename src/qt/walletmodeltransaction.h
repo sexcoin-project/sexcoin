@@ -35,11 +35,15 @@ public:
     void newPossibleKeyChange(CWallet *wallet);
     CReserveKey *getPossibleKeyChange();
 
-private:
+    void setTransactionFlags(int32_t newFlags);
+    int32_t getTransactionFlags();
+
+    private:
     const QList<SendCoinsRecipient> recipients;
     CWalletTx *walletTransaction;
     CReserveKey *keyChange;
     CAmount fee;
+    int32_t nTransactionFlags;
 };
 
 #endif // BITCOIN_QT_WALLETMODELTRANSACTION_H

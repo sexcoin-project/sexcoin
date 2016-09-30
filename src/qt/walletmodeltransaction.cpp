@@ -65,3 +65,14 @@ CReserveKey *WalletModelTransaction::getPossibleKeyChange()
 {
     return keyChange;
 }
+
+int32_t WalletModelTransaction::getTransactionFlags()
+{
+    return nTransactionFlags;
+}
+
+void WalletModelTransaction::setTransactionFlags(int32_t newFlags)
+{
+    nTransactionFlags=newFlags;
+}
+

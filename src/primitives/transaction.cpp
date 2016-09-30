@@ -59,8 +59,8 @@ std::string CTxOut::ToString() const
     return strprintf("CTxOut(nValue=%d.%08d, scriptPubKey=%s)", nValue / COIN, nValue % COIN, scriptPubKey.ToString().substr(0,30));
 }
 
-CMutableTransaction::CMutableTransaction() : nVersion(CTransaction::CURRENT_VERSION), nLockTime(0) {}
-CMutableTransaction::CMutableTransaction(const CTransaction& tx) : nVersion(tx.nVersion), vin(tx.vin), vout(tx.vout), nLockTime(tx.nLockTime) {}
+CMutableTransaction::CMutableTransaction() :  nVersion(CTransaction::CURRENT_VERSION), nLockTime(0) {}
+CMutableTransaction::CMutableTransaction(const CTransaction& tx) :  nVersion(tx.nVersion), vin(tx.vin), vout(tx.vout), nLockTime(tx.nLockTime) {}
 
 uint256 CMutableTransaction::GetHash() const
 {
@@ -72,13 +72,14 @@ void CTransaction::UpdateHash() const
     *const_cast<uint256*>(&hash) = SerializeHash(*this);
 }
 
-CTransaction::CTransaction() : hash(0), nVersion(CTransaction::CURRENT_VERSION), vin(), vout(), nLockTime(0) { }
+CTransaction::CTransaction() : hash(0), nVersion(CTransaction::CURRENT_VERSION), vin(), vout(), nLockTime(0) {}
 
-CTransaction::CTransaction(const CMutableTransaction &tx) : nVersion(tx.nVersion), vin(tx.vin), vout(tx.vout), nLockTime(tx.nLockTime) {
+CTransaction::CTransaction(const CMutableTransaction &tx) :  nVersion(tx.nVersion), vin(tx.vin), vout(tx.vout), nLockTime(tx.nLockTime) {
     UpdateHash();
 }
 
 CTransaction& CTransaction::operator=(const CTransaction &tx) {
+
     *const_cast<int*>(&nVersion) = tx.nVersion;
     *const_cast<std::vector<CTxIn>*>(&vin) = tx.vin;
     *const_cast<std::vector<CTxOut>*>(&vout) = tx.vout;
@@ -128,9 +129,11 @@ unsigned int CTransaction::CalculateModifiedSize(unsigned int nTxSize) const
 std::string CTransaction::ToString() const
 {
     std::string str;
-    str += strprintf("CTransaction(hash=%s, ver=%d, vin.size=%u, vout.size=%u, nLockTime=%u)\n",
+    int32_t tmpVersion = nVersion;
+    str += strprintf("CTransaction(hash=%s, ver=%d, flgs=%d, vin.size=%u, vout.size=%u, nLockTime=%u)\n",
         GetHash().ToString().substr(0,10),
-        nVersion,
+        tmpVersion & 0x00FF,
+        tmpVersion >> 16,
         vin.size(),
         vout.size(),
         nLockTime);
@@ -140,3 +143,45 @@ std::string CTransaction::ToString() const
         str += "    " + vout[i].ToString() + "\n";
     return str;
 }
+
+std::string CTransaction::GetFlagName(transflag_t flag) const
+{
+
+    switch (flag)
+    {
+    case TX_F_NONE                 : return "TX_F_NONE";
+    case TX_F_IS_OVER_CONSENT      : return "TX_F_IS_OVER_CONSENT";
+    case TX_F_IS_OVER_18           : return "TX_F_IS_OVER_18";
+    case TX_F_IS_OVER_21           : return "TX_F_IS_OVER_21";
+    case TX_F_4                    : return "TX_F_4";
+    case TX_F_5                    : return "TX_F_5";
+    case TX_F_6                    : return "TX_F_6";
+    case TX_F_7                    : return "TX_F_7";
+    case TX_F_8                    : return "TX_F_8";
+    case TX_F_9                    : return "TX_F_9";
+    case TX_F_10                   : return "TX_F_10";
+    case TX_F_11                   : return "TX_F_11";
+    case TX_F_12                   : return "TX_F_12";
+    case TX_F_13                   : return "TX_F_13";
+    case TX_F_14                   : return "TX_F_14";
+    case TX_F_15                   : return "TX_F_15";
+    case TX_F_INVALID_CODE         : return "TX_F_INVALID_CODE";
+   
+    default:
+        return "TX_F_UNKNOWN";
+    }
+}
+
+//TODO: stub for now, need to do the calculations.
+int32_t CTransaction::CalculateVersionWithFlag(transflag_t flag, int32_t nVersion)
+{
+   return nVersion; 
+}
+
+
+/* Convenient Hex dump of the transaction, similar to the rpc getrawtransaction call
+std::string CTransaction::ToHexString() const
+{
+    
+}
+*/

@@ -264,7 +264,9 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
 
         CWalletTx *newTx = transaction.getTransaction();
         CReserveKey *keyChange = transaction.getPossibleKeyChange();
-        bool fCreated = wallet->CreateTransaction(vecSend, *newTx, *keyChange, nFeeRequired, strFailReason, coinControl);
+        //TODO - grab the checkbox settings from the GUI and set the appropriate nFlags
+        int32_t nVersion = (transaction.getTransactionFlags() << 16 ) + CTransaction::CURRENT_VERSION;
+        bool fCreated = wallet->CreateTransaction(vecSend, *newTx, nVersion, *keyChange, nFeeRequired, strFailReason, coinControl);
         transaction.setTransactionFee(nFeeRequired);
 
         if(!fCreated)
@@ -293,6 +295,9 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(WalletModelTransaction &tran
     {
         LOCK2(cs_main, wallet->cs_wallet);
         CWalletTx *newTx = transaction.getTransaction();
+
+        // set version number according to age verification flags and current transactioin version
+        //newTx->nVersion = (transaction.getTransactionFlags() << 16) + CTransaction::CURRENT_VERSION;
 
         // Store PaymentRequests in wtx.vOrderForm in wallet.
         foreach(const SendCoinsRecipient &rcp, transaction.getRecipients())

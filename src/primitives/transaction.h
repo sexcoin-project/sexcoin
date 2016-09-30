@@ -6,9 +6,11 @@
 #ifndef BITCOIN_PRIMITIVES_TRANSACTION_H
 #define BITCOIN_PRIMITIVES_TRANSACTION_H
 
+#include "primitives/transactionflags.h"
 #include "amount.h"
 #include "script/script.h"
 #include "serialize.h"
+
 #include "uint256.h"
 
 /** An outpoint - a combination of a transaction hash and an index n into its vout */
@@ -168,7 +170,7 @@ private:
     void UpdateHash() const;
 
 public:
-    static const int32_t CURRENT_VERSION=1;
+    static const int32_t CURRENT_VERSION=0x00000001;
 
     // The local variables are made const to prevent unintended modification
     // without updating the cached hash value. However, CTransaction is not
@@ -179,6 +181,7 @@ public:
     const std::vector<CTxIn> vin;
     const std::vector<CTxOut> vout;
     const uint32_t nLockTime;
+    
 
     /** Construct a CTransaction that qualifies as IsNull() */
     CTransaction();
@@ -191,7 +194,7 @@ public:
     ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion) {
+    inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion ) {
         READWRITE(*const_cast<int32_t*>(&this->nVersion));
         nVersion = this->nVersion;
         READWRITE(*const_cast<std::vector<CTxIn>*>(&vin));
@@ -235,7 +238,18 @@ public:
         return a.hash != b.hash;
     }
 
+    //TODO: I think I'm shifting the wrong way here... ?? packed or unpacked?
+    int32_t CalculateVersionWithFlag(transflag_t flag, int32_t nVersion = CTransaction::CURRENT_VERSION);
+    int16_t GetRawFlags() const { return (nVersion >> 16); }
+    bool IsConsentAge() const { return (nVersion >> 16 & TX_F_IS_OVER_CONSENT); }
+    bool IsOver18() const { return (nVersion >> 16 & TX_F_IS_OVER_18); }
+    bool IsOver21() const { return (nVersion >> 16 & TX_F_IS_OVER_21); } 
+    std::string GetFlagName(transflag_t flag) const;
+    bool IsFlagSet(transflag_t flag){ return nVersion & flag; }
+    
+    static bool IsFlagSet(transflag_t nFlag, int32_t nVersion){ return nVersion & nFlag; }
     std::string ToString() const;
+    
 };
 
 /** A mutable version of CTransaction. */
@@ -245,6 +259,7 @@ struct CMutableTransaction
     std::vector<CTxIn> vin;
     std::vector<CTxOut> vout;
     uint32_t nLockTime;
+    
 
     CMutableTransaction();
     CMutableTransaction(const CTransaction& tx);
@@ -264,6 +279,19 @@ struct CMutableTransaction
      * fly, as opposed to GetHash() in CTransaction, which uses a cached result.
      */
     uint256 GetHash() const;
+    
+    int16_t GetRawFlags() const;
+    std::string GetFlagName(transflag_t flag) const;
+    bool IsConsentAge() const;
+    bool IsOver18() const;
+    bool IsOver21() const;
+    
+    void SetConsentFlag();
+    void SetOver18Flag();
+    void SetOver21Flag();
+
 };
+
+
 
 #endif // BITCOIN_PRIMITIVES_TRANSACTION_H
