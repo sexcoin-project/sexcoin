@@ -57,8 +57,8 @@ Developers should expect to rework and resubmit patches if the code doesn't
 match the project's coding conventions (see [doc/coding.md](doc/coding.md)) or are
 controversial.
 
-The `master-0.10` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/sexcoin/sexcoin/tags) are created
+The `master` branch is the official branch. This branch `0.10.4.0` is not guaranteed to be
+stable as it is actively being developed against. [Tags](https://github.com/sexcoin/sexcoin/tags) are created
 regularly to indicate new official, stable release versions of Sexcoin.
 
 Testing
