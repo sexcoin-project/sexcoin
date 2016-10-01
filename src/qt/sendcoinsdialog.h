@@ -96,6 +96,7 @@ private slots:
     void updateMinFeeLabel();
     void updateSmartFeeLabel();
     void updateGlobalFeeVariables();
+    void setTransactionFlags();
 
 signals:
     // Fired when a message should be reported to the user

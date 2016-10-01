@@ -232,6 +232,8 @@ void SendCoinsDialog::on_sendButton_clicked()
     {
         return;
     }
+    // Make sure nTransactionFlags are valid
+    setTransactionFlags();
 
     // Format confirmation message
     QStringList formatted;
@@ -552,25 +554,38 @@ void SendCoinsDialog::processSendCoinsReturn(const WalletModel::SendCoinsReturn 
     emit message(tr("Send Coins"), msgParams.first, msgParams.second);
 }
 
+void SendCoinsDialog::setTransactionFlags(){
+    if(ui->radioButton_overNone->isChecked())
+        nTransactionFlags = TX_F_NONE;
+    else if(ui->radioButton_overConsent->isChecked())
+        nTransactionFlags = TX_F_IS_OVER_CONSENT;
+    else if(ui->radioButton_over18->isChecked())
+        nTransactionFlags = TX_F_IS_OVER_18;
+    else if(ui->radioButton_over21->isChecked())
+        nTransactionFlags = TX_F_IS_OVER_21;
+    else
+        nTransactionFlags = TX_F_NONE;
+}
+
+
 void SendCoinsDialog::on_radioButton_overNone(bool on){
     if(on)
-        nTransactionFlags = TX_F_NONE;
+        setTransactionFlags();
 }
 
 void SendCoinsDialog::on_radioButton_overConsent(bool on){
     if(on)
-        nTransactionFlags = TX_F_IS_OVER_CONSENT;
+        setTransactionFlags();
 }
 
 void SendCoinsDialog::on_radioButton_over18(bool on){
     if(on)
-        nTransactionFlags = TX_F_IS_OVER_18;
+        setTransactionFlags();
 }
 
 void SendCoinsDialog::on_radioButton_over21(bool on){
-    if(on){
-        nTransactionFlags = TX_F_IS_OVER_21;
-    }
+    if(on)
+        setTransactionFlags();
 }
 
 void SendCoinsDialog::minimizeFeeSection(bool fMinimize)
