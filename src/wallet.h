@@ -626,7 +626,7 @@ public:
         fTimeReceivedIsTxTime = false;
         nTimeReceived = 0;
         nTimeSmart = 0;
-        nTransactionFlags = 0;
+        nTransactionFlags = 0x00080001;
         fFromMe = false;
         strFromAccount.clear();
         fDebitCached = false;
@@ -686,10 +686,11 @@ public:
 
             nTimeSmart = mapValue.count("timesmart") ? (unsigned int)atoi64(mapValue["timesmart"]) : 0;
             nTransactionFlags=((int)atoi(mapValue["version"]) >> 16);
+            printf("wallet.h:ForRead():: version = %i, nTransactionFlags=%i", (int)atoi(mapValue["version"]),nTransactionFlags);
         }
 
         mapValue.erase("fromaccount");
-        mapValue.erase("version");
+        //mapValue.erase("version");
         mapValue.erase("spent");
         mapValue.erase("n");
         mapValue.erase("timesmart");
@@ -912,11 +913,13 @@ public:
         }
         return true;
     }
-
+    
+    uint32_t GetTxFlags(){ return nTransactionFlags; }
     bool WriteToDisk();
 
     int64_t GetTxTime() const;
     int GetRequestCount() const;
+    uint32_t GetTxFlags() const;
 
     void RelayWalletTransaction();
 
