@@ -37,7 +37,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
     CAmount nNet = nCredit - nDebit;
     uint256 hash = wtx.GetHash();
     std::map<std::string, std::string> mapValue = wtx.mapValue;
-    uint32_t nFlags = wtx.nTransactionFlags;
+    uint32_t nFlags = wtx.nVersion >> 16; // Probably don't need this.
 
     if (nNet > 0 || wtx.IsCoinBase())
     {

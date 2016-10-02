@@ -573,7 +573,6 @@ public:
     unsigned int fTimeReceivedIsTxTime;
     unsigned int nTimeReceived; //! time received by this node
     unsigned int nTimeSmart;
-    unsigned int nTransactionFlags;
     char fFromMe;
     std::string strFromAccount;
     int64_t nOrderPos; //! position in ordered transaction list
@@ -626,7 +625,6 @@ public:
         fTimeReceivedIsTxTime = false;
         nTimeReceived = 0;
         nTimeSmart = 0;
-        nTransactionFlags = 0x00080001;
         fFromMe = false;
         strFromAccount.clear();
         fDebitCached = false;
@@ -685,12 +683,10 @@ public:
             ReadOrderPos(nOrderPos, mapValue);
 
             nTimeSmart = mapValue.count("timesmart") ? (unsigned int)atoi64(mapValue["timesmart"]) : 0;
-            nTransactionFlags=((int)atoi(mapValue["version"]) >> 16);
-            printf("wallet.h:ForRead():: version = %i, nTransactionFlags=%i", (int)atoi(mapValue["version"]),nTransactionFlags);
         }
 
         mapValue.erase("fromaccount");
-        //mapValue.erase("version");
+        mapValue.erase("version");
         mapValue.erase("spent");
         mapValue.erase("n");
         mapValue.erase("timesmart");
@@ -914,7 +910,7 @@ public:
         return true;
     }
     
-    uint32_t GetTxFlags(){ return nTransactionFlags; }
+
     bool WriteToDisk();
 
     int64_t GetTxTime() const;

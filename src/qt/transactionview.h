@@ -54,6 +54,7 @@ public:
         DATE_COLUMN_WIDTH = 120,
         TYPE_COLUMN_WIDTH = 120,
         AMOUNT_MINIMUM_COLUMN_WIDTH = 120,
+        FLAG_COLUMN_WIDTH = 40,
         MINIMUM_COLUMN_WIDTH = 23
     };
 
