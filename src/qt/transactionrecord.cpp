@@ -37,7 +37,8 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
     CAmount nNet = nCredit - nDebit;
     uint256 hash = wtx.GetHash();
     std::map<std::string, std::string> mapValue = wtx.mapValue;
-    uint32_t nFlags = wtx.nVersion >> 16; // Probably don't need this.
+    uint32_t version = wtx.nVersion;
+
 
     if (nNet > 0 || wtx.IsCoinBase())
     {
@@ -53,6 +54,8 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                 CTxDestination address;
                 sub.idx = parts.size(); // sequence number
                 sub.credit = txout.nValue;
+                sub.version = version;
+              
                 sub.involvesWatchAddress = mine == ISMINE_WATCH_ONLY;
                 if (ExtractDestination(txout.scriptPubKey, address) && IsMine(*wallet, address))
                 {
@@ -71,7 +74,6 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                     // Generated
                     sub.type = TransactionRecord::Generated;
                 }
-                sub.flags = nFlags;
                 parts.append(sub);
             }
         }
@@ -117,6 +119,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                 TransactionRecord sub(hash, nTime);
                 sub.idx = parts.size();
                 sub.involvesWatchAddress = involvesWatchAddress;
+                sub.version = version;
 
                 if(wallet->IsMine(txout))
                 {
@@ -147,7 +150,6 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                     nTxFee = 0;
                 }
                 sub.debit = -nValue;
-                sub.flags = nFlags;
                 parts.append(sub);
             }
         }
@@ -160,7 +162,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
             parts.last().involvesWatchAddress = involvesWatchAddress;
         }
     }
-
+    
     return parts;
 }
 

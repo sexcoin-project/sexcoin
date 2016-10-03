@@ -442,10 +442,10 @@ QString TransactionTableModel::formatTxAmount(const TransactionRecord *wtx, bool
 
 QString TransactionTableModel::formatTxFlags(const TransactionRecord *wtx ) const
 {
-    switch(wtx->flags)
+    switch(wtx->version >> 16)
     {
     case TX_F_NONE:
-        return QString("--");
+        return QString("None");
     case TX_F_IS_OVER_CONSENT:
         return QString("consent");
     case TX_F_IS_OVER_18:
@@ -453,7 +453,7 @@ QString TransactionTableModel::formatTxFlags(const TransactionRecord *wtx ) cons
     case TX_F_IS_OVER_21:
         return QString("over21");
     }
-    return QString("--");
+    return QString("*");
 
 }
 
@@ -540,7 +540,7 @@ QVariant TransactionTableModel::data(const QModelIndex &index, int role) const
         case Type:
             return formatTxType(rec);
         case ToAddress:
-            return formatTxToAddress(rec, false);
+            return formatTxToAddress(rec, false) + " : [" + formatTxFlags(rec) + "]";
         case Amount:
             return formatTxAmount(rec, true, BitcoinUnits::separatorAlways);
         }
