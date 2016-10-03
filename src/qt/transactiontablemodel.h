@@ -31,8 +31,9 @@ public:
         Watchonly = 1,
         Date = 2,
         Type = 3,
-        ToAddress = 4,
-        Amount = 5
+        TxFlags = 4,
+        ToAddress = 5,
+        Amount = 6
     };
 
     /** Roles to get specific information from a transaction row.
@@ -64,7 +65,10 @@ public:
         /** Formatted amount, without brackets when unconfirmed */
         FormattedAmountRole,
         /** Transaction status (TransactionRecord::Status) */
-        StatusRole
+        StatusRole,
+        /** Transaction Flags */
+        TxFlagsRole
+        
     };
 
     int rowCount(const QModelIndex &parent) const;
@@ -96,6 +100,7 @@ private:
     QVariant txStatusDecoration(const TransactionRecord *wtx) const;
     QVariant txWatchonlyDecoration(const TransactionRecord *wtx) const;
     QVariant txAddressDecoration(const TransactionRecord *wtx) const;
+    QVariant txFlagsDecoration(const TransactionRecord *wtx) const;
 
 public slots:
     /* New transaction, or transaction changed status */
