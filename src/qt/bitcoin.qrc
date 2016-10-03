@@ -46,9 +46,9 @@
         <file alias="qrcode">res/icons/qrcode.png</file>
         <file alias="debugwindow">res/icons/debugwindow.png</file>
         <file alias="txflag_none">res/icons/txflag_none.png</file>
-        <file alias="txflag_consent">res/icons/txflag_consent.png</file>
-        <file alias="txflag_over18">res/icons/txflag_over18.png</file>
-        <file alias="txflag_over21">res/icons/txflag_over21.png</file>
+        <file alias="txflag_consent">res/icons/txflag_g_consent.png</file>
+        <file alias="txflag_over18">res/icons/txflag_g_over18.png</file>
+        <file alias="txflag_over21">res/icons/txflag_g_over21.png</file> 
     </qresource>
     <qresource prefix="/images">
         <file alias="about">res/images/about4.png</file>
