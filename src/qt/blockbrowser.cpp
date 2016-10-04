@@ -299,7 +299,7 @@ double BlockBrowser::getTxFees(std::string txid)
     if (!GetTransaction(hash, tx, hashBlock, true))
         return 1;
     
-    if(tx.IsCoinBase()
+    if(tx.IsCoinBase())
         return 0;
     
     double valueOut = convertCoins(tx.GetValueOut());
