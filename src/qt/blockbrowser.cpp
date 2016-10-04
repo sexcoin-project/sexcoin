@@ -178,21 +178,9 @@ double BlockBrowser::getTxTotalValue(std::string txid)
     uint256 hashBlock = 0;
     if (!GetTransaction(hash, tx, hashBlock,true))
         return 11;
+    
+    return convertCoins(tx.GetValueOut());
 
-    CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION);
-    ssTx << tx;
-
-    double value = 0;
-    double buffer = 0;
-    for (unsigned int i = 0; i < tx.vout.size(); i++)
-    {
-        const CTxOut& txout = tx.vout[i];
-
-        buffer = value + convertCoins(txout.nValue);
-        value = buffer;
-    }
-
-    return value;
 }
 
 double BlockBrowser::convertCoins(int64_t amount)
@@ -239,13 +227,18 @@ std::string BlockBrowser::getInputs(std::string txid)
     hash.SetHex(txid);
 
     CTransaction tx;
+    
     uint256 hashBlock = 0;
+    
+    //does the transaction exist
     if (!GetTransaction(hash, tx, hashBlock, true))
         return "fail";
-
-    CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION);
-    ssTx << tx;
-
+    
+    // is it a coinbase transaction 
+    if(tx.IsCoinBase())
+        return( "Coinbase / Mined");
+    
+    // Ok, lets get a list of inputs and their amounts
     std::string str = "";
     for (unsigned int i = 0; i < tx.vin.size(); i++)
     {
@@ -266,7 +259,7 @@ std::string BlockBrowser::getInputs(std::string txid)
         CBitcoinAddress addressSource(source);
         std::string lol6 = addressSource.ToString();
         const CScript target = wtxPrev.vout[vin.prevout.n].scriptPubKey;
-        double buffer = convertCoins(getInputValue(wtxPrev, target));
+        double buffer = convertCoins(getInputValue(wtxPrev, target)); 
         std::string amount = boost::to_string(buffer);
         str.append(lol6);
         str.append(": ");
@@ -278,19 +271,21 @@ std::string BlockBrowser::getInputs(std::string txid)
     return str;
 }
 
-int64_t BlockBrowser::getInputValue(CTransaction tx, CScript target)
+// Send this the previous transaction and read the outs, to get the value in 
+// for the entry you are looking at
+int64_t BlockBrowser::getInputValue(CTransaction prevTx, CScript target)
 {
     
-    double valueOut = 0;
-    for (unsigned int i = 0; i < tx.vin.size(); i++)
+    double valueIn = 0;
+    for (unsigned int i = 0; i < prevTx.vout.size(); i++)
     {
-        const CTxOut& txout = tx.vout[i];
+        const CTxOut& txout = prevTx.vout[i];
         if(txout.scriptPubKey == target)
         {
-            valueOut+= txout.nValue;
+            valueIn += txout.nValue;
         }
     }
-    return valueOut;
+    return valueIn;
 }
 
 double BlockBrowser::getTxFees(std::string txid)
@@ -303,20 +298,9 @@ double BlockBrowser::getTxFees(std::string txid)
     uint256 hashBlock = 0;
     if (!GetTransaction(hash, tx, hashBlock, true))
         return 1;
-
-    CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION);
-    ssTx << tx;
-
-    double valueOut = 0;
-    double buffer = 0;
-    for (unsigned int i = 0; i < tx.vout.size(); i++)
-    {
-        const CTxOut& txout = tx.vout[i];
-
-        buffer = valueOut + convertCoins(txout.nValue);
-        valueOut = buffer;
-    }
-
+    
+    double valueOut = convertCoins(tx.GetValueOut());
+    
     double valueIn = 0;
     double buffer0 = 0;
     for (unsigned int i = 0; i < tx.vin.size(); i++)
@@ -326,15 +310,19 @@ double BlockBrowser::getTxFees(std::string txid)
         hash0.SetHex(vin.prevout.hash.ToString());
         CTransaction wtxPrev;
         uint256 hashBlock0 = 0;
-        if (!GetTransaction(hash0, wtxPrev, hashBlock0, true))
-             return 0;
-        CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION);
-        ssTx << wtxPrev;
-        const CScript target = wtxPrev.vout[vin.prevout.n].scriptPubKey;
-        buffer0 = valueIn + convertCoins(getInputValue(wtxPrev, target));
+        
+        
+        if (!GetTransaction(hash0, wtxPrev, hashBlock0, true)){
+            buffer0 = valueIn;
+        }else{
+            CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION);
+            ssTx << wtxPrev;
+            const CScript target = wtxPrev.vout[vin.prevout.n].scriptPubKey;
+            buffer0 = valueIn + convertCoins(getInputValue(wtxPrev, target));
+        }
         valueIn = buffer0;
     }
-
+    
     return valueIn - valueOut;
 }
 
