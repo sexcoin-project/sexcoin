@@ -74,6 +74,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle *networkStyle, QWidget *parent) :
     appMenuBar(0),
     overviewAction(0),
     historyAction(0),
+    blockExplorerAction(0),
     quitAction(0),
     sendCoinsAction(0),
     usedSendingAddressesAction(0),
@@ -262,6 +263,13 @@ void BitcoinGUI::createActions(const NetworkStyle *networkStyle)
     historyAction->setCheckable(true);
     historyAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_4));
     tabGroup->addAction(historyAction);
+        
+    blockExplorerAction = new QAction(QIcon(":/icons/block"), tr("&Blocks"), this);
+    blockExplorerAction->setStatusTip(tr("Browse block-chain"));
+    blockExplorerAction->setToolTip(historyAction->statusTip());
+    blockExplorerAction->setCheckable(true);
+    blockExplorerAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
+    tabGroup->addAction(blockExplorerAction);
 
 #ifdef ENABLE_WALLET
     // These showNormalIfMinimized are needed because Send Coins and Receive Coins
@@ -274,6 +282,8 @@ void BitcoinGUI::createActions(const NetworkStyle *networkStyle)
     connect(receiveCoinsAction, SIGNAL(triggered()), this, SLOT(gotoReceiveCoinsPage()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
+    connect(blockExplorerAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+    connect(blockExplorerAction, SIGNAL(triggered()), this, SLOT(gotoBlockExplorerPage()));
 #endif // ENABLE_WALLET
 
     quitAction = new QAction(QIcon(":/icons/quit"), tr("E&xit"), this);
@@ -403,6 +413,7 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(sendCoinsAction);
         toolbar->addAction(receiveCoinsAction);
         toolbar->addAction(historyAction);
+        toolbar->addAction(blockExplorerAction);
         overviewAction->setChecked(true);
     }
 }
@@ -479,6 +490,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     sendCoinsAction->setEnabled(enabled);
     receiveCoinsAction->setEnabled(enabled);
     historyAction->setEnabled(enabled);
+    blockExplorerAction->setEnabled(enabled);
     encryptWalletAction->setEnabled(enabled);
     backupWalletAction->setEnabled(enabled);
     changePassphraseAction->setEnabled(enabled);
@@ -603,6 +615,12 @@ void BitcoinGUI::gotoHistoryPage()
 {
     historyAction->setChecked(true);
     if (walletFrame) walletFrame->gotoHistoryPage();
+}
+
+void BitcoinGUI::gotoBlockExplorerPage()
+{
+    blockExplorerAction->setChecked(true);
+    if(walletFrame) walletFrame->gotoBlockExplorerPage();
 }
 
 void BitcoinGUI::gotoReceiveCoinsPage()

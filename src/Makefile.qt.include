@@ -78,6 +78,7 @@ QT_TS = \
 QT_FORMS_UI = \
   qt/forms/addressbookpage.ui \
   qt/forms/askpassphrasedialog.ui \
+  qt/forms/blockbrowser.ui \
   qt/forms/coincontroldialog.ui \
   qt/forms/editaddressdialog.ui \
   qt/forms/helpmessagedialog.ui \
@@ -101,6 +102,7 @@ QT_MOC_CPP = \
   qt/moc_bitcoinamountfield.cpp \
   qt/moc_bitcoingui.cpp \
   qt/moc_bitcoinunits.cpp \
+  qt/moc_blockbrowser.cpp \
   qt/moc_clientmodel.cpp \
   qt/moc_coincontroldialog.cpp \
   qt/moc_coincontroltreewidget.cpp \
@@ -166,6 +168,7 @@ BITCOIN_QT_H = \
   qt/bitcoinamountfield.h \
   qt/bitcoingui.h \
   qt/bitcoinunits.h \
+  qt/blockbrowser.h \
   qt/clientmodel.h \
   qt/coincontroldialog.h \
   qt/coincontroltreewidget.h \
@@ -216,6 +219,7 @@ RES_ICONS = \
   qt/res/icons/bitcoin.png \
   qt/res/icons/bitcoin_testnet.ico \
   qt/res/icons/bitcoin_testnet.png \
+  qt/res/icons/block.png \
   qt/res/icons/clock1.png \
   qt/res/icons/clock2.png \
   qt/res/icons/clock3.png \
@@ -253,6 +257,10 @@ RES_ICONS = \
   qt/res/icons/tx_inout.png \
   qt/res/icons/tx_input.png \
   qt/res/icons/tx_output.png \
+  qt/res/icons/txflag_none.png \
+  qt/res/icons/txflag_g_consent.png \
+  qt/res/icons/txflag_g_over18.png \
+  qt/res/icons/txflag_g_over21.png \
   qt/res/icons/tx_mined.png \
   qt/res/icons/unit_btc.png \
   qt/res/icons/unit_mbtc.png \
@@ -285,6 +293,7 @@ BITCOIN_QT_CPP += \
   qt/addressbookpage.cpp \
   qt/addresstablemodel.cpp \
   qt/askpassphrasedialog.cpp \
+  qt/blockbrowser.cpp \
   qt/coincontroldialog.cpp \
   qt/coincontroltreewidget.cpp \
   qt/editaddressdialog.cpp \

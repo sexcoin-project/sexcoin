@@ -48,7 +48,8 @@
         <file alias="txflag_none">res/icons/txflag_none.png</file>
         <file alias="txflag_consent">res/icons/txflag_g_consent.png</file>
         <file alias="txflag_over18">res/icons/txflag_g_over18.png</file>
-        <file alias="txflag_over21">res/icons/txflag_g_over21.png</file> 
+        <file alias="txflag_over21">res/icons/txflag_g_over21.png</file>
+        <file alias="block">res/icons/block.png</file>
     </qresource>
     <qresource prefix="/images">
         <file alias="about">res/images/about4.png</file>
