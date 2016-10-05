@@ -371,9 +371,6 @@
          <property name="inputMask">
           <string comment="Transaction id" extracomment="Transaction id"/>
          </property>
-         <property name="placeholderText">
-          <string comment="Transaction ID" extracomment="Transaction ID"/>
-         </property>
         </widget>
        </item>
        <item row="11" column="0">

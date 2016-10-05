@@ -66,15 +66,14 @@ const CBlockIndex* BlockBrowser::getBlockIndex(int height)
 std::string BlockBrowser::getBlockHash(int Height)
 {
     CBlockIndex* pblockindex = chainActive[Height];
-    if(Height > pblockindex->nHeight) { return "73dc70a1698579360b62e724ecfeacfd938f45283162f3cf18f1b9eb3fc9fcd7"; }
-    if(Height < 0) { return "73dc70a1698579360b62e724ecfeacfd938f45283162f3cf18f1b9eb3fc9fcd7"; }
+    if(Height > pblockindex->nHeight || Height < 0 ) 
+        return "73dc70a1698579360b62e724ecfeacfd938f45283162f3cf18f1b9eb3fc9fcd7"; 
+    
     int desiredheight;
     desiredheight = Height;
     if (desiredheight < 0 || desiredheight > chainActive.Height())
         return 0;
 
-    CBlock block;
-    //pblockindex = mapBlockIndex[hashBestChain];
     while (pblockindex->nHeight > desiredheight)
         pblockindex = pblockindex->pprev;
     return pblockindex->phashBlock->GetHex();
@@ -196,7 +195,7 @@ std::string BlockBrowser::getOutputs(std::string txid)
     CTransaction tx;
     uint256 hashBlock = 0;
     if (!GetTransaction(hash, tx, hashBlock,true))
-        return "fail";
+        return "fail ( Null Transaction?)";
 
     CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION);
     ssTx << tx;
@@ -251,8 +250,8 @@ std::string BlockBrowser::getInputs(std::string txid)
         if (!GetTransaction(hash, wtxPrev, hashBlock, true))
              return "fail (you probably need to enable transaction indexing)";
 
-        CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION);
-        ssTx << wtxPrev;
+        //CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION);
+        //ssTx << wtxPrev;
 
         CTxDestination source;
         ExtractDestination(wtxPrev.vout[vin.prevout.n].scriptPubKey, source);
@@ -271,7 +270,7 @@ std::string BlockBrowser::getInputs(std::string txid)
     return str;
 }
 
-// Send this the previous transaction and read the outs, to get the value in 
+// Send this the previous transaction and read the outputs, to get the value in 
 // for the entry you are looking at
 int64_t BlockBrowser::getInputValue(CTransaction prevTx, CScript target)
 {
@@ -318,8 +317,8 @@ double BlockBrowser::getTxFees(std::string txid)
         if (!GetTransaction(hash0, wtxPrev, hashBlock0, true)){
             buffer0 = valueIn;
         }else{
-            CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION);
-            ssTx << wtxPrev;
+            //CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION);
+            //ssTx << wtxPrev;
             const CScript target = wtxPrev.vout[vin.prevout.n].scriptPubKey;
             buffer0 = valueIn + convertCoins(getInputValue(wtxPrev, target));
         }
