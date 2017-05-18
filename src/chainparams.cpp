@@ -56,6 +56,7 @@ static void convertSeed6(std::vector<CAddress> &vSeedsOut, const SeedSpec6 *data
  */
 static Checkpoints::MapCheckpoints mapCheckpoints =
         boost::assign::map_list_of
+        //(,uint256(""))
         ( 0, uint256("2946a91685f253cd2ca29cde8cc35d7773cab280cdab4a075f613636e697aca4"))
         ( 5363, uint256("c5dd0d66a07c176a4463be3df7d9309986a3918b75935dde1c4769e4a64f9593"))
         ( 5369, uint256("dcd139890a39921876ab035eca34ee48c5239889f1dcdb8e3de3d097847f12d8"))
@@ -78,11 +79,24 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
         (599825,uint256("0ddf7a53506b99acd201c13fba89b13837eb1707e97c27416f7513052cfd14af"))
         (699886,uint256("1663390cdccecaeea59f35affa91d04f57f9b790b8f1493b7f62d4de2279449a"))
         (809963,uint256("e7c094afaeaf37d20ce7d912b8353c41ac51c5219b1984acda32bfc889898203"))
+        (1000293,uint256("40cb1f758e1c3f71b22326f0f9c610202600bd5f83aea5272f4a2d978d344163"))
+        (1200283,uint256("6a1238c4d255d45d2669b83730b015ac0534e9e61af543fa66832c918747260f"))
+        (1400278,uint256("5c75334308a26b9220b50b8d0adf06fed4921e7a2fbc2b5c551bb9a807533b9f"))
+        (1600189,uint256("4b0608c7e733c1b6d2d660469f1b3c17be857ccb19d8e102f41503ab549e2f69"))
+        (1800085,uint256("422e9d5dab710fae371a1e182243af38a49db0cfb3d075a5c67da2c4f35df9ef"))
+        (2000124,uint256("34710dfebf36429ee09c7bd351671a2716f62f60fbbf9fb231be2314e88615ce"))
+        (2100141,uint256("b449eb898b032e00ec87458991a5182cc541c3b479250ed0087860dc60980412"))
+        //(,uint256(""))
+        //(,uint256(""))
+        //(,uint256(""))
+        
+        
+        
         ;
 /**TODO: calculate these for sexcoin **/
 static const Checkpoints::CCheckpointData data = {
         &mapCheckpoints,
-        1409600123, // * UNIX timestamp of last checkpoint block
+        1487294544, // * UNIX timestamp of last checkpoint block
         30549816,   // * total number of transactions between genesis and last checkpoint
                     //   (the tx=... number in the SetBestChain debug.log lines)
         60000.0     // * estimated number of transactions per day after checkpoint
@@ -200,11 +214,11 @@ public:
         fTestnetToBeDeprecatedFieldRPC = false;
 
         // Litecoin: Mainnet v2 enforced as of block 710k
-        // Sexcoin: Mainnet is switching straight to V4, were going to use this to enforce
-        // initial guess is that we should accept V1 blocks for a short time, but then reject outright
+        // Sexcoin: Mainnet is switching straight to V4, we're going to use this to enforce.
+        // initial guess is that we should accept V1 blocks for a short time, but then reject outright.
         // unfortunately, KGW has caused block solve times to be shorter than expected
-        // arbitrary guess: 2,100,000;
-        nEnforceV2AfterHeight = 2100000;
+        // arbitrary guess: 2,300,000;
+        nEnforceV2AfterHeight = 2269089; // ~ 30 days from 2017-05-13
     }
 
     const Checkpoints::CCheckpointData& Checkpoints() const 
