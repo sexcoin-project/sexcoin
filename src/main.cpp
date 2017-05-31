@@ -4032,7 +4032,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         {
             if (pindex->GetBlockHash() == hashStop)
             {
-                LogPrint("net", "  getblocks stopping at %d %s\n", pindex->nHeight, pindex->GetBlockHash().ToString());
+                LogPrint("net", "  getblocks stopping at %d %s for peer=%d\n", pindex->nHeight, pindex->GetBlockHash().ToString(), pfrom->id);
                 break;
             }
             pfrom->PushInventory(CInv(MSG_BLOCK, pindex->GetBlockHash()));
@@ -4040,7 +4040,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             {
                 // When this block is requested, we'll send an inv that'll make them
                 // getblocks the next batch of inventory.
-                LogPrint("net", "  getblocks stopping at limit %d %s\n", pindex->nHeight, pindex->GetBlockHash().ToString());
+                LogPrint("net", "  getblocks stopping at limit %d %s for peer=%d\n", pindex->nHeight, pindex->GetBlockHash().ToString(), pfrom->id );
                 pfrom->hashContinue = pindex->GetBlockHash();
                 break;
             }
