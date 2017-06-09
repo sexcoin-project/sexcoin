@@ -218,7 +218,7 @@ public:
         // initial guess is that we should accept V1 blocks for a short time, but then reject outright.
         // unfortunately, KGW has caused block solve times to be shorter than expected
         // arbitrary guess: 2,300,000;
-        nEnforceV2AfterHeight = 2269089; // ~ 30 days from 2017-05-13
+        nEnforceV2AfterHeight = 2348569; // ~ 30 days from 2017-06-09
     }
 
     const Checkpoints::CCheckpointData& Checkpoints() const 
