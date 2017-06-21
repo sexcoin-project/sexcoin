@@ -862,8 +862,10 @@ Value sendfrom(const Array& params, bool fHelp)
             nFlags = TX_F_INVALID_CODE;
     }
     
-    if(nFlags == TX_F_INVALID_CODE)
+    if(nFlags == TX_F_INVALID_CODE){
+        nFlags = 0;
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid transaction flag (valid values are: none, consent, over18, over21 )");
+    }
     
     int32_t nVersion = nFlags + CTransaction::CURRENT_VERSION; 
     wtx.strFromAccount = strAccount;
@@ -956,7 +958,8 @@ Value sendmany(const Array& params, bool fHelp)
     CReserveKey keyChange(pwalletMain);
     CAmount nFeeRequired = 0;
     string strFailReason;
-    int32_t nFlags = 0x00040001;
+    // For the moment, setting age verification on sendmany will not be possible
+    int32_t nFlags = 0x00000001;
     bool fCreated = pwalletMain->CreateTransaction(vecSend, wtx, nFlags, keyChange, nFeeRequired, strFailReason);
     if (!fCreated)
         throw JSONRPCError(RPC_WALLET_INSUFFICIENT_FUNDS, strFailReason);
