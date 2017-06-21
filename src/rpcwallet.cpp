@@ -340,7 +340,7 @@ void SendMoney(const CTxDestination &address, CAmount nValue, CWalletTx& wtxNew,
     // Create and send the transaction
     CReserveKey reservekey(pwalletMain);
     CAmount nFeeRequired;
-    //int32_t nVersion = CTransaction::CalculateVersoinWithFlag(nFlags);
+    //Note to dev: Age verification flag should be set by calling function;
     int32_t nVersion=nFlags;
     if (!pwalletMain->CreateTransaction(scriptPubKey, nValue, wtxNew, nVersion, reservekey, nFeeRequired, strError))
     {
@@ -400,8 +400,10 @@ Value sendtoaddress(const Array& params, bool fHelp)
             nFlags =TX_F_INVALID_CODE;
     }
     
-    if(nFlags == TX_F_INVALID_CODE)
+    if(nFlags == TX_F_INVALID_CODE){
+        nFlags = 0;
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid transaction flag (valid values are: none, consent, over18, over21 )");
+    }
     
     int32_t nVersion = nFlags + CTransaction::CURRENT_VERSION; 
     
