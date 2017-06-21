@@ -4538,10 +4538,10 @@ bool ProcessMessages(CNode* pfrom)
         // get next message
         CNetMessage& msg = *it;
 
-        if (fDebug)
-            LogPrintf("ProcessMessages(message %u msgsz, %u bytes, complete:%s)\n",
-                    msg.hdr.nMessageSize, msg.vRecv.size(),
-                    msg.complete() ? "Y" : "N");
+        //if (fDebug)
+        //    LogPrintf("ProcessMessages(message %u msgsz, %u bytes, complete:%s)\n",
+        //            msg.hdr.nMessageSize, msg.vRecv.size(),
+        //            msg.complete() ? "Y" : "N");
 
         // end, if an incomplete message is found
         if (!msg.complete())
