@@ -320,6 +320,7 @@ void SendMoney(const CTxDestination &address, CAmount nValue, CWalletTx& wtxNew)
 void SendMoney(const CTxDestination &address, CAmount nValue, CWalletTx& wtxNew, int32_t nFlags)
 {
     // Check amount
+    LogPrintf("in SendMoney()");
     if (nValue <= 0)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid amount");
 
@@ -381,12 +382,13 @@ Value sendtoaddress(const Array& params, bool fHelp)
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Sexcoin address");
-
+    
     // Amount
     CAmount nAmount = AmountFromValue(params[1]);
-
+    
+    
     int32_t nFlags=0;
-    if(!params[2].get_str().empty() && params[2].type() != null_type)
+    if( params.size() > 2 && params[2].type() != null_type && !params[2].get_str().empty())
     {
         if("none" == params[2].get_str())
             nFlags = TX_F_NONE;
@@ -399,11 +401,9 @@ Value sendtoaddress(const Array& params, bool fHelp)
         else
             nFlags =TX_F_INVALID_CODE;
     }
-    
-    if(nFlags == TX_F_INVALID_CODE){
-        nFlags = 0;
+
+    if(nFlags == TX_F_INVALID_CODE)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid transaction flag (valid values are: none, consent, over18, over21 )");
-    }
     
     int32_t nVersion = nFlags + CTransaction::CURRENT_VERSION; 
     
@@ -848,7 +848,7 @@ Value sendfrom(const Array& params, bool fHelp)
 
     CWalletTx wtx;
     int32_t nFlags=0;
-    if(!params[4].get_str().empty() && params[4].type() != null_type)
+    if(params.size() > 4 && !params[4].get_str().empty() && params[4].type() != null_type)
     {
         if("none" == params[4].get_str())
             nFlags = TX_F_NONE;
