@@ -320,7 +320,6 @@ void SendMoney(const CTxDestination &address, CAmount nValue, CWalletTx& wtxNew)
 void SendMoney(const CTxDestination &address, CAmount nValue, CWalletTx& wtxNew, int32_t nFlags)
 {
     // Check amount
-    LogPrintf("in SendMoney()");
     if (nValue <= 0)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid amount");
 
