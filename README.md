@@ -6,10 +6,6 @@ http://sexcoin.info
 http://sexcoinforum.com
 
 
-AVAILABLE FOR MINERS!!!!
---------------------------------
-
-
 What is Sexcoin?
 ----------------
 
