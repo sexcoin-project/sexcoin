@@ -6,6 +6,7 @@ AC_DEFUN([BITCOIN_QT_FAIL],[
       AC_MSG_WARN([$1; bitcoin-qt frontend will not be built])
     fi
     bitcoin_enable_qt=no
+    bitcoin_enable_qt_test=no
   else
     AC_MSG_ERROR([$1])
   fi
@@ -158,7 +159,8 @@ AC_DEFUN([BITCOIN_QT_CONFIGURE],[
       qt_bin_path="`$PKG_CONFIG --variable=host_bins Qt5Core 2>/dev/null`"
     fi
   fi
-
+  dnl PIE fix should go here
+  dnl PIE fix should end here
   BITCOIN_QT_PATH_PROGS([MOC], [moc-qt${bitcoin_qt_got_major_vers} moc${bitcoin_qt_got_major_vers} moc], $qt_bin_path)
   BITCOIN_QT_PATH_PROGS([UIC], [uic-qt${bitcoin_qt_got_major_vers} uic${bitcoin_qt_got_major_vers} uic], $qt_bin_path)
   BITCOIN_QT_PATH_PROGS([RCC], [rcc-qt${bitcoin_qt_got_major_vers} rcc${bitcoin_qt_got_major_vers} rcc], $qt_bin_path)
