@@ -1,11 +1,17 @@
-#ifndef CLIENTMODEL_H
-#define CLIENTMODEL_H
+// Copyright (c) 2011-2013 The Bitcoin developers
+// Distributed under the MIT/X11 software license, see the accompanying
+// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+#ifndef BITCOIN_QT_CLIENTMODEL_H
+#define BITCOIN_QT_CLIENTMODEL_H
 
 #include <QObject>
 
-class OptionsModel;
 class AddressTableModel;
+class OptionsModel;
+class PeerTableModel;
 class TransactionTableModel;
+
 class CWallet;
 
 QT_BEGIN_NAMESPACE
@@ -13,81 +19,63 @@ class QDateTime;
 class QTimer;
 QT_END_NAMESPACE
 
+enum BlockSource {
+    BLOCK_SOURCE_NONE,
+    BLOCK_SOURCE_REINDEX,
+    BLOCK_SOURCE_DISK,
+    BLOCK_SOURCE_NETWORK
+};
+
+enum NumConnections {
+    CONNECTIONS_NONE = 0,
+    CONNECTIONS_IN   = (1U << 0),
+    CONNECTIONS_OUT  = (1U << 1),
+    CONNECTIONS_ALL  = (CONNECTIONS_IN | CONNECTIONS_OUT),
+};
+
 /** Model for Bitcoin network client. */
 class ClientModel : public QObject
 {
     Q_OBJECT
+
 public:
     explicit ClientModel(OptionsModel *optionsModel, QObject *parent = 0);
     ~ClientModel();
 
-    enum MiningType
-    {
-        SoloMining,
-        PoolMining
-    };
-
     OptionsModel *getOptionsModel();
+    PeerTableModel *getPeerTableModel();
 
-    int getNumConnections() const;
+    //! Return number of connections, default is in- and outbound (total)
+    int getNumConnections(unsigned int flags = CONNECTIONS_ALL) const;
     int getNumBlocks() const;
     int getNumBlocksAtStartup();
-    MiningType getMiningType() const;
-    int getMiningThreads() const;
-    bool getMiningStarted() const;
 
-    bool getMiningDebug() const;
-    void setMiningDebug(bool debug);
-    int getMiningScanTime() const;
-    void setMiningScanTime(int scantime);
-    QString getMiningServer() const;
-    void setMiningServer(QString server);
-    QString getMiningPort() const;
-    void setMiningPort(QString port);
-    QString getMiningUsername() const;
-    void setMiningUsername(QString username);
-    QString getMiningPassword() const;
-    void setMiningPassword(QString password);
+    quint64 getTotalBytesRecv() const;
+    quint64 getTotalBytesSent() const;
 
-    int getHashrate() const;
-    double GetDifficulty() const;
-    int getMaxHeightAccepted() const;
-    void setMaxHeightAccepted(int blockheight) const;
-
+    double getVerificationProgress() const;
     QDateTime getLastBlockDate() const;
 
-    //! Return true if client connected to testnet
-    bool isTestNet() const;
     //! Return true if core is doing initial block download
     bool inInitialBlockDownload() const;
-    //! Return conservative estimate of total number of blocks, or 0 if unknown
-    int getNumBlocksOfPeers() const;
+    //! Return true if core is importing blocks
+    enum BlockSource getBlockSource() const;
     //! Return warnings to be displayed in status bar
     QString getStatusBarWarnings() const;
 
-    void setMining(MiningType type, bool mining, int threads, int hashrate);
-
     QString formatFullVersion() const;
     QString formatBuildDate() const;
+    bool isReleaseVersion() const;
     QString clientName() const;
     QString formatClientStartupTime() const;
 
 private:
     OptionsModel *optionsModel;
+    PeerTableModel *peerTableModel;
 
     int cachedNumBlocks;
-    int cachedNumBlocksOfPeers;
-    int cachedHashrate;
-
-    MiningType miningType;
-    int miningThreads;
-    bool miningStarted;
-    bool miningDebug;
-    int miningScanTime;
-    QString miningServer;
-    QString miningPort;
-    QString miningUsername;
-    QString miningPassword;
+    bool cachedReindexing;
+    bool cachedImporting;
 
     int numBlocksAtStartup;
 
@@ -95,13 +83,18 @@ private:
 
     void subscribeToCoreSignals();
     void unsubscribeFromCoreSignals();
+
 signals:
     void numConnectionsChanged(int count);
-    void numBlocksChanged(int count, int countOfPeers);
-    void miningChanged(bool mining, int count);
+    void numBlocksChanged(int count);
+    void alertsChanged(const QString &warnings);
+    void bytesChanged(quint64 totalBytesIn, quint64 totalBytesOut);
 
-    //! Asynchronous error notification
-    void error(const QString &title, const QString &message, bool modal);
+    //! Fired when a message should be reported to the user
+    void message(const QString &title, const QString &message, unsigned int style);
+
+    // Show progress dialog e.g. for verifychain
+    void showProgress(const QString &title, int nProgress);
 
 public slots:
     void updateTimer();
@@ -109,4 +102,4 @@ public slots:
     void updateAlert(const QString &hash, int status);
 };
 
-#endif // CLIENTMODEL_H
+#endif // BITCOIN_QT_CLIENTMODEL_H
