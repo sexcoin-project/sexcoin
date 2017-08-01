@@ -808,7 +808,7 @@ Value sendfrom(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() < 3 || params.size() > 6)
         throw runtime_error(
-            "sendfrom \"fromaccount\" \"tosexcoinaddress\" amount ( minconf \"comment\" \"comment-to\" )\n"
+            "sendfrom \"fromaccount\" \"tosexcoinaddress\" amount ( minconf [ \"none|consent|over18|over21\" ] \"comment\" \"comment-to\" )\n"
             "\nSent an amount from an account to a sexcoin address.\n"
             "The amount is a real and is rounded to the nearest 0.00000001."
             + HelpRequiringPassphrase() + "\n"
