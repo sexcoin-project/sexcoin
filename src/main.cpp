@@ -4226,7 +4226,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
                 return error("non-continuous headers sequence");
             }
             if (!AcceptBlockHeader(header, state, &pindexLast)) {
-                LogPrintf("net","Invalid header: (version %d)", header.nVersion);
+                LogPrint("net","Invalid header: (version %d)", header.nVersion);
                 int nDoS;
                 if (state.IsInvalid(nDoS)) {
                     if (nDoS > 0)
@@ -4540,7 +4540,7 @@ bool ProcessMessages(CNode* pfrom)
 
         //if (fDebug)
         //    LogPrintf("ProcessMessages(message %u msgsz, %u bytes, complete:%s)\n",
-        //            msg.hdr.nMessageSize, msg.vRecv.size(),
+        //           msg.hdr.nMessageSize, msg.vRecv.size(),
         //            msg.complete() ? "Y" : "N");
 
         // end, if an incomplete message is found
