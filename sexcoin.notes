@@ -3,7 +3,7 @@ magic numbers:  chainparams.cpp
 halving:        chainparams.cpp
 port:           chainparams.cpp
 nRPCPort:       chainparamsbase.cpp
-CLIENT_VERSION_IS_RELEASE   configure.ac, clientversion.h, src/config/bitcoin-config.h
+CLIENT_VERSION_IS_RELEASE   configure.ac, clientversion.h, src/config/bitcoin-config.h share/setup.nsi
 protocol version    version.h
 
 
