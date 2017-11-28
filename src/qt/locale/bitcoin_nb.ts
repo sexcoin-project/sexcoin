@@ -15,7 +15,7 @@
     </message>
     <message>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>Kopier den valgte adressen til systemets utklippstavle</translation>
+        <translation>Kopier den valgte adressen til utklippstavlen</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
@@ -23,7 +23,7 @@
     </message>
     <message>
         <source>C&amp;lose</source>
-        <translation>&amp;Lukk</translation>
+        <translation>L&amp;ukk</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -47,19 +47,19 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>Velg adressen å sende mynter til</translation>
+        <translation>Velg adressen du vil sende til</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>Velg adressen til å motta mynter med</translation>
+        <translation>Velg adressen du vil motta med</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
-        <translation>&amp;Velg</translation>
+        <translation>V&amp;elg</translation>
     </message>
     <message>
         <source>Sending addresses</source>
-        <translation>Utsendingsadresser</translation>
+        <translation>Sendingsadresser</translation>
     </message>
     <message>
         <source>Receiving addresses</source>
@@ -67,11 +67,11 @@
     </message>
     <message>
         <source>These are your Sexcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Dette er dine Sexcoin-adresser for å sende betalinger. Alltid sjekk beløp og mottakeradresse før sending av mynter.</translation>
+        <translation>Dette er dine Sexcoin-adresser for å sende betalinger. Alltid sjekk beløp og mottakeradresse før du sender.</translation>
     </message>
     <message>
         <source>These are your Sexcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Dette er dine Sexcoin-adresser for å sende betalinger. Det er anbefalt å bruk en ny mottaksadresse for hver transaksjon.</translation>
+        <translation>Dette er dine Sexcoin-adresser for å motta betalinger. Det er anbefalt å bruk en ny mottaksadresse for hver transaksjon.</translation>
     </message>
     <message>
         <source>Copy &amp;Label</source>
@@ -91,7 +91,7 @@
     </message>
     <message>
         <source>Exporting Failed</source>
-        <translation>Eksportering feilet</translation>
+        <translation>Eksport feilet</translation>
     </message>
     <message>
         <source>There was an error trying to save the address list to %1. Please try again.</source>
@@ -117,19 +117,19 @@
     <name>AskPassphraseDialog</name>
     <message>
         <source>Passphrase Dialog</source>
-        <translation>Dialog for Adgangsfrase</translation>
+        <translation>Passord Dialog</translation>
     </message>
     <message>
         <source>Enter passphrase</source>
-        <translation>Angi adgangsfrase</translation>
+        <translation>Angi passord</translation>
     </message>
     <message>
         <source>New passphrase</source>
-        <translation>Ny adgangsfrase</translation>
+        <translation>Nytt passord</translation>
     </message>
     <message>
         <source>Repeat new passphrase</source>
-        <translation>Gjenta ny adgangsfrase</translation>
+        <translation>Gjenta nytt passord</translation>
     </message>
     <message>
         <source>Encrypt wallet</source>
@@ -137,7 +137,7 @@
     </message>
     <message>
         <source>This operation needs your wallet passphrase to unlock the wallet.</source>
-        <translation>Denne operasjonen krever adgangsfrasen til lommeboken for å låse den opp.</translation>
+        <translation>Denne operasjonen krever lommebokens passord for å låse den opp.</translation>
     </message>
     <message>
         <source>Unlock wallet</source>
@@ -145,7 +145,7 @@
     </message>
     <message>
         <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
-        <translation>Denne operasjonen krever adgangsfrasen til lommeboken for å dekryptere den.</translation>
+        <translation>Denne operasjonen krever lommebokens passord for å dekryptere den.</translation>
     </message>
     <message>
         <source>Decrypt wallet</source>
@@ -153,11 +153,11 @@
     </message>
     <message>
         <source>Change passphrase</source>
-        <translation>Endre adgangsfrase</translation>
+        <translation>Endre passord</translation>
     </message>
     <message>
         <source>Enter the old and new passphrase to the wallet.</source>
-        <translation>Skriv inn gammel og ny adgangsfrase for lommeboken.</translation>
+        <translation>Skriv inn gammelt og nytt passord for lommeboken.</translation>
     </message>
     <message>
         <source>Confirm wallet encryption</source>
@@ -165,7 +165,7 @@
     </message>
     <message>
         <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR SEXCOINS&lt;/b&gt;!</source>
-        <translation>Advarsel: Hvis du krypterer lommeboken og mister adgangsfrasen, så vil du &lt;b&gt;MISTE ALLE DINE SEXCOINS&lt;/b&gt;!</translation>
+        <translation>Advarsel: Hvis du krypterer lommeboken og mister passordet, så vil du &lt;b&gt;MISTE ALLE DINE SEXCOINS&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -173,7 +173,7 @@
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
-        <translation>VIKTIG: Tidligere sikkerhetskopier av din lommebokfil bør erstattes med den nylig genererte og krypterte filen, da de blir ugyldiggjort av sikkerhetshensyn så snart du begynner å bruke den nye krypterte lommeboken.</translation>
+        <translation>VIKTIG: Tidligere sikkerhetskopier av din lommebokfil bør erstattes med den nylig genererte, krypterte filen. Av sikkerhetsgrunner vil tidligere sikkerhetskopier av lommeboken bli ugyldiggjort så snart du begynner å bruke den nye, krypterte lommeboken.</translation>
     </message>
     <message>
         <source>Warning: The Caps Lock key is on!</source>
@@ -185,11 +185,11 @@
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Oppgi adgangsfrasen til lommeboken.&lt;br/&gt;Vennligst bruk en adgangsfrase med &lt;b&gt;ti eller flere tilfeldige tegn&lt;/b&gt;, eller &lt;b&gt;åtte eller flere ord&lt;/b&gt;.</translation>
+        <translation>Oppgi det nye passordet til lommeboken.&lt;br/&gt;Vennligst bruk et passord med &lt;b&gt;ti eller flere tilfeldige tegn&lt;/b&gt;, eller &lt;b&gt;åtte eller flere ord&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Sexcoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your sexcoins from being stolen by malware infecting your computer.</source>
-        <translation>Sexcoin vil nå lukkes for å fullføre krypteringsprosessen. Husk at kryptering av lommeboken ikke fullt ut kan beskytte dine sexcoins fra å bli stjålet om skadevare infiserer datamaskinen.</translation>
+        <translation>Sexcoin vil nå lukkes for å fullføre krypteringsprosessen. Husk at å kryptere lommeboken ikke fullt ut kan beskytte dine sexcoins fra å bli stjålet hvis skadevare infiserer datamaskinen din.</translation>
     </message>
     <message>
         <source>Wallet encryption failed</source>
@@ -201,7 +201,7 @@
     </message>
     <message>
         <source>The supplied passphrases do not match.</source>
-        <translation>De angitte adgangsfrasene er ulike.</translation>
+        <translation>De angitte passordene er ulike.</translation>
     </message>
     <message>
         <source>Wallet unlock failed</source>
@@ -209,7 +209,7 @@
     </message>
     <message>
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
-        <translation>Adgangsfrasen angitt for dekryptering av lommeboken var feil.</translation>
+        <translation>Passordet angitt for å dekryptere lommeboken er feil.</translation>
     </message>
     <message>
         <source>Wallet decryption failed</source>
@@ -217,7 +217,7 @@
     </message>
     <message>
         <source>Wallet passphrase was successfully changed.</source>
-        <translation>Adgangsfrase for lommebok endret.</translation>
+        <translation>Lommebokens passord ble endret.</translation>
     </message>
 </context>
 <context>
@@ -231,8 +231,8 @@
         <translation>Synkroniserer med nettverk...</translation>
     </message>
     <message>
-        <source>&amp;Overview</source>
-        <translation>&amp;Oversikt</translation>
+        <source>O&amp;verview</source>
+        <translation>O&amp;versikt</translation>
     </message>
     <message>
         <source>Node</source>
@@ -240,7 +240,7 @@
     </message>
     <message>
         <source>Show general overview of wallet</source>
-        <translation>Vis generell oversikt over lommeboken</translation>
+        <translation>Vis oversikt over lommeboken</translation>
     </message>
     <message>
         <source>&amp;Transactions</source>
@@ -276,15 +276,15 @@
     </message>
     <message>
         <source>&amp;Backup Wallet...</source>
-        <translation>Lag &amp;Sikkerhetskopi av Lommebok...</translation>
+        <translation>&amp;Lag sikkerhetskopi av Lommebok...</translation>
     </message>
     <message>
         <source>&amp;Change Passphrase...</source>
-        <translation>&amp;Endre Adgangsfrase...</translation>
+        <translation>&amp;Endre Passord...</translation>
     </message>
     <message>
         <source>&amp;Sending addresses...</source>
-        <translation>&amp;Utsendingsadresser...</translation>
+        <translation>&amp;Sendingsadresser...</translation>
     </message>
     <message>
         <source>&amp;Receiving addresses...</source>
@@ -300,7 +300,7 @@
     </message>
     <message>
         <source>Importing blocks from disk...</source>
-        <translation>Importere blokker...</translation>
+        <translation>Importerer blokker fra harddisk...</translation>
     </message>
     <message>
         <source>Reindexing blocks on disk...</source>
@@ -312,7 +312,7 @@
     </message>
     <message>
         <source>Modify configuration options for Sexcoin</source>
-        <translation>Endre oppsett for Sexcoin</translation>
+        <translation>Endre innstillinger for Sexcoin</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -320,7 +320,7 @@
     </message>
     <message>
         <source>Change the passphrase used for wallet encryption</source>
-        <translation>Endre adgangsfrasen brukt for kryptering av lommebok</translation>
+        <translation>Endre passord brukt for kryptering av lommebok</translation>
     </message>
     <message>
         <source>&amp;Debug window</source>
@@ -360,7 +360,7 @@
     </message>
     <message>
         <source>Show or hide the main Window</source>
-        <translation>Vis eller skjul hovedvinduet</translation>
+        <translation>Vis eller skjul hovedvindu</translation>
     </message>
     <message>
         <source>Encrypt the private keys that belong to your wallet</source>
@@ -368,11 +368,11 @@
     </message>
     <message>
         <source>Sign messages with your Sexcoin addresses to prove you own them</source>
-        <translation>Signer en melding med Sexcoin-adressene dine for å bevise at du eier dem</translation>
+        <translation>Signer meldinger med Sexcoin-adressene dine for å bevise at du eier dem</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Sexcoin addresses</source>
-        <translation>Bekreft meldinger for å være sikker på at de ble signert av en angitt Sexcoin-adresse</translation>
+        <translation>Bekreft meldinger for å være sikker på at de ble signert med spesifisert Sexcoin-adresse</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -396,7 +396,7 @@
     </message>
     <message>
         <source>Request payments (generates QR codes and sexcoin: URIs)</source>
-        <translation>Forespør betalinger (genererer QR-koder og sexcoin: URIer)</translation>
+        <translation>Forespør betaling (genererer QR-koder og sexcoin: URIer)</translation>
     </message>
     <message>
         <source>&amp;About Sexcoin Core</source>
@@ -404,15 +404,15 @@
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
-        <translation>Vis listen av brukte utsendingsadresser og merkelapper</translation>
+        <translation>Vis listen over brukte sendingsadresser og merkelapper</translation>
     </message>
     <message>
         <source>Show the list of used receiving addresses and labels</source>
-        <translation>Vis listen over bruke mottaksadresser og merkelapper</translation>
+        <translation>Vis listen over brukte mottaksadresser og merkelapper</translation>
     </message>
     <message>
         <source>Open a sexcoin: URI or payment request</source>
-        <translation>Åpne en Sexcoin: URI eller betalingsetterspørring</translation>
+        <translation>Åpne en Sexcoin: URI eller betalingsetterspørsel</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -420,7 +420,7 @@
     </message>
     <message>
         <source>Show the Sexcoin Core help message to get a list with possible Sexcoin command-line options</source>
-        <translation>Vis Sexcoin Core hjelpemeldingen for å få en liste med mulige kommandolinjevalg</translation>
+        <translation>Vis Sexcoin Core hjelp for å få en liste med mulige kommandolinjevalg</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Sexcoin network</source>
@@ -428,7 +428,7 @@
     </message>
     <message>
         <source>No block source available...</source>
-        <translation>Ingen kilde for blokker tilgjengelig...</translation>
+        <translation>Ingen blokk-kilde tilgjengelig...</translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
@@ -480,11 +480,11 @@
     </message>
     <message numerus="yes">
         <source>Processed %n blocks of transaction history.</source>
-        <translation><numerusform>Lastet %n blokk med transaksjonshistorikk.</numerusform><numerusform>Lastet %n blokker med transaksjonshistorikk.</numerusform></translation>
+        <translation><numerusform>Prossesert %n blokk med transaksjonshistorikk.</numerusform><numerusform>Prossesert %n blokker med transaksjonshistorikk.</numerusform></translation>
     </message>
     <message>
         <source>Catching up...</source>
-        <translation>Laster ned...</translation>
+        <translation>Oppdaterer...</translation>
     </message>
     <message>
         <source>Sent transaction</source>
@@ -526,7 +526,7 @@ Adresse: %4
     <name>CoinControlDialog</name>
     <message>
         <source>Coin Selection</source>
-        <translation>Mynt Valg</translation>
+        <translation>Mynt valg</translation>
     </message>
     <message>
         <source>Quantity:</source>
@@ -562,7 +562,7 @@ Adresse: %4
     </message>
     <message>
         <source>(un)select all</source>
-        <translation>velg (fjern) alle</translation>
+        <translation>(av)velg alle</translation>
     </message>
     <message>
         <source>Tree mode</source>
@@ -654,7 +654,7 @@ Adresse: %4
     </message>
     <message>
         <source>highest</source>
-        <translation>høyest</translation>
+        <translation>høyeste</translation>
     </message>
     <message>
         <source>higher</source>
@@ -714,7 +714,7 @@ Adresse: %4
     </message>
     <message>
         <source>This means a fee of at least %1 per kB is required.</source>
-        <translation>Dette betyr at et gebyr på minst %1 per KB er påkrevd.</translation>
+        <translation>Dette betyr at et gebyr på minst %1 per kb er påkrevd.</translation>
     </message>
     <message>
         <source>Can vary +/- 1 byte per input.</source>
@@ -757,11 +757,11 @@ Adresse: %4
     </message>
     <message>
         <source>The label associated with this address list entry</source>
-        <translation>Merkelappen koblet til denne adresseliste oppføringen</translation>
+        <translation>Merkelappen koblet til denne adresseliste-oppføringen</translation>
     </message>
     <message>
         <source>The address associated with this address list entry. This can only be modified for sending addresses.</source>
-        <translation>Adressen til denne oppføringen i adresseboken. Denne kan kun endres for utsendingsadresser.</translation>
+        <translation>Adressen assosiert med denne oppføringen i adresseboken. Denne kan kun endres for sendingsadresser.</translation>
     </message>
     <message>
         <source>&amp;Address</source>
@@ -773,7 +773,7 @@ Adresse: %4
     </message>
     <message>
         <source>New sending address</source>
-        <translation>Ny utsendingsadresse</translation>
+        <translation>Ny sendingsadresse</translation>
     </message>
     <message>
         <source>Edit receiving address</source>
@@ -781,7 +781,7 @@ Adresse: %4
     </message>
     <message>
         <source>Edit sending address</source>
-        <translation>Rediger utsendingsadresse</translation>
+        <translation>Rediger sendingsadresse</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -789,7 +789,7 @@ Adresse: %4
     </message>
     <message>
         <source>The entered address "%1" is not a valid Sexcoin address.</source>
-        <translation>Den angitte adressed "%1" er ikke en gyldig Sexcoin-adresse.</translation>
+        <translation>Den angitte adressen "%1" er ikke en gyldig Sexcoin-adresse.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -812,11 +812,11 @@ Adresse: %4
     </message>
     <message>
         <source>Directory already exists. Add %1 if you intend to create a new directory here.</source>
-        <translation>Mappe finnes allerede. Legg til %1 hvis du vil lage en ny mappe her.</translation>
+        <translation>Mappen finnes allerede. Legg til %1 hvis du vil lage en ny mappe her.</translation>
     </message>
     <message>
         <source>Path already exists, and is not a directory.</source>
-        <translation>Snarvei finnes allerede, og er ikke en mappe.</translation>
+        <translation>Stien finnes allerede, og er ikke en mappe.</translation>
     </message>
     <message>
         <source>Cannot create data directory here.</source>
@@ -835,7 +835,7 @@ Adresse: %4
     </message>
     <message>
         <source>(%1-bit)</source>
-        <translation> (%1-bit)</translation>
+        <translation>(%1-bit)</translation>
     </message>
     <message>
         <source>About Sexcoin Core</source>
@@ -855,7 +855,7 @@ Adresse: %4
     </message>
     <message>
         <source>UI options</source>
-        <translation>valg i brukergrensesnitt</translation>
+        <translation>Valg i brukergrensesnitt</translation>
     </message>
     <message>
         <source>Set language, for example "de_DE" (default: system locale)</source>
@@ -867,11 +867,11 @@ Adresse: %4
     </message>
     <message>
         <source>Set SSL root certificates for payment request (default: -system-)</source>
-        <translation>Sett SSL-rotsertifikat for betalingsetterspørring (standard: -system-)</translation>
+        <translation>Sett SSL-rotsertifikat for betalingsforespørsel (standard: -system-)</translation>
     </message>
     <message>
         <source>Show splash screen on startup (default: 1)</source>
-        <translation>Vis splashskjerm ved oppstart (standardverdi: 1)</translation>
+        <translation>Vis startbilde ved oppstart (standardverdi: 1)</translation>
     </message>
     <message>
         <source>Choose data directory on startup (default: 0)</source>
@@ -890,11 +890,11 @@ Adresse: %4
     </message>
     <message>
         <source>As this is the first time the program is launched, you can choose where Sexcoin Core will store its data.</source>
-        <translation>Siden dette er første gang programmet starter, kan du nå velge hvor Sexcoin Core skal lagre sine data.</translation>
+        <translation>Siden dette er første gang programmet starter, kan du velge hvor Sexcoin Core skal lagre sine data.</translation>
     </message>
     <message>
         <source>Sexcoin Core will download and store a copy of the Sexcoin block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Sexcoin Core vil laste ned og lagre en kopi av Sexcoin sin blokkjede. Minst %1GB av data vil bli lagret i denne mappen, og det vil vokse over tid. Lommeboken vil også bli lagret i denne mappen.</translation>
+        <translation>Sexcoin Core vil laste ned og lagre en kopi av Sexcoin blokkjeden. Minst %1GB av data vil bli lagret i denne mappen, og det vil vokse over tid. Lommeboken vil også bli lagret i denne mappen.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -918,11 +918,11 @@ Adresse: %4
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
-        <translation><numerusform>%n GB med ledig lagringsplass</numerusform><numerusform>%n GB med ledig lagringsplass</numerusform></translation>
+        <translation><numerusform>%n GB med ledig lagringsplass tilgjengelig</numerusform><numerusform>%n GB med ledig lagringsplass tilgjengelig</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>(of %n GB needed)</source>
-        <translation><numerusform>(av %n GB som trengs)</numerusform><numerusform>(av %n GB som trengs)</numerusform></translation>
+        <translation><numerusform>(av %n GB som er nødvendig)</numerusform><numerusform>(av %n GB som er nødvendig)</numerusform></translation>
     </message>
 </context>
 <context>
@@ -933,7 +933,7 @@ Adresse: %4
     </message>
     <message>
         <source>Open payment request from URI or file</source>
-        <translation>Åpne betalingsetterspørring fra URI eller fil</translation>
+        <translation>Åpne betalingsforespørsel fra URI eller fil</translation>
     </message>
     <message>
         <source>URI:</source>
@@ -941,11 +941,11 @@ Adresse: %4
     </message>
     <message>
         <source>Select payment request file</source>
-        <translation>Velg fil for betalingsetterspørring</translation>
+        <translation>Velg fil for betalingsforespørsel</translation>
     </message>
     <message>
         <source>Select payment request file to open</source>
-        <translation>Velg fil for betalingsetterspørring å åpne</translation>
+        <translation>Velg fil for betalingsforespørsel å åpne</translation>
     </message>
 </context>
 <context>
@@ -988,15 +988,15 @@ Adresse: %4
     </message>
     <message>
         <source>IP address of the proxy (e.g. IPv4: 127.0.0.1 / IPv6: ::1)</source>
-        <translation>IP-adressen til proxyen (f.eks. IPv4: 127.0.0.1 / IPv6: ::1)</translation>
+        <translation>IP-adresse til proxy (f.eks. IPv4: 127.0.0.1 / IPv6: ::1)</translation>
     </message>
     <message>
         <source>Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</source>
-        <translation>Tredjepart URLer (f. eks. en blokkutforsker) som dukker opp i transaksjonsfanen som kontekst meny elementer. %s i URLen er erstattet med transaksjonen sin hash. Flere URLer er separert av en vertikal linje |.</translation>
+        <translation>Tredjeparts URLer (f. eks. en blokkutforsker) som dukker opp i transaksjonsfanen som kontekst meny elementer. %s i URLen er erstattet med transaksjonens hash. Flere URLer er separert av vertikal linje |.</translation>
     </message>
     <message>
         <source>Third party transaction URLs</source>
-        <translation>Tredjepart transaksjon URLer</translation>
+        <translation>Tredjeparts transaksjons-URLer</translation>
     </message>
     <message>
         <source>Active command-line options that override above options:</source>
@@ -1004,11 +1004,11 @@ Adresse: %4
     </message>
     <message>
         <source>Reset all client options to default.</source>
-        <translation>Tilbakestill alle klient valg til standard</translation>
+        <translation>Tilbakestill alle klientvalg til standard</translation>
     </message>
     <message>
         <source>&amp;Reset Options</source>
-        <translation>&amp;Tilbakestill Instillinger</translation>
+        <translation>&amp;Tilbakestill Innstillinger</translation>
     </message>
     <message>
         <source>&amp;Network</source>
@@ -1028,11 +1028,11 @@ Adresse: %4
     </message>
     <message>
         <source>Enable coin &amp;control features</source>
-        <translation>Aktiver &amp;myntkontroll funksjoner</translation>
+        <translation>Aktiver mynt &amp;kontroll funksjoner</translation>
     </message>
     <message>
         <source>If you disable the spending of unconfirmed change, the change from a transaction cannot be used until that transaction has at least one confirmation. This also affects how your balance is computed.</source>
-        <translation>Hvis du sperrer for bruk av ubekreftet veksel, kan ikke vekselen fra transaksjonen bli brukt før transaksjonen har minimum en bekreftelse. Dette påvirker også hvordan balansen din blir beregnet.</translation>
+        <translation>Hvis du slår av bruk av ubekreftet veksel, kan ikke vekselen fra transaksjonen bli brukt før transaksjonen har minimum en bekreftelse. Dette påvirker også hvordan balansen din blir beregnet.</translation>
     </message>
     <message>
         <source>&amp;Spend unconfirmed change</source>
@@ -1040,7 +1040,7 @@ Adresse: %4
     </message>
     <message>
         <source>Automatically open the Sexcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Åpne automatisk Sexcoin klientporten på ruteren. Dette virker kun om din ruter støtter UPnP og dette er påslått.</translation>
+        <translation>Automatisk åpne Sexcoin klient port på ruteren. Dette virker kun om din ruter støtter UPnP og dette er aktivert.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1072,15 +1072,15 @@ Adresse: %4
     </message>
     <message>
         <source>Show only a tray icon after minimizing the window.</source>
-        <translation>Vis kun ikon i systemkurv etter minimering av vinduet.</translation>
+        <translation>Vis kun i systemkurv etter minimering av vinduet.</translation>
     </message>
     <message>
         <source>&amp;Minimize to the tray instead of the taskbar</source>
-        <translation>&amp;Minimer til systemkurv istedenfor oppgavelinjen</translation>
+        <translation>&amp;Minimer til systemkurv i stedet for oppgavelinjen</translation>
     </message>
     <message>
         <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Quit in the menu.</source>
-        <translation>Minimerer vinduet istedenfor å avslutte applikasjonen når vinduet lukkes. Når dette er slått på avsluttes applikasjonen kun ved å velge avslutt i menyen.</translation>
+        <translation>Minimer i stedet for å avslutte applikasjonen når vinduet lukkes. Når dette er aktivert, avsluttes applikasjonen kun ved å velge avslutt i menyen.</translation>
     </message>
     <message>
         <source>M&amp;inimize on close</source>
@@ -1096,11 +1096,11 @@ Adresse: %4
     </message>
     <message>
         <source>The user interface language can be set here. This setting will take effect after restarting Sexcoin.</source>
-        <translation>Språket for brukergrensesnittet kan settes her. Innstillingen trer i kraft ved omstart av Sexcoin.</translation>
+        <translation>Språk for brukergrensesnittet kan settes her. Innstillingen trer i kraft ved omstart av Sexcoin.</translation>
     </message>
     <message>
         <source>&amp;Unit to show amounts in:</source>
-        <translation>&amp;Enhet for visning av beløper:</translation>
+        <translation>&amp;Enhet for visning av beløp:</translation>
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
@@ -1120,7 +1120,7 @@ Adresse: %4
     </message>
     <message>
         <source>default</source>
-        <translation>standardverdi</translation>
+        <translation>standard</translation>
     </message>
     <message>
         <source>none</source>
@@ -1155,7 +1155,7 @@ Adresse: %4
     </message>
     <message>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Sexcoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>Informasjonen som vises kan være foreldet. Din lommebok synkroniseres automatisk med Sexcoin-nettverket etter at tilkobling er opprettet, men denne prosessen er ikke ferdig enda.</translation>
+        <translation>Informasjonen som vises kan være utdatert. Din lommebok synkroniseres automatisk med Sexcoin-nettverket etter en tilkobling er opprettet, men denne prosessen er ikke fullført.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1167,7 +1167,7 @@ Adresse: %4
     </message>
     <message>
         <source>Your current spendable balance</source>
-        <translation>Din nåværende saldo</translation>
+        <translation>Din tilgjengelige saldo</translation>
     </message>
     <message>
         <source>Pending:</source>
@@ -1175,15 +1175,15 @@ Adresse: %4
     </message>
     <message>
         <source>Total of transactions that have yet to be confirmed, and do not yet count toward the spendable balance</source>
-        <translation>Totalt antall ubekreftede transaksjoner som ikke teller med i saldo</translation>
+        <translation>Totalt antall ubekreftede transaksjoner, som ikke teller med i tilgjengelig saldo</translation>
     </message>
     <message>
         <source>Immature:</source>
-        <translation>Umoden:</translation>
+        <translation>Umodne:</translation>
     </message>
     <message>
         <source>Mined balance that has not yet matured</source>
-        <translation>Minet saldo har ikke modnet enda</translation>
+        <translation>Minet saldo som ikke har modnet</translation>
     </message>
     <message>
         <source>Balances</source>
@@ -1223,7 +1223,7 @@ Adresse: %4
     </message>
     <message>
         <source>out of sync</source>
-        <translation>ute av synk</translation>
+        <translation>ikke synkronisert</translation>
     </message>
 </context>
 <context>
@@ -1238,27 +1238,27 @@ Adresse: %4
     </message>
     <message>
         <source>Payment request rejected</source>
-        <translation>Betalingsetterspørring avvist</translation>
+        <translation>Betalingsforespørsel avvist</translation>
     </message>
     <message>
         <source>Payment request network doesn't match client network.</source>
-        <translation>Nettverk for betalingsetterspørring er ikke i overensstemmelse med klientnettverket.</translation>
+        <translation>Nettverk for betalingsforespørsel stemmer ikke med klientnettverket.</translation>
     </message>
     <message>
         <source>Payment request has expired.</source>
-        <translation>Betalingsetterspørringen har utløpt.</translation>
+        <translation>Betalingsforespørsel har utløpt.</translation>
     </message>
     <message>
         <source>Payment request is not initialized.</source>
-        <translation>Betalingsetterspørringen er ikke initialisert.</translation>
+        <translation>Betalingsforespørsel er ikke initialisert.</translation>
     </message>
     <message>
         <source>Requested payment amount of %1 is too small (considered dust).</source>
-        <translation>Forespurt betalingsmengde på %1 er for liten (betraktet som støv).</translation>
+        <translation>Forespurt betalingsbeløp på %1 er for liten (betraktet som støv).</translation>
     </message>
     <message>
         <source>Payment request error</source>
-        <translation>Betalingsetterspørringsfeil</translation>
+        <translation>Betalingsforespørsels-feil</translation>
     </message>
     <message>
         <source>Cannot start sexcoin: click-to-pay handler</source>
@@ -1266,27 +1266,27 @@ Adresse: %4
     </message>
     <message>
         <source>Payment request fetch URL is invalid: %1</source>
-        <translation>Hentelenke for betalingsetterspørring er ugyldig: %1</translation>
+        <translation>HenteURL for betalingsforespørsel er ugyldig: %1</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid Sexcoin address or malformed URI parameters.</source>
-        <translation>URI kan ikke fortolkes! Dette kan være forårsaket av en ugyldig Sexcoin-adresse eller feilformede URI-parametre.</translation>
+        <translation>URI kan ikke tolkes! Dette kan være forårsaket av en ugyldig Sexcoin-adresse eller feilformede URI-parametre.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
-        <translation>Filhåndtering for betalingsetterspørring</translation>
+        <translation>Filhåndtering for betalingsforespørsel</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
-        <translation>Betalingsetterspørringsfil kan ikke leses! Dette kan være forårsaket av en ugyldig betalingsetterspørringsfil.</translation>
+        <translation>Betalingsforespørsels-fil kan ikke leses! Dette kan være forårsaket av en ugyldig betalingsforespørsels-fil.</translation>
     </message>
     <message>
         <source>Unverified payment requests to custom payment scripts are unsupported.</source>
-        <translation>Uverifiserte betalingsforespørsler til egentilpassede betalingscript er ikke støttet.</translation>
+        <translation>Uverifiserte betalingsforespørsler til egentilpassede betalings-script er ikke støttet.</translation>
     </message>
     <message>
         <source>Refund from %1</source>
-        <translation>Refundering fra %1</translation>
+        <translation>Tilbakebetaling fra %1</translation>
     </message>
     <message>
         <source>Payment request %1 is too large (%2 bytes, allowed %3 bytes).</source>
@@ -1302,19 +1302,19 @@ Adresse: %4
     </message>
     <message>
         <source>Payment request cannot be parsed!</source>
-        <translation>Betaingsetterspørrelse kan ikke fortolkes!</translation>
+        <translation>Betalingsforespørsel kan ikke tolkes!</translation>
     </message>
     <message>
         <source>Bad response from server %1</source>
-        <translation>Dårlig svar fra server %1</translation>
+        <translation>Dårlig respons fra server %1</translation>
     </message>
     <message>
         <source>Payment acknowledged</source>
-        <translation>Betaling erkjent</translation>
+        <translation>Betaling anerkjent</translation>
     </message>
     <message>
         <source>Network request error</source>
-        <translation>Nettverksforespørsel feil</translation>
+        <translation>Nettverksforespørsels-feil</translation>
     </message>
 </context>
 <context>
@@ -1329,7 +1329,7 @@ Adresse: %4
     </message>
     <message>
         <source>Ping Time</source>
-        <translation>Ping-tid</translation>
+        <translation>Ping Tid</translation>
     </message>
 </context>
 <context>
@@ -1372,7 +1372,7 @@ Adresse: %4
     </message>
     <message>
         <source>N/A</source>
-        <translation>-</translation>
+        <translation>Ikke tilgjengelig</translation>
     </message>
     <message>
         <source>%1 ms</source>
@@ -1406,7 +1406,7 @@ Adresse: %4
     </message>
     <message>
         <source>N/A</source>
-        <translation>-</translation>
+        <translation>Ikke tilgjengelig</translation>
     </message>
     <message>
         <source>Client version</source>
@@ -1498,7 +1498,7 @@ Adresse: %4
     </message>
     <message>
         <source>Ban Score</source>
-        <translation>Ban Poengsum</translation>
+        <translation>Ban Sum</translation>
     </message>
     <message>
         <source>Connection Time</source>
@@ -1506,11 +1506,11 @@ Adresse: %4
     </message>
     <message>
         <source>Last Send</source>
-        <translation>Siste Sendte</translation>
+        <translation>Siste Sending</translation>
     </message>
     <message>
         <source>Last Receive</source>
-        <translation>Siste Mottatte</translation>
+        <translation>Sist Mottatt</translation>
     </message>
     <message>
         <source>Bytes Sent</source>
@@ -1562,11 +1562,11 @@ Adresse: %4
     </message>
     <message>
         <source>Debug log file</source>
-        <translation>Loggfil for feilsøk</translation>
+        <translation>Loggfil for feilsøking</translation>
     </message>
     <message>
         <source>Open the Sexcoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Åpne Sexcoin sin loggfil for feilsøk fra den gjeldende datamappen. Dette kan ta noen sekunder for store loggfiler.</translation>
+        <translation>Åpne Sexcoin sin loggfil for feilsøking fra den gjeldende datamappen. Dette kan ta noen sekunder for store loggfiler.</translation>
     </message>
     <message>
         <source>Clear console</source>
@@ -1574,7 +1574,7 @@ Adresse: %4
     </message>
     <message>
         <source>Welcome to the Sexcoin RPC console.</source>
-        <translation>Velkommen til Sexcoin sin RPC-konsoll.</translation>
+        <translation>Velkommen til Sexcoin RPC-konsoll.</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
@@ -1582,7 +1582,7 @@ Adresse: %4
     </message>
     <message>
         <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
-        <translation>Skriv &lt;b&gt;help&lt;/b&gt; for en oversikt over kommandoer.</translation>
+        <translation>Skriv &lt;b&gt;help&lt;/b&gt; for en oversikt over tilgjengelige kommandoer.</translation>
     </message>
     <message>
         <source>%1 B</source>
@@ -1622,7 +1622,7 @@ Adresse: %4
     </message>
     <message>
         <source>Fetching...</source>
-        <translation>Henter …</translation>
+        <translation>Henter...</translation>
     </message>
 </context>
 <context>
@@ -1641,35 +1641,35 @@ Adresse: %4
     </message>
     <message>
         <source>Reuse one of the previously used receiving addresses. Reusing addresses has security and privacy issues. Do not use this unless re-generating a payment request made before.</source>
-        <translation>Gjenbruk en av de tidligere brukte mottaksadressene. Gjenbruk av adresser har sikkerhets- og personvernsutfordringer. Ikke bruk dette med unntak for å gjennopprette en betalingsetterspørring som ble gjort tidligere.</translation>
+        <translation>Gjenbruk en av de tidligere brukte mottaksadressene. Gjenbruk av adresser har sikkerhets- og personvernsutfordringer. Ikke bruk dette med mindre du regenererer en betalingsforespørsel som ble gjort tidligere.</translation>
     </message>
     <message>
         <source>R&amp;euse an existing receiving address (not recommended)</source>
-        <translation>Gj&amp;enbruk en eksisterende mottaksadresse (ikke anbefalt)</translation>
+        <translation>G&amp;jenbruk en eksisterende mottaksadresse (ikke anbefalt)</translation>
     </message>
     <message>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Sexcoin network.</source>
-        <translation>En valgfri melding å tilknytte betalingsetterspørringen, som vil bli vist når forespørselen er åpnet. Meldingen vil ikke bli sendt med betalingen over Sexcoin-nettverket.</translation>
+        <translation>En valgfri melding å tilknytte betalingsforespørselen, som vil bli vist når forespørselen blir åpnet. P.S. Meldingen vil ikke bli sendt med betalingen over Sexcoin-nettverket.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
-        <translation>En valgfri merkelapp å tilknytte den nye mottakeradressen.</translation>
+        <translation>En valgfri merkelapp som kan tilknyttes den nye mottakeradressen.</translation>
     </message>
     <message>
         <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
-        <translation>Bruk dette skjemaet til betalingsforespørsler. Alle felt er &lt;b&gt;valgfrie&lt;/b&gt;.</translation>
+        <translation>Bruk dette skjemaet for å etterspørre betalinger. Alle felt er &lt;b&gt;valgfrie&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>An optional amount to request. Leave this empty or zero to not request a specific amount.</source>
-        <translation>Et valgfritt beløp å etterspørre. La stå tomt eller null for ikke å etterspørre et spesifikt beløp.</translation>
+        <translation>Et valgfritt beløp å etterspørre. La dette stå tomt eller i null for ikke å etterspørre et spesifikt beløp.</translation>
     </message>
     <message>
         <source>Clear all fields of the form.</source>
-        <translation>Fjern alle felter fra skjemaet.</translation>
+        <translation>Tøm alle felter fra skjemaet.</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation>Fjern</translation>
+        <translation>Tøm</translation>
     </message>
     <message>
         <source>Requested payments history</source>
@@ -1756,7 +1756,7 @@ Adresse: %4
     </message>
     <message>
         <source>Resulting URI too long, try to reduce the text for label / message.</source>
-        <translation>Resultat URI for lang, prøv å redusere teksten for merkelapp / melding.</translation>
+        <translation>Resulterende URI for lang, forsøk å redusere teksten for merkelapp / melding.</translation>
     </message>
     <message>
         <source>Error encoding URI into QR Code.</source>
@@ -1798,7 +1798,7 @@ Adresse: %4
     <name>SendCoinsDialog</name>
     <message>
         <source>Send Coins</source>
-        <translation>Send Sexcoins</translation>
+        <translation>Send Mynter</translation>
     </message>
     <message>
         <source>Coin Control Features</source>
@@ -1846,7 +1846,7 @@ Adresse: %4
     </message>
     <message>
         <source>If this is activated, but the change address is empty or invalid, change will be sent to a newly generated address.</source>
-        <translation>Hvis dette er aktivert, men adressen for veksel er tom eller ugyldig, vil veksel bli sendt til en nylig generert adresse.</translation>
+        <translation>Hvis dette er aktivert, men adressen for veksel er tom eller ugyldig, vil veksel bli sendt til en ny-generert adresse.</translation>
     </message>
     <message>
         <source>Custom change address</source>
@@ -1862,7 +1862,7 @@ Adresse: %4
     </message>
     <message>
         <source>collapse fee-settings</source>
-        <translation>Legg ned gebyrinnstillinger</translation>
+        <translation>Utvid gebyrinnstillinger</translation>
     </message>
     <message>
         <source>Minimize</source>
@@ -1870,7 +1870,7 @@ Adresse: %4
     </message>
     <message>
         <source>If the custom fee is set to 1000 satoshis and the transaction is only 250 bytes, then "per kilobyte" only pays 250 satoshis in fee, while "at least" pays 1000 satoshis. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Hvis den egendefinerte avgiften er satt til 1000 satoshis og transaksjonen bare er 250 bytes, da vil "per kilobyte" bare betale 250 satoshis i gebyr, mens "minst" betaler 1000 satoshis. For transaksjoner større enn en kilobyte vil begge betale for antall kilobyte.</translation>
+        <translation>Hvis den egendefinerte avgiften er satt til 1000 satoshis og transaksjonen bare er 250 bytes, da vil "per kilobyte" bare betale 250 satoshis i gebyr, mens "minst" betaler 1000 satoshis. For transaksjoner større enn en kilobyte vil begge betale per kilobyte.</translation>
     </message>
     <message>
         <source>per kilobyte</source>
@@ -1934,7 +1934,7 @@ Adresse: %4
     </message>
     <message>
         <source>Clear all fields of the form.</source>
-        <translation>Fjern alle felter fra skjemaet.</translation>
+        <translation>Tøm alle felter fra skjemaet.</translation>
     </message>
     <message>
         <source>Dust:</source>
@@ -1942,7 +1942,7 @@ Adresse: %4
     </message>
     <message>
         <source>Clear &amp;All</source>
-        <translation>Fjern &amp;Alt</translation>
+        <translation>Tøm &amp;Alt</translation>
     </message>
     <message>
         <source>Balance:</source>
@@ -1954,11 +1954,11 @@ Adresse: %4
     </message>
     <message>
         <source>S&amp;end</source>
-        <translation>S&amp;end</translation>
+        <translation>S&amp;avslutt</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
-        <translation>Bekreft sending av sexcoins</translation>
+        <translation>Bekreft sending av mynter</translation>
     </message>
     <message>
         <source>%1 to %2</source>
@@ -1978,7 +1978,7 @@ Adresse: %4
     </message>
     <message>
         <source>Copy after fee</source>
-        <translation>Kopier fra gebyr</translation>
+        <translation>Kopier etter gebyr</translation>
     </message>
     <message>
         <source>Copy bytes</source>
@@ -2002,7 +2002,7 @@ Adresse: %4
     </message>
     <message>
         <source>The recipient address is not valid, please recheck.</source>
-        <translation>Adresse for mottaker er ugyldig.</translation>
+        <translation>Mottakers adresse er ugyldig, vennligst sjekk.</translation>
     </message>
     <message>
         <source>The amount to pay must be larger than 0.</source>
@@ -2010,15 +2010,15 @@ Adresse: %4
     </message>
     <message>
         <source>The amount exceeds your balance.</source>
-        <translation>Beløpet overstiger saldo.</translation>
+        <translation>Beløpet overstiger din saldo.</translation>
     </message>
     <message>
         <source>The total exceeds your balance when the %1 transaction fee is included.</source>
-        <translation>Totalbeløpet overstiger saldo etter at %1 transaksjonsgebyr er lagt til.</translation>
+        <translation>Totalbeløpet overstiger din saldo etter at %1 transaksjonsgebyret er lagt til.</translation>
     </message>
     <message>
         <source>Duplicate address found, can only send to each address once per send operation.</source>
-        <translation>Doble antall adresser funnet. Kan bare sende en gang til hver adresse per operasjon.</translation>
+        <translation>Duplikat-adresse funnet, du kan kun sende en gang til hver adresse per sending.</translation>
     </message>
     <message>
         <source>Transaction creation failed!</source>
@@ -2026,7 +2026,7 @@ Adresse: %4
     </message>
     <message>
         <source>The transaction was rejected! This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
-        <translation>Transaksjonen ble avvist!  Dette kan skje hvis noen av myntene i lommeboken allerede er brukt, som hvis du kopierte wallet.dat og mynter ble brukt i kopien uten å bli markert som brukt her.</translation>
+        <translation>Transaksjonen ble avvist!  Dette kan skje hvis noen av myntene i lommeboken allerede var brukt, som hvis du brukte en kopi av wallet.dat og mynter ble brukt i kopien uten å bli markert som brukt her.</translation>
     </message>
     <message>
         <source>A fee higher than %1 is considered an insanely high fee.</source>
@@ -2069,7 +2069,7 @@ Adresse: %4
     <name>SendCoinsEntry</name>
     <message>
         <source>A&amp;mount:</source>
-        <translation>&amp;Beløp:</translation>
+        <translation>B&amp;eløp:</translation>
     </message>
     <message>
         <source>Pay &amp;To:</source>
@@ -2117,19 +2117,19 @@ Adresse: %4
     </message>
     <message>
         <source>This is a verified payment request.</source>
-        <translation>Dette er en verifisert betalingsetterspørring</translation>
+        <translation>Dette er en verifisert betalingsforespørsel</translation>
     </message>
     <message>
         <source>Enter a label for this address to add it to the list of used addresses</source>
-        <translation>Skriv inn en merkelapp for denne adressen for å legge den til listen av brukte adresser</translation>
+        <translation>Skriv inn en merkelapp for denne adressen for å legge den til listen over brukte adresser</translation>
     </message>
     <message>
         <source>A message that was attached to the sexcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Sexcoin network.</source>
-        <translation>En melding som var tilknyttet sexcoinen: URI vil bli lagret med transaksjonen for din oversikt. Denne meldingen vil ikke bli sendt over Sexcoin-nettverket.</translation>
+        <translation>En melding som var tilknyttet sexcoin: URI som vil bli lagret med transaksjonen for din oversikt. Denne meldingen vil ikke bli sendt over Sexcoin-nettverket.</translation>
     </message>
     <message>
         <source>This is an unverified payment request.</source>
-        <translation>Dette er en uverifisert betalingsetterspørring</translation>
+        <translation>Dette er en uverifisert betalingsforespørsel</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2137,14 +2137,14 @@ Adresse: %4
     </message>
     <message>
         <source>Memo:</source>
-        <translation>Memo:</translation>
+        <translation>Huskelapp:</translation>
     </message>
 </context>
 <context>
     <name>ShutdownWindow</name>
     <message>
         <source>Sexcoin Core is shutting down...</source>
-        <translation>Sexcoin Core lukker...</translation>
+        <translation>Sexcoin Core avslutter...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -2163,7 +2163,7 @@ Adresse: %4
     </message>
     <message>
         <source>You can sign messages with your addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>Du kan signere meldinger med dine adresser for å bevise at du eier dem. Ikke signer vage meldinger da phishing-angrep kan prøve å lure deg til å signere din identitet over til andre. Signer kun fullt detaljerte utsagn som du er enig i.</translation>
+        <translation>Du kan signere meldinger med dine adresser for å bevise at du eier dem. Ikke signer vage meldinger da phishing-angrep kan prøve å lure deg til å signere din identitet over til dem. Signer kun fullt detaljerte utsagn som du er enig i.</translation>
     </message>
     <message>
         <source>The Sexcoin address to sign the message with</source>
@@ -2195,7 +2195,7 @@ Adresse: %4
     </message>
     <message>
         <source>Copy the current signature to the system clipboard</source>
-        <translation>Kopier valgt signatur til utklippstavle</translation>
+        <translation>Kopier valgt signatur til utklippstavlen</translation>
     </message>
     <message>
         <source>Sign the message to prove you own this Sexcoin address</source>
@@ -2251,7 +2251,7 @@ Adresse: %4
     </message>
     <message>
         <source>The entered address does not refer to a key.</source>
-        <translation>Angitt adresse refererer ikke til en nøkkel.</translation>
+        <translation>Den angitte adressen refererer ikke til en nøkkel.</translation>
     </message>
     <message>
         <source>Wallet unlock was cancelled.</source>
@@ -2279,11 +2279,11 @@ Adresse: %4
     </message>
     <message>
         <source>The signature did not match the message digest.</source>
-        <translation>Signaturen passer ikke til meldingen.</translation>
+        <translation>Signaturen stemmer ikke med meldingssammendraget.</translation>
     </message>
     <message>
         <source>Message verification failed.</source>
-        <translation>Verifikasjon av melding feilet.</translation>
+        <translation>Verifisering av melding feilet.</translation>
     </message>
     <message>
         <source>Message verified.</source>
@@ -2376,7 +2376,7 @@ Adresse: %4
     </message>
     <message>
         <source>Credit</source>
-        <translation>Kredit</translation>
+        <translation>Kreditt</translation>
     </message>
     <message numerus="yes">
         <source>matures in %n more block(s)</source>
@@ -2396,7 +2396,7 @@ Adresse: %4
     </message>
     <message>
         <source>Total credit</source>
-        <translation>Total kredit</translation>
+        <translation>Total kreditt</translation>
     </message>
     <message>
         <source>Transaction fee</source>
@@ -2420,15 +2420,15 @@ Adresse: %4
     </message>
     <message>
         <source>Merchant</source>
-        <translation>Forhandler</translation>
+        <translation>Kjøpmann</translation>
     </message>
     <message>
         <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>Genererte sexcoins må modnes %1 blokker før de kan brukes. Da du genererte denne blokken ble den kringkastet på nettverket for å bli lagt til i kjeden av blokker. Hvis den ikke kommer med i kjeden vil den endre seg til "ikke akseptert" og pengene vil ikke kunne brukes. Dette vil noen ganger skje hvis en annen node genererer en blokk noen sekunder i tid fra din egen.</translation>
+        <translation>Genererte mynter må modnes %1 blokker før de kan brukes. Da du genererte denne blokken ble den kringkastet på nettverket for å bli lagt til i kjeden av blokker. Hvis den ikke kommer med i kjeden vil den endre seg til "ikke akseptert" og pengene vil ikke kunne brukes. Dette vil noen ganger skje hvis en annen node genererer en blokk innen noen sekunder fra din egen.</translation>
     </message>
     <message>
         <source>Debug information</source>
-        <translation>Informasjon for feilsøk</translation>
+        <translation>Informasjon for feilsøking</translation>
     </message>
     <message>
         <source>Transaction</source>
@@ -2452,7 +2452,7 @@ Adresse: %4
     </message>
     <message>
         <source>, has not been successfully broadcast yet</source>
-        <translation>, har ikke blitt kringkastet med hell enda</translation>
+        <translation>, har ikke blitt vellykket kringkastet enda</translation>
     </message>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
@@ -2554,7 +2554,7 @@ Adresse: %4
     </message>
     <message>
         <source>(n/a)</source>
-        <translation>-</translation>
+        <translation>ikke tilgjengelig</translation>
     </message>
     <message>
         <source>Transaction status. Hover over this field to show number of confirmations.</source>
@@ -2562,7 +2562,7 @@ Adresse: %4
     </message>
     <message>
         <source>Date and time that the transaction was received.</source>
-        <translation>Dato og tid for da transaksjonen ble mottat.</translation>
+        <translation>Dato og klokkeslett for når transaksjonen ble mottat.</translation>
     </message>
     <message>
         <source>Type of transaction.</source>
@@ -2578,7 +2578,7 @@ Adresse: %4
     </message>
     <message>
         <source>Amount removed from or added to balance.</source>
-        <translation>Beløp fjernet eller lagt til saldo.</translation>
+        <translation>Beløp fjernet fra eller lagt til saldo.</translation>
     </message>
 </context>
 <context>
@@ -2673,7 +2673,7 @@ Adresse: %4
     </message>
     <message>
         <source>Exporting Failed</source>
-        <translation>Ekport Feilet</translation>
+        <translation>Eksport Feilet</translation>
     </message>
     <message>
         <source>There was an error trying to save the transaction history to %1.</source>
@@ -2681,7 +2681,7 @@ Adresse: %4
     </message>
     <message>
         <source>Exporting Successful</source>
-        <translation>Ekport Fullført</translation>
+        <translation>Eksport Fullført</translation>
     </message>
     <message>
         <source>The transaction history was successfully saved to %1.</source>
@@ -2742,7 +2742,7 @@ Adresse: %4
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
-        <translation>Send Sexcoins</translation>
+        <translation>Send Mynter</translation>
     </message>
 </context>
 <context>
@@ -2804,7 +2804,7 @@ Adresse: %4
     </message>
     <message>
         <source>Run in the background as a daemon and accept commands</source>
-        <translation>Kjør i bakgrunnen som daemon og ta imot kommandoer</translation>
+        <translation>Kjør i bakgrunnen som en service og ta imot kommandoer</translation>
     </message>
     <message>
         <source>Use the test network</source>
@@ -2816,7 +2816,7 @@ Adresse: %4
     </message>
     <message>
         <source>Bind to given address and always listen on it. Use [host]:port notation for IPv6</source>
-        <translation>Bind til angitt adresse. Bruk [vertsmaskin]:port notasjon for IPv6</translation>
+        <translation>Knytt til angitt adresse og lytt alltid til den. Bruk [vertsmaskin]:port notasjon for IPv6</translation>
     </message>
     <message>
         <source>Delete all wallet transactions and only recover those parts of the blockchain through -rescan on startup</source>
@@ -2824,7 +2824,7 @@ Adresse: %4
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
-        <translation>Distribuert under MIT programvarelisensen, se medfølgende fil COPYING eller &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</translation>
+        <translation>Distribuert under MIT programvarelisens, se medfølgende fil COPYING eller &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</translation>
     </message>
     <message>
         <source>Enter regression test mode, which uses a special chain in which blocks can be solved instantly.</source>
@@ -2832,7 +2832,7 @@ Adresse: %4
     </message>
     <message>
         <source>Execute command when a wallet transaction changes (%s in cmd is replaced by TxID)</source>
-        <translation>Kjør kommando når en lommeboktransaksjon endres (%s i kommando er erstattet med TxID)</translation>
+        <translation>Kjør kommando når en lommeboktransaksjon endres (%s i kommando blir erstattet med TxID)</translation>
     </message>
     <message>
         <source>In this mode -genproclimit controls how many blocks are generated immediately.</source>
@@ -2840,7 +2840,7 @@ Adresse: %4
     </message>
     <message>
         <source>Set the number of script verification threads (%u to %d, 0 = auto, &lt;0 = leave that many cores free, default: %d)</source>
-        <translation>Angi antall tråder for skriptverifisering (%u til %d, 0 = auto, &lt;0 = la det antallet kjerner være ledig, standard: %d)</translation>
+        <translation>Angi antall tråder for skriptverifisering (%u til %d, 0 = auto, &lt;0 = la dette antall kjerner være ledig, standard: %d)</translation>
     </message>
     <message>
         <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
@@ -2856,15 +2856,15 @@ Adresse: %4
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
-        <translation>Advarsel: Nettverket ser ikke ut til å være enig! Noen minere ser ut til å ha problemer.</translation>
+        <translation>Advarsel: Nettverket ser ikke ut til å være enig! Noen utvinnere ser ut til å oppleve problemer.</translation>
     </message>
     <message>
         <source>Warning: We do not appear to fully agree with our peers! You may need to upgrade, or other nodes may need to upgrade.</source>
-        <translation>Advarsel: Vi ser ikke ut til å være enige med våre noder! Du må oppgradere, eller andre noder må oppgradere.</translation>
+        <translation>Advarsel: Vi ser ikke ut til å være enige med våre noder! Du må kanskje oppgradere, eller andre noder må oppgradere.</translation>
     </message>
     <message>
         <source>Warning: error reading wallet.dat! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
-        <translation>Advarsel: Feil ved lesing av wallet.dat! Alle nøkler lest riktig, men transaksjonsdataene eller oppføringer i adresseboken mangler kanskje eller er feil.</translation>
+        <translation>Advarsel: Feil ved innlesing av wallet.dat! Alle nøkler lest riktig, men transaksjonsdataene eller oppføringer i adresseboken mangler kanskje eller er feil.</translation>
     </message>
     <message>
         <source>Warning: wallet.dat corrupt, data salvaged! Original wallet.dat saved as wallet.{timestamp}.bak in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
@@ -2872,11 +2872,11 @@ Adresse: %4
     </message>
     <message>
         <source>Whitelist peers connecting from the given netmask or IP address. Can be specified multiple times.</source>
-        <translation>Hvitelist noder som kobler til fra den oppgitte nettmasken eller IP-adressen. Kan oppgis flere ganger.</translation>
+        <translation>Hvitelistede noder som kobler til fra oppgit nettmasken eller IP-adressen. Kan bli nevnt flere ganger.</translation>
     </message>
     <message>
         <source>(default: 1)</source>
-        <translation>(standardverdi: 1)</translation>
+        <translation>(standard: 1)</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>
@@ -2884,7 +2884,7 @@ Adresse: %4
     </message>
     <message>
         <source>Attempt to recover private keys from a corrupt wallet.dat</source>
-        <translation>Forsøk å berge private nøkler fra en korrupt wallet.dat</translation>
+        <translation>Forsøk  på å berge private nøkler fra en korrupt wallet.dat</translation>
     </message>
     <message>
         <source>Block creation options:</source>
@@ -2892,7 +2892,7 @@ Adresse: %4
     </message>
     <message>
         <source>Connect only to the specified node(s)</source>
-        <translation>Koble kun til angitt(e) node(r)</translation>
+        <translation>Koble kun til angitte node(r)</translation>
     </message>
     <message>
         <source>Connection options:</source>
@@ -2908,7 +2908,7 @@ Adresse: %4
     </message>
     <message>
         <source>Discover own IP address (default: 1 when listening and no -externalip)</source>
-        <translation>Oppdag egen IP-adresse (standardverdi: 1 ved lytting og uten -externalip)</translation>
+        <translation>Oppdag egen IP-adresse (standard: 1 ved lytting og uten -externalip)</translation>
     </message>
     <message>
         <source>Do not load the wallet and disable wallet RPC calls</source>
@@ -2924,7 +2924,7 @@ Adresse: %4
     </message>
     <message>
         <source>Error initializing wallet database environment %s!</source>
-        <translation>Feil under oppstart av lommeboken sitt databasemiljø %s!</translation>
+        <translation>Feil under oppstart av lommebokens databasemiljø %s!</translation>
     </message>
     <message>
         <source>Error loading block database</source>
@@ -2964,7 +2964,7 @@ Adresse: %4
     </message>
     <message>
         <source>Only connect to nodes in network &lt;net&gt; (ipv4, ipv6 or onion)</source>
-        <translation>Bare koble til noder i nettverket &lt;net&gt; (IPv4, IPv6 eller onion)</translation>
+        <translation>Kun koble til noder i nettverket &lt;net&gt; (IPv4, IPv6 eller onion)</translation>
     </message>
     <message>
         <source>Rebuild block chain index from current blk000??.dat files</source>
@@ -2972,11 +2972,11 @@ Adresse: %4
     </message>
     <message>
         <source>Set database cache size in megabytes (%d to %d, default: %d)</source>
-        <translation>Sett databasen sin størrelse på hurtigbufferen i megabytes (%d til %d, standardverdi: %d)</translation>
+        <translation>Sett databasens størrelse på hurtigbufferen i megabytes (%d til %d, standardverdi: %d)</translation>
     </message>
     <message>
         <source>Set maximum block size in bytes (default: %d)</source>
-        <translation>Sett maks blokkstørrelse i bytes (standardverdi: %d)</translation>
+        <translation>Sett maksimal blokkstørrelse i bytes (standardverdi: %d)</translation>
     </message>
     <message>
         <source>Specify wallet file (within data directory)</source>
@@ -3012,7 +3012,7 @@ Adresse: %4
     </message>
     <message>
         <source>Imports blocks from external blk000??.dat file</source>
-        <translation>Importerer blokker fra ekstern fil blk000??.dat</translation>
+        <translation>Importerer blokker fra ekstern blk000??.dat fil</translation>
     </message>
     <message>
         <source>Allow JSON-RPC connections from specified source. Valid for &lt;ip&gt; are a single IP (e.g. 1.2.3.4), a network/netmask (e.g. 1.2.3.4/255.255.255.0) or a network/CIDR (e.g. 1.2.3.4/24). This option can be specified multiple times</source>
@@ -3024,11 +3024,11 @@ Adresse: %4
     </message>
     <message>
         <source>Bind to given address and whitelist peers connecting to it. Use [host]:port notation for IPv6</source>
-        <translation>Bind til gitt adresse og hvitlist peers som kobler seg til den. Bruk [host]:port notasjon for IPv6</translation>
+        <translation>Bind til gitt adresse og hvitliste peers som kobler seg til den. Bruk [host]:port notasjon for IPv6</translation>
     </message>
     <message>
         <source>Bind to given address to listen for JSON-RPC connections. Use [host]:port notation for IPv6. This option can be specified multiple times (default: bind to all interfaces)</source>
-        <translation>Bind til gitt adresse for å lytte for JSON-RPC-tilkoblinger. Bruk [host]:port notasjon for IPv6. Dette alternativet kan angis flere ganger (standardverdi: bind til alle grensesnitt)</translation>
+        <translation>Knytt til gitt adresse for å lytte for JSON-RPC-tilkoblinger. Bruk [host]:port notasjon for IPv6. Dette alternativet kan angis flere ganger (standard: bind til alle grensesnitt)</translation>
     </message>
     <message>
         <source>Cannot obtain a lock on data directory %s. Sexcoin Core is probably already running.</source>
@@ -3036,11 +3036,11 @@ Adresse: %4
     </message>
     <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
-        <translation>Ratebegrens gratistransaksjoner kontinuerlig til &lt;n&gt;*1000 bytes per minutt (standardverdi: %u)</translation>
+        <translation>Ratebegrens gratistransaksjoner kontinuerlig til &lt;n&gt;*1000 bytes per minutt (standard: %u)</translation>
     </message>
     <message>
         <source>Create new files with system default permissions, instead of umask 077 (only effective with disabled wallet functionality)</source>
-        <translation>Opprett nye filer med standardtillatelser i systemet, i stedet for umask 077 (kun virksom med lommebokfunksjonalitet slått av)</translation>
+        <translation>Opprett nye filer med standard systemtillatelser, i stedet for umask 077 (kun virksom med lommebokfunksjonalitet slått av)</translation>
     </message>
     <message>
         <source>Error: Listening for incoming connections failed (listen returned error %s)</source>
@@ -3048,7 +3048,7 @@ Adresse: %4
     </message>
     <message>
         <source>Error: Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
-        <translation>Feil: Argumentet -socks er ikke støttet. Det er ikke lenger mulig å sette SOCKS-versjon; bare SOCKS5-proxyer er støttet.</translation>
+        <translation>Feil: Ustøttet argument -socks funnet. Det er ikke lenger mulig å sette SOCKS-versjon; bare SOCKS5-proxyer er støttet.</translation>
     </message>
     <message>
         <source>Execute command when a relevant alert is received or we see a really long fork (%s in cmd is replaced by message)</source>
@@ -3056,27 +3056,27 @@ Adresse: %4
     </message>
     <message>
         <source>Fees (in LTC/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>Gebyrer (i LTC/Kb) mindre enn dette anses som null gebyr for videresending (standardverdi: %s)</translation>
+        <translation>Gebyrer (i LTC/Kb) mindre enn dette anses som null gebyr for videresending (standard: %s)</translation>
     </message>
     <message>
         <source>Fees (in LTC/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>Gebyrer (i LTC/Kb) mindre enn dette anses som null gebyr for laging av transaksjoner (standardverdi: %s)</translation>
+        <translation>Gebyrer (i LTC/Kb) mindre enn dette anses som null gebyr for laging av transaksjoner (standard: %s)</translation>
     </message>
     <message>
         <source>If paytxfee is not set, include enough fee so transactions begin confirmation on average within n blocks (default: %u)</source>
-        <translation>Hvis paytxfee ikke er angitt, inkluderer da nok i gebyr til at transaksjoner gjennomsnittligt bekreftes innen n blokker (standardverdi: %u)</translation>
+        <translation>Hvis paytxfee ikke er angitt, inkluderer da nok i gebyr til at transaksjoner gjennomsnittligt bekreftes innen n blokker (standard: %u)</translation>
     </message>
     <message>
         <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
-        <translation>Ugyldig beløp for -maxtxfee=&lt;amount&gt;: '%s' (må være minst minimum relé gebyr på %s for å hindre fastlåste transaksjoner)</translation>
+        <translation>Ugyldig beløp for -maxtxfee=&lt;amount&gt;: '%s' (må være minst minimumsrelé gebyr på %s for å hindre fastlåste transaksjoner)</translation>
     </message>
     <message>
         <source>Maximum size of data in data carrier transactions we relay and mine (default: %u)</source>
-        <translation>Maksimal størrelse på data i databærende transaksjoner vi videresender og ufører graving på (standardverdi: %u)</translation>
+        <translation>Maksimal størrelse på data i databærende transaksjoner vi videresender og utvinner (standard: %u)</translation>
     </message>
     <message>
         <source>Maximum total fees to use in a single wallet transaction, setting too low may abort large transactions (default: %s)</source>
-        <translation>Maksimal sum av gebyrer som kan brukes i en enkelt lommebokstransaksjon, settes den for lavt kan store transaksjoner bli avbrutt (standardverdi: %s)</translation>
+        <translation>Maksimale sum av gebyrer som kan brukes i en enkelt lommebokstransaksjon, settes den for lavt kan store transaksjoner bli avbrutt (standard: %s)</translation>
     </message>
     <message>
         <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect)</source>
@@ -3084,15 +3084,15 @@ Adresse: %4
     </message>
     <message>
         <source>Require high priority for relaying free or low-fee transactions (default:%u)</source>
-        <translation>Krev høy prioritet for å videreformidle transaksjoner som er gratis eller har lavt gebyr (standardverdi: %u)</translation>
+        <translation>Krev høy prioritet for å videreformidle transaksjoner som er gratis eller har lavt gebyr (standard: %u)</translation>
     </message>
     <message>
         <source>Set maximum size of high-priority/low-fee transactions in bytes (default: %d)</source>
-        <translation>Sett maksimum størrelse for transaksjoner med høy prioritet / lavt gebyr, i bytes (standardverdi: %d)</translation>
+        <translation>Sett maksimal størrelse for transaksjoner med høy prioritet/lavt gebyr, i bytes (standardverdi: %d)</translation>
     </message>
     <message>
         <source>Set the number of threads for coin generation if enabled (-1 = all cores, default: %d)</source>
-        <translation>Angi antall tråder for mynt generering hvis aktivert (-1 = alle kjerner, standardverdi: %d)</translation>
+        <translation>Angi antall tråder for mynt generering hvis aktivert (-1 = alle kjerner, standard: %d)</translation>
     </message>
     <message>
         <source>This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit &lt;https://www.openssl.org/&gt; and cryptographic software written by Eric Young and UPnP software written by Thomas Bernard.</source>
@@ -3115,28 +3115,28 @@ for example: alertnotify=echo %%s | mail -s "Sexcoin Alert" admin@foo.com
 Det anbefales at du bruker det følgende tilfeldige passordet:
 rpcuser=sexcoinrpc
 rpcpassword=%s
-(du behøver ikke å huske passordet)
-Brukernavnet og passordet MÅ IKKE være like.
-Om filen ikke eksisterer, opprett den med eier-kun-les filrettigheter.
+(du behøver ikke å huske dette passordet)
+Brukernavnet og passordet SKAL IKKE være like.
+Om filen ikke eksisterer, opprett den med eier-lesbar-kun filrettigheter.
 Det er også anbefalt at å sette varselsmelding slik du får melding om problemer;
 for eksempel: alertnotify=echo %%s | mail -s "Sexcoin Alert" admin@foo.com
 </translation>
     </message>
     <message>
         <source>Warning: -maxtxfee is set very high! Fees this large could be paid on a single transaction.</source>
-        <translation>Advarsel: -paytxfee er satt veldig høyt! Så stort gebyr kan bli betalt ved en enkelt transaksjon.</translation>
+        <translation>Advarsel: -maxtxfee er satt veldig høyt! Så stort gebyr kan bli betalt ved en enkelt transaksjon.</translation>
     </message>
     <message>
         <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Sexcoin Core will not work properly.</source>
-        <translation>Advarsel: Vennligst undersøk at din datamaskin har riktig dato og klokkeslett! Hvis klokken er stilt feil vil ikke Sexcoin Core fungere riktig.</translation>
+        <translation>Advarsel: Vennligst kontroller at din datamaskin har riktig dato og klokkeslett! Hvis klokken er stilt feil vil ikke Sexcoin Core fungere riktig.</translation>
     </message>
     <message>
         <source>Whitelisted peers cannot be DoS banned and their transactions are always relayed, even if they are already in the mempool, useful e.g. for a gateway</source>
-        <translation>Hvitlistede noder kan ikke DoS-blokkeres, og deres transaksjoner videresendes alltid, selv om de allerede er i minnelageret. Nyttig f.eks. for en gateway.</translation>
+        <translation>Hvitlistede noder kan ikke DoS-blokkeres og deres transaksjoner videresendes alltid, selv om de allerede er i minnelageret. Nyttig f.eks. for en gateway.</translation>
     </message>
     <message>
         <source>Accept public REST requests (default: %u)</source>
-        <translation>Godta offentlige REST forespørsler (standardverdi: %u)</translation>
+        <translation>Godta offentlige REST forespørsler (standard: %u)</translation>
     </message>
     <message>
         <source>Cannot resolve -whitebind address: '%s'</source>
@@ -3160,7 +3160,7 @@ for eksempel: alertnotify=echo %%s | mail -s "Sexcoin Alert" admin@foo.com
     </message>
     <message>
         <source>Error reading from database, shutting down.</source>
-        <translation>Feil ved lesing fra database, stenger ned.</translation>
+        <translation>Feil ved lesing fra database, avslutter.</translation>
     </message>
     <message>
         <source>Error: A fatal internal error occurred, see debug.log for details</source>
@@ -3168,11 +3168,11 @@ for eksempel: alertnotify=echo %%s | mail -s "Sexcoin Alert" admin@foo.com
     </message>
     <message>
         <source>Error: Unsupported argument -tor found, use -onion.</source>
-        <translation>Feil: Argumentet -tor er ikke støttet, bruk -onion.</translation>
+        <translation>Feil: Ustøttet argument -tor funnet, bruk -onion.</translation>
     </message>
     <message>
         <source>Fee (in LTC/kB) to add to transactions you send (default: %s)</source>
-        <translation>Gebyr (i LTC/kB) for å legge til i transaksjoner du sender (standardverdi: %s)</translation>
+        <translation>Gebyr (i LTC/kB) som legges til i transaksjoner du sender (standard: %s)</translation>
     </message>
     <message>
         <source>Information</source>
@@ -3180,23 +3180,23 @@ for eksempel: alertnotify=echo %%s | mail -s "Sexcoin Alert" admin@foo.com
     </message>
     <message>
         <source>Initialization sanity check failed. Sexcoin Core is shutting down.</source>
-        <translation>Sunnhetssjekk ved oppstart feilet. Sexcoin Core stenges ned.</translation>
+        <translation>Sunnhetssjekk ved initialisering feilet. Sexcoin Core avslutter.</translation>
     </message>
     <message>
         <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s'</source>
-        <translation>Ugyldig beløp for -maxtxfee=&lt;amount&gt;: '%s'</translation>
+        <translation>Ugyldig beløp for -maxtxfee=&lt;beløp&gt;: '%s'</translation>
     </message>
     <message>
         <source>Invalid amount for -minrelaytxfee=&lt;amount&gt;: '%s'</source>
-        <translation>Ugyldig mengde for -minrelaytxfee=&lt;beløp&gt;: '%s'</translation>
+        <translation>Ugyldig beløp for -minrelaytxfee=&lt;beløp&gt;: '%s'</translation>
     </message>
     <message>
         <source>Invalid amount for -mintxfee=&lt;amount&gt;: '%s'</source>
-        <translation>Ugyldig mengde for -mintxfee=&lt;beløp&gt;: '%s'</translation>
+        <translation>Ugyldig beløp for -mintxfee=&lt;beløp&gt;: '%s'</translation>
     </message>
     <message>
         <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s' (must be at least %s)</source>
-        <translation>Ugyldig beløp for -paytxfee=&lt;amount&gt;: '%s' (må være minst %s)</translation>
+        <translation>Ugyldig beløp for -paytxfee=&lt;beløp&gt;: '%s' (må være minst %s)</translation>
     </message>
     <message>
         <source>Invalid netmask specified in -whitelist: '%s'</source>
@@ -3204,7 +3204,7 @@ for eksempel: alertnotify=echo %%s | mail -s "Sexcoin Alert" admin@foo.com
     </message>
     <message>
         <source>Keep at most &lt;n&gt; unconnectable transactions in memory (default: %u)</source>
-        <translation>Hold på det meste &lt;n&gt; transaksjoner som ikke kobles i minnet (standardverdi: %u)</translation>
+        <translation>Hold på det meste &lt;n&gt; ikke-koblede transaksjoner i minnet (standardverdi: %u)</translation>
     </message>
     <message>
         <source>Need to specify a port with -whitebind: '%s'</source>
@@ -3216,7 +3216,7 @@ for eksempel: alertnotify=echo %%s | mail -s "Sexcoin Alert" admin@foo.com
     </message>
     <message>
         <source>RPC SSL options: (see the Sexcoin Wiki for SSL setup instructions)</source>
-        <translation>RPC SSL-valg: (se Sexcoin Wiki for oppsettsinstruksjoner for SSL)</translation>
+        <translation>RPC SSL-valg: (se Sexcoin Wiki for SSL-oppsettsinstruksjoner)</translation>
     </message>
     <message>
         <source>RPC server options:</source>
@@ -3224,19 +3224,19 @@ for eksempel: alertnotify=echo %%s | mail -s "Sexcoin Alert" admin@foo.com
     </message>
     <message>
         <source>RPC support for HTTP persistent connections (default: %d)</source>
-        <translation>RPC-støtte for persistente HTTP-forbindelser (standardverdi: %d)</translation>
+        <translation>RPC-støtte for HTTP-vedvarende forbindelser (standard: %d)</translation>
     </message>
     <message>
         <source>Randomly drop 1 of every &lt;n&gt; network messages</source>
-        <translation>Slumpvis dropp 1 av hver &lt;n&gt; nettverksmeldinger</translation>
+        <translation>Tilfeldig dropp 1 av hver &lt;n&gt; nettverksmeldinger</translation>
     </message>
     <message>
         <source>Randomly fuzz 1 of every &lt;n&gt; network messages</source>
-        <translation>Slumpvis bland 1 av hver &lt;n&gt; nettverksmeldinger</translation>
+        <translation>Tilfeldig bland 1 av hver &lt;n&gt; nettverksmeldinger</translation>
     </message>
     <message>
         <source>Receive and display P2P network alerts (default: %u)</source>
-        <translation>Motta og vis P2P-nettverksvarsler (standardvalg: %u)</translation>
+        <translation>Motta og vis P2P-nettverksvarsler (standard: %u)</translation>
     </message>
     <message>
         <source>Send trace/debug info to console instead of debug.log file</source>
@@ -3244,7 +3244,7 @@ for eksempel: alertnotify=echo %%s | mail -s "Sexcoin Alert" admin@foo.com
     </message>
     <message>
         <source>Send transactions as zero-fee transactions if possible (default: %u)</source>
-        <translation>Send transaksjoner uten transaksjonsgebyr hvis mulig (standardverdi: %u)</translation>
+        <translation>Send transaksjoner uten transaksjonsgebyr hvis mulig (standard: %u)</translation>
     </message>
     <message>
         <source>Show all debugging options (usage: --help -help-debug)</source>
@@ -3252,7 +3252,7 @@ for eksempel: alertnotify=echo %%s | mail -s "Sexcoin Alert" admin@foo.com
     </message>
     <message>
         <source>Shrink debug.log file on client startup (default: 1 when no -debug)</source>
-        <translation>Krymp filen debug.log når klienten starter (standardverdi: 1 hvis uten -debug)</translation>
+        <translation>Krymp filen debug.log når klienten starter (standard: 1 hvis uten -debug)</translation>
     </message>
     <message>
         <source>Signing transaction failed</source>
@@ -3264,7 +3264,7 @@ for eksempel: alertnotify=echo %%s | mail -s "Sexcoin Alert" admin@foo.com
     </message>
     <message>
         <source>Transaction amount too small</source>
-        <translation>Transaksjonen er for liten</translation>
+        <translation>Transaksjonsbeløpet er for lite</translation>
     </message>
     <message>
         <source>Transaction amounts must be positive</source>
@@ -3272,7 +3272,7 @@ for eksempel: alertnotify=echo %%s | mail -s "Sexcoin Alert" admin@foo.com
     </message>
     <message>
         <source>Transaction too large for fee policy</source>
-        <translation>Transaksjon for stor for gebyrpolitikken</translation>
+        <translation>Transaksjonen er for stor for gebyr-reglene</translation>
     </message>
     <message>
         <source>Transaction too large</source>
@@ -3280,11 +3280,11 @@ for eksempel: alertnotify=echo %%s | mail -s "Sexcoin Alert" admin@foo.com
     </message>
     <message>
         <source>Unable to bind to %s on this computer (bind returned error %s)</source>
-        <translation>Kan ikke binde til %s på denne datamaskinen (binding returnerte feilen %s)</translation>
+        <translation>Kan ikke knytte til %s på denne datamaskinen (knytting returnerte feilen %s)</translation>
     </message>
     <message>
         <source>Use UPnP to map the listening port (default: 1 when listening)</source>
-        <translation>Bruk UPnP for lytteport (standardverdi: 1 ved lytting)</translation>
+        <translation>Bruk UPnP for lytteport (standard: 1 ved lytting)</translation>
     </message>
     <message>
         <source>Username for JSON-RPC connections</source>
@@ -3300,19 +3300,19 @@ for eksempel: alertnotify=echo %%s | mail -s "Sexcoin Alert" admin@foo.com
     </message>
     <message>
         <source>Warning: This version is obsolete, upgrade required!</source>
-        <translation>Advarsel: Denne versjonen er foreldet, oppgradering kreves!</translation>
+        <translation>Advarsel: Denne versjonen er utdatert, oppgradering kreves!</translation>
     </message>
     <message>
         <source>Warning: Unsupported argument -benchmark ignored, use -debug=bench.</source>
-        <translation>Advarsel: Argumentet -benchmark er ikke støttet og ble ignorert, bruk -debug=bench.</translation>
+        <translation>Advarsel: Ustøttet argument -benchmark ble ignorert, bruk -debug=bench.</translation>
     </message>
     <message>
         <source>Warning: Unsupported argument -debugnet ignored, use -debug=net.</source>
-        <translation>Advarsel: Argumentet -debugnet er ikke støttet og ble ignorert, bruk -debug=net.</translation>
+        <translation>Advarsel: Ustøttet argument -debugnet ble ignorert, bruk -debug=net.</translation>
     </message>
     <message>
         <source>Zapping all transactions from wallet...</source>
-        <translation>Zapper alle transaksjoner fra lommeboken...</translation>
+        <translation>Fjerner alle transaksjoner fra lommeboken...</translation>
     </message>
     <message>
         <source>on startup</source>
@@ -3328,15 +3328,15 @@ for eksempel: alertnotify=echo %%s | mail -s "Sexcoin Alert" admin@foo.com
     </message>
     <message>
         <source>Execute command when the best block changes (%s in cmd is replaced by block hash)</source>
-        <translation>Utfør kommando når beste blokk endrer seg (%s i kommandoen erstattes med blokkens hash)</translation>
+        <translation>Utfør kommando når beste blokk endrer seg (%s i kommandovindu blir erstattet med blokkens hash)</translation>
     </message>
     <message>
         <source>Upgrade wallet to latest format</source>
-        <translation>Oppgrader lommebok til nyeste format</translation>
+        <translation>Oppgrader lommeboken til siste format</translation>
     </message>
     <message>
         <source>Rescan the block chain for missing wallet transactions</source>
-        <translation>Se gjennom blokkjeden etter manglende lommeboktransaksjoner</translation>
+        <translation>Skann gjennom blokkjeden etter manglende lommeboktransaksjoner</translation>
     </message>
     <message>
         <source>Use OpenSSL (https) for JSON-RPC connections</source>
@@ -3348,7 +3348,7 @@ for eksempel: alertnotify=echo %%s | mail -s "Sexcoin Alert" admin@foo.com
     </message>
     <message>
         <source>Allow DNS lookups for -addnode, -seednode and -connect</source>
-        <translation>Tillat oppslag i DNS for -addnode, -seednode og -connect</translation>
+        <translation>Tillat DNS-oppslag for -addnode, -seednode og -connect</translation>
     </message>
     <message>
         <source>Loading addresses...</source>
@@ -3356,31 +3356,31 @@ for eksempel: alertnotify=echo %%s | mail -s "Sexcoin Alert" admin@foo.com
     </message>
     <message>
         <source>Error loading wallet.dat: Wallet corrupted</source>
-        <translation>Feil ved lasting av wallet.dat: Lommeboken er skadet</translation>
+        <translation>Feil ved lasting av wallet.dat: Lommeboken er korrupt</translation>
     </message>
     <message>
         <source>(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</source>
-        <translation>(1 = behold metadata for transaksjon som f. eks. kontoeier og informasjon om betalingsanmodning, 2 = dropp metadata for transaksjon)</translation>
+        <translation>(1 = behold transaksjons-metadata som f.eks. kontoeier og informasjon om betalingsforespørsler, 2 = dropp transaksjons-metadata)</translation>
     </message>
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
-        <translation>Overfør aktiviteten i databasen fra minnelageret til loggen på harddisken for hver &lt;n&gt; megabytes (standardverdi: %u)</translation>
+        <translation>Tøm database aktivitetfra minnelageret til harddisken-logg hver &lt;n&gt; megabytes (standard: %u)</translation>
     </message>
     <message>
         <source>How thorough the block verification of -checkblocks is (0-4, default: %u)</source>
-        <translation>Hvor grundig blokkverifiseringen til -checkblocks er (0-4, standardverdi: %u)</translation>
+        <translation>Hvor grundig blokkverifiseringen til -checkblocks er (0-4, standard: %u)</translation>
     </message>
     <message>
         <source>Log transaction priority and fee per kB when mining blocks (default: %u)</source>
-        <translation>Logg transaksjonsprioritet og gebyr per kB under blokkutvinning (standardverdi: %u)</translation>
+        <translation>Logg transaksjonsprioritet og gebyr per kB under blokkutvinning (standard: %u)</translation>
     </message>
     <message>
         <source>Maintain a full transaction index, used by the getrawtransaction rpc call (default: %u)</source>
-        <translation>Oppretthold en full transaksjonsindeks, brukt av getrawtransaction RPC-kall (standardverdi: %u)</translation>
+        <translation>Oppretthold en full transaksjonsindeks, brukt av getrawtransaction RPC-kall (standard: %u)</translation>
     </message>
     <message>
         <source>Number of seconds to keep misbehaving peers from reconnecting (default: %u)</source>
-        <translation>Antall sekunder noder med dårlig oppførsel hindres fra å koble til på nytt (standardverdi: %u)</translation>
+        <translation>Antall sekunder noder med dårlig oppførsel hindres fra å koble til på nytt (standard: %u)</translation>
     </message>
     <message>
         <source>Output debugging information (default: %u, supplying &lt;category&gt; is optional)</source>
@@ -3388,23 +3388,23 @@ for eksempel: alertnotify=echo %%s | mail -s "Sexcoin Alert" admin@foo.com
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
-        <translation>Bruk separate SOCKS5 proxyer for å nå noder via Tor skjulte tjenester (standardverdi: %s)</translation>
+        <translation>Bruk separate SOCKS5 proxyer for å nå noder via Tor skjulte tjenester (standard: %s)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
-        <translation>(standardverdi: %s)</translation>
+        <translation>(standard: %s)</translation>
     </message>
     <message>
         <source>Acceptable ciphers (default: %s)</source>
-        <translation>Akseptable sifre (standardverdi: %s)</translation>
+        <translation>Akseptable chiffers (standard: %s)</translation>
     </message>
     <message>
         <source>Always query for peer addresses via DNS lookup (default: %u)</source>
-        <translation>Alltid søk etter nodeadresser via DNS-oppslag (standardverdi: %u)</translation>
+        <translation>Alltid søk etter nodeadresser via DNS-oppslag (standard: %u)</translation>
     </message>
     <message>
         <source>Disable safemode, override a real safe mode event (default: %u)</source>
-        <translation>Slå av sikkerhetsmodus, overstyr en virkelig sikkerhetsmodushendelse (standardverdi: %u)</translation>
+        <translation>Slå av sikkerhetsmodus, overstyr en virkelig sikkerhetsmodushendelse (standard: %u)</translation>
     </message>
     <message>
         <source>Error loading wallet.dat</source>
@@ -3412,19 +3412,19 @@ for eksempel: alertnotify=echo %%s | mail -s "Sexcoin Alert" admin@foo.com
     </message>
     <message>
         <source>Force safe mode (default: %u)</source>
-        <translation>Tving sikkerhetsmodus (standardverdi: %u)</translation>
+        <translation>Tving sikkerhetsmodus (standard: %u)</translation>
     </message>
     <message>
         <source>Generate coins (default: %u)</source>
-        <translation>Generer mynter (standardverdi: %u)</translation>
+        <translation>Generer mynter (standard: %u)</translation>
     </message>
     <message>
         <source>How many blocks to check at startup (default: %u, 0 = all)</source>
-        <translation>Hvor mange blokker skal sjekkes ved oppstart (standardverdi: %u, 0 = alle)</translation>
+        <translation>Hvor mange blokker skal sjekkes ved oppstart (standard: %u, 0 = alle)</translation>
     </message>
     <message>
         <source>Include IP addresses in debug output (default: %u)</source>
-        <translation>Inkludere IP-adresser i feilsøkingslogg (standardverdi: %u)</translation>
+        <translation>Inkludere IP-adresser i feilsøkingslogg (standard: %u)</translation>
     </message>
     <message>
         <source>Invalid -proxy address: '%s'</source>
@@ -3432,95 +3432,95 @@ for eksempel: alertnotify=echo %%s | mail -s "Sexcoin Alert" admin@foo.com
     </message>
     <message>
         <source>Limit size of signature cache to &lt;n&gt; entries (default: %u)</source>
-        <translation>Begrens størrelsen på hurtigbufferen for signaturer til &lt;n&gt; oppføringer (standardverdi: %u)</translation>
+        <translation>Begrens størrelsen på hurtigbufferen for signaturer til &lt;n&gt; oppføringer (standard: %u)</translation>
     </message>
     <message>
         <source>Listen for JSON-RPC connections on &lt;port&gt; (default: %u or testnet: %u)</source>
-        <translation>Lytt etter JSON-RPC tilkoblinger på &lt;port&gt; (standardverdi: %u eller testnett: %u)</translation>
+        <translation>Lytt etter JSON-RPC tilkoblinger på &lt;port&gt; (standard: %u eller testnett: %u)</translation>
     </message>
     <message>
         <source>Listen for connections on &lt;port&gt; (default: %u or testnet: %u)</source>
-        <translation>Lytt etter tilkoblinger på &lt;port&gt; (standardverdi: %u eller testnett: %u)</translation>
+        <translation>Lytt etter tilkoblinger på &lt;port&gt; (standard: %u eller testnett: %u)</translation>
     </message>
     <message>
         <source>Maintain at most &lt;n&gt; connections to peers (default: %u)</source>
-        <translation>Hold maks &lt;n&gt; koblinger åpne til andre noder (standardverdi: %u)</translation>
+        <translation>Hold maksimalt &lt;n&gt; koblinger mot andre noder (standard: %u)</translation>
     </message>
     <message>
         <source>Maximum per-connection receive buffer, &lt;n&gt;*1000 bytes (default: %u)</source>
-        <translation>Maks mottaksbuffer per forbindelse, &lt;n&gt;*1000 bytes (standardverdi: %u)</translation>
+        <translation>Maksimal mottaksbuffer per forbindelse, &lt;n&gt;*1000 bytes (standard: %u)</translation>
     </message>
     <message>
         <source>Maximum per-connection send buffer, &lt;n&gt;*1000 bytes (default: %u)</source>
-        <translation>Maks sendebuffer per forbindelse, &lt;n&gt;*1000 bytes (standardverdi: %u)</translation>
+        <translation>Maksimal sendebuffer per forbindelse, &lt;n&gt;*1000 bytes (standard: %u)</translation>
     </message>
     <message>
         <source>Only accept block chain matching built-in checkpoints (default: %u)</source>
-        <translation>Aksepter kun blokkjeden som stemmer med innebygde sjekkpunkter (standardvalg: %u)</translation>
+        <translation>Aksepter kun blokkjeden som stemmer med innebygde sjekkpunkter (standard: %u)</translation>
     </message>
     <message>
         <source>Prepend debug output with timestamp (default: %u)</source>
-        <translation>Sett inn tidsstempel i front av feilsøkingsdata (standardverdi: %u)</translation>
+        <translation>Sett inn tidsstempel i front av feilsøkingsdata (standard: %u)</translation>
     </message>
     <message>
         <source>Relay and mine data carrier transactions (default: %u)</source>
-        <translation>Videresend og ufør graving av databærende transaksjoner (standardverdi: %u)</translation>
+        <translation>Videresend og ufør utvinning av databærende transaksjoner (standard: %u)</translation>
     </message>
     <message>
         <source>Relay non-P2SH multisig (default: %u)</source>
-        <translation>Videresend ikke-P2SH multisig (standardverdi: %u)</translation>
+        <translation>Videresend ikke-P2SH multisig (standard: %u)</translation>
     </message>
     <message>
         <source>Run a thread to flush wallet periodically (default: %u)</source>
-        <translation>Kjør en tråd som skriver lommeboken til disk periodisk (standardverdi: %u)</translation>
+        <translation>Kjør en tråd som skriver lommeboken til disk periodisk (standard: %u)</translation>
     </message>
     <message>
         <source>Server certificate file (default: %s)</source>
-        <translation>Fil for tjenersertifikat (standardverdi: %s)</translation>
+        <translation>Fil for tjenersertifikat (standard: %s)</translation>
     </message>
     <message>
         <source>Server private key (default: %s)</source>
-        <translation>Privat nøkkel for tjener (standardverdi: %s) </translation>
+        <translation>Privat nøkkel for tjener (standard: %s) </translation>
     </message>
     <message>
         <source>Set key pool size to &lt;n&gt; (default: %u)</source>
-        <translation>Angi størrelse på nøkkel-lager til &lt;n&gt; (standardverdi: %u)</translation>
+        <translation>Angi størrelse på nøkkel-lager til &lt;n&gt; (standard: %u)</translation>
     </message>
     <message>
         <source>Set minimum block size in bytes (default: %u)</source>
-        <translation>Sett minimum blokkstørrelse i bytes (standardverdi: %u)</translation>
+        <translation>Sett minimum blokkstørrelse i bytes (standard: %u)</translation>
     </message>
     <message>
         <source>Set the number of threads to service RPC calls (default: %d)</source>
-        <translation>Sett antall tråder til betjening av RPC-kall (standardverdi: %d)</translation>
+        <translation>Sett antall tråder til betjening av RPC-kall (standard: %d)</translation>
     </message>
     <message>
         <source>Sets the DB_PRIVATE flag in the wallet db environment (default: %u)</source>
-        <translation>Setter flagget DB_PRIVATE i miljøet til lommebokdatabasen (standardverdi: %u)</translation>
+        <translation>Setter flagget DB_PRIVATE i miljøet til lommebokdatabasen (standard: %u)</translation>
     </message>
     <message>
         <source>Specify configuration file (default: %s)</source>
-        <translation>Angi konfigurasjonsfil (standardverdi: %s)</translation>
+        <translation>Angi konfigurasjonsfil (standard: %s)</translation>
     </message>
     <message>
         <source>Specify connection timeout in milliseconds (minimum: 1, default: %d)</source>
-        <translation>Angi tidsavbrudd for forbindelse i millisekunder (minimum: 1, standardverdi: %d)</translation>
+        <translation>Angi tidsavbrudd for forbindelse i millisekunder (minimum: 1, standard: %d)</translation>
     </message>
     <message>
         <source>Specify pid file (default: %s)</source>
-        <translation>Angi pid-fil (standardverdi: %s)</translation>
+        <translation>Angi pid-fil (standard: %s)</translation>
     </message>
     <message>
         <source>Spend unconfirmed change when sending transactions (default: %u)</source>
-        <translation>Bruk ubekreftet veksel ved sending av transaksjoner (standardverdi: %u)</translation>
+        <translation>Bruk ubekreftet veksel ved sending av transaksjoner (standard: %u)</translation>
     </message>
     <message>
         <source>Stop running after importing blocks from disk (default: %u)</source>
-        <translation>Avslutt etter import av blokker fra disk (standardverdi: %u)</translation>
+        <translation>Avslutt etter import av blokker fra disk (standard: %u)</translation>
     </message>
     <message>
         <source>Threshold for disconnecting misbehaving peers (default: %u)</source>
-        <translation>Grenseverdi for å koble fra noder med dårlig oppførsel (standardverdi: %u)</translation>
+        <translation>Grenseverdi for å koble fra noder med dårlig oppførsel (standard: %u)</translation>
     </message>
     <message>
         <source>Unknown network specified in -onlynet: '%s'</source>
@@ -3564,7 +3564,7 @@ for eksempel: alertnotify=echo %%s | mail -s "Sexcoin Alert" admin@foo.com
     </message>
     <message>
         <source>Rescanning...</source>
-        <translation>Leser gjennom...</translation>
+        <translation>Reskanner...</translation>
     </message>
     <message>
         <source>Done loading</source>
