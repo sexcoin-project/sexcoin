@@ -1,73 +1,75 @@
+// Copyright (c) 2011-2013 The Bitcoin developers
+// Distributed under the MIT/X11 software license, see the accompanying
+// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+#if defined(HAVE_CONFIG_H)
+#include "config/bitcoin-config.h"
+#endif
+
 #include "optionsdialog.h"
 #include "ui_optionsdialog.h"
-#include "guiutil.h"
 
-#include "bitcoinamountfield.h"
 #include "bitcoinunits.h"
-#include "monitoreddatamapper.h"
-#include "netbase.h"
-#include "main.h"
+#include "guiutil.h"
 #include "optionsmodel.h"
-#include "qvalidatedlineedit.h"
-#include "qvaluecombobox.h"
-#include "boost/filesystem.hpp"
 
-#include <QCheckBox>
+#include "main.h" // for MAX_SCRIPTCHECK_THREADS
+#include "netbase.h"
+#include "txdb.h" // for -dbcache defaults
+
+#ifdef ENABLE_WALLET
+#include "wallet.h" // for CWallet::minTxFee
+#endif
+
+#include <boost/thread.hpp>
+
+#include <QDataWidgetMapper>
 #include <QDir>
 #include <QIntValidator>
-#include <QLabel>
-#include <QLineEdit>
 #include <QLocale>
 #include <QMessageBox>
-#include <QPushButton>
-#include <QRegExp>
-#include <QRegExpValidator>
-#include <QStringList>
-#include <QSettings>
-#include <QTabWidget>
-#include <QWidget>
-#include <QString>
+#include <QTimer>
 
-
-OptionsDialog::OptionsDialog(QWidget *parent) :
+OptionsDialog::OptionsDialog(QWidget *parent, bool enableWallet) :
     QDialog(parent),
     ui(new Ui::OptionsDialog),
     model(0),
     mapper(0),
-    fRestartWarningDisplayed_Proxy(false),
-    fRestartWarningDisplayed_Lang(false),
     fProxyIpValid(true)
 {
-    printf("*******************  Initializing Options Dialog ****************************\n");
     ui->setupUi(this);
-    populateSoundCombos();
+    GUIUtil::restoreWindowGeometry("nOptionsDialogWindow", this->size(), this);
+
+    /* Main elements init */
+    ui->databaseCache->setMinimum(nMinDbCache);
+    ui->databaseCache->setMaximum(nMaxDbCache);
+    ui->threadsScriptVerif->setMinimum(-(int)boost::thread::hardware_concurrency());
+    ui->threadsScriptVerif->setMaximum(MAX_SCRIPTCHECK_THREADS);
 
     /* Network elements init */
 #ifndef USE_UPNP
     ui->mapPortUpnp->setEnabled(false);
 #endif
 
-    ui->socksVersion->setEnabled(false);
-    ui->socksVersion->addItem("5", 5);
-    ui->socksVersion->addItem("4", 4);
-    ui->socksVersion->setCurrentIndex(0);
-
     ui->proxyIp->setEnabled(false);
     ui->proxyPort->setEnabled(false);
-    ui->proxyPort->setValidator(new QIntValidator(0, 65535, this));
+    ui->proxyPort->setValidator(new QIntValidator(1, 65535, this));
 
-    ui->editMaxAcceptedHeight->setText( QString(nMaxHeightAccepted));
-
-    connect(ui->connectSocks, SIGNAL(toggled(bool)), ui->socksVersion, SLOT(setEnabled(bool)));
     connect(ui->connectSocks, SIGNAL(toggled(bool)), ui->proxyIp, SLOT(setEnabled(bool)));
     connect(ui->connectSocks, SIGNAL(toggled(bool)), ui->proxyPort, SLOT(setEnabled(bool)));
 
     ui->proxyIp->installEventFilter(this);
 
     /* Window elements init */
-#ifdef Q_WS_MAC
-    ui->tabWindow->setVisible(false);
+#ifdef Q_OS_MAC
+    /* remove Window tab on Mac */
+    ui->tabWidget->removeTab(ui->tabWidget->indexOf(ui->tabWindow));
 #endif
+
+    /* remove Wallet tab in case of -disablewallet */
+    if (!enableWallet) {
+        ui->tabWidget->removeTab(ui->tabWidget->indexOf(ui->tabWallet));
+    }
 
     /* Display elements init */
     QDir translations(":translations");
@@ -98,54 +100,24 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 #endif
         }
     }
+#if QT_VERSION >= 0x040700
+    ui->thirdPartyTxUrls->setPlaceholderText("https://example.com/tx/%s");
+#endif
 
     ui->unit->setModel(new BitcoinUnits(this));
 
-    connect(ui->connectSocks, SIGNAL(clicked(bool)), this, SLOT(showRestartWarning_Proxy()));
-    connect(ui->lang, SIGNAL(activated(int)), this, SLOT(showRestartWarning_Lang()));
-
-    /* Sound Elements Init */
-
-    connect(ui->s_startup_enable, SIGNAL(toggled(bool)), ui->s_startup_enable, SLOT(setChecked(bool)));
-    connect(ui->s_incoming_enable, SIGNAL(toggled(bool)), ui->s_incoming_enable, SLOT(setChecked(bool)));
-    connect(ui->s_sent_enable, SIGNAL(toggled(bool)), ui->s_sent_enable, SLOT(setChecked(bool)));
-    connect(ui->s_mining_enable, SIGNAL(toggled(bool)), ui->s_mining_enable, SLOT(setChecked(bool)));
-    connect(ui->s_sync_enable, SIGNAL(toggled(bool)), ui->s_sync_enable, SLOT(setChecked(bool)));
-    connect(ui->s_about_enable, SIGNAL(toggled(bool)), ui->s_about_enable, SLOT(setChecked(bool)));
-
-    connect(ui->aboutSoundFile, SIGNAL(currentIndexChanged(int)), ui->aboutSoundFile, SLOT(setCurrentIndex(int)));
-    connect(ui->syncSoundFile, SIGNAL(currentIndexChanged(int)), ui->syncSoundFile, SLOT(setCurrentIndex(int)));
-    connect(ui->startupSoundFile, SIGNAL(currentIndexChanged(int)), ui->startupSoundFile, SLOT(setCurrentIndex(int)));
-    connect(ui->incomingSoundFile, SIGNAL(currentIndexChanged(int)), ui->incomingSoundFile, SLOT(setCurrentIndex(int)));
-    connect(ui->sentSoundFile, SIGNAL(currentIndexChanged(int)), ui->sentSoundFile, SLOT(setCurrentIndex(int)));
-    connect(ui->miningSoundFile, SIGNAL(currentIndexChanged(int)), ui->miningSoundFile, SLOT(setCurrentIndex(int)));
-
-    connect(ui->aboutSoundFile, SIGNAL(currentIndexChanged(QString)),this,SLOT(enableSaveButtons()));
-    connect(ui->startupSoundFile, SIGNAL(currentIndexChanged(QString)),this,SLOT(enableSaveButtons()));
-    connect(ui->incomingSoundFile, SIGNAL(currentIndexChanged(QString)),this,SLOT(enableSaveButtons()));
-    connect(ui->sentSoundFile, SIGNAL(currentIndexChanged(QString)),this,SLOT(enableSaveButtons()));
-    connect(ui->miningSoundFile, SIGNAL(currentIndexChanged(QString)),this,SLOT(enableSaveButtons()));
-    connect(ui->syncSoundFile, SIGNAL(currentIndexChanged(QString)),this,SLOT(enableSaveButtons()));
-
-
     /* Widget-to-option mapper */
-    mapper = new MonitoredDataMapper(this);
+    mapper = new QDataWidgetMapper(this);
     mapper->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
     mapper->setOrientation(Qt::Vertical);
 
-    /* enable save buttons when data modified */
-    connect(mapper, SIGNAL(viewModified()), this, SLOT(enableSaveButtons()));
-    /* disable save buttons when new data loaded */
-    connect(mapper, SIGNAL(currentIndexChanged(int)), this, SLOT(disableSaveButtons()));
-    /* disable/enable save buttons when proxy IP is invalid/valid */
-    connect(this, SIGNAL(proxyIpValid(bool)), this, SLOT(setSaveButtonState(bool)));
-
-
-
+    /* setup/change UI elements when proxy IP is invalid/valid */
+    connect(this, SIGNAL(proxyIpChecks(QValidatedLineEdit *, int)), this, SLOT(doProxyIpChecks(QValidatedLineEdit *, int)));
 }
 
 OptionsDialog::~OptionsDialog()
 {
+    GUIUtil::saveWindowGeometry("nOptionsDialogWindow", this);
     delete ui;
 }
 
@@ -155,42 +127,56 @@ void OptionsDialog::setModel(OptionsModel *model)
 
     if(model)
     {
-        connect(model, SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
+        /* check if client restart is needed and show persistent message */
+        if (model->isRestartRequired())
+            showRestartWarning(true);
+
+        QString strLabel = model->getOverriddenByCommandLine();
+        if (strLabel.isEmpty())
+            strLabel = tr("none");
+        ui->overriddenByCommandLineLabel->setText(strLabel);
 
         mapper->setModel(model);
         setMapper();
         mapper->toFirst();
     }
 
-    // update the display unit, to not use the default ("BTC")
-    updateDisplayUnit();
+    /* warn when one of the following settings changes by user action (placed here so init via mapper doesn't trigger them) */
 
-    // Set the sound combo boxes to the selected sound file
-    // Set the starting tab back to 0
-    // Disable the Save button because setting the sound choice emits a 'change' signal
-    setSoundChoice();
-    ui->tabWidget->setCurrentIndex(0);
-    disableSaveButtons();
-
+    /* Main */
+    connect(ui->databaseCache, SIGNAL(valueChanged(int)), this, SLOT(showRestartWarning()));
+    connect(ui->threadsScriptVerif, SIGNAL(valueChanged(int)), this, SLOT(showRestartWarning()));
+    /* Wallet */
+    connect(ui->spendZeroConfChange, SIGNAL(clicked(bool)), this, SLOT(showRestartWarning()));
+    /* Network */
+    connect(ui->allowIncoming, SIGNAL(clicked(bool)), this, SLOT(showRestartWarning()));
+    connect(ui->connectSocks, SIGNAL(clicked(bool)), this, SLOT(showRestartWarning()));
+    /* Display */
+    connect(ui->lang, SIGNAL(valueChanged()), this, SLOT(showRestartWarning()));
+    connect(ui->thirdPartyTxUrls, SIGNAL(textChanged(const QString &)), this, SLOT(showRestartWarning()));
 }
 
 void OptionsDialog::setMapper()
 {
     /* Main */
-    mapper->addMapping(ui->transactionFee, OptionsModel::Fee);
     mapper->addMapping(ui->bitcoinAtStartup, OptionsModel::StartAtStartup);
-    mapper->addMapping(ui->detachDatabases, OptionsModel::DetachDatabases);
+    mapper->addMapping(ui->threadsScriptVerif, OptionsModel::ThreadsScriptVerif);
+    mapper->addMapping(ui->databaseCache, OptionsModel::DatabaseCache);
+
+    /* Wallet */
+    mapper->addMapping(ui->spendZeroConfChange, OptionsModel::SpendZeroConfChange);
+    mapper->addMapping(ui->coinControlFeatures, OptionsModel::CoinControlFeatures);
 
     /* Network */
     mapper->addMapping(ui->mapPortUpnp, OptionsModel::MapPortUPnP);
+    mapper->addMapping(ui->allowIncoming, OptionsModel::Listen);
+
     mapper->addMapping(ui->connectSocks, OptionsModel::ProxyUse);
-    mapper->addMapping(ui->socksVersion, OptionsModel::ProxySocksVersion);
     mapper->addMapping(ui->proxyIp, OptionsModel::ProxyIP);
     mapper->addMapping(ui->proxyPort, OptionsModel::ProxyPort);
-    mapper->addMapping(ui->editMaxAcceptedHeight, OptionsModel::MaxHeightAccepted);
 
     /* Window */
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
     mapper->addMapping(ui->minimizeToTray, OptionsModel::MinimizeToTray);
     mapper->addMapping(ui->minimizeOnClose, OptionsModel::MinimizeOnClose);
 #endif
@@ -198,43 +184,42 @@ void OptionsDialog::setMapper()
     /* Display */
     mapper->addMapping(ui->lang, OptionsModel::Language);
     mapper->addMapping(ui->unit, OptionsModel::DisplayUnit);
-    mapper->addMapping(ui->displayAddresses, OptionsModel::DisplayAddresses);
-
-    /* Sounds */
-    mapper->addMapping(ui->s_about_enable, OptionsModel::UseAbout);
-    mapper->addMapping(ui->s_startup_enable, OptionsModel::UseStartup);
-    mapper->addMapping(ui->s_incoming_enable, OptionsModel::UseIncoming);
-    mapper->addMapping(ui->s_sent_enable, OptionsModel::UseSent);
-    mapper->addMapping(ui->s_mining_enable, OptionsModel::UseMining);
-    mapper->addMapping(ui->s_sync_enable, OptionsModel::UseSync);
-
-    mapper->addMapping(ui->aboutSoundFile, OptionsModel::SoundAbout,QByteArray("currentText") );
-    mapper->addMapping(ui->startupSoundFile, OptionsModel::SoundStartup,QByteArray("currentText") );
-    mapper->addMapping(ui->incomingSoundFile, OptionsModel::SoundIncoming,QByteArray("currentText") );
-    mapper->addMapping(ui->sentSoundFile, OptionsModel::SoundSent,QByteArray("currentText") );
-    mapper->addMapping(ui->miningSoundFile, OptionsModel::SoundMining,QByteArray("currentText") );
-    mapper->addMapping(ui->syncSoundFile, OptionsModel::SoundSync,QByteArray("currentText"));
-    mapper->addMapping(ui->volumeSlider, OptionsModel::SoundVolume);
-
-
+    mapper->addMapping(ui->thirdPartyTxUrls, OptionsModel::ThirdPartyTxUrls);
 }
 
-void OptionsDialog::enableSaveButtons()
+void OptionsDialog::enableOkButton()
 {
-    // prevent enabling of the save buttons when data modified, if there is an invalid proxy address present
+    /* prevent enabling of the OK button when data modified, if there is an invalid proxy address present */
     if(fProxyIpValid)
-        setSaveButtonState(true);
+        setOkButtonState(true);
 }
 
-void OptionsDialog::disableSaveButtons()
+void OptionsDialog::disableOkButton()
 {
-    setSaveButtonState(false);
+    setOkButtonState(false);
 }
 
-void OptionsDialog::setSaveButtonState(bool fState)
+void OptionsDialog::setOkButtonState(bool fState)
 {
-    ui->applyButton->setEnabled(fState);
     ui->okButton->setEnabled(fState);
+}
+
+void OptionsDialog::on_resetButton_clicked()
+{
+    if(model)
+    {
+        // confirmation dialog
+        QMessageBox::StandardButton btnRetVal = QMessageBox::question(this, tr("Confirm options reset"),
+            tr("Client restart required to activate changes.") + "<br><br>" + tr("Client will be shutdown, do you want to proceed?"),
+            QMessageBox::Yes | QMessageBox::Cancel, QMessageBox::Cancel);
+
+        if(btnRetVal == QMessageBox::Cancel)
+            return;
+
+        /* reset all options and close GUI */
+        model->Reset();
+        QApplication::quit();
+    }
 }
 
 void OptionsDialog::on_okButton_clicked()
@@ -248,143 +233,58 @@ void OptionsDialog::on_cancelButton_clicked()
     reject();
 }
 
-void OptionsDialog::on_applyButton_clicked()
+void OptionsDialog::showRestartWarning(bool fPersistent)
 {
-    mapper->submit();
-    ui->applyButton->setEnabled(false);
-}
+    ui->statusLabel->setStyleSheet("QLabel { color: red; }");
 
-void OptionsDialog::showRestartWarning_Proxy()
-{
-    if(!fRestartWarningDisplayed_Proxy)
+    if(fPersistent)
     {
-        QMessageBox::warning(this, tr("Warning"), tr("This setting will take effect after restarting Sexcoin."), QMessageBox::Ok);
-        fRestartWarningDisplayed_Proxy = true;
+        ui->statusLabel->setText(tr("Client restart required to activate changes."));
+    }
+    else
+    {
+        ui->statusLabel->setText(tr("This change would require a client restart."));
+        // clear non-persistent status label after 10 seconds
+        // Todo: should perhaps be a class attribute, if we extend the use of statusLabel
+        QTimer::singleShot(10000, this, SLOT(clearStatusLabel()));
     }
 }
 
-void OptionsDialog::showRestartWarning_Lang()
+void OptionsDialog::clearStatusLabel()
 {
-    if(!fRestartWarningDisplayed_Lang)
-    {
-        QMessageBox::warning(this, tr("Warning"), tr("This setting will take effect after restarting Sexcoin."), QMessageBox::Ok);
-        fRestartWarningDisplayed_Lang = true;
-    }
+    ui->statusLabel->clear();
 }
 
-void OptionsDialog::updateDisplayUnit()
+void OptionsDialog::doProxyIpChecks(QValidatedLineEdit *pUiProxyIp, int nProxyPort)
 {
-    if(model)
+    Q_UNUSED(nProxyPort);
+
+    const std::string strAddrProxy = pUiProxyIp->text().toStdString();
+    CService addrProxy;
+
+    /* Check for a valid IPv4 / IPv6 address */
+    if (!(fProxyIpValid = LookupNumeric(strAddrProxy.c_str(), addrProxy)))
     {
-        // Update transactionFee with the current unit
-        ui->transactionFee->setDisplayUnit(model->getDisplayUnit());
+        disableOkButton();
+        pUiProxyIp->setValid(false);
+        ui->statusLabel->setStyleSheet("QLabel { color: red; }");
+        ui->statusLabel->setText(tr("The supplied proxy address is invalid."));
+    }
+    else
+    {
+        enableOkButton();
+        ui->statusLabel->clear();
     }
 }
 
 bool OptionsDialog::eventFilter(QObject *object, QEvent *event)
 {
-    if(object == ui->proxyIp && event->type() == QEvent::FocusOut)
+    if(event->type() == QEvent::FocusOut)
     {
-        // Check proxyIP for a valid IPv4/IPv6 address
-        CService addr;
-        if(!LookupNumeric(ui->proxyIp->text().toStdString().c_str(), addr))
+        if(object == ui->proxyIp)
         {
-            ui->proxyIp->setValid(false);
-            fProxyIpValid = false;
-            ui->statusLabel->setStyleSheet("QLabel { color: red; }");
-            ui->statusLabel->setText(tr("The supplied proxy address is invalid."));
-            emit proxyIpValid(false);
-        }
-        else
-        {
-            fProxyIpValid = true;
-            ui->statusLabel->clear();
-            emit proxyIpValid(true);
+            emit proxyIpChecks(ui->proxyIp, ui->proxyPort->text().toInt());
         }
     }
-
-
-//    if(object == ui->editMaxAcceptedHeight && event->type() == QEvent::FocusOut)
-//    {
-//        this->enableSaveButtons();
-//    }
     return QDialog::eventFilter(object, event);
 }
-
-void OptionsDialog::populateSoundCombos()
-{
-    printf("******* Poplating **********************************\n");
-    // get list of files in /Sounds
-    QString soundpath = QCoreApplication::applicationDirPath() + "/Sounds";
-    QDir folder(soundpath);
-    QStringList files = folder.entryList(QDir::Files);
-    ui->aboutSoundFile->addItems(files);
-    ui->startupSoundFile->addItems(files);
-    ui->incomingSoundFile->addItems(files);
-    ui->sentSoundFile->addItems(files);
-    ui->miningSoundFile->addItems(files);
-    ui->syncSoundFile->addItems(files);
-}
-
-void OptionsDialog::setSoundChoice()
-{
-    //QMessageBox::information(this, tr("Debug"), model->getSoundSent(), QMessageBox::Ok);
-    ui->aboutSoundFile->setCurrentIndex(ui->aboutSoundFile->findText(model->getSoundAbout()));
-    ui->startupSoundFile->setCurrentIndex(ui->startupSoundFile->findText(model->getSoundStartup()));
-    ui->incomingSoundFile->setCurrentIndex(ui->incomingSoundFile->findText(model->getSoundIncoming()));
-    ui->sentSoundFile->setCurrentIndex(ui->sentSoundFile->findText(model->getSoundSent()));
-    ui->miningSoundFile->setCurrentIndex(ui->miningSoundFile->findText(model->getSoundMining()));
-    ui->syncSoundFile->setCurrentIndex(ui->syncSoundFile->findText(model->getSoundSync()));
-}
-
-
-void OptionsDialog::on_toggle_all_clicked()
-{
-    bool state = true;
-    if(ui->s_startup_enable->isChecked())
-        state=false;
-    ui->s_startup_enable->setChecked(state);
-    ui->s_incoming_enable->setChecked(state);
-    ui->s_sent_enable->setChecked(state);
-    ui->s_mining_enable->setChecked(state);
-    ui->s_about_enable->setChecked(state);
-    ui->s_sync_enable->setChecked(state);
-
-}
-
-void OptionsDialog::on_playStartup_clicked()
-{
-    GUIUtil::PlaySound(ui->startupSoundFile->currentText());
-}
-
-void OptionsDialog::on_playIncoming_clicked()
-{
-    GUIUtil::PlaySound(ui->incomingSoundFile->currentText());
-}
-
-void OptionsDialog::on_playSent_clicked()
-{
-    GUIUtil::PlaySound(ui->sentSoundFile->currentText());
-}
-
-void OptionsDialog::on_playMining_clicked()
-{
-    GUIUtil::PlaySound(ui->miningSoundFile->currentText());
-}
-
-void OptionsDialog::on_playAbout_clicked()
-{
-   GUIUtil::PlaySound(ui->aboutSoundFile->currentText());
-}
-
-void OptionsDialog::on_playSync_clicked()
-{
-    GUIUtil::PlaySound(ui->syncSoundFile->currentText());
-}
-
-void OptionsDialog::on_volumeSlider_sliderMoved(int position)
-{
-    QSettings settings;
-    settings.setValue("nSoundVolume",position);
-}
-

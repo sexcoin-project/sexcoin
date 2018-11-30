@@ -1,16 +1,13 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2011-2012 Litecoin Developers
-// Copyright (c) 2013 Royalcoin Developers
-// Copyright (c) 2013 Sexcoin Developers
+// Copyright (c) 2009-2014 The Bitcoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "protocol.h"
-#include "util.h"
-#include "netbase.h"
-#include "main.h"
 
+#include "chainparams.h"
+#include "util.h"
+#include "utilstrencodings.h"
 
 #ifndef WIN32
 # include <arpa/inet.h>
@@ -21,52 +18,21 @@ static const char* ppszTypeName[] =
     "ERROR",
     "tx",
     "block",
+    "filtered block"
 };
 
-CMessageHeader::CMessageHeader(int nBlockHeight)
+CMessageHeader::CMessageHeader()
 {
-
-    if(nBlockHeight < (MAGIC_NUM_SWITCH_HEIGHT-1)){
-        memcpy(pchMessageStart, ::pchMessageStart, sizeof(pchMessageStart));
-        //printf("[DEFAULT:memcpy] %d, %d, %x : %x\n",nBestHeight,nBlockHeight,pchMessageStart[0], ::pchMessageStart[0]);
-    }else{
-        memcpy(pchMessageStart, ::pchMessageStart2, sizeof(pchMessageStart));
-        //printf("[DEFAULT2:memcpy] %d, %d*, %x : %x\n",nBestHeight, nBlockHeight, pchMessageStart[0], ::pchMessageStart2[0]);
-    }
+    memcpy(pchMessageStart, Params().MessageStart(), MESSAGE_START_SIZE);
     memset(pchCommand, 0, sizeof(pchCommand));
-    pchCommand[1] = 1;
     nMessageSize = -1;
     nChecksum = 0;
 }
 
-
-CMessageHeader::CMessageHeader(const char* pszCommand, unsigned int nMessageSizeIn, int nBlockHeight)
+CMessageHeader::CMessageHeader(const char* pszCommand, unsigned int nMessageSizeIn)
 {
-    if(nBlockHeight < MAGIC_NUM_SWITCH_HEIGHT){
-        memcpy(pchMessageStart, ::pchMessageStart, sizeof(pchMessageStart));
-        //printf("[ORIG:memcpy]%d, %x : %x\n",nBlockHeight,pchMessageStart[0], ::pchMessageStart[0]);
-    }else{
-        memcpy(pchMessageStart, ::pchMessageStart2, sizeof(pchMessageStart));
-        //printf("[ORIG2:memcpy]%d*, %x : %x\n",nBlockHeight,pchMessageStart[0], ::pchMessageStart2[0]);
-    }
-    strncpy(pchCommand, pszCommand, COMMAND_SIZE);
-    nMessageSize = nMessageSizeIn;
-    nChecksum = 0;
-}
-
-CMessageHeader::CMessageHeader(const char* pszCommand, unsigned int nMessageSizeIn, bool outbound, int nBlockHeight)
-{
-    int forkheight = MAGIC_NUM_SWITCH_HEIGHT;
-    //if(outbound)
-    //  forkheight++;
-
-    if(nBlockHeight < forkheight ){
-        memcpy(pchMessageStart, ::pchMessageStart, sizeof(pchMessageStart));
-        //printf("[OUTBOUND:memcpy] %d, %d, %d, %x : %x\n",nBestHeight, forkheight, nBlockHeight, pchMessageStart[0], ::pchMessageStart[0]);
-    }else{
-        memcpy(pchMessageStart, ::pchMessageStart2, sizeof(pchMessageStart));
-        //printf("[OUTBOUND2:memcpy] %d*, %d, %d*, %x : %x\n",nBestHeight, forkheight, nBlockHeight, pchMessageStart[0], ::pchMessageStart2[0]);
-    }
+    memcpy(pchMessageStart, Params().MessageStart(), MESSAGE_START_SIZE);
+    memset(pchCommand, 0, sizeof(pchCommand));
     strncpy(pchCommand, pszCommand, COMMAND_SIZE);
     nMessageSize = nMessageSizeIn;
     nChecksum = 0;
@@ -74,38 +40,14 @@ CMessageHeader::CMessageHeader(const char* pszCommand, unsigned int nMessageSize
 
 std::string CMessageHeader::GetCommand() const
 {
-    if (pchCommand[COMMAND_SIZE-1] == 0)
-        return std::string(pchCommand, pchCommand + strlen(pchCommand));
-    else
-        return std::string(pchCommand, pchCommand + COMMAND_SIZE);
+    return std::string(pchCommand, pchCommand + strnlen_int(pchCommand, COMMAND_SIZE));
 }
 
-//bool CMessageHeader::IsValid() const
-//{
-//    CBlockLocator* bl = new CBlockLocator();
-//    return(IsValid(bl->GetHeight()));
-//}
-
-bool CMessageHeader::IsValid(int nHeight) const
+bool CMessageHeader::IsValid() const
 {
-    bool fDebug = true;
     // Check start string
-    //OutputDebugStringF("inIsValid: nHeight=%d, %x \n",nHeight,pchMessageStart[0]);
-    if(nHeight <= MAGIC_NUM_SWITCH_HEIGHT){
-        if (memcmp(pchMessageStart, ::pchMessageStart, sizeof(pchMessageStart)) != 0)
-        {
-            OutputDebugStringF("[ISVALID:memcmp:false] %d, %x : %x\n",nHeight,pchMessageStart[0], ::pchMessageStart[0]);
-            return false;
-        }
-    }else{
-        if (memcmp(pchMessageStart, ::pchMessageStart2, sizeof(pchMessageStart2)) != 0)
-        {
-            OutputDebugStringF("[ISVALID2:memcmp:false] %d*, %x : %x\n",nHeight,pchMessageStart[0], ::pchMessageStart2[0]);
-            return false;
-        }
-    }
-
-    OutputDebugStringF("inIsValid: MessageStart Validated.\n");
+    if (memcmp(pchMessageStart, Params().MessageStart(), MESSAGE_START_SIZE) != 0)
+        return false;
 
     // Check the command string for errors
     for (const char* p1 = pchCommand; p1 < pchCommand + COMMAND_SIZE; p1++)
@@ -124,11 +66,13 @@ bool CMessageHeader::IsValid(int nHeight) const
     // Message size
     if (nMessageSize > MAX_SIZE)
     {
-        printf("CMessageHeader::IsValid() : (%s, %u bytes) nMessageSize > MAX_SIZE\n", GetCommand().c_str(), nMessageSize);
+        LogPrintf("CMessageHeader::IsValid() : (%s, %u bytes) nMessageSize > MAX_SIZE\n", GetCommand(), nMessageSize);
         return false;
     }
+
     return true;
 }
+
 
 
 CAddress::CAddress() : CService()
@@ -136,7 +80,7 @@ CAddress::CAddress() : CService()
     Init();
 }
 
-CAddress::CAddress(CService ipIn, uint64 nServicesIn) : CService(ipIn)
+CAddress::CAddress(CService ipIn, uint64_t nServicesIn) : CService(ipIn)
 {
     Init();
     nServices = nServicesIn;
@@ -173,7 +117,7 @@ CInv::CInv(const std::string& strType, const uint256& hashIn)
         }
     }
     if (i == ARRAYLEN(ppszTypeName))
-        throw std::out_of_range(strprintf("CInv::CInv(string, uint256) : unknown type '%s'", strType.c_str()));
+        throw std::out_of_range(strprintf("CInv::CInv(string, uint256) : unknown type '%s'", strType));
     hash = hashIn;
 }
 
@@ -196,11 +140,5 @@ const char* CInv::GetCommand() const
 
 std::string CInv::ToString() const
 {
-    return strprintf("%s %s", GetCommand(), hash.ToString().substr(0,20).c_str());
+    return strprintf("%s %s", GetCommand(), hash.ToString());
 }
-
-void CInv::print() const
-{
-    printf("CInv(%s)\n", ToString().c_str());
-}
-
