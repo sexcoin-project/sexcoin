@@ -1,15 +1,15 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2014 The Bitcoin developers
+// Copyright (c) 2009-2015 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 /**
  * Why base-58 instead of standard base-64 encoding?
  * - Don't want 0OIl characters that look the same in some fonts and
- *      could be used to create visually identical looking account numbers.
- * - A string with non-alphanumeric characters is not as easily accepted as an account number.
+ *      could be used to create visually identical looking data.
+ * - A string with non-alphanumeric characters is not as easily accepted as input.
  * - E-mail usually won't line-break if there's no punctuation to break at.
- * - Double-clicking selects the whole number as one word if it's all alphanumeric.
+ * - Double-clicking selects the whole string as one word if it's all alphanumeric.
  */
 #ifndef BITCOIN_BASE58_H
 #define BITCOIN_BASE58_H
@@ -19,13 +19,14 @@
 #include "pubkey.h"
 #include "script/script.h"
 #include "script/standard.h"
+#include "support/allocators/zeroafterfree.h"
 
 #include <string>
 #include <vector>
 
 /**
  * Encode a byte sequence as a base58-encoded string.
- * pbegin and pend cannot be NULL, unless both are.
+ * pbegin and pend cannot be nullptr, unless both are.
  */
 std::string EncodeBase58(const unsigned char* pbegin, const unsigned char* pend);
 
@@ -37,7 +38,7 @@ std::string EncodeBase58(const std::vector<unsigned char>& vch);
 /**
  * Decode a base58-encoded string (psz) into a byte vector (vchRet).
  * return true if decoding is successful.
- * psz cannot be NULL.
+ * psz cannot be nullptr.
  */
 bool DecodeBase58(const char* psz, std::vector<unsigned char>& vchRet);
 
@@ -145,7 +146,10 @@ public:
 
     K GetKey() {
         K ret;
-        ret.Decode(&vchData[0], &vchData[Size]);
+        if (vchData.size() == Size) {
+            // If base58 encoded data does not hold an ext key, return a !IsValid() key
+            ret.Decode(vchData.data());
+        }
         return ret;
     }
 
@@ -153,10 +157,14 @@ public:
         SetKey(key);
     }
 
+    CBitcoinExtKeyBase(const std::string& strBase58c) {
+        SetString(strBase58c.c_str(), Params().Base58Prefix(Type).size());
+    }
+
     CBitcoinExtKeyBase() {}
 };
 
-typedef CBitcoinExtKeyBase<CExtKey, 74, CChainParams::EXT_SECRET_KEY> CBitcoinExtKey;
-typedef CBitcoinExtKeyBase<CExtPubKey, 74, CChainParams::EXT_PUBLIC_KEY> CBitcoinExtPubKey;
+typedef CBitcoinExtKeyBase<CExtKey, BIP32_EXTKEY_SIZE, CChainParams::EXT_SECRET_KEY> CBitcoinExtKey;
+typedef CBitcoinExtKeyBase<CExtPubKey, BIP32_EXTKEY_SIZE, CChainParams::EXT_PUBLIC_KEY> CBitcoinExtPubKey;
 
 #endif // BITCOIN_BASE58_H

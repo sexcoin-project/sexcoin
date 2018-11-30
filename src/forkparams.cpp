@@ -15,6 +15,7 @@ static CForkParams forkParams;
 #define FORK1_HEIGHT 155000
 #define FORK2_HEIGHT 572000
 #define FORK3_HEIGHT 643808
+#define FORK4_HEIGHT 2900000
 
 // Constructor
 CForkParams::CForkParams() {
@@ -37,6 +38,8 @@ CForkParams::CForkParams() {
 
         nKGWHeight = FORK2_HEIGHT; // when to start using KGW algo
         nKGWTimeWarpFixHeight = FORK3_HEIGHT; // when to use "fixed" KGW algo code
+        
+        nTargetSpacing_Fork4 = 90;
 }
 
 int64_t CForkParams::Timespan(int64_t height) const {

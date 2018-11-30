@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_PRIMITIVES_TRANSACTIONFLAGS_H
-#define BITCOIN_PRIMITIVES_TRANSACTIONFLAGS_H
+#ifndef SEXCOIN_PRIMITIVES_TRANSACTIONFLAGS_H
+#define SEXCOIN_PRIMITIVES_TRANSACTIONFLAGS_H
 
 #include <string>
 
@@ -31,4 +31,4 @@ enum transflag_t{
 
 };
 
-#endif // BITCOIN_PRIMITIVES_TRANSACTIONFLAGS_H
+#endif // SEXCOIN_PRIMITIVES_TRANSACTIONFLAGS_H
