@@ -82,9 +82,9 @@ public:
         consensus.nSubsidyHalvingInterval = 600000;// sexcoin
         consensus.BIP34Height = 0; // blockV2
         consensus.BIP34Hash = uint256S("0x4e9b54001f9976049830128ec0331515eaabe35a70970d79971da1539a400ba1");
-        consensus.BIP65Height = 3100000; // OP_CHECKLOCKTIMEVERIFY
-        consensus.BIP66Height = 3100000; // Strict DER signatures
-        consensus.BlockVer5Height = 3100000; //sexcoin ... calculate for auxpow
+        consensus.BIP65Height = 3106030; // OP_CHECKLOCKTIMEVERIFY
+        consensus.BIP66Height = 3106030; // Strict DER signatures
+        consensus.BlockVer5Height = 3106030; //sexcoin ... calculate for auxpow
         
         consensus.Fork1Height = 155000;
         consensus.Fork2Height = 572000;
@@ -109,7 +109,7 @@ public:
 
         consensus.nAuxPowStartHeight = AuxPow::START_MAINNET; // auxpow/consensus.h
         //consensus.nWitnessStartHeight = 4040000;
-        consensus.nWitnessStartHeight = 3100000;
+        consensus.nWitnessStartHeight = 3106030; // ~Dec 27
 
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 6;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
@@ -153,8 +153,7 @@ public:
         vSeeds.emplace_back("dnsseed.lavajumper.com", true); // hosted by @lavajumper
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,62);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
-        base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,69);
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,69);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,190);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
@@ -305,7 +304,6 @@ public:
         
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,124);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
-        base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,59);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};

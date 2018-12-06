@@ -3025,8 +3025,13 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
     }
 
     // Check proof of work
-    if(nHeight > 156000 && nHeight < 2904090 ){
-        if( nHeight % 8000 ==0){
+    
+    // Only perform POW check every 11520 blocks (~4 days) on initial chain download.
+    // Sexcoin retargets every block after 156000, which causes initial chain
+    // download to become very CPU expensive and slow if we check every block.
+    // TODO: make the end date dependent instead of hard coded.
+    if(nHeight > 156000 && nHeight < 2973550 ){
+        if( nHeight % 11520 ==0){
             if (block.nBits != GetNextWorkRequired(pindexPrev, &block, consensusParams)){
                 LogPrint(1,"has %08x, need %08x\n", block.nBits, GetNextWorkRequired(pindexPrev, &block, consensusParams));
                 return state.DoS(100, false, REJECT_INVALID, "bad-diffbits", false, "incorrect proof of work");
