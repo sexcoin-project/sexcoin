@@ -954,7 +954,7 @@ UniValue sendfrom(const JSONRPCRequest& request)
     
     wtx.strFromAccount = strAccount;
     if (request.params.size() > 5 && !request.params[5].isNull() && !request.params[5].get_str().empty())
-        wtx.mapValue["comment"] = request.params[4].get_str();
+        wtx.mapValue["comment"] = request.params[5].get_str();
     if (request.params.size() > 6 && !request.params[6].isNull() && !request.params[6].get_str().empty())
         wtx.mapValue["to"]      = request.params[6].get_str();
 
@@ -2280,7 +2280,7 @@ UniValue walletlock(const JSONRPCRequest& request)
             "\nSet the passphrase for 2 minutes to perform a transaction\n"
             + HelpExampleCli("walletpassphrase", "\"my pass phrase\" 120") +
             "\nPerform a send (requires passphrase set)\n"
-            + HelpExampleCli("sendtoaddress", "\"LEr4HnaefWYHbMGXcFp2Po1NPRUeIk8km2\" 1.0") +
+            + HelpExampleCli("sendtoaddress", "\"SEr4HnaefWYHbMGXcFp2Po1NPRUeIk8km2\" 1.0") +
             "\nClear the passphrase since we are done before 2 minutes is up\n"
             + HelpExampleCli("walletlock", "") +
             "\nAs json rpc call\n"
@@ -3236,9 +3236,9 @@ static const CRPCCommand commands[] =
     { "wallet",             "listwallets",              &listwallets,              true,   {} },
     { "wallet",             "lockunspent",              &lockunspent,              true,   {"unlock","transactions"} },
     { "wallet",             "move",                     &movecmd,                  false,  {"fromaccount","toaccount","amount","minconf","comment"} },
-    { "wallet",             "sendfrom",                 &sendfrom,                 false,  {"fromaccount","toaddress","amount","minconf","comment","comment_to"} },
+    { "wallet",             "sendfrom",                 &sendfrom,                 false,  {"fromaccount","toaddress","amount","minconf","none|consent|over18|over21","comment","comment_to"} },
     { "wallet",             "sendmany",                 &sendmany,                 false,  {"fromaccount","amounts","minconf","comment","subtractfeefrom","replaceable","conf_target","estimate_mode"} },
-    { "wallet",             "sendtoaddress",            &sendtoaddress,            false,  {"address","amount","comment","comment_to","subtractfeefromamount","replaceable","conf_target","estimate_mode"} },
+    { "wallet",             "sendtoaddress",            &sendtoaddress,            false,  {"address","amount","none|consent|over18|over21","comment","comment_to","subtractfeefromamount","replaceable","conf_target","estimate_mode"} },
     { "wallet",             "setaccount",               &setaccount,               true,   {"address","account"} },
     { "wallet",             "settxfee",                 &settxfee,                 true,   {"amount"} },
     { "wallet",             "signmessage",              &signmessage,              true,   {"address","message"} },

@@ -108,7 +108,6 @@ public:
 
 
         consensus.nAuxPowStartHeight = AuxPow::START_MAINNET; // auxpow/consensus.h
-        //consensus.nWitnessStartHeight = 4040000;
         consensus.nWitnessStartHeight = 3106030; // ~Dec 27
 
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 6;
