@@ -97,9 +97,17 @@ public:
     }
 
     TransactionRecord(uint256 _hash, qint64 _time,
-                Type _type, const std::string &_address,
+                Type _type, const std::string &_address, 
                 const CAmount& _debit, const CAmount& _credit):
             hash(_hash), time(_time), type(_type), version(0x00000001), address(_address), debit(_debit), credit(_credit),
+            idx(0)
+    {
+    }
+    
+    TransactionRecord(uint256 _hash, qint64 _time, 
+                Type _type, const std::string &_address,
+                const uint32_t _version, const CAmount& _debit, const CAmount& _credit):
+            hash(_hash), time(_time), type(_type), address(_address), version(_version), debit(_debit), credit(_credit),
             idx(0)
     {
     }
