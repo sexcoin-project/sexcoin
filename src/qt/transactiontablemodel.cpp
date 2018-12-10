@@ -613,6 +613,8 @@ QVariant TransactionTableModel::data(const QModelIndex &index, int role) const
             return formatTxToAddress(rec, true);
         case Amount:
             return qint64(rec->credit + rec->debit);
+        case TxFlags:
+            return formatTxFlags(rec);
         }
         break;
     case Qt::ToolTipRole:
