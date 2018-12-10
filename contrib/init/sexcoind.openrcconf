@@ -1,33 +1,33 @@
-# /etc/conf.d/bitcoind: config file for /etc/init.d/bitcoind
+# /etc/conf.d/sexcoind: config file for /etc/init.d/sexcoind
 
 # Config file location
-#BITCOIND_CONFIGFILE="/etc/bitcoin/bitcoin.conf"
+#SEXCOIND_CONFIGFILE="/etc/sexcoin/sexcoin.conf"
 
-# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
-#BITCOIND_PIDDIR="/var/run/bitcoind"
+# What directory to write pidfile to?  (created and owned by $SEXCOIND_USER)
+#SEXCOIND_PIDDIR="/var/run/sexcoind"
 
 # What filename to give the pidfile
-#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/bitcoind.pid"
+#SEXCOIND_PIDFILE="${SEXCOIND_PIDDIR}/sexcoind.pid"
 
 # Where to write bitcoind data (be mindful that the blockchain is large)
-#BITCOIND_DATADIR="/var/lib/bitcoind"
+#SEXCOIND_DATADIR="/var/lib/sexcoind"
 
 # User and group to own bitcoind process
-#BITCOIND_USER="bitcoin"
-#BITCOIND_GROUP="bitcoin"
+#SEXCOIND_USER="sexcoin"
+#SEXCOIND_GROUP="sexcoin"
 
 # Path to bitcoind executable
-#BITCOIND_BIN="/usr/bin/bitcoind"
+#SEXCOIND_BIN="/usr/bin/sexcoind"
 
-# Nice value to run bitcoind under
-#BITCOIND_NICE=0
+# Nice value to run sexcoind under
+#SEXCOIND_NICE=0
 
 # Additional options (avoid -conf and -datadir, use flags above)
-#BITCOIND_OPTS=""
+#SEXCOIND_OPTS=""
 
 # The timeout in seconds OpenRC will wait for bitcoind to terminate
 # after a SIGTERM has been raised.
 # Note that this will be mapped as argument to start-stop-daemon's
 # '--retry' option, which means you can specify a retry schedule
 # here. For more information see man 8 start-stop-daemon.
-BITCOIND_SIGTERM_TIMEOUT=60
+SEXCOIND_SIGTERM_TIMEOUT=60

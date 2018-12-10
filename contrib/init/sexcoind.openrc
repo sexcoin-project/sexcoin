@@ -1,0 +1,92 @@
+#!/sbin/openrc-run
+
+# backward compatibility for existing gentoo layout 
+#
+if [ -d "/var/lib/sexcoin/.sexcoin" ]; then
+	SEXCOIND_DEFAULT_DATADIR="/var/lib/sexcoin/.sexcoin"
+else
+	SEXCOIND_DEFAULT_DATADIR="/var/lib/sexcoind"
+fi
+
+SEXCOIND_CONFIGFILE=${SEXCOIND_CONFIGFILE:-/etc/sexcoin/sexcoin.conf}
+SEXCOIND_PIDDIR=${SEXCOIND_PIDDIR:-/var/run/sexcoind}
+SEXCOIND_PIDFILE=${SEXCOIND_PIDFILE:-${SEXCOIND_PIDDIR}/sexcoind.pid}
+SEXCOIND_DATADIR=${SEXCOIND_DATADIR:-${SEXCOIND_DEFAULT_DATADIR}}
+SEXCOIND_USER=${SEXCOIND_USER:-${SEXCOIN_USER:-sexcoin}}
+SEXCOIND_GROUP=${SEXCOIND_GROUP:-sexcoin}
+SEXCOIND_BIN=${SEXCOIND_BIN:-/usr/bin/sexcoind}
+SEXCOIND_NICE=${SEXCOIND_NICE:-${NICELEVEL:-0}}
+SEXCOIND_OPTS="${SEXCOIND_OPTS:-${SEXCOIN_OPTS}}"
+
+name="Sexcoin Core Daemon"
+description="Sexcoin cryptocurrency P2P network daemon"
+
+command="/usr/bin/sexcoind"
+command_args="-pid=\"${SEXCOIND_PIDFILE}\" \
+		-conf=\"${SEXCOIND_CONFIGFILE}\" \
+		-datadir=\"${SEXCOIND_DATADIR}\" \
+		-daemon \
+		${SEXCOIND_OPTS}"
+
+required_files="${SEXCOIND_CONFIGFILE}"
+start_stop_daemon_args="-u ${SEXCOIND_USER} \
+			-N ${SEXCOIND_NICE} -w 2000"
+pidfile="${SEXCOIND_PIDFILE}"
+
+# The retry schedule to use when stopping the daemon. Could be either
+# a timeout in seconds or multiple signal/timeout pairs (like
+# "SIGKILL/180 SIGTERM/300")
+retry="${SEXCOIND_SIGTERM_TIMEOUT}"
+
+depend() {
+	need localmount net
+}
+
+# verify
+# 1) that the datadir exists and is writable (or create it)
+# 2) that a directory for the pid exists and is writable
+# 3) ownership and permissions on the config file
+start_pre() {
+	checkpath \
+	-d \
+	--mode 0750 \
+	--owner "${SEXCOIND_USER}:${SEXCOIND_GROUP}" \
+	"${SEXCOIND_DATADIR}"
+
+	checkpath \
+	-d \
+	--mode 0755 \
+	--owner "${SEXCOIND_USER}:${SEXCOIND_GROUP}" \
+	"${SEXCOIND_PIDDIR}"
+
+	checkpath -f \
+	-o ${SEXCOIND_USER}:${SEXCOIND_GROUP} \
+	-m 0660 \
+	${SEXCOIND_CONFIGFILE}
+
+	checkconfig || return 1
+}
+
+checkconfig()
+{
+	if ! grep -qs '^rpcpassword=' "${SEXCOIND_CONFIGFILE}" ; then
+		eerror ""
+		eerror "ERROR: You must set a secure rpcpassword to run sexcoind."
+		eerror "The setting must appear in ${SEXCOIND_CONFIGFILE}"
+		eerror ""
+		eerror "This password is security critical to securing wallets "
+		eerror "and must not be the same as the rpcuser setting."
+		eerror "You can generate a suitable random password using the following"
+		eerror "command from the shell:"
+		eerror ""
+		eerror "bash -c 'tr -dc a-zA-Z0-9 < /dev/urandom | head -c32 && echo'"
+		eerror ""
+		eerror "It is also recommended that you also set alertnotify so you are "
+		eerror "notified of problems:"
+		eerror ""
+		eerror "ie: alertnotify=echo %%s | mail -s \"Bitcoin Alert\"" \
+			"admin@foo.com"
+		eerror ""
+		return 1
+	fi
+}
