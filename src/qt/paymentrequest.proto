@@ -9,7 +9,7 @@
 syntax = "proto2";
 
 package payments;
-option java_package = "org.sexcoin.protocols.payments";
+option java_package = "info.sexcoin.protocols.payments";
 option java_outer_classname = "Protos";
 
 // Generalized form of "send payment to this/these sexcoin addresses"

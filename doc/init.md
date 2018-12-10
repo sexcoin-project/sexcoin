@@ -109,13 +109,13 @@ setting the SEXCOIND and FLAGS environment variables in the file
 
 4e) Mac OS X
 
-Copy org.sexcoin.sexcoind.plist into ~/Library/LaunchAgents. Load the launch agent by
-running `launchctl load ~/Library/LaunchAgents/org.sexcoin.sexcoind.plist`.
+Copy info.sexcoin.sexcoind.plist into ~/Library/LaunchAgents. Load the launch agent by
+running `launchctl load ~/Library/LaunchAgents/info.sexcoin.sexcoind.plist`.
 
 This Launch Agent will cause sexcoind to start whenever the user logs in.
 
 NOTE: This approach is intended for those wanting to run sexcoind as the current user.
-You will need to modify org.sexcoin.sexcoind.plist if you intend to use it as a
+You will need to modify info.sexcoin.sexcoind.plist if you intend to use it as a
 Launch Daemon with a dedicated sexcoin user.
 
 5. Auto-respawn
