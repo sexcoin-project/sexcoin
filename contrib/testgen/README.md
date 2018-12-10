@@ -1,6 +1,6 @@
 ### TestGen ###
 
-Utilities to generate test vectors for the data-driven Viacoin tests.
+Utilities to generate test vectors for the data-driven Sexcoin tests.
 
 Usage: 
 

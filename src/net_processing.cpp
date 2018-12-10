@@ -34,7 +34,7 @@
 #include "auxpow/serialize.h"
 
 #if defined(NDEBUG)
-# error "Viacoin cannot be compiled without assertions."
+# error "Sexcoin cannot be compiled without assertions."
 #endif
 
 std::atomic<int64_t> nTimeBestReceived(0); // Used only to inform the wallet of when we last received a block
@@ -1360,7 +1360,7 @@ bool static ProcessHeadersMessage(CNode *pfrom, CConnman *connman, const std::ve
             // TODO: optimize: if pindexLast is an ancestor of chainActive.Tip or pindexBestHeader, continue
             // from there instead.
             //
-            // Viacoin: okay, let us optimize.
+            // Sexcoin: okay, let us optimize.
             const CBlockIndex *bestByHeader = LastCommonAncestor(pindexLast, pindexBestHeader) == pindexLast ? pindexBestHeader : pindexLast;
             const CBlockIndex *tip = chainActive.Tip();
             const CBlockIndex *start = LastCommonAncestor(bestByHeader, tip) == tip ? bestByHeader : tip;
