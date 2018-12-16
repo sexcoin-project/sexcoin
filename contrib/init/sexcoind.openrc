@@ -1,4 +1,4 @@
-#!/sbin/runscript
+#!/sbin/openrc-run
 
 # backward compatibility for existing gentoo layout 
 #
@@ -12,12 +12,14 @@ SEXCOIND_CONFIGFILE=${SEXCOIND_CONFIGFILE:-/etc/sexcoin/sexcoin.conf}
 SEXCOIND_PIDDIR=${SEXCOIND_PIDDIR:-/var/run/sexcoind}
 SEXCOIND_PIDFILE=${SEXCOIND_PIDFILE:-${SEXCOIND_PIDDIR}/sexcoind.pid}
 SEXCOIND_DATADIR=${SEXCOIND_DATADIR:-${SEXCOIND_DEFAULT_DATADIR}}
-SEXCOIND_USER=${SEXCOIND_USER:-sexcoin}
+SEXCOIND_USER=${SEXCOIND_USER:-${SEXCOIN_USER:-sexcoin}}
 SEXCOIND_GROUP=${SEXCOIND_GROUP:-sexcoin}
 SEXCOIND_BIN=${SEXCOIND_BIN:-/usr/bin/sexcoind}
+SEXCOIND_NICE=${SEXCOIND_NICE:-${NICELEVEL:-0}}
+SEXCOIND_OPTS="${SEXCOIND_OPTS:-${SEXCOIN_OPTS}}"
 
 name="Sexcoin Core Daemon"
-description="Sexcoin crypto-currency p2p network daemon"
+description="Sexcoin cryptocurrency P2P network daemon"
 
 command="/usr/bin/sexcoind"
 command_args="-pid=\"${SEXCOIND_PIDFILE}\" \
@@ -28,9 +30,13 @@ command_args="-pid=\"${SEXCOIND_PIDFILE}\" \
 
 required_files="${SEXCOIND_CONFIGFILE}"
 start_stop_daemon_args="-u ${SEXCOIND_USER} \
-			-N ${SEXCOIND_NICE:-0} -w 2000"
+			-N ${SEXCOIND_NICE} -w 2000"
 pidfile="${SEXCOIND_PIDFILE}"
-retry=60
+
+# The retry schedule to use when stopping the daemon. Could be either
+# a timeout in seconds or multiple signal/timeout pairs (like
+# "SIGKILL/180 SIGTERM/300")
+retry="${SEXCOIND_SIGTERM_TIMEOUT}"
 
 depend() {
 	need localmount net
@@ -78,7 +84,7 @@ checkconfig()
 		eerror "It is also recommended that you also set alertnotify so you are "
 		eerror "notified of problems:"
 		eerror ""
-		eerror "ie: alertnotify=echo %%s | mail -s \"Sexcoin Alert\"" \
+		eerror "ie: alertnotify=echo %%s | mail -s \"Bitcoin Alert\"" \
 			"admin@foo.com"
 		eerror ""
 		return 1

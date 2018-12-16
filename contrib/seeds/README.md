@@ -1,10 +1,19 @@
-### Seeds ###
+# Seeds
 
 Utility to generate the seeds.txt list that is compiled into the client
-(see [src/chainparamsseeds.h](/src/chainparamsseeds.h) and [share/seeds](/share/seeds)).
+(see [src/chainparamsseeds.h](/src/chainparamsseeds.h) and other utilities in [contrib/seeds](/contrib/seeds)).
 
-The 512 seeds compiled into the 0.10 release were created from pooler's seed data, the seed list can be found here:
+Be sure to update `PATTERN_AGENT` in `makeseeds.py` to include the current version,
+and remove old versions as necessary.
 
-	https://www.litecoinpool.org/seeds.txt
+The seeds compiled into the release are created from poolers's DNS seed data, like this:
 
-The seed selection process is sorted by 30d availability, block height and version.
+    curl -s https://www.viacoinpool.org/seeds.txt > seeds_main.txt
+    python3 makeseeds.py < seeds_main.txt > nodes_main.txt
+    python3 generate-seeds.py . > ../../src/chainparamsseeds.h
+
+## Dependencies
+
+Ubuntu:
+
+    sudo apt-get install python3-dnspython

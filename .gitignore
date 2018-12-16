@@ -1,12 +1,13 @@
 *.tar.gz
 
 *.exe
-src/litecoin
-src/litecoind
-src/litecoin-cli
-src/litecoin-tx
-src/test/test_litecoin
-src/qt/test/test_litecoin-qt
+src/sexcoin
+src/sexcoind
+src/sexcoin-cli
+src/sexcoin-tx
+src/test/test_sexcoin
+src/test/test_sexcoin_fuzzy
+src/qt/test/test_sexcoin-qt
 
 # autoreconf
 Makefile.in
@@ -55,7 +56,6 @@ src/qt/test/moc*.cpp
 *.o
 *.o-*
 *.patch
-.bitcoin
 *.a
 *.pb.cc
 *.pb.h
@@ -74,19 +74,15 @@ src/qt/test/moc*.cpp
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-litecoin-qt
-Litecoin-Qt.app
+sexcoin-qt
+Sexcoin-Qt.app
 
 # Unit-tests
 Makefile.test
-litecoin-qt_test
-src/test/buildenv.py
+sexcoin-qt_test
 
 # Resources cpp
 qrc_*.cpp
-
-# Qt creator
-*.pro.user
 
 # Mac specific
 .DS_Store
@@ -94,8 +90,9 @@ build
 
 #lcov
 *.gcno
+*.gcda
 /*.info
-test_bitcoin.coverage/
+test_sexcoin.coverage/
 total.coverage/
 coverage_percent.txt
 
@@ -103,11 +100,16 @@ coverage_percent.txt
 linux-coverage-build
 linux-build
 win32-build
-qa/pull-tester/run-bitcoind-for-test.sh
-qa/pull-tester/tests-config.sh
-qa/pull-tester/cache/*
-qa/pull-tester/test.*/*
+test/config.ini
+test/cache/*
 
 !src/leveldb*/Makefile
 
 /doc/doxygen/
+
+libbitcoinconsensus.pc
+contrib/devtools/split-debug.sh
+.idea/*
+cmake-build-debug/*
+
+CMakeLists.txt

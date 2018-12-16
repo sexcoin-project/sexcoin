@@ -9,19 +9,25 @@
 # What filename to give the pidfile
 #SEXCOIND_PIDFILE="${SEXCOIND_PIDDIR}/sexcoind.pid"
 
-# Where to write sexcoind data (be mindful that the blockchain is large)
+# Where to write bitcoind data (be mindful that the blockchain is large)
 #SEXCOIND_DATADIR="/var/lib/sexcoind"
 
-# User and group to own sexcoind process
+# User and group to own bitcoind process
 #SEXCOIND_USER="sexcoin"
 #SEXCOIND_GROUP="sexcoin"
 
-# Path to sexcoind executable
+# Path to bitcoind executable
 #SEXCOIND_BIN="/usr/bin/sexcoind"
 
 # Nice value to run sexcoind under
 #SEXCOIND_NICE=0
 
 # Additional options (avoid -conf and -datadir, use flags above)
-SEXCOIND_OPTS="-disablewallet"
+#SEXCOIND_OPTS=""
 
+# The timeout in seconds OpenRC will wait for bitcoind to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+SEXCOIND_SIGTERM_TIMEOUT=60

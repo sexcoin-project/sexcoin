@@ -1,5 +1,5 @@
-// Copyright (c) 2011-2013 The Bitcoin developers
-// Distributed under the MIT/X11 software license, see the accompanying
+// Copyright (c) 2011-2016 The Bitcoin Core developers
+// Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_QT_TRANSACTIONRECORD_H
@@ -33,6 +33,7 @@ public:
         Unconfirmed,        /**< Not yet mined into a block **/
         Confirming,         /**< Confirmed, but waiting for the recommended number of confirmations **/
         Conflicted,         /**< Conflicts with other transaction or mempool **/
+        Abandoned,          /**< Abandoned from the wallet **/
         /// Generated (mined) transactions
         Immature,           /**< Mined but waiting for maturity */
         MaturesWarning,     /**< Transaction will likely not mature because no nodes have confirmed */
@@ -60,6 +61,8 @@ public:
 
     /** Current number of blocks (to know whether cached status is still valid) */
     int cur_num_blocks;
+
+    bool needsUpdate;
 };
 
 /** UI model for a transaction. A core transaction can be represented by multiple UI transactions if it has
@@ -78,32 +81,34 @@ public:
         RecvFromOther,
         SendToSelf
     };
-    
+
     /** Number of confirmation recommended for accepting a transaction */
     static const int RecommendedNumConfirmations = 6;
 
     TransactionRecord():
-            hash(), time(0), type(Other), address(""), debit(0), credit(0), version(1), idx(0) 
+            hash(), time(0), type(Other), version(0x00000001), address(""), debit(0), credit(0), idx(0)
     {
     }
 
-    TransactionRecord(uint256 hash, qint64 time):
-            hash(hash), time(time), type(Other), address(""), debit(0),
-            credit(0), version(1), idx(0)
+    TransactionRecord(uint256 _hash, qint64 _time):
+            hash(_hash), time(_time), type(Other), version(0x00000001), address(""), debit(0),
+            credit(0), idx(0)
     {
     }
 
-    TransactionRecord(uint256 hash, qint64 time,
-                Type type, const std::string &address,
-                const CAmount& debit, const CAmount& credit):
-            hash(hash), time(time), type(type), address(address), debit(debit), credit(credit), version(1), idx(0) 
+    TransactionRecord(uint256 _hash, qint64 _time,
+                Type _type, const std::string &_address, 
+                const CAmount& _debit, const CAmount& _credit):
+            hash(_hash), time(_time), type(_type), version(0x00000001), address(_address), debit(_debit), credit(_credit),
+            idx(0)
     {
     }
     
-    TransactionRecord(uint256 hash, qint64 time,
-                Type type, const std::string &address,
-                const CAmount& debit, const CAmount& credit, uint32_t version):
-            hash(hash), time(time), type(type), address(address), debit(debit), credit(credit), version(version), idx(0) 
+    TransactionRecord(uint256 _hash, qint64 _time, 
+                Type _type, const std::string &_address,
+                const uint32_t _version, const CAmount& _debit, const CAmount& _credit):
+            hash(_hash), time(_time), type(_type), address(_address), version(_version), debit(_debit), credit(_credit),
+            idx(0)
     {
     }
 
@@ -135,8 +140,8 @@ public:
     /** Return the unique identifier for this transaction (part) */
     QString getTxID() const;
 
-    /** Format subtransaction id */
-    static QString formatSubTxId(const uint256 &hash, int vout);
+    /** Return the output index of the subtransaction  */
+    int getOutputIndex() const;
 
     /** Update status from core wallet tx.
      */

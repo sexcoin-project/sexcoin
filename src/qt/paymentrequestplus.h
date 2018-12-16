@@ -1,17 +1,24 @@
-// Copyright (c) 2011-2014 The Bitcoin developers
+// Copyright (c) 2011-2016 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_QT_PAYMENTREQUESTPLUS_H
 #define BITCOIN_QT_PAYMENTREQUESTPLUS_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #include "paymentrequest.pb.h"
+#pragma GCC diagnostic pop
 
 #include "base58.h"
+
+#include <openssl/x509.h>
 
 #include <QByteArray>
 #include <QList>
 #include <QString>
+
+static const bool DEFAULT_SELFSIGNED_ROOTCERTS = false;
 
 //
 // Wraps dumb protocol buffer paymentRequest
@@ -27,7 +34,6 @@ public:
     bool SerializeToString(std::string* output) const;
 
     bool IsInitialized() const;
-    QString getPKIType() const;
     // Returns true if merchant's identity is authenticated, and
     // returns human-readable merchant identity in merchant
     bool getMerchant(X509_STORE* certStore, QString& merchant) const;

@@ -3,7 +3,7 @@
 <plist version="0.9">
 <dict>
   <key>LSMinimumSystemVersion</key>
-  <string>10.6.0</string>
+  <string>10.8.0</string>
 
   <key>LSArchitecturePriority</key>
   <array>
@@ -17,19 +17,25 @@
   <string>APPL</string>
 
   <key>CFBundleGetInfoString</key>
-  <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@.@CLIENT_VERSION_BUILD@, Copyright © 2009-@COPYRIGHT_YEAR@ The Bitcoin Core developers 2011-@COPYRIGHT_YEAR@ The Litecoin Core developers 2013-@COPYRIGHT_YEAR@ The Sexcoin Core developers</string>
+  <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@, Copyright © 2009-@COPYRIGHT_YEAR@ @COPYRIGHT_HOLDERS_FINAL@</string>
 
   <key>CFBundleShortVersionString</key>
-  <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@.@CLIENT_VERSION_BUILD@</string>
+  <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@</string>
 
   <key>CFBundleVersion</key>
-  <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@.@CLIENT_VERSION_BUILD@</string>
+  <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@</string>
 
   <key>CFBundleSignature</key>
   <string>????</string>
 
   <key>CFBundleExecutable</key>
   <string>Sexcoin-Qt</string>
+  
+  <key>CFBundleName</key>
+  <string>Sexcoin-Qt</string>
+
+  <key>LSHasLocalizedDisplayName</key>
+  <true/>
 
   <key>CFBundleIdentifier</key>
   <string>info.sexcoin.Sexcoin-Qt</string>
@@ -78,7 +84,7 @@
       <string>Editor</string>
       <key>LSItemContentTypes</key>
       <array>
-        <string>info.sexfoin.paymentrequest</string>
+        <string>info.sexcoin.paymentrequest</string>
       </array>
       <key>LSHandlerRank</key>
       <string>Owner</string>
