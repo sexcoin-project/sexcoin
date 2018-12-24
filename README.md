@@ -3,8 +3,6 @@ Sexcoin Core integration/staging tree
 
 http://sexcoin.info
 
-http://sexcoinforum.com
-
 
 What is Sexcoin?
 ----------------
