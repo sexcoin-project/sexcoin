@@ -17,13 +17,13 @@ BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
             VALUE "CompanyName",        "Sexcoin"
-            VALUE "FileDescription",    "Sexcoind (OSS daemon/client for Sexcoin)"
+            VALUE "FileDescription",    "sexcoind (Sexcoin node with a JSON-RPC server)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "sexcoind"
             VALUE "LegalCopyright",     COPYRIGHT_STR
-            VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
+            VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
             VALUE "OriginalFilename",   "sexcoind.exe"
-            VALUE "ProductName",        "Sexcoind"
+            VALUE "ProductName",        "sexcoind"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

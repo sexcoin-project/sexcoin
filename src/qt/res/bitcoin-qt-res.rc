@@ -1,6 +1,5 @@
 IDI_ICON1 ICON DISCARDABLE "icons/sexcoin3.ico"
 IDI_ICON2 ICON DISCARDABLE "icons/bitcoin_testnet.ico"
-//IDI_ICON2 ICON DISCARDABLE "icons/sxcoin_final_ga.png"
 
 #include <windows.h>             // needed for VERSIONINFO
 #include "../../clientversion.h" // holds the needed client version information
@@ -21,13 +20,13 @@ BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
             VALUE "CompanyName",        "Sexcoin"
-            VALUE "FileDescription",    "Sexcoin Core (OSS GUI client for Sexcoin)"
+            VALUE "FileDescription",    PACKAGE_NAME " (GUI node for Sexcoin)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "sexcoin-qt"
             VALUE "LegalCopyright",     COPYRIGHT_STR
-            VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
+            VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
             VALUE "OriginalFilename",   "sexcoin-qt.exe"
-            VALUE "ProductName",        "Sexcoin Core"
+            VALUE "ProductName",        PACKAGE_NAME
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

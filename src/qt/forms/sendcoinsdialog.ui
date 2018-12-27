@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>850</width>
-    <height>602</height>
+    <height>577</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -324,7 +324,7 @@
                   <enum>Qt::ActionsContextMenu</enum>
                  </property>
                  <property name="text">
-                  <string notr="true">0.00 SXC</string>
+                  <string notr="true">0.00 VIA</string>
                  </property>
                  <property name="textInteractionFlags">
                   <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
@@ -332,7 +332,7 @@
                 </widget>
                </item>
                <item row="1" column="0">
-                <widget class="QLabel" name="labelCoinControlPriorityText">
+                <widget class="QLabel" name="labelCoinControlLowOutputText">
                  <property name="font">
                   <font>
                    <weight>75</weight>
@@ -340,12 +340,12 @@
                   </font>
                  </property>
                  <property name="text">
-                  <string>Priority:</string>
+                  <string>Dust:</string>
                  </property>
                 </widget>
                </item>
                <item row="1" column="1">
-                <widget class="QLabel" name="labelCoinControlPriority">
+                <widget class="QLabel" name="labelCoinControlLowOutput">
                  <property name="cursor">
                   <cursorShape>IBeamCursor</cursorShape>
                  </property>
@@ -353,7 +353,7 @@
                   <enum>Qt::ActionsContextMenu</enum>
                  </property>
                  <property name="text">
-                  <string notr="true">medium</string>
+                  <string notr="true">no</string>
                  </property>
                  <property name="textInteractionFlags">
                   <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
@@ -404,36 +404,7 @@
                   <enum>Qt::ActionsContextMenu</enum>
                  </property>
                  <property name="text">
-                  <string notr="true">0.00 SXC</string>
-                 </property>
-                 <property name="textInteractionFlags">
-                  <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="labelCoinControlLowOutputText">
-                 <property name="font">
-                  <font>
-                   <weight>75</weight>
-                   <bold>true</bold>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>Dust:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QLabel" name="labelCoinControlLowOutput">
-                 <property name="cursor">
-                  <cursorShape>IBeamCursor</cursorShape>
-                 </property>
-                 <property name="contextMenuPolicy">
-                  <enum>Qt::ActionsContextMenu</enum>
-                 </property>
-                 <property name="text">
-                  <string notr="true">no</string>
+                  <string notr="true">0.00 VIA</string>
                  </property>
                  <property name="textInteractionFlags">
                   <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
@@ -484,7 +455,7 @@
                   <enum>Qt::ActionsContextMenu</enum>
                  </property>
                  <property name="text">
-                  <string notr="true">0.00 SXC</string>
+                  <string notr="true">0.00 VIA</string>
                  </property>
                  <property name="textInteractionFlags">
                   <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
@@ -513,7 +484,7 @@
                   <enum>Qt::ActionsContextMenu</enum>
                  </property>
                  <property name="text">
-                  <string notr="true">0.00 SXC</string>
+                  <string notr="true">0.00 VIA</string>
                  </property>
                  <property name="textInteractionFlags">
                   <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
@@ -616,8 +587,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>830</width>
-        <height>119</height>
+        <width>834</width>
+        <height>143</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1">
@@ -667,9 +638,6 @@
          <bold>true</bold>
         </font>
        </property>
-       <property name="toolTip">
-        <string>Age Verification: These are self-certified age verifications that are recorded in the transaction on the block-chain</string>
-       </property>
        <property name="text">
         <string>Age Verification:</string>
        </property>
@@ -677,9 +645,6 @@
      </item>
      <item>
       <widget class="QRadioButton" name="radioButton_overNone">
-       <property name="toolTip">
-        <string>Do not use Age Verification Feature</string>
-       </property>
        <property name="text">
         <string>None</string>
        </property>
@@ -693,14 +658,8 @@
      </item>
      <item>
       <widget class="QRadioButton" name="radioButton_overConsent">
-       <property name="toolTip">
-        <string>I Certify that I am over the Age of Consent in my Locale</string>
-       </property>
        <property name="text">
         <string>Age of Consent</string>
-       </property>
-       <property name="checked">
-        <bool>false</bool>
        </property>
        <attribute name="buttonGroup">
         <string notr="true">groupAge</string>
@@ -709,14 +668,8 @@
      </item>
      <item>
       <widget class="QRadioButton" name="radioButton_over18">
-       <property name="toolTip">
-        <string>I Certify that I am Over 18</string>
-       </property>
        <property name="text">
         <string>Over 18</string>
-       </property>
-       <property name="checked">
-        <bool>false</bool>
        </property>
        <attribute name="buttonGroup">
         <string notr="true">groupAge</string>
@@ -725,14 +678,8 @@
      </item>
      <item>
       <widget class="QRadioButton" name="radioButton_over21">
-       <property name="toolTip">
-        <string>I Certify that I am Over 21</string>
-       </property>
        <property name="text">
         <string>Over 21</string>
-       </property>
-       <property name="checked">
-        <bool>false</bool>
        </property>
        <attribute name="buttonGroup">
         <string notr="true">groupAge</string>
@@ -740,13 +687,13 @@
       </widget>
      </item>
      <item>
-      <spacer name="horizontalSpacer_7">
+      <spacer name="horizontalSpacer_3">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>30</width>
+         <width>40</width>
          <height>20</height>
         </size>
        </property>
@@ -868,16 +815,6 @@
                 </property>
                </widget>
               </item>
-              <item>
-               <widget class="QPushButton" name="buttonMinimizeFee">
-                <property name="toolTip">
-                 <string>collapse fee-settings</string>
-                </property>
-                <property name="text">
-                 <string>Minimize</string>
-                </property>
-               </widget>
-              </item>
              </layout>
             </item>
             <item>
@@ -896,9 +833,31 @@
            </layout>
           </item>
           <item>
+           <widget class="QLabel" name="fallbackFeeWarningLabel">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="toolTip">
+             <string>Using the fallbackfee can result in sending a transaction that will take several hours or days (or never) to confirm. Consider choosing your fee manually or wait until you have validated the complete chain.</string>
+            </property>
+            <property name="text">
+             <string>Warning: Fee estimation is currently not possible.</string>
+            </property>
+            <property name="wordWrap">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
            <spacer name="horizontalSpacer_4">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::MinimumExpanding</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
@@ -907,6 +866,16 @@
              </size>
             </property>
            </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="buttonMinimizeFee">
+            <property name="toolTip">
+             <string>collapse fee-settings</string>
+            </property>
+            <property name="text">
+             <string>Hide</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -950,32 +919,13 @@
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayoutFee13">
                  <item>
-                  <widget class="QRadioButton" name="radioCustomPerKilobyte">
-                   <property name="toolTip">
-                    <string>If the custom fee is set to 1000 satoshis and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 satoshis in fee, while &quot;at least&quot; pays 1000 satoshis. For transactions bigger than a kilobyte both pay by kilobyte.</string>
-                   </property>
-                   <property name="text">
-                    <string>per kilobyte</string>
-                   </property>
-                   <property name="checked">
-                    <bool>true</bool>
-                   </property>
-                   <attribute name="buttonGroup">
-                    <string notr="true">groupCustomFee</string>
-                   </attribute>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QRadioButton" name="radioCustomAtLeast">
+                  <widget class="QLabel" name="labelCustomPerKilobyte">
                    <property name="toolTip">
                     <string>If the custom fee is set to 1000 satoshis and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 satoshis in fee, while &quot;total at least&quot; pays 1000 satoshis. For transactions bigger than a kilobyte both pay by kilobyte.</string>
                    </property>
                    <property name="text">
-                    <string>total at least</string>
+                    <string>per kilobyte</string>
                    </property>
-                   <attribute name="buttonGroup">
-                    <string notr="true">groupCustomFee</string>
-                   </attribute>
                   </widget>
                  </item>
                  <item>
@@ -1157,7 +1107,7 @@
                    <item>
                     <widget class="QLabel" name="labelSmartFee3">
                      <property name="text">
-                      <string>Confirmation time:</string>
+                      <string>Confirmation time target:</string>
                      </property>
                      <property name="margin">
                       <number>2</number>
@@ -1185,44 +1135,15 @@
                     <number>30</number>
                    </property>
                    <item>
-                    <widget class="QSlider" name="sliderSmartFee">
-                     <property name="minimum">
+                    <layout class="QHBoxLayout" name="horizontalLayoutConfTarget">
+                     <property name="bottomMargin">
                       <number>0</number>
                      </property>
-                     <property name="maximum">
-                      <number>24</number>
-                     </property>
-                     <property name="pageStep">
-                      <number>1</number>
-                     </property>
-                     <property name="value">
-                      <number>0</number>
-                     </property>
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="invertedAppearance">
-                      <bool>false</bool>
-                     </property>
-                     <property name="invertedControls">
-                      <bool>false</bool>
-                     </property>
-                     <property name="tickPosition">
-                      <enum>QSlider::NoTicks</enum>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <layout class="QHBoxLayout" name="horizontalLayoutFee10">
                      <item>
-                      <widget class="QLabel" name="labelSmartFeeNormal">
-                       <property name="text">
-                        <string>normal</string>
-                       </property>
-                      </widget>
+                      <widget class="QComboBox" name="confTargetSelector"/>
                      </item>
                      <item>
-                      <spacer name="horizontalSpacer_3">
+                      <spacer name="horizontalSpacerConfTarget">
                        <property name="orientation">
                         <enum>Qt::Horizontal</enum>
                        </property>
@@ -1233,13 +1154,6 @@
                         </size>
                        </property>
                       </spacer>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="labelSmartFeeFast">
-                       <property name="text">
-                        <string>fast</string>
-                       </property>
-                      </widget>
                      </item>
                     </layout>
                    </item>
@@ -1265,57 +1179,14 @@
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayoutFee5" stretch="0,0,0">
-             <property name="spacing">
-              <number>8</number>
+            <widget class="QCheckBox" name="optInRBF">
+             <property name="toolTip">
+              <string>Indicates that the sender may wish to replace this transaction with a new one paying higher fees (prior to being confirmed).</string>
              </property>
-             <property name="bottomMargin">
-              <number>4</number>
+             <property name="text">
+              <string>Request Replace-By-Fee</string>
              </property>
-             <item>
-              <widget class="QCheckBox" name="checkBoxFreeTx">
-               <property name="text">
-                <string>Send as zero-fee transaction if possible</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="labelFreeTx">
-               <property name="text">
-                <string>(confirmation may take longer)</string>
-               </property>
-               <property name="margin">
-                <number>5</number>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacerFee5">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>1</width>
-                 <height>1</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <spacer name="verticalSpacerFee2">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>1</width>
-               <height>1</height>
-              </size>
-             </property>
-            </spacer>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -1327,8 +1198,8 @@
           </property>
           <property name="sizeHint" stdset="0">
            <size>
-            <width>800</width>
-            <height>1</height>
+            <width>40</width>
+            <height>5</height>
            </size>
           </property>
          </spacer>
@@ -1362,7 +1233,7 @@
         <bool>false</bool>
        </property>
        <property name="default">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -1448,6 +1319,9 @@
          <property name="cursor">
           <cursorShape>IBeamCursor</cursorShape>
          </property>
+         <property name="midLineWidth">
+          <number>1</number>
+         </property>
          <property name="text">
           <string notr="true">123.456 SXC</string>
          </property>
@@ -1480,6 +1354,5 @@
  <buttongroups>
   <buttongroup name="groupFee"/>
   <buttongroup name="groupAge"/>
-  <buttongroup name="groupCustomFee"/>
  </buttongroups>
 </ui>

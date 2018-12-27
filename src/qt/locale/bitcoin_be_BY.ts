@@ -26,10 +26,6 @@
         <translation>Зачыніць</translation>
     </message>
     <message>
-        <source>&amp;Copy Address</source>
-        <translation>Капіяваць адрас</translation>
-    </message>
-    <message>
         <source>Delete the currently selected address from the list</source>
         <translation>Выдаліць абраны адрас са спісу</translation>
     </message>
@@ -72,6 +68,10 @@
     <message>
         <source>These are your Sexcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>Тут знаходзяцца Sexcoin-адрасы для прымання плацяжоў. Пажадана выкарыстоўваць новы адрас для кожнай транзакцыі.</translation>
+    </message>
+    <message>
+        <source>&amp;Copy Address</source>
+        <translation>Капіяваць адрас</translation>
     </message>
     <message>
         <source>Copy &amp;Label</source>
@@ -132,6 +132,10 @@
         <translation>Паўтарыце новую кодавую фразу</translation>
     </message>
     <message>
+        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
+        <translation>Увядзіце новы пароль для гаманца.&lt;br/&gt;Парольная фраза павинна складацца&lt;b&gt; не меньш чым з дзесяці сімвалаў&lt;/b&gt;, ці &lt;b&gt;больш чым з васьмі слоў&lt;/b&gt;.</translation>
+    </message>
+    <message>
         <source>Encrypt wallet</source>
         <translation>Зашыфраваць гаманец.</translation>
     </message>
@@ -156,8 +160,8 @@
         <translation>Змяніць пароль</translation>
     </message>
     <message>
-        <source>Enter the old and new passphrase to the wallet.</source>
-        <translation>Увядзіце стары і новы пароль да гаманца.</translation>
+        <source>Enter the old passphrase and new passphrase to the wallet.</source>
+        <translation>Увядзіце стары пароль і новы пароль для гаманца.</translation>
     </message>
     <message>
         <source>Confirm wallet encryption</source>
@@ -165,31 +169,19 @@
     </message>
     <message>
         <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR SEXCOINS&lt;/b&gt;!</source>
-        <translation>Увага: калі вы зашыфруеце свой гаманец і страціце парольную фразу, то &lt;b&gt;СТРАЦІЦЕ ЎСЕ СВАЕ SEXCOINS&lt;/b&gt;!</translation>
+        <translation>Увага: калі вы зашыфруеце свой гаманец і страціце парольную фразу, то &lt;b&gt;СТРАЦІЦЕ ЎСЕ СВАЕ БІТКОЙНЫ&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Ці ўпэўненыя вы, што жадаеце зашыфраваць свой гаманец?</translation>
     </message>
     <message>
-        <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
-        <translation>ВАЖНА: Усе папярэднія копіі гаманца варта замяніць новым зашыфраваным файлам. У мэтах бяспекі папярэднія копіі незашыфраванага файла-гаманца стануць неўжывальнымі, калі вы станеце карыстацца новым зашыфраваным гаманцом.</translation>
-    </message>
-    <message>
-        <source>Warning: The Caps Lock key is on!</source>
-        <translation>Увага: Caps Lock уключаны!</translation>
-    </message>
-    <message>
         <source>Wallet encrypted</source>
         <translation>Гаманец зашыфраваны</translation>
     </message>
     <message>
-        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Увядзіце новы пароль для гаманца.&lt;br/&gt;Парольная фраза павинна складацца&lt;b&gt; не меньш чым з дзесяці сімвалаў&lt;/b&gt;, ці &lt;b&gt;больш чым з васьмі слоў&lt;/b&gt;.</translation>
-    </message>
-    <message>
-        <source>Sexcoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your sexcoins from being stolen by malware infecting your computer.</source>
-        <translation>Sexcoin зачыняецца дзеля завяршэння працэсса шыфравання. Памятайце, што шыфраванне гаманца цалкам абараняе вашыя сродкі ад скрадання шкоднымі праграмамі якія могуць пранікнуць у ваш камп'ютар.</translation>
+        <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
+        <translation>ВАЖНА: Усе папярэднія копіі гаманца варта замяніць новым зашыфраваным файлам. У мэтах бяспекі папярэднія копіі незашыфраванага файла-гаманца стануць неўжывальнымі, калі вы станеце карыстацца новым зашыфраваным гаманцом.</translation>
     </message>
     <message>
         <source>Wallet encryption failed</source>
@@ -209,7 +201,7 @@
     </message>
     <message>
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
-        <translation>Уведзена пароль  дзеля расшыфравання гаманца памылковы</translation>
+        <translation>Уведзены пароль  для расшыфравання гаманца памылковы</translation>
     </message>
     <message>
         <source>Wallet decryption failed</source>
@@ -219,9 +211,16 @@
         <source>Wallet passphrase was successfully changed.</source>
         <translation>Парольная фраза гаманца паспяхова зменена.</translation>
     </message>
+    <message>
+        <source>Warning: The Caps Lock key is on!</source>
+        <translation>Увага: Caps Lock уключаны!</translation>
+    </message>
 </context>
 <context>
-    <name>BitcoinGUI</name>
+    <name>BanTableModel</name>
+    </context>
+<context>
+    <name>SexcoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>Падпісаць паведамленне...</translation>
@@ -295,14 +294,6 @@
         <translation>Адчыниць &amp;URI...</translation>
     </message>
     <message>
-        <source>Sexcoin Core client</source>
-        <translation>Sexcoin Core кліент</translation>
-    </message>
-    <message>
-        <source>Importing blocks from disk...</source>
-        <translation>Імпартуюцца блокі з дыску...</translation>
-    </message>
-    <message>
         <source>Reindexing blocks on disk...</source>
         <translation>Пераіндэксацыя блокаў на дыску...</translation>
     </message>
@@ -347,10 +338,6 @@
         <translation>Атрымаць</translation>
     </message>
     <message>
-        <source>Show information about Sexcoin Core</source>
-        <translation>Паказаць інфармацыю аб Sexcoin Core</translation>
-    </message>
-    <message>
         <source>&amp;Show / Hide</source>
         <translation>&amp;Паказаць / Схаваць</translation>
     </message>
@@ -383,16 +370,8 @@
         <translation>Дапамога</translation>
     </message>
     <message>
-        <source>Sexcoin Core</source>
-        <translation>Sexcoin Core</translation>
-    </message>
-    <message>
         <source>Request payments (generates QR codes and sexcoin: URIs)</source>
-        <translation>Запатрабаваць плацёж (генеруецца QR-код для sexcoin URI)</translation>
-    </message>
-    <message>
-        <source>&amp;About Sexcoin Core</source>
-        <translation>Аб Sexcoin Core</translation>
+        <translation>Запатрабаваць плацёж (генеруецца QR-код для біткойн URI)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -404,27 +383,11 @@
     </message>
     <message>
         <source>Open a sexcoin: URI or payment request</source>
-        <translation>Адкрыць sexcoin: URI ці запыт плацяжу</translation>
+        <translation>Адкрыць біткойн: URI ці запыт плацяжу</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
         <translation>Опцыі каманднага радка</translation>
-    </message>
-    <message>
-        <source>Show the Sexcoin Core help message to get a list with possible Sexcoin command-line options</source>
-        <translation>Паказваць даведку Sexcoin Core каб атрымаць спіс магчымых опцый каманднага радка</translation>
-    </message>
-    <message numerus="yes">
-        <source>%n active connection(s) to Sexcoin network</source>
-        <translation><numerusform>%n актыўнае злучэнне з Sexcoin-сецівам</numerusform><numerusform>%n актыўных злучэнняў з Sexcoin-сецівам</numerusform><numerusform>%n актыўных злучэнняў з Sexcoin-сецівам</numerusform><numerusform>%n актыўных злучэнняў з Sexcoin-сецівам</numerusform></translation>
-    </message>
-    <message>
-        <source>No block source available...</source>
-        <translation>Крыніца блокаў недасяжная...</translation>
-    </message>
-    <message>
-        <source>%1 and %2</source>
-        <translation>%1 і %2</translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -459,24 +422,42 @@
         <translation>Наганяем...</translation>
     </message>
     <message>
+        <source>Date: %1
+</source>
+        <translation>Дата: %1
+</translation>
+    </message>
+    <message>
+        <source>Amount: %1
+</source>
+        <translation>Колькасць: %1
+</translation>
+    </message>
+    <message>
+        <source>Type: %1
+</source>
+        <translation>Тып: %1
+</translation>
+    </message>
+    <message>
+        <source>Label: %1
+</source>
+        <translation>Метка: %1
+</translation>
+    </message>
+    <message>
+        <source>Address: %1
+</source>
+        <translation>Адрас: %1
+</translation>
+    </message>
+    <message>
         <source>Sent transaction</source>
         <translation>Дасланыя транзакцыі</translation>
     </message>
     <message>
         <source>Incoming transaction</source>
         <translation>Прынятыя транзакцыі</translation>
-    </message>
-    <message>
-        <source>Date: %1
-Amount: %2
-Type: %3
-Address: %4
-</source>
-        <translation>Дата: %1
-Колькасць: %2
-Тып: %3
-Адрас: %4
-</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
@@ -486,14 +467,7 @@ Address: %4
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Гаманец &lt;b&gt;зашыфраваны&lt;/b&gt; і зараз &lt;b&gt;заблакаваны&lt;/b&gt;</translation>
     </message>
-</context>
-<context>
-    <name>ClientModel</name>
-    <message>
-        <source>Network Alert</source>
-        <translation>Трывога Сеціва</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -507,10 +481,6 @@ Address: %4
     <message>
         <source>Amount:</source>
         <translation>Колькасць:</translation>
-    </message>
-    <message>
-        <source>Priority:</source>
-        <translation>Прыярытэт:</translation>
     </message>
     <message>
         <source>Fee:</source>
@@ -561,10 +531,6 @@ Address: %4
         <translation>Пацверджана</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation>Прыярытэт</translation>
-    </message>
-    <message>
         <source>Copy address</source>
         <translation>Капіяваць адрас</translation>
     </message>
@@ -605,48 +571,8 @@ Address: %4
         <translation>Капіяваць байты</translation>
     </message>
     <message>
-        <source>Copy priority</source>
-        <translation>Капіяваць прыярытэт</translation>
-    </message>
-    <message>
         <source>Copy dust</source>
         <translation>Капіяваць пыл</translation>
-    </message>
-    <message>
-        <source>highest</source>
-        <translation>найвышэйшы</translation>
-    </message>
-    <message>
-        <source>higher</source>
-        <translation>вышэйшы</translation>
-    </message>
-    <message>
-        <source>high</source>
-        <translation>высокі</translation>
-    </message>
-    <message>
-        <source>medium-high</source>
-        <translation>вышэй сярэдняга</translation>
-    </message>
-    <message>
-        <source>medium</source>
-        <translation>сярэдні</translation>
-    </message>
-    <message>
-        <source>low-medium</source>
-        <translation>ніжэй сярэдняга</translation>
-    </message>
-    <message>
-        <source>low</source>
-        <translation>нізкі</translation>
-    </message>
-    <message>
-        <source>lower</source>
-        <translation>ніжэйшы</translation>
-    </message>
-    <message>
-        <source>lowest</source>
-        <translation>найніжэйшы</translation>
     </message>
     <message>
         <source>yes</source>
@@ -655,26 +581,6 @@ Address: %4
     <message>
         <source>no</source>
         <translation>не</translation>
-    </message>
-    <message>
-        <source>This label turns red, if the transaction size is greater than 1000 bytes.</source>
-        <translation>Гэта метка стане чырвонай, калі транзакцыя перавысіць 1000 байт.</translation>
-    </message>
-    <message>
-        <source>This means a fee of at least %1 per kB is required.</source>
-        <translation>Гэта значыць патрэбную камісію мінімум %1 на Кб.</translation>
-    </message>
-    <message>
-        <source>Transactions with higher priority are more likely to get included into a block.</source>
-        <translation>Транзакцыя большага прыярытэту больш прываблівая для ўключэння ў блок.</translation>
-    </message>
-    <message>
-        <source>This label turns red, if the priority is smaller than "medium".</source>
-        <translation>Гэта метка стане чырвонай, калі прыярытэт меньш чым "сярэдні".</translation>
-    </message>
-    <message>
-        <source>This label turns red, if any recipient receives an amount smaller than %1.</source>
-        <translation>Гэта метка стане чырвонай, калі любы з адрасатаў атрымае меньш чым %1.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -742,16 +648,8 @@ Address: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Sexcoin Core</source>
-        <translation>Sexcoin Core</translation>
-    </message>
-    <message>
         <source>(%1-bit)</source>
         <translation>(%1-біт)</translation>
-    </message>
-    <message>
-        <source>About Sexcoin Core</source>
-        <translation>Аб Sexcoin Core</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -777,16 +675,15 @@ Address: %4
         <translation>Вітаем</translation>
     </message>
     <message>
-        <source>Welcome to Sexcoin Core.</source>
-        <translation>Вітаем у Sexcoin Core.</translation>
-    </message>
-    <message>
-        <source>Sexcoin Core</source>
-        <translation>Sexcoin Core</translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation>Памылка</translation>
+    </message>
+    </context>
+<context>
+    <name>ModalOverlay</name>
+    <message>
+        <source>Form</source>
+        <translation>Форма</translation>
     </message>
     </context>
 <context>
@@ -805,6 +702,10 @@ Address: %4
     <message>
         <source>MB</source>
         <translation>Мб</translation>
+    </message>
+    <message>
+        <source>W&amp;allet</source>
+        <translation>Гаманец</translation>
     </message>
     </context>
 <context>
@@ -826,15 +727,34 @@ Address: %4
         <source>Amount</source>
         <translation>Колькасць</translation>
     </message>
+    <message>
+        <source>%1 and %2</source>
+        <translation>%1 і %2</translation>
+    </message>
+    </context>
+<context>
+    <name>QObject::QObject</name>
     </context>
 <context>
     <name>QRImageWidget</name>
     </context>
 <context>
     <name>RPCConsole</name>
+    <message>
+        <source>&amp;Information</source>
+        <translation>Інфармацыя</translation>
+    </message>
+    <message>
+        <source>Debug window</source>
+        <translation>Вакно адладкі</translation>
+    </message>
     </context>
 <context>
     <name>ReceiveCoinsDialog</name>
+    <message>
+        <source>&amp;Amount:</source>
+        <translation>&amp;Колькасць:</translation>
+    </message>
     <message>
         <source>&amp;Label:</source>
         <translation>Метка:</translation>
@@ -850,6 +770,10 @@ Address: %4
 </context>
 <context>
     <name>ReceiveRequestDialog</name>
+    <message>
+        <source>Copy &amp;Address</source>
+        <translation>Капіяваць адрас</translation>
+    </message>
     <message>
         <source>Address</source>
         <translation>Адрас</translation>
@@ -882,10 +806,6 @@ Address: %4
         <translation>Паведамленне</translation>
     </message>
     <message>
-        <source>Amount</source>
-        <translation>Колькасць</translation>
-    </message>
-    <message>
         <source>(no label)</source>
         <translation>непазначаны</translation>
     </message>
@@ -895,6 +815,10 @@ Address: %4
     <message>
         <source>Send Coins</source>
         <translation>Даслаць Манеты</translation>
+    </message>
+    <message>
+        <source>Insufficient funds!</source>
+        <translation>Недастаткова сродкаў</translation>
     </message>
     <message>
         <source>Quantity:</source>
@@ -907,10 +831,6 @@ Address: %4
     <message>
         <source>Amount:</source>
         <translation>Колькасць:</translation>
-    </message>
-    <message>
-        <source>Priority:</source>
-        <translation>Прыярытэт:</translation>
     </message>
     <message>
         <source>Fee:</source>
@@ -937,10 +857,6 @@ Address: %4
         <translation>Пацвердзіць дасыланне</translation>
     </message>
     <message>
-        <source>Confirm send coins</source>
-        <translation>Пацвердзіць дасыланне манет</translation>
-    </message>
-    <message>
         <source>Copy quantity</source>
         <translation>Капіяваць колькасць</translation>
     </message>
@@ -961,8 +877,12 @@ Address: %4
         <translation>Капіяваць байты</translation>
     </message>
     <message>
-        <source>Copy priority</source>
-        <translation>Капіяваць прыярытэт</translation>
+        <source>Copy dust</source>
+        <translation>Капіяваць пыл</translation>
+    </message>
+    <message>
+        <source>Confirm send coins</source>
+        <translation>Пацвердзіць дасыланне манет</translation>
     </message>
     <message>
         <source>The amount to pay must be larger than 0.</source>
@@ -972,11 +892,7 @@ Address: %4
         <source>(no label)</source>
         <translation>непазначаны</translation>
     </message>
-    <message>
-        <source>Copy dust</source>
-        <translation>Капіяваць пыл</translation>
-    </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsEntry</name>
     <message>
@@ -986,10 +902,6 @@ Address: %4
     <message>
         <source>Pay &amp;To:</source>
         <translation>Заплаціць да:</translation>
-    </message>
-    <message>
-        <source>Enter a label for this address to add it to your address book</source>
-        <translation>Увядзіце пазнаку гэтаму адрасу, каб дадаць яго ў адрасную кнігу</translation>
     </message>
     <message>
         <source>&amp;Label:</source>
@@ -1008,10 +920,25 @@ Address: %4
         <translation>Alt+P</translation>
     </message>
     <message>
+        <source>Message:</source>
+        <translation>Паведамленне:</translation>
+    </message>
+    <message>
+        <source>Pay To:</source>
+        <translation>Заплаціць да:</translation>
+    </message>
+    <message>
         <source>Memo:</source>
         <translation>Памятка:</translation>
     </message>
+    <message>
+        <source>Enter a label for this address to add it to your address book</source>
+        <translation>Увядзіце пазнаку гэтаму адрасу, каб дадаць яго ў адрасную кнігу</translation>
+    </message>
 </context>
+<context>
+    <name>SendConfirmationDialog</name>
+    </context>
 <context>
     <name>ShutdownWindow</name>
     </context>
@@ -1032,14 +959,6 @@ Address: %4
     </context>
 <context>
     <name>SplashScreen</name>
-    <message>
-        <source>Sexcoin Core</source>
-        <translation>Sexcoin Core</translation>
-    </message>
-    <message>
-        <source>The Bitcoin Core developers</source>
-        <translation>Распрацоўнікі Bitcoin Core</translation>
-    </message>
     <message>
         <source>[testnet]</source>
         <translation>[testnet]</translation>
@@ -1071,8 +990,16 @@ Address: %4
         <translation>Статус</translation>
     </message>
     <message>
+        <source>, has not been successfully broadcast yet</source>
+        <translation>, пакуль не было паспяхова транслявана</translation>
+    </message>
+    <message>
         <source>Date</source>
         <translation>Дата</translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>невядома</translation>
     </message>
     <message>
         <source>Message</source>
@@ -1090,26 +1017,14 @@ Address: %4
         <source>Amount</source>
         <translation>Колькасць</translation>
     </message>
-    <message>
-        <source>, has not been successfully broadcast yet</source>
-        <translation>, пакуль не было паспяхова транслявана</translation>
-    </message>
-    <message>
-        <source>unknown</source>
-        <translation>невядома</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransactionDescDialog</name>
-    <message>
-        <source>Transaction details</source>
-        <translation>Дэталі транзакцыі</translation>
-    </message>
     <message>
         <source>This pane shows a detailed description of the transaction</source>
         <translation>Гэтая панэль паказвае дэтальнае апісанне транзакцыі</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -1121,8 +1036,8 @@ Address: %4
         <translation>Тып</translation>
     </message>
     <message>
-        <source>Address</source>
-        <translation>Адрас</translation>
+        <source>Label</source>
+        <translation>Метка</translation>
     </message>
     <message>
         <source>Confirmed (%1 confirmations)</source>
@@ -1161,6 +1076,10 @@ Address: %4
         <translation>(n/a)</translation>
     </message>
     <message>
+        <source>(no label)</source>
+        <translation>непазначаны</translation>
+    </message>
+    <message>
         <source>Transaction status. Hover over this field to show number of confirmations.</source>
         <translation>Статус транзакцыі. Навядзіце курсар на гэтае поле, каб паказаць колькасць пацверджанняў.</translation>
     </message>
@@ -1171,10 +1090,6 @@ Address: %4
     <message>
         <source>Type of transaction.</source>
         <translation>Тып транзакцыі</translation>
-    </message>
-    <message>
-        <source>Destination address of transaction.</source>
-        <translation>Адрас прызначэння транзакцыі.</translation>
     </message>
     <message>
         <source>Amount removed from or added to balance.</source>
@@ -1260,10 +1175,6 @@ Address: %4
         <translation>Рэдагаваць пазнаку</translation>
     </message>
     <message>
-        <source>Exporting Failed</source>
-        <translation>Экспартаванне няўдалае</translation>
-    </message>
-    <message>
         <source>Comma separated file (*.csv)</source>
         <translation>Коскамі падзелены файл (*.csv)</translation>
     </message>
@@ -1290,6 +1201,10 @@ Address: %4
     <message>
         <source>ID</source>
         <translation>ID</translation>
+    </message>
+    <message>
+        <source>Exporting Failed</source>
+        <translation>Экспартаванне няўдалае</translation>
     </message>
     <message>
         <source>Range:</source>
@@ -1325,7 +1240,7 @@ Address: %4
     </message>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>sexcoin-core</name>
     <message>
         <source>Options:</source>
         <translation>Опцыі:</translation>
@@ -1343,8 +1258,8 @@ Address: %4
         <translation>Запусціць у фоне як дэман і прымаць каманды</translation>
     </message>
     <message>
-        <source>Use the test network</source>
-        <translation>Ужываць тэставае сеціва</translation>
+        <source>Sexcoin Core</source>
+        <translation>Sexcoin Core</translation>
     </message>
     <message>
         <source>Do you want to rebuild the block database now?</source>
@@ -1395,10 +1310,6 @@ Address: %4
         <translation>Опцыі гаманца:</translation>
     </message>
     <message>
-        <source>Imports blocks from external blk000??.dat file</source>
-        <translation>Імпартаванне блокаў з вонкавага blk000??.dat файла</translation>
-    </message>
-    <message>
         <source>Information</source>
         <translation>Інфармацыя</translation>
     </message>
@@ -1443,28 +1354,8 @@ Address: %4
         <translation>Выканаць каманду калі лепшы блок зменіцца (%s замяняецца на хэш блока)</translation>
     </message>
     <message>
-        <source>Upgrade wallet to latest format</source>
-        <translation>Абнавіць гаманец на новы фармат</translation>
-    </message>
-    <message>
-        <source>Rescan the block chain for missing wallet transactions</source>
-        <translation>Перасканаваць ланцуг блокаў дзеля пошуку адсутных транзакцый</translation>
-    </message>
-    <message>
-        <source>Use OpenSSL (https) for JSON-RPC connections</source>
-        <translation>Ужываць OpenSSL (https) для JSON-RPC злучэнняў</translation>
-    </message>
-    <message>
         <source>Loading addresses...</source>
         <translation>Загружаем адрасы...</translation>
-    </message>
-    <message>
-        <source>Error loading wallet.dat: Wallet corrupted</source>
-        <translation>Памылка загрузкі wallet.dat: гаманец пашкоджаны</translation>
-    </message>
-    <message>
-        <source>Error loading wallet.dat</source>
-        <translation>Памылка загрузкі wallet.dat</translation>
     </message>
     <message>
         <source>Insufficient funds</source>

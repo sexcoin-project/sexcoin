@@ -9,7 +9,7 @@ Group=sexcoin
 Type=forking
 PIDFile=/var/lib/sexcoind/sexcoind.pid
 ExecStart=/usr/bin/sexcoind -daemon -pid=/var/lib/sexcoind/sexcoind.pid \
--conf=/etc/bitcoin/sexcoin.conf -datadir=/var/lib/sexcoind -disablewallet
+-conf=/etc/sexcoin/sexcoin.conf -datadir=/var/lib/sexcoind -disablewallet
 
 Restart=always
 PrivateTmp=true
