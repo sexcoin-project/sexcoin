@@ -32,7 +32,7 @@ class CBaseMainParams : public CBaseChainParams
 public:
     CBaseMainParams()
     {
-        nRPCPort = 9560;
+        nRPCPort = 9561;
     }
 };
 
@@ -44,7 +44,7 @@ class CBaseTestNetParams : public CBaseChainParams
 public:
     CBaseTestNetParams()
     {
-        nRPCPort = 19560;
+        nRPCPort = 19561;
         strDataDir = "testnet3";
     }
 };
@@ -57,7 +57,7 @@ class CBaseRegTestParams : public CBaseChainParams
 public:
     CBaseRegTestParams()
     {
-        nRPCPort = 29560;
+        nRPCPort = 29561;
         strDataDir = "regtest";
     }
 };
