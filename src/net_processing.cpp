@@ -1103,6 +1103,8 @@ void static ProcessGetData(CNode* pfrom, const Consensus::Params& consensusParam
                         connman->PushMessage(pfrom, msgMaker.Make(NetMsgType::BLOCK, *pblock));
                     else if (inv.type == MSG_FILTERED_BLOCK)
                     {
+                        //DEBUG: lj
+                        LogPrintf("%s: Building merkle block response for peer=%i",__func__,pfrom->GetId());
                         bool sendMerkleBlock = false;
                         CMerkleBlock merkleBlock;
                         {
@@ -1112,8 +1114,12 @@ void static ProcessGetData(CNode* pfrom, const Consensus::Params& consensusParam
                                 merkleBlock = CMerkleBlock(*pblock, *pfrom->pfilter);
                             }
                         }
+                        //DEBUG: lj
+                        LogPrintf("%s: Merkleblock built. creating message for peer=%i",__func__,pfrom->GetId());
                         if (sendMerkleBlock) {
                             connman->PushMessage(pfrom, msgMaker.Make(NetMsgType::MERKLEBLOCK, merkleBlock));
+                            //DEBUG: lj
+                            LogPrintf("%s: Message NetMsgType::MERKLEBLOCK pushed. peer=%i",__func__,pfrom->GetId());
                             // CMerkleBlock just contains hashes, so also push any transactions in the block the client did not see
                             // This avoids hurting performance by pointlessly requiring a round-trip
                             // Note that there is currently no way for a node to request any single transactions we didn't send here -
@@ -1121,8 +1127,12 @@ void static ProcessGetData(CNode* pfrom, const Consensus::Params& consensusParam
                             // Thus, the protocol spec specified allows for us to provide duplicate txn here,
                             // however we MUST always provide at least what the remote peer needs
                             typedef std::pair<unsigned int, uint256> PairType;
+                            //DEBUG: lj
+                            LogPrintf("%s: Creating txn Messages for peer=%i",__func__,pfrom->GetId());
                             for (PairType& pair : merkleBlock.vMatchedTxn)
                                 connman->PushMessage(pfrom, msgMaker.Make(SERIALIZE_TRANSACTION_NO_WITNESS, NetMsgType::TX, *pblock->vtx[pair.first]));
+                            //DEBUG: lj
+                            LogPrintf("%s: Pushed all txn messages peer=%i",__func__,pfrom->GetId());
                         }
                         // else
                             // no response
