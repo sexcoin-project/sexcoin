@@ -8,6 +8,8 @@
 
 #include "net.h"
 #include "serialize.h"
+//DEBUG lj
+//#include "util.h"
 
 class CNetMsgMaker
 {
@@ -17,6 +19,7 @@ public:
     template <typename... Args>
     CSerializedNetMsg Make(int nFlags, std::string sCommand, Args&&... args) const
     {
+        
         CSerializedNetMsg msg;
         msg.command = std::move(sCommand);
         CVectorWriter{ SER_NETWORK, nFlags | nVersion, msg.data, 0, std::forward<Args>(args)... };

@@ -39,7 +39,7 @@ public:
         READWRITE(nBits);
         READWRITE(nNonce);
         // the auxpow block is not serialized as part of the hash
-        if ( (!(s.GetType() & SER_GETHASH)) && this->IsAuxPow()) {
+        if ( (!(s.GetType() & SER_GETHASH)) && this->IsAuxPow() ) {
             READWRITE(auxpow);
         }
     }
