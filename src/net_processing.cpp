@@ -1103,8 +1103,6 @@ void static ProcessGetData(CNode* pfrom, const Consensus::Params& consensusParam
                         connman->PushMessage(pfrom, msgMaker.Make(NetMsgType::BLOCK, *pblock));
                     else if (inv.type == MSG_FILTERED_BLOCK)
                     {
-                        //DEBUG: lj
-                        LogPrintf("%s: Building merkle block response for peer=%i\n",__func__,pfrom->GetId());
                         bool sendMerkleBlock = false;
                         CMerkleBlock merkleBlock;
                         {
@@ -1114,37 +1112,9 @@ void static ProcessGetData(CNode* pfrom, const Consensus::Params& consensusParam
                                 merkleBlock = CMerkleBlock(*pblock, *pfrom->pfilter);
                             }
                         }
-                        //DEBUG: lj
-                        LogPrintf("%s: Merkleblock built. creating message for peer=%i\n",__func__,pfrom->GetId());
                         if (sendMerkleBlock) {
-                            //DEBUG: lj
-                            LogPrintf("%s: sendMerkleBlock is TRUE.  peer=%i\n",__func__,pfrom->GetId());
-                            LogPrintf("%s: mi.end() = %s\n",__func__,mi == mapBlockIndex.end() ? "True" : "False");
-                            LogPrintf("%s: MerkleBlock: \n",__func__);
-                            LogPrintf("%s:    #txn's:       %i\n",__func__, merkleBlock.txn.GetNumTransactions());
-                            LogPrintf("%s:    Hash:         %s\n",__func__, merkleBlock.header.GetHash().ToString());
-                            LogPrintf("%s:    nVersion:     %i\n",__func__, merkleBlock.header.nVersion);
-                            LogPrintf("%s:    PrevHash:     %s\n",__func__, merkleBlock.header.hashPrevBlock.ToString());
-                            LogPrintf("%s:    MerkleHash:   %s\n",__func__, merkleBlock.header.hashMerkleRoot.ToString());
-                            LogPrintf("%s:    nTime:        %i\n",__func__, merkleBlock.header.nTime);
-                            LogPrintf("%s:    nBits:        %x\n",__func__, merkleBlock.header.nBits);
-                            LogPrintf("%s:    nNonce:       %i\n",__func__, merkleBlock.header.nNonce);
-                            LogPrintf("%s:    IsAuxPow:     %s\n",__func__, merkleBlock.header.IsAuxPow()?"True":"False");
-                            LogPrintf("%s:    IsNull:       %s\n",__func__, merkleBlock.header.IsNull()?"True":"False");
-                            if(merkleBlock.header.auxpow != nullptr)
-                                LogPrintf("%s:    auxpow.size:%i\n",__func__, merkleBlock.header.auxpow->vChainMerkleBranch.size());
-                            else
-                                LogPrintf("%s:    auxpow is null.\n",__func__);
-                            LogPrintf("%s: *pblock: \n",__func__);
-                            LogPrintf("%s:    isAuxPow: %s\n",__func__, pblock->GetBlockHeader().IsAuxPow() ? "True" : "False");
-                            if( pblock->GetBlockHeader().auxpow != nullptr)
-                                LogPrintf("%s:    auxpow.size: %i\n",__func__,pblock->GetBlockHeader().auxpow->vChainMerkleBranch.size());
-                            else
-                                LogPrintf("%s:    auxpowisNull: True\n", __func__);
                             
                             connman->PushMessage(pfrom, msgMaker.Make(NetMsgType::MERKLEBLOCK, merkleBlock));
-                            //DEBUG: lj
-                            LogPrintf("%s: Message NetMsgType::MERKLEBLOCK pushed. peer=%i\n",__func__,pfrom->GetId());
                             // CMerkleBlock just contains hashes, so also push any transactions in the block the client did not see
                             // This avoids hurting performance by pointlessly requiring a round-trip
                             // Note that there is currently no way for a node to request any single transactions we didn't send here -
@@ -1152,15 +1122,10 @@ void static ProcessGetData(CNode* pfrom, const Consensus::Params& consensusParam
                             // Thus, the protocol spec specified allows for us to provide duplicate txn here,
                             // however we MUST always provide at least what the remote peer needs
                             typedef std::pair<unsigned int, uint256> PairType;
-                            //DEBUG: lj
-                            LogPrintf("%s: Creating txn Messages for peer=%i\n",__func__,pfrom->GetId());
                             for (PairType& pair : merkleBlock.vMatchedTxn)
                                 connman->PushMessage(pfrom, msgMaker.Make(SERIALIZE_TRANSACTION_NO_WITNESS, NetMsgType::TX, *pblock->vtx[pair.first]));
-                            //DEBUG: lj
-                            LogPrintf("%s: Pushed all txn messages peer=%i\n",__func__,pfrom->GetId());
                         }
-                        //DEBUG: lj
-                        LogPrintf("%s: out of ifsendMerkleBlock peer=%i\n", __func__, pfrom->GetId());
+
                         // else
                             // no response
                     }
@@ -1183,8 +1148,6 @@ void static ProcessGetData(CNode* pfrom, const Consensus::Params& consensusParam
                             connman->PushMessage(pfrom, msgMaker.Make(nSendFlags, NetMsgType::BLOCK, *pblock));
                         }
                     }
-                    //DEBUG: lj
-                    LogPrintf("%s: Preparing continue requesting for peer=%i\n", __func__, pfrom->GetId());
                     // Trigger the peer node to send a getblocks request for the next batch of inventory
                     if (inv.hash == pfrom->hashContinue)
                     {

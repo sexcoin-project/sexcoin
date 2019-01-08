@@ -8,8 +8,7 @@
 
 #include "net.h"
 #include "serialize.h"
-//DEBUG lj
-//#include "util.h"
+
 
 class CNetMsgMaker
 {

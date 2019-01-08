@@ -8,8 +8,7 @@
 #include "hash.h"
 #include "consensus/consensus.h"
 #include "utilstrencodings.h"
-#include "chain.h"
-#include "txdb.h"
+
 
 CMerkleBlock::CMerkleBlock(const CBlock& block, CBloomFilter& filter)
 {

@@ -10,8 +10,7 @@
 #include "uint256.h"
 #include "primitives/block.h"
 #include "bloom.h"
-//#include "chain.h"
-//#include "txdb.h"
+
 
 #include <vector>
 
