@@ -11,6 +11,7 @@
 #include "primitives/block.h"
 #include "bloom.h"
 
+
 #include <vector>
 
 /** Data structure that represents a partial merkle tree.
@@ -115,6 +116,8 @@ public:
      * returns the merkle root, or 0 in case of failure
      */
     uint256 ExtractMatches(std::vector<uint256> &vMatch, std::vector<unsigned int> &vnIndex);
+    
+    unsigned int GetNumTransactions() const { return nTransactions; };
 };
 
 
@@ -144,14 +147,20 @@ public:
 
     // Create from a CBlock, matching the txids in the set
     CMerkleBlock(const CBlock& block, const std::set<uint256>& txids);
-
+    
     CMerkleBlock() {}
 
     ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action) {
-        READWRITE(header);
+        //READWRITE(header);
+        READWRITE(header.nVersion);
+        READWRITE(header.hashPrevBlock);
+        READWRITE(header.hashMerkleRoot);
+        READWRITE(header.nTime);
+        READWRITE(header.nBits);
+        READWRITE(header.nNonce);
         READWRITE(txn);
     }
 };

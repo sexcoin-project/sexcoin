@@ -1113,6 +1113,7 @@ void static ProcessGetData(CNode* pfrom, const Consensus::Params& consensusParam
                             }
                         }
                         if (sendMerkleBlock) {
+                            
                             connman->PushMessage(pfrom, msgMaker.Make(NetMsgType::MERKLEBLOCK, merkleBlock));
                             // CMerkleBlock just contains hashes, so also push any transactions in the block the client did not see
                             // This avoids hurting performance by pointlessly requiring a round-trip
@@ -1124,6 +1125,7 @@ void static ProcessGetData(CNode* pfrom, const Consensus::Params& consensusParam
                             for (PairType& pair : merkleBlock.vMatchedTxn)
                                 connman->PushMessage(pfrom, msgMaker.Make(SERIALIZE_TRANSACTION_NO_WITNESS, NetMsgType::TX, *pblock->vtx[pair.first]));
                         }
+
                         // else
                             // no response
                     }
@@ -1146,7 +1148,6 @@ void static ProcessGetData(CNode* pfrom, const Consensus::Params& consensusParam
                             connman->PushMessage(pfrom, msgMaker.Make(nSendFlags, NetMsgType::BLOCK, *pblock));
                         }
                     }
-
                     // Trigger the peer node to send a getblocks request for the next batch of inventory
                     if (inv.hash == pfrom->hashContinue)
                     {
