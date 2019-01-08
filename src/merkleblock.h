@@ -10,6 +10,8 @@
 #include "uint256.h"
 #include "primitives/block.h"
 #include "bloom.h"
+//#include "chain.h"
+//#include "txdb.h"
 
 #include <vector>
 
@@ -115,6 +117,8 @@ public:
      * returns the merkle root, or 0 in case of failure
      */
     uint256 ExtractMatches(std::vector<uint256> &vMatch, std::vector<unsigned int> &vnIndex);
+    
+    unsigned int GetNumTransactions() const { return nTransactions; };
 };
 
 
@@ -144,7 +148,9 @@ public:
 
     // Create from a CBlock, matching the txids in the set
     CMerkleBlock(const CBlock& block, const std::set<uint256>& txids);
-
+    
+    CMerkleBlock(const CBlock& block, CBloomFilter& filter, const std::map<uint256, std::shared_ptr<CAuxPow> >& mapDirtyAuxPow);
+    
     CMerkleBlock() {}
 
     ADD_SERIALIZE_METHODS;
