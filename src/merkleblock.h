@@ -79,7 +79,8 @@ protected:
      * it returns the hash of the respective node and its respective index.
      */
     uint256 TraverseAndExtract(int height, unsigned int pos, unsigned int &nBitsUsed, unsigned int &nHashUsed, std::vector<uint256> &vMatch, std::vector<unsigned int> &vnIndex);
-
+    
+    
 public:
 
     /** serialization implementation */
@@ -145,6 +146,8 @@ public:
      */
     CMerkleBlock(const CBlock& block, CBloomFilter& filter);
 
+    CMerkleBlock(const CBlock& block, CBloomFilter& filter, const std::map<uint256, std::shared_ptr<CAuxPow> >& mapDirtyAuxPow);
+    
     // Create from a CBlock, matching the txids in the set
     CMerkleBlock(const CBlock& block, const std::set<uint256>& txids);
     
@@ -154,13 +157,13 @@ public:
 
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action) {
-        //READWRITE(header);
-        READWRITE(header.nVersion);
-        READWRITE(header.hashPrevBlock);
-        READWRITE(header.hashMerkleRoot);
-        READWRITE(header.nTime);
-        READWRITE(header.nBits);
-        READWRITE(header.nNonce);
+        READWRITE(header);
+        //READWRITE(header.nVersion);
+        //READWRITE(header.hashPrevBlock);
+        //READWRITE(header.hashMerkleRoot);
+        //READWRITE(header.nTime);
+        //READWRITE(header.nBits);
+        //READWRITE(header.nNonce);
         READWRITE(txn);
     }
 };

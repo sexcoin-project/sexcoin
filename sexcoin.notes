@@ -1,11 +1,11 @@
-MAX_MONEY:      amount.h
-magic numbers:  chainparams.cpp
-halving:        chainparams.cpp
-port:           chainparams.cpp
-nRPCPort:       chainparamsbase.cpp
+MAX_MONEY:                  amount.h
+magic numbers:              chainparams.cpp
+halving:                    chainparams.cpp
+port:                       chainparams.cpp
+nRPCPort:                   chainparamsbase.cpp
 CLIENT_VERSION_IS_RELEASE   configure.ac, clientversion.h, src/config/bitcoin-config.h share/setup.nsi
-protocol version    version.h
-
+protocol version            version.h
+CHAIN_ID                    auxpow/concensus.h
 
 MainNet
 ========
@@ -13,9 +13,11 @@ magic number        : FA CE 69 69
 pszTimestamp        : "Disaster from the sky in Oklahoma"
 hashGenisisBlock    : 0xf42b9553085a1af63d659d3907a42c3a0052bbfa2693d3acf990af85755f2279
 hashMerkleRoot      : 0x661de12dc8dd26989adb169733b5a99150d52b8b6e8332976277856e246101f4
+CHAIN_ID            : 0x69
+
 
 PUBKEY_ADDRESS = 62
-SCRIPT_ADDRESS = 5
+SCRIPT_ADDRESS = 69
 SECRET_KEY     = 190
 EXT_PUBLIC_KEY = 0x04 0x88 0xB2 0x1E
 EXT_SECRET_KEY = 0x04 0x88 0xAD 0xE4
@@ -24,11 +26,17 @@ port    : 9560
 rpcport : 9561
 
 
-FORK1_HEIGHT 155000 
-FORK2_HEIGHT 572000
-FORK3_HEIGHT 643808
+FORK1_HEIGHT 155000         -first retarget adjustment
+FORK2_HEIGHT 572000         -kgw start
+FORK3_HEIGHT 643808         -kgw fix
+BlockVer4Height = 2348569   -age-verification start, magic-number fixed
 
-Protocol_version    : 60703
+AuxPow::START_MAINNET = 3080000 (auxpow/consensus.h)
+
+
+Protocol_version    : 70015
+
+v10.4.x Protocol_version:
     * TL;DR Sexcoin 60703 == Litecoin/Bitcoin 70003
     * this protocol version is version 70003 per Litecoin code, however previous Sexcoin versions reject any
     * protocol > 69999 as one defence against our magic-number problem. When these Sexcoin clients are obsoleted,
@@ -51,3 +59,33 @@ EXT_SECRET_KEY = (0x04)(0x35)(0x83)(0x94)
 port    : 19560
 rpcport : 19561
 
+
+Adding Age Verification to GUI:
+
+=====================================================
+
+walletmodel.cpp: Calls to CreateTransaction()
+walletmodeltransaction.h: add get/set Transaction Flags()
+walletmodeltransaction.cpp: add get/set Transaction Flags()
+
+transactionrecord.h
+transactionrecord.cpp
+transactiontablemodel.h
+transactiontablemodel.cpp
+transactionview.h
+transactionview.cpp
+
+
+In QTCreator:
+sendcoinsdialog.ui
+
+Add horizontal frame.
+    frameShape=panel
+    frameShadow=raised
+Add label, Add 4 radioButtons
+    radioButton_overNone , checked.
+    radioButton_overConsent
+    radioButton_over18
+    radioButton_over21
+Add QButtonGroup
+    groupAge, exclusive

@@ -8,6 +8,8 @@
 #include "hash.h"
 #include "consensus/consensus.h"
 #include "utilstrencodings.h"
+#include "chain.h"
+#include "txdb.h"
 
 
 CMerkleBlock::CMerkleBlock(const CBlock& block, CBloomFilter& filter)
@@ -36,6 +38,50 @@ CMerkleBlock::CMerkleBlock(const CBlock& block, CBloomFilter& filter)
     txn = CPartialMerkleTree(vHashes, vMatch);
 }
 
+
+	CMerkleBlock::CMerkleBlock(const CBlock& block, CBloomFilter& filter, const std::map<uint256, std::shared_ptr<CAuxPow> >& mapDirtyAuxPow)
+	{
+	    extern CBlockTreeDB *pblocktree;
+	
+	    header = block.GetBlockHeader();
+	
+	
+	    if (block.nVersion & AuxPow::BLOCK_VERSION_AUXPOW) {
+	        std::map<uint256, std::shared_ptr<CAuxPow> >::const_iterator it = mapDirtyAuxPow.find(block.GetHash());
+	        if (it != mapDirtyAuxPow.end()) {
+	            header.auxpow = it->second;
+	        } else {
+	            CDiskBlockIndex diskblockindex;
+	            // auxpow is not in memory, load CDiskBlockHeader
+	            // from database to get it
+	
+	            assert(pblocktree->ReadDiskBlockIndex(block.GetHash(), diskblockindex));
+	            header.auxpow = diskblockindex.auxpow;
+	        }
+	    }
+	
+	
+	    std::vector<bool> vMatch;
+	    std::vector<uint256> vHashes;
+	
+	    vMatch.reserve(block.vtx.size());
+	    vHashes.reserve(block.vtx.size());
+	
+	    for (unsigned int i = 0; i < block.vtx.size(); i++)
+	    {
+	        const uint256& hash = block.vtx[i]->GetHash();
+	        if (filter.IsRelevantAndUpdate(*block.vtx[i]))
+	        {
+	            vMatch.push_back(true);
+	            vMatchedTxn.push_back(std::make_pair(i, hash));
+	        }
+	        else
+	            vMatch.push_back(false);
+	        vHashes.push_back(hash);
+	    }
+	
+	    txn = CPartialMerkleTree(vHashes, vMatch);
+	}
 
 CMerkleBlock::CMerkleBlock(const CBlock& block, const std::set<uint256>& txids)
 {

@@ -1109,7 +1109,7 @@ void static ProcessGetData(CNode* pfrom, const Consensus::Params& consensusParam
                             LOCK(pfrom->cs_filter);
                             if (pfrom->pfilter) {
                                 sendMerkleBlock = true;
-                                merkleBlock = CMerkleBlock(*pblock, *pfrom->pfilter);
+                                merkleBlock = CMerkleBlock(*pblock, *pfrom->pfilter, mapDirtyAuxPow);
                             }
                         }
                         if (sendMerkleBlock) {
